@@ -51,8 +51,19 @@
 #include <private/bionic_asm_x86_64.h>
 #endif
 
+<<<<<<< PATCH SET (b18c5a bionic_asm.h: put every assembler routine in its own section)
+#define ENTRY_NO_DWARF(f) \
+    .text; \
+    .globl f; \
+    .section .text. ## f, "ax", %progbits; \
+    .balign __bionic_asm_align; \
+    .type f, __bionic_asm_function_type; \
+    f: \
+    __bionic_asm_custom_entry(f); \
+=======
 // Starts a normal assembler routine.
 #define ENTRY(__f) __ENTRY_WITH_BINDING(__f, .globl)
+>>>>>>> BASE      (078292 Merge "els-tls.md: stop talking about ELF TLS as future work)
 
 // Starts an assembler routine with hidden visibility.
 #define ENTRY_PRIVATE(__f)           \
