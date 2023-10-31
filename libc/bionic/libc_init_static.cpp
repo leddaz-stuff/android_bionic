@@ -439,6 +439,7 @@ __attribute__((no_sanitize("memtag"))) __noreturn static void __real_libc_init(
                   reinterpret_cast<ElfW(Phdr)*>(getauxval(AT_PHDR)), getauxval(AT_PHNUM),
                   /*load_bias = */ 0, /*stack_top = */ raw_args);
   __libc_init_scudo();
+  __libc_globals.mutate(__libc_init_malloc);
   __libc_init_profiling_handlers();
   __libc_init_fork_handler();
 
