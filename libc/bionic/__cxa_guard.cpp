@@ -76,6 +76,7 @@ union _guard_t {
 #define CONSTRUCTION_UNDERWAY_WITHOUT_WAITER    0x100
 #define CONSTRUCTION_UNDERWAY_WITH_WAITER       0x200
 
+__attribute__((no_stack_protector))
 extern "C" int __cxa_guard_acquire(_guard_t* gv) {
   int old_value = atomic_load_explicit(&gv->state, memory_order_acquire);
   // In the common CONSTRUCTION_COMPLETE case we have to ensure that all the stores performed by
