@@ -78,7 +78,7 @@ cc_defaults {
             cflags: ["-fsanitize=shadow-call-stack"],
         },
         riscv64: {
-            cflags: ["-fsanitize=shadow-call-stack"],
+             cflags: ["-fsanitize=shadow-call-stack"],
         },
     },
     sanitize: {

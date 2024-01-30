@@ -180,7 +180,7 @@ int main() {
   // Access a TLS variable from the first filler module.
   ASSERT_EQ(102, func1());
   ASSERT_EQ(5u, highest_modid_in_dtv());
-#if defined(__aarch64__)
+#if defined(__aarch64__) //|| defined(__riscv)
   // The arm64 TLSDESC resolver doesn't update the DTV if it is new enough for
   // the given access.
   ASSERT_EQ(initial_dtv, dtv());

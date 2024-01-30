@@ -438,7 +438,7 @@ static bool process_relocation_impl(Relocator& relocator, const rel_t& reloc) {
       }
       break;
 
-#if defined(__aarch64__)
+#if defined(__aarch64__) || defined(__riscv)
     // Bionic currently only implements TLSDESC for arm64. This implementation should work with
     // other architectures, as long as the resolver functions are implemented.
     case R_GENERIC_TLSDESC:
