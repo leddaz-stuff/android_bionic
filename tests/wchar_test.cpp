@@ -1075,8 +1075,34 @@ TEST(wchar, wcwidth_non_spacing_and_enclosing_marks_and_format) {
 
   EXPECT_EQ(0, wcwidth(0x0300)); // Combining grave.
   EXPECT_EQ(0, wcwidth(0x20dd)); // Combining enclosing circle.
-  EXPECT_EQ(0, wcwidth(0x00ad)); // Soft hyphen (SHY).
   EXPECT_EQ(0, wcwidth(0x200b)); // Zero width space.
+}
+
+TEST(wchar, wcwidth_non_spacing_special_cases) {
+  if (!have_dl()) return;
+
+  // I think the assumption here is that you elide the soft
+  // hyphen character completely if you don't want to render
+  // it as an actual hyphen. This is what Markus Kuhn's original
+  // https://www.cl.cam.ac.uk/~mgk25/ucs/wcwidth.c did, and glibc and iOS
+  // do the same.
+  EXPECT_EQ(1, wcwidth(0x00ad)); // Soft hyphen (SHY).
+
+  // U+115f is the Hangeul choseong filler (for a degenerate composed
+  // character missing an initial consonant (as opposed to one with a
+  // leading ieung). Since the code points for combining jungseong (medial
+  // vowels) and jongseong (trailing consonants) have width 0, the choseong
+  // (initial consonant) has width 2 to cover the entire syllable. So unless
+  // U+115f has width 2, a degenerate composed "syllable" without an initial
+  // consonant or ieung would have a total width of 0, which is silly.
+  // The following sequence is effectively "약" without the leading ieung...
+  EXPECT_EQ(2, wcwidth(0x115f)); // Hangeul choseong filler.
+  EXPECT_EQ(0, wcwidth(0x1163)); // Hangeul jungseong "ya".
+  EXPECT_EQ(0, wcwidth(0x11a8)); // Hangeul jongseong "kiyeok".
+
+  // U+1160, the jungseong filler, has width 0 because it must have been
+  // preceded by either a choseong or choseong filler.
+  EXPECT_EQ(0, wcwidth(0x1160));
 }
 
 TEST(wchar, wcwidth_cjk) {
@@ -1140,8 +1166,15 @@ TEST(wchar, wcwidth_default_ignorables) {
 TEST(wchar, wcwidth_korean_common_non_syllables) {
   if (!have_dl()) return;
 
-  EXPECT_EQ(2, wcwidth(L'ㅜ')); // Korean "crying" emoticon.
-  EXPECT_EQ(2, wcwidth(L'ㅋ')); // Korean "laughing" emoticon.
+  // These are actually the compatibility jamo code points, not the regular
+  // combining characters. That's what you get if you use the Android IME.
+
+  // (Half of) the Korean "crying" emoticon "ㅠㅠ".
+  // Actually U+3160 "Hangeul Letter Yu" from Hangeul Compatibility Jamo.
+  EXPECT_EQ(2, wcwidth(L'ㅠ'));
+  // (Half of) the Korean "laughing" emoticon "ㅋㅋ".
+  // Actually U+314B "Hangeul Letter Khieukh" from Hangeul Compatibility Jamo.
+  EXPECT_EQ(2, wcwidth(L'ㅋ'));
 }
 
 TEST(wchar, wcswidth) {
