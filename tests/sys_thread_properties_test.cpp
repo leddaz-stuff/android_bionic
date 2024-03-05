@@ -23,7 +23,13 @@ TEST(thread_properties_test, iterate_dts) {
 #if defined(__BIONIC__)
   const char expected_out[] =
       "got test_static_tls_bounds\niterate_cb i = 0\ndone_iterate_dynamic_tls\n";
+<<<<<<< PATCH SET (a8522f Build sys_thread_properties_test.cpp.)
+  std::string helper = GetTestlibRoot() + "/tls_properties_helper";
+  chmod(helper.c_str(), 0755);  // TODO: "x" lost in CTS, b/34945607
+
+=======
   std::string helper = GetTestLibRoot() + "tls_properties_helper/tls_properties_helper";
+>>>>>>> BASE      (e78370 Merge "linker: update non-PIE error message." into main)
   ExecTestHelper eth;
   eth.SetArgs({helper.c_str(), nullptr});
   eth.Run([&]() { execve(helper.c_str(), eth.GetArgs(), eth.GetEnv()); }, 0, expected_out);
@@ -34,7 +40,13 @@ TEST(thread_properties_test, thread_exit_cb) {
 #if defined(__BIONIC__)
   // tests/libs/thread_exit_cb_helper.cpp
   const char expected_out[] = "exit_cb_1 called exit_cb_2 called exit_cb_3 called";
+<<<<<<< PATCH SET (a8522f Build sys_thread_properties_test.cpp.)
+  std::string helper = GetTestlibRoot() + "/thread_exit_cb_helper";
+  chmod(helper.c_str(), 0755);  // TODO: "x" lost in CTS, b/34945607
+
+=======
   std::string helper = GetTestLibRoot() + "thread_exit_cb_helper/thread_exit_cb_helper";
+>>>>>>> BASE      (e78370 Merge "linker: update non-PIE error message." into main)
   ExecTestHelper eth;
   eth.SetArgs({helper.c_str(), nullptr});
   eth.Run([&]() { execve(helper.c_str(), eth.GetArgs(), eth.GetEnv()); }, 0, expected_out);
