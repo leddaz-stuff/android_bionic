@@ -15,6 +15,7 @@
  */
 
 #include <errno.h>
+#include <limits.h>
 #include <malloc.h>
 #include <sys/param.h>
 #include <unistd.h>
@@ -77,10 +78,12 @@ void* je_aligned_alloc_wrapper(size_t alignment, size_t size) {
 int je_mallopt(int param, int value) {
   // The only parameter we currently understand is M_DECAY_TIME.
   if (param == M_DECAY_TIME) {
-    // Only support setting the value to 1 or 0.
+    // Only support setting the value to -1 or 0 or 1.
     ssize_t decay_time_ms;
-    if (value) {
+    if (value == 1) {
       decay_time_ms = 1000;
+    } else if (value == -1) {
+      decay_time_ms = SSIZE_MAX;
     } else {
       decay_time_ms = 0;
     }
