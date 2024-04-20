@@ -65,6 +65,7 @@ void __init_tcb_stack_guard(bionic_tcb* tcb) {
 }
 
 void __init_bionic_tls_ptrs(bionic_tcb* tcb, bionic_tls* tls) {
+  tcb->thread()->bionic_tcb = tcb;
   tcb->thread()->bionic_tls = tls;
   tcb->tls_slot(TLS_SLOT_BIONIC_TLS) = tls;
 }
@@ -392,6 +393,7 @@ static void* __do_nothing(void*) {
 }
 
 pthread_rwlock_t g_thread_creation_lock = PTHREAD_RWLOCK_INITIALIZER;
+static char g_mte_ringbuffer_placeholder = 0;
 
 __BIONIC_WEAK_FOR_NATIVE_BRIDGE
 int pthread_create(pthread_t* thread_out, pthread_attr_t const* attr,
@@ -442,6 +444,14 @@ int pthread_create(pthread_t* thread_out, pthread_attr_t const* attr,
 #endif
 
   ScopedReadLock locker(&g_thread_creation_lock);
+
+// This has to be done under g_thread_creation_lock or g_thread_list_lock to avoid racing with
+// __pthread_internal_remap_stack_with_mte.
+#ifdef __aarch64__
+  if (__libc_memtag_stack_abi) {
+    tcb->tls_slot(TLS_SLOT_STACK_MTE) = &g_mte_ringbuffer_placeholder;
+  }
+#endif
 
   sigset64_t block_all_mask;
   sigfillset64(&block_all_mask);
