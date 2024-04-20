@@ -1073,6 +1073,7 @@ cc_library_static {
                 "arch-arm64/bionic/__bionic_clone.S",
                 "arch-arm64/bionic/_exit_with_stack_teardown.S",
                 "arch-arm64/bionic/setjmp.S",
+                "arch-arm64/bionic/mte_tag_stack.S",
                 "arch-arm64/bionic/syscall.S",
                 "arch-arm64/bionic/vfork.S",
                 "arch-arm64/oryon/memcpy-nt.S",
