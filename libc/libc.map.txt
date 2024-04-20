@@ -1606,6 +1606,7 @@ LIBC_V { # introduced=VanillaIceCream
     tzfree;
     wcsrtombs_l;
     __system_properties_zygote_reload; # apex
+    __mte_tag_stack; # arm64
 } LIBC_U;
 
 LIBC_PRIVATE {
