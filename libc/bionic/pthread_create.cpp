@@ -65,6 +65,7 @@ void __init_tcb_stack_guard(bionic_tcb* tcb) {
 }
 
 void __init_bionic_tls_ptrs(bionic_tcb* tcb, bionic_tls* tls) {
+  tcb->thread()->bionic_tcb = tcb;
   tcb->thread()->bionic_tls = tls;
   tcb->tls_slot(TLS_SLOT_BIONIC_TLS) = tls;
 }
@@ -320,6 +321,11 @@ static int __allocate_thread(pthread_attr_t* attr, bionic_tcb** tcbp, void** chi
   thread->mmap_base_unguarded = mapping.mmap_base_unguarded;
   thread->mmap_size_unguarded = mapping.mmap_size_unguarded;
   thread->stack_top = reinterpret_cast<uintptr_t>(stack_top);
+#ifdef __aarch64__
+  if (atomic_load(&__libc_memtag_stack_abi)) {
+    tcb->tls_slot(TLS_SLOT_STACK_MTE) = __allocate_stack_mte_ringbuffer(0, thread);
+  }
+#endif
 
   *tcbp = tcb;
   *child_stack = stack_top;
