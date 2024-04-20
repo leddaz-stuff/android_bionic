@@ -80,6 +80,7 @@ __LIBC_HIDDEN__ extern WriteProtected<libc_globals> __libc_globals;
 // WriteProtected in a thread-safe way.
 // See b/328256432.
 __LIBC_HIDDEN__ extern _Atomic(bool) __libc_memtag_stack;
+__LIBC_HIDDEN__ extern _Atomic(bool) __libc_memtag_stack_abi;
 
 struct abort_msg_t;
 struct crash_detail_page_t;
@@ -134,6 +135,7 @@ struct libc_shared_globals {
 
   HeapTaggingLevel initial_heap_tagging_level = M_HEAP_TAGGING_LEVEL_NONE;
   bool initial_memtag_stack = false;
+  bool initial_memtag_stack_abi = false;
   int64_t heap_tagging_upgrade_timer_sec = 0;
 
   void (*memtag_stack_dlopen_callback)() = nullptr;
