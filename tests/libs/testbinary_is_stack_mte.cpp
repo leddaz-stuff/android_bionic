@@ -36,7 +36,7 @@
 #if defined(__BIONIC__) && defined(__aarch64__)
 
 extern "C" int main(int, char**) {
-  int ret = is_stack_mte_on() ? 0 : 1;
+  int ret = is_stack_mte_on() && has_mte_tls() ? 0 : 1;
   printf("RAN\n");
   return ret;
 }
