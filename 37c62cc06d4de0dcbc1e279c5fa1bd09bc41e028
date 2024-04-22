@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "81f11172_d0d21c91",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1727050
+      },
+      "writtenOn": "2024-04-22T20:55:28Z",
+      "side": 1,
+      "message": "Yes, this was fixed by that. My comment should have said \"almost certain it isn\u0027t needed anymore...\"",
+      "parentUuid": "6ef103df_e8f9fff2",
+      "revId": "37c62cc06d4de0dcbc1e279c5fa1bd09bc41e028",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a78cb65a_3bbee3a7",
         "filename": "linker/arch/riscv64/tlsdesc_resolver.S",
         "patchSetId": 7
@@ -95,6 +113,24 @@
       "writtenOn": "2024-04-08T16:41:34Z",
       "side": 1,
       "message": "oops :-)",
+      "revId": "37c62cc06d4de0dcbc1e279c5fa1bd09bc41e028",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cdd11ca_e3ba2269",
+        "filename": "tests/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1727050
+      },
+      "writtenOn": "2024-04-22T20:55:28Z",
+      "side": 1,
+      "message": "yeah. I had been adding `-mtls-dialect\u003ddesc` here and mistakenly removed the whole line when uploading. I seem to have fixed this locally though, so I doubt its affected my local testing/verification.",
+      "parentUuid": "502719b9_7e339565",
       "revId": "37c62cc06d4de0dcbc1e279c5fa1bd09bc41e028",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
