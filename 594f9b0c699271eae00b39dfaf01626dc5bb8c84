@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b835bdde_b453e21f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-04-22T22:45:54Z",
+      "side": 1,
+      "message": "yeah, they\u0027re used both directly and also via libc++.",
+      "parentUuid": "8bf73c21_9d2aabc5",
+      "revId": "594f9b0c699271eae00b39dfaf01626dc5bb8c84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1b9b992e_5266d2ae",
         "filename": "libc/bionic/pthread_mutex.cpp",
         "patchSetId": 1
