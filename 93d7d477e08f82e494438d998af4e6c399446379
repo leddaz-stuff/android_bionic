@@ -16,6 +16,24 @@
       "message": "This is to stop compiler warning https://github.com/llvm/llvm-project/issues/89661",
       "revId": "93d7d477e08f82e494438d998af4e6c399446379",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccf74cb3_5c71e37c",
+        "filename": "tests/sys_hwprobe_test.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-04-22T21:08:58Z",
+      "side": 1,
+      "message": "or you can just use `0U` ... we\u0027ve been working around this for years :-(",
+      "parentUuid": "829270ec_588160b0",
+      "revId": "93d7d477e08f82e494438d998af4e6c399446379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
