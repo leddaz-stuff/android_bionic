@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8bf73c21_9d2aabc5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1494236
+      },
+      "writtenOn": "2024-04-22T22:41:11Z",
+      "side": 1,
+      "message": "Worth noting that we could do the same for recursive/error-check mutexes --\n\nNot sure if anyone uses either in android, though.",
+      "parentUuid": "c2238010_ae5f8cd2",
+      "revId": "594f9b0c699271eae00b39dfaf01626dc5bb8c84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1b9b992e_5266d2ae",
         "filename": "libc/bionic/pthread_mutex.cpp",
         "patchSetId": 1
