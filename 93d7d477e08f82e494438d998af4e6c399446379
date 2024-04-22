@@ -34,6 +34,24 @@
       "parentUuid": "829270ec_588160b0",
       "revId": "93d7d477e08f82e494438d998af4e6c399446379",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80f85b93_d3b14774",
+        "filename": "tests/sys_hwprobe_test.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1978766
+      },
+      "writtenOn": "2024-04-22T21:40:22Z",
+      "side": 1,
+      "message": "much better. Thanks!",
+      "parentUuid": "ccf74cb3_5c71e37c",
+      "revId": "93d7d477e08f82e494438d998af4e6c399446379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
