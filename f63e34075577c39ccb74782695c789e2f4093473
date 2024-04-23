@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea0570d9_2db26a92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1978766
+      },
+      "writtenOn": "2024-04-23T01:09:25Z",
+      "side": 1,
+      "message": "so scalar test is failing with bus error. Seems like the same test we want to detect?\n\nfrom: https://android-build.corp.google.com/test_investigate/?blocking\u003dblocking\u0026invocationId\u003dI03400010269267654\u0026status\u003dnone\u0026testResultId\u003dTR67229271072767281\n\n```\nsys_hwprobe.__riscv_hwprobe_misaligned_scalar terminated by signal: Bus error.\n```",
+      "revId": "f63e34075577c39ccb74782695c789e2f4093473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
