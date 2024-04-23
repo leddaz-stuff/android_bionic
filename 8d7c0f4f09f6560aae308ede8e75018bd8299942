@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e0ef7b9_4067b390",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964686
+      },
+      "writtenOn": "2024-04-23T03:33:27Z",
+      "side": 1,
+      "message": "Hi rprichard, please review this change too. Thx! the **\u0027Review-Enforcement\u0027** is required",
+      "revId": "8d7c0f4f09f6560aae308ede8e75018bd8299942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
