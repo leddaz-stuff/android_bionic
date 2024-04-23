@@ -16,6 +16,24 @@
       "message": "so scalar test is failing with bus error. Seems like the same test we want to detect?\n\nfrom: https://android-build.corp.google.com/test_investigate/?blocking\u003dblocking\u0026invocationId\u003dI03400010269267654\u0026status\u003dnone\u0026testResultId\u003dTR67229271072767281\n\n```\nsys_hwprobe.__riscv_hwprobe_misaligned_scalar terminated by signal: Bus error.\n```",
       "revId": "f63e34075577c39ccb74782695c789e2f4093473",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e83c8658_2ea0924b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1978766
+      },
+      "writtenOn": "2024-04-23T01:13:43Z",
+      "side": 1,
+      "message": "This is failing for arm\n\n```\nBuild fingerprint: \u0027google/oriole/oriole:VanillaIceCream/MAIN/P73592552:userdebug/dev-keys\u0027\nRevision: \u0027MP1.0\u0027\nABI: \u0027arm\u0027\npid: 19076, tid: 19076, name: CtsBionicTestCa  \u003e\u003e\u003e /data/local/tests/unrestricted/CtsBionicTestCases/arm/CtsBionicTestCases \u003c\u003c\u003c\nsignal 7 (SIGBUS), code 1 (BUS_ADRALN), fault addr 0x08c77c71\n\nStack Trace:\n  RELADDR           FUNCTION                                                                                                                                                                                                                                                                                                                       FILE:LINE\n  000000000040450a  scalar_cast(unsigned char const*)+14 (BuildId\u003cWARNING: NOT FOUND\u003e: 51c2c426094f588a47974b2a9b6d7d1d)                                                                                                                                                                                                                           /data/local/tests/unrestricted/CtsBionicTestCases/arm/CtsBionicTestCases\n  00000000004045b5  sys_hwprobe___riscv_hwprobe_misaligned_scalar_Test::TestBody()+32 (BuildId\u003cWARNING: NOT FOUND\u003e: 51c2c426094f588a47974b2a9b6d7d1d)                                                                                                                                                                                              /data/local/tests/unrestricted/CtsBionicTestCases/arm/CtsBionicTestCases\n  ```",
+      "parentUuid": "ea0570d9_2db26a92",
+      "revId": "f63e34075577c39ccb74782695c789e2f4093473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
