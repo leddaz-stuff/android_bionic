@@ -22,11 +22,56 @@ ifeq ($(HOST_OS)-$(HOST_ARCH),$(filter $(HOST_OS)-$(HOST_ARCH),linux-x86 linux-x
 # Compile time tests.
 # -----------------------------------------------------------------------------
 
-FORTIFY_LEVEL := 1
-include $(LOCAL_PATH)/make_fortify_compile_test.mk
+include $(CLEAR_VARS)
 
-FORTIFY_LEVEL := 2
-include $(LOCAL_PATH)/make_fortify_compile_test.mk
+LOCAL_ADDITIONAL_DEPENDENCIES := \
+    $(LOCAL_PATH)/Android.mk \
+    $(LOCAL_PATH)/touch-obj-on-success
+
+LOCAL_CXX := $(LOCAL_PATH)/touch-obj-on-success \
+    $(LLVM_PREBUILTS_PATH)/clang++ \
+
+LOCAL_CLANG := true
+LOCAL_MODULE := bionic-compile-time-tests1-clang++
+LOCAL_LICENSE_KINDS := SPDX-license-identifier-Apache-2.0 SPDX-license-identifier-BSD
+LOCAL_LICENSE_CONDITIONS := notice
+LOCAL_NOTICE_FILE := $(LOCAL_PATH)/NOTICE
+LOCAL_TIDY := false
+LOCAL_CPPFLAGS := -Wall -Wno-error
+LOCAL_CPPFLAGS += -fno-color-diagnostics -ferror-limit=10000 -Xclang -verify
+LOCAL_CPPFLAGS += -DCOMPILATION_TESTS=1 -Wformat-nonliteral
+LOCAL_CPPFLAGS += -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=1
+LOCAL_SRC_FILES := clang_fortify_tests.cpp
+
+include $(BUILD_STATIC_LIBRARY)
+
+FORTIFY_LEVEL :=
+
+include $(CLEAR_VARS)
+
+LOCAL_ADDITIONAL_DEPENDENCIES := \
+    $(LOCAL_PATH)/Android.mk \
+    $(LOCAL_PATH)/touch-obj-on-success
+
+LOCAL_CXX := $(LOCAL_PATH)/touch-obj-on-success \
+    $(LLVM_PREBUILTS_PATH)/clang++ \
+
+LOCAL_CLANG := true
+LOCAL_MODULE := bionic-compile-time-tests2-clang++
+LOCAL_LICENSE_KINDS := SPDX-license-identifier-Apache-2.0 SPDX-license-identifier-BSD
+LOCAL_LICENSE_CONDITIONS := notice
+LOCAL_NOTICE_FILE := $(LOCAL_PATH)/NOTICE
+LOCAL_TIDY := false
+LOCAL_CPPFLAGS := -Wall -Wno-error
+LOCAL_CPPFLAGS += -fno-color-diagnostics -ferror-limit=10000 -Xclang -verify
+LOCAL_CPPFLAGS += -DCOMPILATION_TESTS=1 -Wformat-nonliteral
+LOCAL_CPPFLAGS += -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2
+LOCAL_SRC_FILES := clang_fortify_tests.cpp
+
+include $(BUILD_STATIC_LIBRARY)
+
+FORTIFY_LEVEL :=
+
 
 endif # linux-x86
 
