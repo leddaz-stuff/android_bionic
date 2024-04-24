@@ -1315,4 +1315,49 @@ cc_test_host {
     },
 }
 
-subdirs = ["*"]
+cc_defaults {
+    name: "bionic_compile_time_tests_defaults",
+    enabled: false,
+    target: {
+        linux_x86: {
+            enabled: true,
+        },
+        linux_x86_64: {
+            enabled: true,
+        }
+    },
+    tidy: false,
+    cflags: [
+        "-Wall",
+        "-Wno-error",
+        "-fno-color-diagnostics",
+        "-ferror-limit=10000",
+        "-Xclang",
+        "-verify",
+        "-DCOMPILATION_TESTS=1",
+        "-Wformat-nonliteral",
+        "-U_FORTIFY_SOURCE",
+    ],
+    srcs: ["clang_fortify_tests.cpp"],
+}
+
+cc_library_static {
+    name: "bionic-compile-time-tests1-clang++",
+    defaults: [
+        "bionic_compile_time_tests_defaults",
+    ],
+    cppflags: [
+        "-D_FORTIFY_SOURCE=1",
+    ],
+}
+
+cc_library_static {
+    name: "bionic-compile-time-tests2-clang++",
+    defaults: [
+        "bionic_compile_time_tests_defaults",
+    ],
+    cppflags: [
+        "-D_FORTIFY_SOURCE=2",
+    ],
+}
+
