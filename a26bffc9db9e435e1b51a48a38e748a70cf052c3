@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb425b32_6a096503",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-04-24T15:21:09Z",
+      "side": 1,
+      "message": "factor out the duplication into a cc_defaults to make it clearer that there\u0027s just one -D that differs between the two?",
+      "revId": "a26bffc9db9e435e1b51a48a38e748a70cf052c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c67af77d_02bb9483",
+        "filename": "tests/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1324,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-04-24T15:21:09Z",
+      "side": 1,
+      "message": "tabs",
+      "revId": "a26bffc9db9e435e1b51a48a38e748a70cf052c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
