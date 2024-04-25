@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9fdaf106_4b3b5e58",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1308036
+      },
+      "writtenOn": "2024-04-25T10:53:37Z",
+      "side": 1,
+      "message": "Thanks Elliott. I\u0027ll follow your suggestion. But this patchset can not build pass in my local, I\u0027ll mark it as work in progress.",
+      "parentUuid": "eb425b32_6a096503",
+      "revId": "a26bffc9db9e435e1b51a48a38e748a70cf052c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c67af77d_02bb9483",
         "filename": "tests/Android.bp",
         "patchSetId": 2
