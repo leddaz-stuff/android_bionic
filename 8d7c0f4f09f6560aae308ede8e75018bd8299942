@@ -50,6 +50,24 @@
       "message": "Seems like the CI Vote Outdated, Please help to Vote Presubmit +1 also. I have no permission to trigger a new CI Build, Thx!",
       "revId": "8d7c0f4f09f6560aae308ede8e75018bd8299942",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b961686_5a4c9ccf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-04-25T15:19:46Z",
+      "side": 1,
+      "message": "ah, is \"so we get the right linker configuration\" the answer to \"why do we care anyway?\". so i can\u0027t just symlink between partitions and get the \"other\" linker configuration?",
+      "parentUuid": "d428a8b2_94a5ea40",
+      "revId": "8d7c0f4f09f6560aae308ede8e75018bd8299942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
