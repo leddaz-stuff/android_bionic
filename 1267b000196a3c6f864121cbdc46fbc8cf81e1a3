@@ -16,6 +16,24 @@
       "message": "you should be able to reproduce the 32-bit failure if you try the `aosp_cf_x86_phone-trunk_staging-userdebug` target...",
       "revId": "1267b000196a3c6f864121cbdc46fbc8cf81e1a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cacb0b46_bacb93ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-04-25T16:07:43Z",
+      "side": 1,
+      "message": "yeah, looks like init crashes immediately, so there shouldn\u0027t be anything special about the internal target; you should see that on the aosp 32-bit cuttlefish too.",
+      "parentUuid": "94ad9a78_7da87324",
+      "revId": "1267b000196a3c6f864121cbdc46fbc8cf81e1a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
