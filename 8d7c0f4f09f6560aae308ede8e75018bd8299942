@@ -16,6 +16,23 @@
       "message": "Hi rprichard, please review this change too. Thx! the **\u0027Review-Enforcement\u0027** is required",
       "revId": "8d7c0f4f09f6560aae308ede8e75018bd8299942",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d428a8b2_94a5ea40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-04-25T02:33:01Z",
+      "side": 1,
+      "message": "It seems like an improvement mostly.\n\nI\u0027m wondering why app_process can\u0027t stat `/proc/self/exe` -- maybe `/proc` isn\u0027t mounted, or maybe some SELinux rule is blocking stat on `/proc/self` files.\n\nThe dynamic linker\u0027s previous behavior when `/proc/self/exe` can\u0027t be statted looks like an accident -- calling readlink once on `argv[0]` doesn\u0027t obviously accomplish anything.\n\n`argv[0]` isn\u0027t guaranteed to be an absolute path, and the result of `readlink(argv[0])` is relative to the symlink, not to the CWD.\n\nIf `/proc` is missing, then realpath will also fail, because it will try to call readlink on `/proc/self/fd/nnn`. I guess in that case, the dynamic linker will just use `argv[0]` as the executable\u0027s path. For the situation described in this CL, `argv[0]` is `/system/bin/app_process`, but in general, `argv[0]` can be a relative or non-canonicalized path.\n\nUsing a non-canonicalized path for the executable\u0027s path will break linker configuration. Imagine passing `mydir/apex/com.android.art/bin/artd` or `/apex/com.android.art/../../system/bin/ls` to `get_ld_config_file_path`.\n\nI suppose the behavior of deleting a file immediately after exec will tend to change (b/31084669). Currently we\u0027re likely to use the canonicalized path with \" (deleted)\" appended, and that would change to `argv[0]`. That seems like a step down, but I\u0027m not sure how that\u0027s supposed to work anyway.\n\n(I wonder how well the dynamic linker will work if realpath_fd is blocked because /proc isn\u0027t available. There should be a bunch of warnings printed.)",
+      "revId": "8d7c0f4f09f6560aae308ede8e75018bd8299942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
