@@ -35,22 +35,8 @@
 
 extern "C" {
 
-static inline __always_inline int ifunc_faccessat(int dir_fd, const char* path, int mode) {
-  register long a0 __asm__("a0") = dir_fd;
-  register long a1 __asm__("a1") = reinterpret_cast<long>(path);
-  register long a2 __asm__("a2") = mode;
-  register long a7 __asm__("a7") = __NR_faccessat;
-  __asm__("ecall" : "=r"(a0) : "r"(a0), "r"(a1), "r"(a2), "r"(a7) : "memory");
-  return a0;
-}
-
 static bool have_fast_v() {
-  static bool result = []() {
-    // We don't want to do a full "bogomips" test, so just check for the
-    // presence of a file that would indicate that we're running in qemu.
-    return ifunc_faccessat(AT_FDCWD, "/dev/hvc0", F_OK) != 0;
-  }();
-  return result;
+  return true;
 }
 
 typedef void* memchr_func(const void*, int, size_t);
