@@ -52,6 +52,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73fb375e_28ccfd83",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1954524
+      },
+      "writtenOn": "2024-04-26T19:46:48Z",
+      "side": 1,
+      "message": "Addressed review comments",
+      "revId": "22292c515a3c0fff6a0b4f93063b1e5e254b0bc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89e4bf0f_a7b6c6e0",
@@ -65,6 +82,24 @@
       "writtenOn": "2024-04-26T15:08:09Z",
       "side": 1,
       "message": ":-)",
+      "revId": "22292c515a3c0fff6a0b4f93063b1e5e254b0bc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c3883f2_c8e1a753",
+        "filename": "libc/bionic/jemalloc_wrapper.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1954524
+      },
+      "writtenOn": "2024-04-26T19:46:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89e4bf0f_a7b6c6e0",
       "revId": "22292c515a3c0fff6a0b4f93063b1e5e254b0bc7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -117,6 +152,30 @@
       "writtenOn": "2024-04-26T17:37:30Z",
       "side": 1,
       "message": "I realized this morning that this could just be value \u003c\u003d 0. Don\u0027t know why I wrote it this way.",
+      "range": {
+        "startLine": 126,
+        "startChar": 10,
+        "endLine": 126,
+        "endChar": 33
+      },
+      "revId": "22292c515a3c0fff6a0b4f93063b1e5e254b0bc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbb63901_26a2dbe4",
+        "filename": "libc/bionic/malloc_common.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1954524
+      },
+      "writtenOn": "2024-04-26T19:46:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6da76594_00f929f0",
       "range": {
         "startLine": 126,
         "startChar": 10,
