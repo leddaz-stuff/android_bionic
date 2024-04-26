@@ -102,6 +102,23 @@
       "message": "specific content that varies.\n\nChange-Id: Iffbd5efc2eafd56e3efa3c0aaf7c191e6bb66a04",
       "revId": "33de2737d96946c2e8ee5e07218b49d782a9ca65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34f54da4_4e28613a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3409162
+      },
+      "writtenOn": "2024-04-26T05:09:39Z",
+      "side": 1,
+      "message": "// not cause a crash (see http://b/31084669)\n  if (TEMP_FAILURE_RETRY(stat(exe_path, \u0026result.file_stat) \u003d\u003d -1)) {\n    // Fallback to argv[0] for the case where /proc isn\u0027t available\n    if (TEMP_FAILURE_RETRY(stat(arg_path, \u0026result.file_stat) \u003d\u003d -1)) {\n      async_safe_fatal(\"unable to stat either \\\"/proc/self/exe\\\" or \\\"%s\\\": %s\",\n          arg_path, strerror(errno));\n    }\n    exe_path \u003d arg_path;\n  }\n\n  // Path might be a symlink; we need the target so that we get the right\n  // linker configuration later.\n  char sym_path[PATH_MAX];\n  result.path \u003d std::string(realpath(exe_path, sym_path) !\u003d nullptr ? sym_path : exe_path);\n\n  result.phdr \u003d reinterpret_cast\u003cconst ElfW(Phdr)*\u003e(getauxval(AT_PHDR));\n  result.phdr_count \u003d getauxval(AT_PHNUM);\n  result.entry_point \u003d getauxval(AT_ENTRY);\n  return result;\n}\n\n#if defined(__LP64__)\nstatic char kFallbackLinkerPath[] \u003d \"/system/bin/linker64\";\n#else",
+      "revId": "33de2737d96946c2e8ee5e07218b49d782a9ca65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
