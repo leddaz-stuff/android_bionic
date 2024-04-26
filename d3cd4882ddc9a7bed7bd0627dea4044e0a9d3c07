@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4a21167a_1e652610",
+        "filename": "libc/include/malloc.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-04-26T02:28:47Z",
+      "side": 1,
+      "message": "Might be worth saying which API level when this becomes valid.",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 48
+      },
+      "revId": "d3cd4882ddc9a7bed7bd0627dea4044e0a9d3c07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "59ca2818_efad1f31",
         "filename": "libc/include/malloc.h",
         "patchSetId": 3
@@ -14,6 +37,30 @@
       "writtenOn": "2024-04-22T16:44:40Z",
       "side": 1,
       "message": "this is the hard-coded config in the build, right? (in this context it could be read as \"from other mallopt() calls\".) if it\u0027s outside the developer\u0027s control (as i believe), maybe just \"at a device-specific interval\"?\n\n(do we have a CTS test to ensure that\u0027s not actually the same as -1 or 0, or might it be?)\n\n(do both scudo and jemalloc implement all of these?)",
+      "range": {
+        "startLine": 192,
+        "startChar": 65,
+        "endLine": 193,
+        "endChar": 16
+      },
+      "revId": "d3cd4882ddc9a7bed7bd0627dea4044e0a9d3c07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26548a44_fcdf05b0",
+        "filename": "libc/include/malloc.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-04-26T02:28:47Z",
+      "side": 1,
+      "message": "It\u0027s relatively easy to implement this in jemalloc by simply setting the decay time to a really large value.\n\nWe could probably add a bionic unit test that checks the decay time.",
+      "parentUuid": "59ca2818_efad1f31",
       "range": {
         "startLine": 192,
         "startChar": 65,
