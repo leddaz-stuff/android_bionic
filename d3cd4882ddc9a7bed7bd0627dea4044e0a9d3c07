@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80322dad_2b272e6b",
+        "filename": "libc/include/malloc.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1954524
+      },
+      "writtenOn": "2024-04-26T03:34:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a21167a_1e652610",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 48
+      },
+      "revId": "d3cd4882ddc9a7bed7bd0627dea4044e0a9d3c07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59ca2818_efad1f31",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "It\u0027s relatively easy to implement this in jemalloc by simply setting the decay time to a really large value.\n\nWe could probably add a bionic unit test that checks the decay time.",
       "parentUuid": "59ca2818_efad1f31",
+      "range": {
+        "startLine": 192,
+        "startChar": 65,
+        "endLine": 193,
+        "endChar": 16
+      },
+      "revId": "d3cd4882ddc9a7bed7bd0627dea4044e0a9d3c07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ae8de26_7d317908",
+        "filename": "libc/include/malloc.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1954524
+      },
+      "writtenOn": "2024-04-26T03:34:52Z",
+      "side": 1,
+      "message": "Comment revised and update the code for jemalloc. \n\nNot sure how we want to do the unittest. Will check with you later",
+      "parentUuid": "26548a44_fcdf05b0",
       "range": {
         "startLine": 192,
         "startChar": 65,
