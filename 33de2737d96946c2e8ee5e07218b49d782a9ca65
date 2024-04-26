@@ -16,6 +16,24 @@
       "message": "(let me know if there\u0027s more we should say about the \"why\"...)",
       "revId": "33de2737d96946c2e8ee5e07218b49d782a9ca65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccc51d9a_f7498f6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964686
+      },
+      "writtenOn": "2024-04-26T02:15:11Z",
+      "side": 1,
+      "message": "lgtm :)",
+      "parentUuid": "afe3e58f_b42ad40b",
+      "revId": "33de2737d96946c2e8ee5e07218b49d782a9ca65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
