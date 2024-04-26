@@ -45,12 +45,7 @@ static inline __always_inline int ifunc_faccessat(int dir_fd, const char* path, 
 }
 
 static bool have_fast_v() {
-  static bool result = []() {
-    // We don't want to do a full "bogomips" test, so just check for the
-    // presence of a file that would indicate that we're running in qemu.
-    return ifunc_faccessat(AT_FDCWD, "/dev/hvc0", F_OK) != 0;
-  }();
-  return result;
+  return true;
 }
 
 typedef void* memchr_func(const void*, int, size_t);
