@@ -1349,6 +1349,7 @@ cc_library_static {
         "libc_bionic",
         "libc_bootstrap",
         "libc_dns",
+        "libc_dynamic_dispatch",
         "libc_fortify",
         "libc_freebsd",
         "libc_freebsd_large_stack",
@@ -1370,33 +1371,7 @@ cc_library_static {
 }
 
 // ========================================================
-// libc_static_dispatch.a --- libc.a ifuncs
-// ========================================================
-cc_library_static {
-    defaults: ["libc_defaults"],
-    name: "libc_static_dispatch",
-
-    arch: {
-        x86_64: {
-            srcs: ["arch-x86_64/static_function_dispatch.S"],
-        },
-        x86: {
-            srcs: ["arch-x86/static_function_dispatch.S"],
-        },
-        arm: {
-            srcs: ["arch-arm/static_function_dispatch.S"],
-        },
-        arm64: {
-            srcs: ["arch-arm64/static_function_dispatch.S"],
-        },
-        riscv64: {
-            srcs: ["arch-riscv64/static_function_dispatch.S"],
-        },
-    },
-}
-
-// ========================================================
-// libc_dynamic_dispatch.a --- libc.so ifuncs
+// libc_dynamic_dispatch.a --- libc.so ifunc resolvers
 // ========================================================
 cc_library_static {
     defaults: ["libc_defaults"],
@@ -1427,33 +1402,8 @@ cc_library_static {
 }
 
 // ========================================================
-// libc_common_static.a For static binaries.
+// libc_unwind_static.a --- dl_iterate_phdr() and friends for static executables
 // ========================================================
-cc_library_static {
-    defaults: ["libc_defaults"],
-    name: "libc_common_static",
-
-    whole_static_libs: [
-        "libc_common",
-        "libc_static_dispatch",
-    ],
-}
-
-// ========================================================
-// libc_common_shared.a For shared libraries.
-// ========================================================
-cc_library_static {
-    defaults: ["libc_defaults"],
-    name: "libc_common_shared",
-
-    whole_static_libs: [
-        "libc_common",
-        "libc_dynamic_dispatch",
-    ],
-}
-
-// Versions of dl_iterate_phdr and similar APIs used to lookup unwinding information in a static
-// executable.
 cc_library_static {
     name: "libc_unwind_static",
     defaults: ["libc_defaults"],
@@ -1472,9 +1422,7 @@ cc_library_static {
 // libc_nomalloc.a
 // ========================================================
 //
-// This is a version of the static C library used by the dynamic linker that exclude malloc. It also
-// excludes functions selected using ifunc's (e.g. for string.h). Link in either
-// libc_static_dispatch or libc_dynamic_dispatch to provide those functions.
+// This is a version of the static C library used by the dynamic linker that excludes malloc.
 
 cc_library_static {
     name: "libc_nomalloc",
@@ -1546,7 +1494,7 @@ cc_defaults {
             "gwp_asan",
             "gwp_asan_crash_handler",
             "libc_init_static",
-            "libc_common_static",
+            "libc_common",
             "libc_unwind_static",
         ],
     },
@@ -1556,7 +1504,7 @@ cc_defaults {
             "gwp_asan",
             "gwp_asan_crash_handler",
             "libc_init_dynamic",
-            "libc_common_shared",
+            "libc_common",
             "libunwind-exported",
         ],
     },
