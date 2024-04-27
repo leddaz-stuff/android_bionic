@@ -36,7 +36,7 @@ constexpr size_t max_page_size() {
 #if defined(PAGE_SIZE)
   return PAGE_SIZE;
 #else
-  return 65536;
+  return 16384;
 #endif
 }
 
