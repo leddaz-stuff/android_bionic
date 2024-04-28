@@ -136,6 +136,23 @@
       "message": "Parent:     c5be8dfe (Merge \"linker: use realpath instead of readlink when getting the symlink path\" into main)\nAuthor:     Elliott Hughes \u003cenh@google.com\u003e\nAuthorDate: 2024-04-25 16:44:48 +0000\nCommit:     Elliott Hughes \u003cenh@google.com\u003e\nCommitDate: 2024-04-25 16:44:48 +0000\n\nget_executable_info: minor clarification.\n\nChange the comment to explain _why_ we\u0027re resolving the path, get\nrid of unnecessarily explicit strlen() calls, and make it clearer\nthat result.path is unconditionally initialized; it\u0027s just the\nspecific content that varies.\n\nChange-Id: Iffbd5efc2eafd56e3efa3c0aaf7c191e6bb66a04",
       "revId": "33de2737d96946c2e8ee5e07218b49d782a9ca65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5e45114_bf293c94",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3409162
+      },
+      "writtenOn": "2024-04-28T18:06:00Z",
+      "side": 1,
+      "message": "not cause a crash (see http://b/31084669)\n  if (TEMP_FAILURE_RETRY(stat(exe_path, \u0026result.file_stat) \u003d\u003d -1)) {\n    // Fallback to argv[0] for the case where /proc isn\u0027t available\n    if (TEMP_FAILURE_RETRY(stat(arg_path, \u0026result.file_stat) \u003d\u003d -1)) {\n      async_safe_fatal(\"unable to stat either \\\"/proc/self/exe\\\" or \\\"%s\\\": %s\",\n          arg_path, strerror(errno));\n    }\n    exe_path \u003d arg_path;\n  }\n\n  // Path might be a symlink; we need the target so that we get the right\n  // linker configuration later.\n  char sym_path[PATH_MAX];\n  result.path \u003d std::string(realpath(exe_path, sym_path) !\u003d nullptr ? sym_path : exe_path);\n\n  result.phdr \u003d reinterpret_cast\u003cconst ElfW(Phdr)*\u003e(getauxval(AT_PHDR));\n  result.phdr_count \u003d getauxval(AT_PHNUM);\n  result.entry_point \u003d getauxval(AT_ENTRY);\n  return result;\n}\n\n#if defined(__LP64__)\nstatic char kFallbackLinkerPath[] \u003d \"/system/bin/linker64\";\n#else",
+      "revId": "33de2737d96946c2e8ee5e07218b49d782a9ca65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
