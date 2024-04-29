@@ -1487,10 +1487,10 @@ TEST(malloc, zero_init) {
   // Also test large allocations that land in the scudo secondary, as this is
   // the only part of Scudo that's changed by enabling zero initialization with
   // MTE. Uses 32 allocations, totalling 60MiB memory. Decay time (time to
-  // release secondary allocations back to the OS) was modified to 0ms/1ms by
-  // mallopt_decay. Ensure that we delay for at least a second before releasing
-  // pages to the OS in order to avoid implicit zeroing by the kernel.
-  mallopt(M_DECAY_TIME, 1000);
+  // release allocations back to the OS) was modified by mallopt_decay. Ensure
+  // that we delay for a period of time before releasing pages to the OS in
+  // order to avoid implicit zeroing by the kernel.
+  mallopt(M_DECAY_TIME, 1);
   TestHeapZeroing(/* num_iterations */ 32, [](int iteration) -> int {
     return 1 << (19 + iteration % 4);
   });
