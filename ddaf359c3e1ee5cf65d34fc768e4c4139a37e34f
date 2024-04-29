@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af5bb5e0_de656409",
+        "filename": "libc/platform/bionic/page.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1889140
+      },
+      "writtenOn": "2024-04-29T20:54:54Z",
+      "side": 1,
+      "message": "should we add a comment that this value is different from the linker flag `-Wl,max-page-size`? If it has to be equals to the linker flag, we could add a global build variable instead of 16384.",
+      "range": {
+        "startLine": 39,
+        "startChar": 9,
+        "endLine": 39,
+        "endChar": 14
+      },
+      "revId": "ddaf359c3e1ee5cf65d34fc768e4c4139a37e34f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
