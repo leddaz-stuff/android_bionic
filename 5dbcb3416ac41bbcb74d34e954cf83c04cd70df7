@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58b602eb_4515cd88",
+        "filename": "libc/bionic/libc_init_static.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-04-30T23:48:51Z",
+      "side": 1,
+      "message": "what part of mte isn\u0027t arm64-only?",
+      "revId": "5dbcb3416ac41bbcb74d34e954cf83c04cd70df7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
