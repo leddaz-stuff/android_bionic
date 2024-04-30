@@ -215,7 +215,7 @@ static bool get_environment_memtag_setting(HeapTaggingLevel* level) {
   static const char kMemtagOverrideSyspropPrefix[] =
       "persist.device_config.memory_safety_native.mode_override.process.";
 
-  const char* progname = __libc_shared_globals()->init_progname;
+  const char* progname = getprogname();
   if (progname == nullptr) return false;
 
   const char* basename = __gnu_basename(progname);
@@ -315,10 +315,9 @@ __attribute__((no_sanitize("hwaddress", "memtag"))) void __libc_init_mte(
   }
   char* env = getenv("BIONIC_MEMTAG_UPGRADE_SECS");
   static const char kAppProcessName[] = "app_process64";
-  const char* progname = __libc_shared_globals()->init_progname;
-  progname = progname ? __gnu_basename(progname) : nullptr;
+  const char* progname = getprogname();
   if (progname &&
-      strncmp(progname, kAppProcessName, sizeof(kAppProcessName)) == 0) {
+      strncmp(__gnu_basename(progname), kAppProcessName, sizeof(kAppProcessName)) == 0) {
     // disable timed upgrade for zygote, as the thread spawned will violate the requirement
     // that it be single-threaded.
     env = nullptr;
@@ -407,7 +406,7 @@ __attribute__((no_sanitize("memtag"))) __noreturn static void __real_libc_init(
   __libc_init_main_thread_early(args, temp_tcb);
   __libc_init_main_thread_late();
   __libc_init_globals();
-  __libc_shared_globals()->init_progname = args.argv[0];
+  __libc_shared_globals()->progname = args.argv[0];
   __libc_init_AT_SECURE(args.envp);
   layout_static_tls(args);
   __libc_init_main_thread_final();
