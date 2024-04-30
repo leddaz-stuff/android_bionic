@@ -30,7 +30,8 @@
 #define __BEGIN_HIDDEN_DECLS _Pragma("GCC visibility push(hidden)")
 #define __END_HIDDEN_DECLS _Pragma("GCC visibility pop")
 
-extern const char* __progname;
+/* Use the public symbol rather than direct variable access. */
+#define __progname getprogname()
 
 /* Ignore all DEF_STRONG/DEF_WEAK in OpenBSD. */
 #define DEF_STRONG(sym)

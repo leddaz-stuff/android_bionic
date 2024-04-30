@@ -107,6 +107,8 @@ struct libc_shared_globals {
   pthread_mutex_t abort_msg_lock = PTHREAD_MUTEX_INITIALIZER;
   abort_msg_t* abort_msg = nullptr;
 
+  const char* progname = nullptr;
+
   StaticTlsLayout static_tls_layout;
   TlsModules tls_modules;
   BionicAllocator tls_allocator;
@@ -117,7 +119,6 @@ struct libc_shared_globals {
   void (*set_target_sdk_version_hook)(int target) = nullptr;
 
   // Values passed from the linker to libc.so.
-  const char* init_progname = nullptr;
   char** init_environ = nullptr;
 
   const gwp_asan::AllocatorState* gwp_asan_state = nullptr;

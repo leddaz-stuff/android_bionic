@@ -161,7 +161,9 @@ void __libc_init_common() {
   // Initialize various globals.
   environ = __libc_shared_globals()->init_environ;
   errno = 0;
-  setprogname(__libc_shared_globals()->init_progname ?: "<unknown>");
+
+  // Canonicalize progname (so far it's exactly argv[0]).
+  setprogname(__libc_shared_globals()->progname);
 
 #if !defined(__LP64__)
   __check_max_thread_id();
