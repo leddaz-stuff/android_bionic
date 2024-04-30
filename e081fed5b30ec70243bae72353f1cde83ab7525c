@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08394431_7f0f22e2",
+        "filename": "libc/bionic/pthread_internal.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-04-30T23:36:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71904d2b_58a8fb5c",
+      "revId": "e081fed5b30ec70243bae72353f1cde83ab7525c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "717b5d9f_071d8a26",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-04-30T19:38:53Z",
       "side": 1,
       "message": "should not happen",
+      "range": {
+        "startLine": 197,
+        "startChar": 24,
+        "endLine": 197,
+        "endChar": 31
+      },
+      "revId": "e081fed5b30ec70243bae72353f1cde83ab7525c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2048f40b_6a3b232f",
+        "filename": "libc/bionic/pthread_internal.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-04-30T23:36:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "717b5d9f_071d8a26",
       "range": {
         "startLine": 197,
         "startChar": 24,
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da0fcfba_806266a4",
+        "filename": "libc/bionic/pthread_internal.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-04-30T23:36:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7982fb69_d2216ab1",
+      "revId": "e081fed5b30ec70243bae72353f1cde83ab7525c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6194f390_49c95657",
@@ -71,6 +131,30 @@
       "writtenOn": "2024-04-30T19:38:53Z",
       "side": 1,
       "message": "this needs to be under thread creating lock, I think",
+      "range": {
+        "startLine": 217,
+        "startChar": 6,
+        "endLine": 217,
+        "endChar": 21
+      },
+      "revId": "e081fed5b30ec70243bae72353f1cde83ab7525c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0df9a8b6_bf66e6cc",
+        "filename": "libc/bionic/pthread_internal.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-04-30T23:36:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6194f390_49c95657",
       "range": {
         "startLine": 217,
         "startChar": 6,
@@ -100,6 +184,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2af8f21_b5f8b987",
+        "filename": "libc/bionic/pthread_internal.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-04-30T23:36:00Z",
+      "side": 1,
+      "message": "@enh@google.com",
+      "parentUuid": "fc0786ec_f624f24f",
+      "revId": "e081fed5b30ec70243bae72353f1cde83ab7525c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9bd9c3ed_c20d29dc",
         "filename": "tests/libs/testbinary_is_stack_mte_after_dlopen.cpp",
         "patchSetId": 12
@@ -111,6 +213,24 @@
       "writtenOn": "2024-04-30T19:38:53Z",
       "side": 1,
       "message": "maybe also check that this points to writable memory",
+      "revId": "e081fed5b30ec70243bae72353f1cde83ab7525c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05a95aec_be0e75c5",
+        "filename": "tests/libs/testbinary_is_stack_mte_after_dlopen.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-04-30T23:36:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bd9c3ed_c20d29dc",
       "revId": "e081fed5b30ec70243bae72353f1cde83ab7525c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
