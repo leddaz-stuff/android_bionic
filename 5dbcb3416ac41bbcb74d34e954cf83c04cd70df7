@@ -16,6 +16,24 @@
       "message": "what part of mte isn\u0027t arm64-only?",
       "revId": "5dbcb3416ac41bbcb74d34e954cf83c04cd70df7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30a4f736_5fc058f4",
+        "filename": "libc/bionic/libc_init_static.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-04-30T23:51:12Z",
+      "side": 1,
+      "message": "Done. Yeah the whole code is under `#ifdef __aarch64__`",
+      "parentUuid": "58b602eb_4515cd88",
+      "revId": "5dbcb3416ac41bbcb74d34e954cf83c04cd70df7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
