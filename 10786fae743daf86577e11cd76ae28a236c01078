@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6214c790_53602785",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-05-01T20:59:39Z",
+      "side": 1,
+      "message": "If an app targets a newer API level, should the VMA map faking be disabled? I guess that could be added later.",
+      "revId": "10786fae743daf86577e11cd76ae28a236c01078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "095dcfbd_c90a100d",
@@ -54,6 +71,30 @@
       "writtenOn": "2024-05-01T18:00:33Z",
       "side": 1,
       "message": "this isn\u0027t in the upstream kernel, right? this is an Android-specific thing? can we link to the relevant changes at least, in the absence of real documentation? (do we need a kernel version check here?)",
+      "range": {
+        "startLine": 939,
+        "startChar": 35,
+        "endLine": 939,
+        "endChar": 42
+      },
+      "revId": "10786fae743daf86577e11cd76ae28a236c01078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b82f5f7_015c4105",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-05-01T20:59:39Z",
+      "side": 1,
+      "message": "Given that the behavior is \"overload the meaning of an madvise performance hint\" to also mean \"sometimes pretend that the end of one VMA is actually a different PROT_NONE VMA in /proc/self/[s]maps\", I doubt the upstream kernel would accept that?\n\nI\u0027m pretty sure this is an Android Common Kernel thing.",
+      "parentUuid": "8b7869c8_529b5338",
       "range": {
         "startLine": 939,
         "startChar": 35,
