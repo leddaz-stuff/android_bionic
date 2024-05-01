@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6494cb00_668249e3",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-01T17:51:23Z",
+      "side": 1,
+      "message": "this is 16KiB, not the 64KiB that the comment talks about?\n\n(this is one of the reasons i prefer to write `64*1024` --- less room for confusion.)",
+      "range": {
+        "startLine": 785,
+        "startChar": 52,
+        "endLine": 785,
+        "endChar": 58
+      },
+      "revId": "280bd5a70fb5e945a66a3fee9a590808713b879d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
