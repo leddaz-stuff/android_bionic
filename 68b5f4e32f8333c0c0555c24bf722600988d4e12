@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91c5eecd_4f141004",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-01T17:54:27Z",
+      "side": 1,
+      "message": "copy the style of get_transparent_hugepages_supported() instead?",
+      "revId": "68b5f4e32f8333c0c0555c24bf722600988d4e12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "beef7c0d_bf508c25",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-01T17:54:27Z",
+      "side": 1,
+      "message": "no single-use constants",
+      "revId": "68b5f4e32f8333c0c0555c24bf722600988d4e12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
