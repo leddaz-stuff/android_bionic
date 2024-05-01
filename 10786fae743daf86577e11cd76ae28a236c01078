@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "095dcfbd_c90a100d",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 930,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-01T18:00:33Z",
+      "side": 1,
+      "message": "rather than a comment explaining a confusing name, fix the name?",
+      "revId": "10786fae743daf86577e11cd76ae28a236c01078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12f52c88_2cf146e2",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 936,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-01T18:00:33Z",
+      "side": 1,
+      "message": "you don\u0027t actually mean the syscall, right? you mean that the kernel might implicitly be doing this? (if so, drop the `()`.)\n\nand add the missing `.`s here and below.\n\nand s/maybe/may be/ :-)",
+      "range": {
+        "startLine": 936,
+        "startChar": 37,
+        "endLine": 936,
+        "endChar": 48
+      },
+      "revId": "10786fae743daf86577e11cd76ae28a236c01078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b7869c8_529b5338",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-01T18:00:33Z",
+      "side": 1,
+      "message": "this isn\u0027t in the upstream kernel, right? this is an Android-specific thing? can we link to the relevant changes at least, in the absence of real documentation? (do we need a kernel version check here?)",
+      "range": {
+        "startLine": 939,
+        "startChar": 35,
+        "endLine": 939,
+        "endChar": 42
+      },
+      "revId": "10786fae743daf86577e11cd76ae28a236c01078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "200c65cf_b4c4d8fd",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 940,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-01T18:00:33Z",
+      "side": 1,
+      "message": "`s/  / /`",
+      "range": {
+        "startLine": 940,
+        "startChar": 17,
+        "endLine": 940,
+        "endChar": 19
+      },
+      "revId": "10786fae743daf86577e11cd76ae28a236c01078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
