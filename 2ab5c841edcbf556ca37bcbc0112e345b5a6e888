@@ -39,6 +39,30 @@
       },
       "revId": "2ab5c841edcbf556ca37bcbc0112e345b5a6e888",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5898368f_8c174c1e",
+        "filename": "docs/status.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-02T19:14:07Z",
+      "side": 1,
+      "message": "i knew something didn\u0027t look right there :-)\n\ni\u0027ve gone with your suggested wording to keep the \"r21\" bit. we can switch to the NDK docs when talking about r21 sounds as silly as talking about API level 14. (i\u0027m biased a bit by being on a conversation about fortify workarounds needed with an ancient version of clang...)",
+      "parentUuid": "214e67d8_0a1af28c",
+      "range": {
+        "startLine": 415,
+        "startChar": 8,
+        "endLine": 415,
+        "endChar": 12
+      },
+      "revId": "2ab5c841edcbf556ca37bcbc0112e345b5a6e888",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
