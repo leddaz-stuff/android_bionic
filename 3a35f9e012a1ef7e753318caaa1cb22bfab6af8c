@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "942b8c62_40cfc459",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-02T16:24:44Z",
+      "side": 1,
+      "message": "unused?",
+      "revId": "3a35f9e012a1ef7e753318caaa1cb22bfab6af8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
