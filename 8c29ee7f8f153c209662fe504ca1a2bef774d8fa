@@ -22,6 +22,30 @@
       },
       "revId": "8c29ee7f8f153c209662fe504ca1a2bef774d8fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "181fb4c7_4a52175e",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-02T16:26:15Z",
+      "side": 1,
+      "message": "(and \"especially especially\" because reviewers didn\u0027t notice :-) )",
+      "parentUuid": "c3a727c7_04e7b5cf",
+      "range": {
+        "startLine": 785,
+        "startChar": 52,
+        "endLine": 785,
+        "endChar": 59
+      },
+      "revId": "8c29ee7f8f153c209662fe504ca1a2bef774d8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
