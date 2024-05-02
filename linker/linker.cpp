@@ -42,7 +42,6 @@
 #include <unistd.h>
 
 #include <iterator>
-#include <new>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -64,9 +63,7 @@
 #include "linker_dlwarning.h"
 #include "linker_main.h"
 #include "linker_namespaces.h"
-#include "linker_sleb128.h"
 #include "linker_phdr.h"
-#include "linker_relocate.h"
 #include "linker_tls.h"
 #include "linker_translate_path.h"
 #include "linker_utils.h"
@@ -74,9 +71,9 @@
 #include "android-base/macros.h"
 #include "android-base/stringprintf.h"
 #include "android-base/strings.h"
-#include "private/bionic_asm_note.h"
 #include "private/bionic_call_ifunc_resolver.h"
 #include "private/bionic_globals.h"
+#include "private/ScopedPthreadMutexLocker.h"
 #include "ziparchive/zip_archive.h"
 
 static std::unordered_map<void*, size_t> g_dso_handle_counters;
@@ -2109,7 +2106,7 @@ static std::string android_dlextinfo_to_string(const android_dlextinfo* info) {
                                         info->library_namespace : nullptr);
 }
 
-void* do_dlopen(const char* name, int flags,
+void* do_dlopen(ScopedPthreadMutexLocker& locker, const char* name, int flags,
                 const android_dlextinfo* extinfo,
                 const void* caller_addr) {
   std::string trace_prefix = std::string("dlopen: ") + (name == nullptr ? "(nullptr)" : name);
@@ -2230,20 +2227,22 @@ void* do_dlopen(const char* name, int flags,
   soinfo* si = find_library(ns, translated_name, flags, extinfo, caller);
   loading_trace.End();
 
-  if (si != nullptr) {
-    void* handle = si->to_handle();
-    LD_LOG(kLogDlopen,
-           "... dlopen calling constructors: realpath=\"%s\", soname=\"%s\", handle=%p",
-           si->get_realpath(), si->get_soname(), handle);
-    si->call_constructors();
-    failure_guard.Disable();
-    LD_LOG(kLogDlopen,
-           "... dlopen successful: realpath=\"%s\", soname=\"%s\", handle=%p",
-           si->get_realpath(), si->get_soname(), handle);
-    return handle;
-  }
+  if (si == nullptr) return nullptr;
 
-  return nullptr;
+  // Our work is all done now, so release the lock before calling the
+  // constructors so that others (or the constructors) can ask us to do other
+  // work.
+  locker.release();
+  void* handle = si->to_handle();
+  LD_LOG(kLogDlopen,
+         "... dlopen calling constructors: realpath=\"%s\", soname=\"%s\", handle=%p",
+         si->get_realpath(), si->get_soname(), handle);
+  si->call_constructors();
+  failure_guard.Disable();
+  LD_LOG(kLogDlopen,
+         "... dlopen successful: realpath=\"%s\", soname=\"%s\", handle=%p",
+         si->get_realpath(), si->get_soname(), handle);
+  return handle;
 }
 
 int do_dladdr(const void* addr, Dl_info* info) {

@@ -27,7 +27,14 @@ class ScopedPthreadMutexLocker {
   }
 
   ~ScopedPthreadMutexLocker() {
-    pthread_mutex_unlock(mu_);
+    release();
+  }
+
+  void release() {
+    if (mu_ != nullptr) {
+      pthread_mutex_unlock(mu_);
+      mu_ = nullptr;
+    }
   }
 
  private:

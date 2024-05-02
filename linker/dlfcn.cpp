@@ -139,7 +139,7 @@ static void* dlopen_ext(const char* filename,
                         const void* caller_addr) {
   ScopedPthreadMutexLocker locker(&g_dl_mutex);
   g_linker_logger.ResetState();
-  void* result = do_dlopen(filename, flags, extinfo, caller_addr);
+  void* result = do_dlopen(locker, filename, flags, extinfo, caller_addr);
   if (result == nullptr) {
     __bionic_format_dlerror("dlopen failed", linker_get_error_buffer());
     return nullptr;

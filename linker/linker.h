@@ -31,13 +31,11 @@
 #include <dlfcn.h>
 #include <android/dlext.h>
 #include <elf.h>
-#include <inttypes.h>
 #include <link.h>
 #include <sys/stat.h>
 #include <unistd.h>
 
-#include "platform/bionic/page.h"
-#include "linked_list.h"
+#include "private/ScopedPthreadMutexLocker.h"
 #include "linker_common_types.h"
 #include "linker_logger.h"
 #include "linker_soinfo.h"
@@ -83,7 +81,7 @@ int open_executable(const char* path, off64_t* file_offset, std::string* realpat
 
 void do_android_get_LD_LIBRARY_PATH(char*, size_t);
 void do_android_update_LD_LIBRARY_PATH(const char* ld_library_path);
-void* do_dlopen(const char* name,
+void* do_dlopen(ScopedPthreadMutexLocker& locker, const char* name,
                 int flags,
                 const android_dlextinfo* extinfo,
                 const void* caller_addr);
