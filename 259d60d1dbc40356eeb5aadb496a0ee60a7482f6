@@ -16,6 +16,23 @@
       "message": "There were a lot more users to fix up than I expected, so toning this down for the first CL so I don\u0027t have to submit the fixups in one giant topic. Will follow up with the requirement once I\u0027ve fixed all the users.",
       "revId": "259d60d1dbc40356eeb5aadb496a0ee60a7482f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6bef005_7703866c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-02T18:59:54Z",
+      "side": 1,
+      "message": "is this just during the transition while we get the messages written?\n\nif not, i\u0027d rather move anything that\u0027s not getting a message to a different (worse) macro name and have the good macro name _require_ a message...",
+      "revId": "259d60d1dbc40356eeb5aadb496a0ee60a7482f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
