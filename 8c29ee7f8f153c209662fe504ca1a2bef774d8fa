@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3a727c7_04e7b5cf",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-02T16:22:32Z",
+      "side": 1,
+      "message": "_especially_ since you got it wrong first time, rewrite this in the usual 64*1024 style.",
+      "range": {
+        "startLine": 785,
+        "startChar": 52,
+        "endLine": 785,
+        "endChar": 59
+      },
+      "revId": "8c29ee7f8f153c209662fe504ca1a2bef774d8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
