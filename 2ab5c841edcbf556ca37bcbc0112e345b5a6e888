@@ -16,6 +16,29 @@
       "message": "zijunzhao: note this new link in particular, to documentation i forgot we even had!",
       "revId": "2ab5c841edcbf556ca37bcbc0112e345b5a6e888",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "214e67d8_0a1af28c",
+        "filename": "docs/status.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-05-02T18:48:02Z",
+      "side": 1,
+      "message": "Not a thing. ndk-build is the name. Rewording to avoid the \"ndk-build builds\" awkwardness you were maybe trying to dodge:\n\n\u003e The Android platform is built with `-D_FORTIFY_SOURCE\u003d2`. Users of ndk-build or the NDK\u0027s CMake toolchain file also get this by default with NDK r21 or newer. Users of other build systems...\n\n(the rewording of the cmake bit is also important, you can use cmake without our toolchain file, and if you go that route you do not get this behavior)\n\nOr just delegate to the NDK\u0027s docs: https://android.googlesource.com/platform/ndk/+/master/docs/BuildSystemMaintainers.md#fortify",
+      "range": {
+        "startLine": 415,
+        "startChar": 8,
+        "endLine": 415,
+        "endChar": 12
+      },
+      "revId": "2ab5c841edcbf556ca37bcbc0112e345b5a6e888",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
