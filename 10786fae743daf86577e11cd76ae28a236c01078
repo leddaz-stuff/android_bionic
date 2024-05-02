@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82b0b15f_9da42716",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 930,
+      "author": {
+        "id": 1499410
+      },
+      "writtenOn": "2024-05-02T01:13:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "095dcfbd_c90a100d",
+      "revId": "10786fae743daf86577e11cd76ae28a236c01078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12f52c88_2cf146e2",
@@ -48,6 +66,30 @@
       "writtenOn": "2024-05-01T18:00:33Z",
       "side": 1,
       "message": "you don\u0027t actually mean the syscall, right? you mean that the kernel might implicitly be doing this? (if so, drop the `()`.)\n\nand add the missing `.`s here and below.\n\nand s/maybe/may be/ :-)",
+      "range": {
+        "startLine": 936,
+        "startChar": 37,
+        "endLine": 936,
+        "endChar": 48
+      },
+      "revId": "10786fae743daf86577e11cd76ae28a236c01078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8101fc9a_55faf4d9",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 936,
+      "author": {
+        "id": 1499410
+      },
+      "writtenOn": "2024-05-02T01:13:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12f52c88_2cf146e2",
       "range": {
         "startLine": 936,
         "startChar": 37,
@@ -105,6 +147,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "053b6c7e_48015795",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 1499410
+      },
+      "writtenOn": "2024-05-02T01:13:10Z",
+      "side": 1,
+      "message": "\u003e this isn\u0027t in the upstream kernel, right? \n\nIt\u0027s in ACK kernels since it\u0027s android specific case.\n\n\u003e can we link to the relevant changes at least, in the absence of real documentation? \n\nDone\n\n\u003e Do we need a kernel version check here?\n\nDidn\u0027t want to use the kernel version since some OEMs may not have the patches. Added page_size_migration_supported check.",
+      "parentUuid": "8b82f5f7_015c4105",
+      "range": {
+        "startLine": 939,
+        "startChar": 35,
+        "endLine": 939,
+        "endChar": 42
+      },
+      "revId": "10786fae743daf86577e11cd76ae28a236c01078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "200c65cf_b4c4d8fd",
@@ -118,6 +184,30 @@
       "writtenOn": "2024-05-01T18:00:33Z",
       "side": 1,
       "message": "`s/  / /`",
+      "range": {
+        "startLine": 940,
+        "startChar": 17,
+        "endLine": 940,
+        "endChar": 19
+      },
+      "revId": "10786fae743daf86577e11cd76ae28a236c01078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b2beb03_28db9526",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 940,
+      "author": {
+        "id": 1499410
+      },
+      "writtenOn": "2024-05-02T01:13:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "200c65cf_b4c4d8fd",
       "range": {
         "startLine": 940,
         "startChar": 17,
