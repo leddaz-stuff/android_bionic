@@ -34,6 +34,24 @@
       "parentUuid": "94ad9a78_7da87324",
       "revId": "1267b000196a3c6f864121cbdc46fbc8cf81e1a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f135296_2956f14d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3227152
+      },
+      "writtenOn": "2024-05-07T16:45:40Z",
+      "side": 1,
+      "message": "we found that during early boot /sys fs is not ready which results cache sizes 0 from sysconf() and this leads to unexpected crash in memory functions.",
+      "parentUuid": "cacb0b46_bacb93ae",
+      "revId": "1267b000196a3c6f864121cbdc46fbc8cf81e1a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
