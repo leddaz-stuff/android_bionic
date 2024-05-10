@@ -23,3 +23,20 @@ __attribute__((noinline, optnone)) void modify_stack_protector_test() {
   char* p = reinterpret_cast<char*>(&p + 1);
   *p = ~*p;
 }
+
+__attribute__((noinline, optnone)) void modify_stack_protector_tag_workaround_test() {
+#if defined(__aarch64__) && __has_feature(hwaddress_sanitizer)
+  char* p = reinterpret_cast<char*>(&p + 1);
+  *p = ~*p;
+  {
+    // When hwasan is enabled, sometimes a tag is chosen that doesn't
+    // trigger a failure. If that happens, create another frame that
+    // should use a different tag.
+    // See b/339529777 for extra details.
+    char* x = reinterpret_cast<char*>(&x + 1);
+    *x = ~*x;
+  }
+#else
+  modify_stack_protector_test();
+#endif
+}
