@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08da3533_042d5aad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-05-14T19:57:35Z",
+      "side": 1,
+      "message": "This is a more generic version of the workaround. It looks like this might just happen once in a while, but I\u0027m talking with eugenis to verify that this is not a problem.",
+      "revId": "dfff8101e56fb05bfff4079208a2315c196aa458",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
