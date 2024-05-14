@@ -33,6 +33,24 @@
       "message": "is it specifically only 0x80? should we just have an `if` for that value? (and a comment explicitly pointing it out.)\n\n+fmayer for why 0x80 would be special...",
       "revId": "dfff8101e56fb05bfff4079208a2315c196aa458",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "072d2b92_8cfada82",
+        "filename": "tests/stack_protector_test_helper.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-05-14T21:20:57Z",
+      "side": 1,
+      "message": "Actually, I misspoke originally. The bad value is 0x08, but I suspect that it\u0027s not the only bad value. That\u0027s why I removed the check for that particular tag because I think a new clang could cause the \"bad\" value to change. I\u0027m talking with eugenis about this to see if this is just a thing that can happen or not. I\u0027ll add others to that e-mail to see if they have ideas about what is going on.",
+      "parentUuid": "e559d60b_9fe69285",
+      "revId": "dfff8101e56fb05bfff4079208a2315c196aa458",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
