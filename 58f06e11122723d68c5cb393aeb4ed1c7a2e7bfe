@@ -16,6 +16,24 @@
       "message": "Why? This breaks compat with `-ansi` users.",
       "revId": "58f06e11122723d68c5cb393aeb4ed1c7a2e7bfe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be514751_9649519c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-14T17:22:21Z",
+      "side": 1,
+      "message": "i think this was just \"we don\u0027t need that any more\", but if you saw this in practice then we obviously do. revert but add the missing comment in \u003csys/cdefs.h\u003e motivating why we have the `__inline` macro?\n\n(given that clang/gcc only just dropped k\u0026r, i assume it\u0027s 2034 before ansi c gets dropped...)",
+      "parentUuid": "b0c1ce75_18fb2a73",
+      "revId": "58f06e11122723d68c5cb393aeb4ed1c7a2e7bfe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
