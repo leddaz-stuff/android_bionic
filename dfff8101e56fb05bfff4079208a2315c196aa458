@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4f1bb173_1061cbb5",
+        "filename": "tests/stack_protector_test_helper.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-05-14T21:34:46Z",
+      "side": 1,
+      "message": "we only call this with hwasan_enabled, why do we also have a separate ifdef here?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 62
+      },
+      "revId": "dfff8101e56fb05bfff4079208a2315c196aa458",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e559d60b_9fe69285",
         "filename": "tests/stack_protector_test_helper.cpp",
         "patchSetId": 2
@@ -49,6 +72,24 @@
       "side": 1,
       "message": "Actually, I misspoke originally. The bad value is 0x08, but I suspect that it\u0027s not the only bad value. That\u0027s why I removed the check for that particular tag because I think a new clang could cause the \"bad\" value to change. I\u0027m talking with eugenis about this to see if this is just a thing that can happen or not. I\u0027ll add others to that e-mail to see if they have ideas about what is going on.",
       "parentUuid": "e559d60b_9fe69285",
+      "revId": "dfff8101e56fb05bfff4079208a2315c196aa458",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "087c8659_f8728deb",
+        "filename": "tests/stack_protector_test_helper.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-05-14T21:34:46Z",
+      "side": 1,
+      "message": "I think: 0x8 seems like something around short granules is happening. The `char*` is 8 bytes, the stack slot for it is over-aligned to 16. The p+1 is actually an overflow within the stack slot, NOT to the stack canary. If we choose the tag 8, we don\u0027t see the short granule overflow, because 8 (the tag) matches 8 (the size of the short granule), so we don\u0027t enter the special logic to check the short granule tag + size.",
+      "parentUuid": "072d2b92_8cfada82",
       "revId": "dfff8101e56fb05bfff4079208a2315c196aa458",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
