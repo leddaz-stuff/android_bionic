@@ -92,6 +92,24 @@
       "parentUuid": "072d2b92_8cfada82",
       "revId": "dfff8101e56fb05bfff4079208a2315c196aa458",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a665ca5d_973efc5e",
+        "filename": "tests/stack_protector_test_helper.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-05-14T21:40:53Z",
+      "side": 1,
+      "message": "Hmm actually the +1 should point past the 16 bytes, because it\u0027s on the `char**`. Let me think a bit more.",
+      "parentUuid": "087c8659_f8728deb",
+      "revId": "dfff8101e56fb05bfff4079208a2315c196aa458",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
