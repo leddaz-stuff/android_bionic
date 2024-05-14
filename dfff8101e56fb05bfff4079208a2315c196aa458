@@ -16,6 +16,23 @@
       "message": "This is a more generic version of the workaround. It looks like this might just happen once in a while, but I\u0027m talking with eugenis to verify that this is not a problem.",
       "revId": "dfff8101e56fb05bfff4079208a2315c196aa458",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e559d60b_9fe69285",
+        "filename": "tests/stack_protector_test_helper.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-14T21:17:05Z",
+      "side": 1,
+      "message": "is it specifically only 0x80? should we just have an `if` for that value? (and a comment explicitly pointing it out.)\n\n+fmayer for why 0x80 would be special...",
+      "revId": "dfff8101e56fb05bfff4079208a2315c196aa458",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
