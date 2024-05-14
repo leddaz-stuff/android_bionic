@@ -211,6 +211,13 @@ TEST(setjmp, sigsetjmp_1_signal_mask) {
 #define CHECK_FREGS
 #endif
 
+// Clang generates redundant vmovs after SET_FREGS on ARM32 and touches
+// registers set, thus causing the test to fail. Disable optimizations to
+// workaround the issue.
+// http://b/337903801
+#if defined(__arm__)
+#pragma clang optimize off
+#endif
 TEST(setjmp, setjmp_fp_registers) {
   int value;
   jmp_buf jb;
@@ -224,6 +231,9 @@ TEST(setjmp, setjmp_fp_registers) {
     CHECK_FREGS;
   }
 }
+#if defined(__arm__)
+#pragma clang optimize on
+#endif
 
 #if defined(__arm__)
 #define JB_SIGFLAG_OFFSET 0
