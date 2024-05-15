@@ -105,9 +105,7 @@ cc_defaults {
         },
     },
 
-    lto: {
-        never: true,
-    },
+    lto_opt: "off",
 
     apex_available: ["com.android.runtime"],
 

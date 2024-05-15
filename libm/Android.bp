@@ -458,9 +458,7 @@ cc_library {
         "com.android.runtime",
     ],
 
-    lto: {
-        never: true,
-    },
+    lto_opt: "off",
 }
 
 ndk_library {
