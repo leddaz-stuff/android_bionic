@@ -245,6 +245,12 @@ int __bionic_open_tzdata(const char* olson_id, int32_t* entry_length) {
 #if defined(__ANDROID__)
   // On Android devices, bionic has to work even if exec takes place without
   // environment variables set. So, all paths are hardcoded here.
+  // LINT.IfChange
+  fd = __bionic_open_tzdata_path("/apex/com.android.tzdata/etc/tz/versioned/8/tzdata",
+                                 olson_id, entry_length);
+  // LINT.ThenChange(external/icu/android_icu4j/libcore_bridge/src/java/com/android/i18n/timezone/TzDataSetVersion.java)
+  if (fd >= -1) return fd;
+
   fd = __bionic_open_tzdata_path("/apex/com.android.tzdata/etc/tz/tzdata",
                                  olson_id, entry_length);
   if (fd >= -1) return fd;
