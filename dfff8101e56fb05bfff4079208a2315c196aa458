@@ -128,6 +128,24 @@
       "parentUuid": "a665ca5d_973efc5e",
       "revId": "dfff8101e56fb05bfff4079208a2315c196aa458",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bf5ff1e_e58da4c3",
+        "filename": "tests/stack_protector_test_helper.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-05-15T00:05:36Z",
+      "side": 1,
+      "message": "So my suggestion is either disable this for HWASan, or use a 16-byte object. Right now this is not actually testing anything about the stack protector.",
+      "parentUuid": "7d8847e0_202eda00",
+      "revId": "dfff8101e56fb05bfff4079208a2315c196aa458",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
