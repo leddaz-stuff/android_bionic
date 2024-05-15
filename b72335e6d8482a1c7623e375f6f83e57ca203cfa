@@ -16,6 +16,24 @@
       "message": "would be good to have \"mte\" in the name?\n\ngiven how much of this file is now mte stuff, should we have a libc_init_mte.cpp?",
       "revId": "b72335e6d8482a1c7623e375f6f83e57ca203cfa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fcd4f4b_3bcb31ba",
+        "filename": "libc/bionic/libc_init_static.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-05-15T16:40:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a200a385_c89dfad7",
+      "revId": "b72335e6d8482a1c7623e375f6f83e57ca203cfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
