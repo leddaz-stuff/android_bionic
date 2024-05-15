@@ -249,6 +249,10 @@ int __bionic_open_tzdata(const char* olson_id, int32_t* entry_length) {
                                  olson_id, entry_length);
   if (fd >= -1) return fd;
 
+  fd = __bionic_open_tzdata_path("/apex/com.android.tzdata/etc/tz/versioned/8/tzdata", olson_id,
+                                 entry_length);
+  if (fd >= -1) return fd;
+
   fd = __bionic_open_tzdata_path("/system/usr/share/zoneinfo/tzdata",
                                  olson_id, entry_length);
   if (fd >= -1) return fd;
