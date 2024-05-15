@@ -146,6 +146,24 @@
       "parentUuid": "7d8847e0_202eda00",
       "revId": "dfff8101e56fb05bfff4079208a2315c196aa458",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18d507ff_c51bbd21",
+        "filename": "tests/stack_protector_test_helper.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-05-15T00:27:19Z",
+      "side": 1,
+      "message": "Yeah, under hwasan, I don\u0027t think this test is really doing what it says, so I think I\u0027ll just disable the test there.",
+      "parentUuid": "0bf5ff1e_e58da4c3",
+      "revId": "dfff8101e56fb05bfff4079208a2315c196aa458",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
