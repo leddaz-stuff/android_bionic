@@ -33,6 +33,23 @@
       "message": "Hey my name Michael happy new year",
       "revId": "c2e412e08641dafd0f8e0b8edd3e358082105a68",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53a3b10a_7f8e330b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1991855
+      },
+      "writtenOn": "2024-05-15T04:51:53Z",
+      "side": 1,
+      "message": "Хай",
+      "revId": "c2e412e08641dafd0f8e0b8edd3e358082105a68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
