@@ -34,6 +34,24 @@
       "parentUuid": "a200a385_c89dfad7",
       "revId": "b72335e6d8482a1c7623e375f6f83e57ca203cfa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "346aa8db_7347e13a",
+        "filename": "libc/bionic/libc_init_static.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-05-15T17:38:02Z",
+      "side": 1,
+      "message": "\u003e given how much of this file is now mte stuff, should we have a libc_init_mte.cpp?\n\ncould be a good idea, but not in this CL. let\u0027s submit this first.",
+      "parentUuid": "4fcd4f4b_3bcb31ba",
+      "revId": "b72335e6d8482a1c7623e375f6f83e57ca203cfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
