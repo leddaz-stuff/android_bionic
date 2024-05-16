@@ -91,6 +91,9 @@ static inline bool get_val(MapEntry* entry, uintptr_t addr, T* store) {
 }
 
 static bool valid_elf(MapEntry* entry) {
+  if (!(entry->flags & PROT_READ)) {
+    return false;
+  }
   uintptr_t addr = entry->start;
   uintptr_t end;
   if (__builtin_add_overflow(addr, SELFMAG, &end) || end >= entry->end) {
