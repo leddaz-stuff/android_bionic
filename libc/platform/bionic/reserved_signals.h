@@ -52,6 +52,7 @@
 #define BIONIC_SIGNAL_ART_PROFILER (__SIGRTMIN + 6)
 #define BIONIC_SIGNAL_FDTRACK (__SIGRTMIN + 7)
 #define BIONIC_SIGNAL_RUN_ON_ALL_THREADS (__SIGRTMIN + 8)
+#define BIONIC_ENABLE_MTE (__SIGRTMIN + 9)
 
 #define __SIGRT_RESERVED 9
 static inline __always_inline sigset64_t filter_reserved_signals(sigset64_t sigset, int how) {
@@ -83,5 +84,6 @@ static inline __always_inline sigset64_t filter_reserved_signals(sigset64_t sigs
   unblock(&sigset, __SIGRTMIN + 6);
   unblock(&sigset, __SIGRTMIN + 7);
   unblock(&sigset, __SIGRTMIN + 8);
+  unblock(&sigset, __SIGRTMIN + 9);
   return sigset;
 }
