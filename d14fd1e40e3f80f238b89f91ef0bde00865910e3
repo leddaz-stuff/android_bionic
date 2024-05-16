@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b4597b0_8166fd6c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1038039
+      },
+      "writtenOn": "2024-05-16T11:34:04Z",
+      "side": 1,
+      "message": "First pass - looking at the whole thing. Probably enough to keep you busy.",
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ff7ef1e_94eb60ea",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1038039
+      },
+      "writtenOn": "2024-05-16T11:34:04Z",
+      "side": 1,
+      "message": "The \"8\" should be in a constant somewhere. That constant should be _very_ well documented in the code, and duped as little as possible (which could be hard in this case, though \"8\" could possibly be a build def / #define supplied by the build if you felt strongly about keeping it to one).\n\nThe docs will need to communicate what it means and why it should change.\n\nAlso, there will need to be changes to any docs that describe what to do when:\n(a) updating bionic\u0027s tzcode,\n(b) when incrementing or removing support for a tz format version from the apex (depending on whether this should track the latest or the oldest format)\n\nThings that should be mentioned in the docs:\n\n1) What \"8\" represents. i.e. it refers to the \"format version\" of the TZ data files to use in the tzdata apex. Given the apex will start to contain multiple versions of files, bionic needs to know which one to use.\n2) When it should be changed. e.g. if this is tied to a constant elsewhere in Android, then maybe link to that (or (3) should probably be preferred)\n3) Probably a link to a README.md in system/timezone that can serve as documentation around format version and what it is. There are some docs already, but they should be updated because the apex is changing.",
+      "range": {
+        "startLine": 248,
+        "startChar": 76,
+        "endLine": 248,
+        "endChar": 77
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72134417_4b060e83",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1038039
+      },
+      "writtenOn": "2024-05-16T11:34:04Z",
+      "side": 1,
+      "message": "Do we need to keep this? Why? I thought we were replacing this. i.e. I can think of a situation where /apex/com.android.tzdata isn\u0027t available and bionic needs to work - e.g. apexd hasn\u0027t run yet to mount the apex, but I can\u0027t think of a world where we\u0027d have /etc/tz/tzdata but not /versioned.\n\nIn fact, if somebody in a few years were to drop 8 support and this constant hadn\u0027t been maintained, leaving this code would potentially _hide_ the fact somebody has forgotten to update the constant. That said, with the fallback to /system, that will already happen, unfortunately.\n\nShould it be release flagged?",
+      "range": {
+        "startLine": 252,
+        "startChar": 52,
+        "endLine": 252,
+        "endChar": 58
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
