@@ -1044,7 +1044,10 @@ cc_defaults {
         "-fnon-call-exceptions",
     ],
 
-    ldflags: ["-Wl,--export-dynamic"],
+    ldflags: [
+        "-Wl,--export-dynamic",
+        "-Wl,-z,norelro",
+    ],
 
     include_dirs: ["bionic/libc"],
 

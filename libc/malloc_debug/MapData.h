@@ -37,20 +37,26 @@
 #include <platform/bionic/macros.h>
 
 struct MapEntry {
+  MapEntry() = default;
   MapEntry(uintptr_t start, uintptr_t end, uintptr_t offset, const char* name, size_t name_len, int flags)
       : start(start), end(end), offset(offset), name(name, name_len), flags(flags) {}
 
   explicit MapEntry(uintptr_t pc) : start(pc), end(pc) {}
 
+  void Init();
+
+  uintptr_t GetLoadBias();
+
   uintptr_t start;
   uintptr_t end;
   uintptr_t offset;
-  uintptr_t load_bias;
+  uintptr_t load_bias = 0;
   uintptr_t elf_start_offset = 0;
   std::string name;
   int flags;
   bool init = false;
   bool valid = false;
+  bool load_bias_read = false;
 };
 
 // Ordering comparator that returns equivalence for overlapping entries
@@ -65,11 +71,15 @@ class MapData {
 
   const MapEntry* find(uintptr_t pc, uintptr_t* rel_pc = nullptr);
 
- private:
-  bool ReadMaps();
+  size_t NumMaps() { return entries_.size(); }
 
+  void ReadMaps();
+
+ private:
   std::mutex m_;
   std::set<MapEntry*, compare_entries> entries_;
+
+  void ClearEntries();
 
   BIONIC_DISALLOW_COPY_AND_ASSIGN(MapData);
 };
