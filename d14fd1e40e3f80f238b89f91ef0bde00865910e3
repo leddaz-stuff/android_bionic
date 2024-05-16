@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b0111fff_5793660c",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-16T16:46:33Z",
+      "side": 1,
+      "message": "i think we need a comment here to make it clear why you\u0027re hard-coding a version at all. i think it\u0027s because you want static binaries to find the version of tzdata that corresponds to their version of tzcode? (as i\u0027ve said before, i\u0027m not sure how much i/we care about that use case. static binaries are only sort-of supported as it is.)",
+      "parentUuid": "3ff7ef1e_94eb60ea",
+      "range": {
+        "startLine": 248,
+        "startChar": 76,
+        "endLine": 248,
+        "endChar": 77
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "72134417_4b060e83",
         "filename": "libc/tzcode/bionic.cpp",
         "patchSetId": 2
@@ -54,6 +78,30 @@
       "writtenOn": "2024-05-16T11:34:04Z",
       "side": 1,
       "message": "Do we need to keep this? Why? I thought we were replacing this. i.e. I can think of a situation where /apex/com.android.tzdata isn\u0027t available and bionic needs to work - e.g. apexd hasn\u0027t run yet to mount the apex, but I can\u0027t think of a world where we\u0027d have /etc/tz/tzdata but not /versioned.\n\nIn fact, if somebody in a few years were to drop 8 support and this constant hadn\u0027t been maintained, leaving this code would potentially _hide_ the fact somebody has forgotten to update the constant. That said, with the fallback to /system, that will already happen, unfortunately.\n\nShould it be release flagged?",
+      "range": {
+        "startLine": 252,
+        "startChar": 52,
+        "endLine": 252,
+        "endChar": 58
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e1e154e_64bd3f3c",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-16T16:46:33Z",
+      "side": 1,
+      "message": "should we drop the /system one?",
+      "parentUuid": "72134417_4b060e83",
       "range": {
         "startLine": 252,
         "startChar": 52,
