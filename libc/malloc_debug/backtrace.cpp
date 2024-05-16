@@ -50,7 +50,7 @@
 typedef struct _Unwind_Context __unwind_context;
 
 static MapData g_map_data;
-static const MapEntry* g_current_code_map = nullptr;
+static MapEntry g_current_code_map;
 
 static _Unwind_Reason_Code find_current_map(__unwind_context* context, void*) {
   uintptr_t ip = _Unwind_GetIP(context);
@@ -58,11 +58,12 @@ static _Unwind_Reason_Code find_current_map(__unwind_context* context, void*) {
   if (ip == 0) {
     return _URC_END_OF_STACK;
   }
-  g_current_code_map = g_map_data.find(ip);
+  g_current_code_map = *g_map_data.find(ip);
   return _URC_END_OF_STACK;
 }
 
 void backtrace_startup() {
+  g_map_data.ReadMaps();
   _Unwind_Backtrace(find_current_map, nullptr);
 }
 
@@ -98,7 +99,7 @@ static _Unwind_Reason_Code trace_function(__unwind_context* context, void* arg) 
   }
 
   // Do not record the frames that fall in our own shared library.
-  if (g_current_code_map && (ip >= g_current_code_map->start) && ip < g_current_code_map->end) {
+  if (g_current_code_map.init && (ip >= g_current_code_map.start) && ip < g_current_code_map.end) {
     return _URC_NO_REASON;
   }
 
@@ -113,6 +114,10 @@ size_t backtrace_get(uintptr_t* frames, size_t frame_count) {
 }
 
 std::string backtrace_string(const uintptr_t* frames, size_t frame_count) {
+  if (g_map_data.NumMaps() == 0) {
+    g_map_data.ReadMaps();
+  }
+
   std::string str;
 
   for (size_t frame_num = 0; frame_num < frame_count; frame_num++) {
@@ -167,5 +172,6 @@ std::string backtrace_string(const uintptr_t* frames, size_t frame_count) {
 }
 
 void backtrace_log(const uintptr_t* frames, size_t frame_count) {
+  g_map_data.ReadMaps();
   error_log_string(backtrace_string(frames, frame_count).c_str());
 }

@@ -144,18 +144,18 @@ static void inline init(MapEntry* entry) {
   }
 }
 
-bool MapData::ReadMaps() {
+void MapData::ReadMaps() {
+  std::lock_guard<std::mutex> lock(m_);
   FILE* fp = fopen("/proc/self/maps", "re");
   if (fp == nullptr) {
-    return false;
+    return;
   }
 
   std::vector<char> buffer(1024);
   while (fgets(buffer.data(), buffer.size(), fp) != nullptr) {
     MapEntry* entry = parse_line(buffer.data());
     if (entry == nullptr) {
-      fclose(fp);
-      return false;
+      break;
     }
 
     auto it = entries_.find(entry);
@@ -166,7 +166,6 @@ bool MapData::ReadMaps() {
     }
   }
   fclose(fp);
-  return true;
 }
 
 MapData::~MapData() {
@@ -181,12 +180,7 @@ const MapEntry* MapData::find(uintptr_t pc, uintptr_t* rel_pc) {
   MapEntry pc_entry(pc);
 
   std::lock_guard<std::mutex> lock(m_);
-
   auto it = entries_.find(&pc_entry);
-  if (it == entries_.end()) {
-    ReadMaps();
-  }
-  it = entries_.find(&pc_entry);
   if (it == entries_.end()) {
     return nullptr;
   }

@@ -37,6 +37,7 @@
 #include <platform/bionic/macros.h>
 
 struct MapEntry {
+  MapEntry() = default;
   MapEntry(uintptr_t start, uintptr_t end, uintptr_t offset, const char* name, size_t name_len, int flags)
       : start(start), end(end), offset(offset), name(name, name_len), flags(flags) {}
 
@@ -65,9 +66,11 @@ class MapData {
 
   const MapEntry* find(uintptr_t pc, uintptr_t* rel_pc = nullptr);
 
- private:
-  bool ReadMaps();
+  size_t NumMaps() { return entries_.size(); }
 
+  void ReadMaps();
+
+ private:
   std::mutex m_;
   std::set<MapEntry*, compare_entries> entries_;
 
