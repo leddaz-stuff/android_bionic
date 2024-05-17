@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a49c40e5_223a121f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-17T11:13:18Z",
+      "side": 1,
+      "message": "but only \"while it\u0027s still in the call stack\", right? if you\u0027ve done that, you\u0027re going to crash sooner or later anyway...",
+      "revId": "097ff77a01270bce51c542fd13fa28595ae7d8c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
