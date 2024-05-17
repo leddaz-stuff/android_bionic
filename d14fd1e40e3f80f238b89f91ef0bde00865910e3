@@ -206,6 +206,30 @@
       },
       "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c47a6ba3_274d6599",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-17T19:19:48Z",
+      "side": 1,
+      "message": "my point was that if you _build_ a static binary with this version of libc, it might _run_ on an older system. this doesn\u0027t usually matter for _dynamic_ linking because you\u0027ll be using the libc that corresponds to the device (and if that\u0027s broken, well, you\u0027re screwed anyway and may as well give up). but the theory with static linking is \"one binary works everywhere\". which is why developers like it, and infrastructure maintainers hate it (because that\u0027s a really hard promise to keep, and who\u0027s doing all the testing anyway?).\n\nthere\u0027s a larger question of \"to what extent are static binaries really supported, beyond init and vold on the system [which is _effectively_ the same as the dynamic case, so easier]?\", but -- unlike Apple who say \"fuck no\", and glibc who have a sort of passive-aggressive \"we\u0027ll complain loudly but we won\u0027t actually stop you\" -- we haven\u0027t really taken a stance. (which effectively means \"we support this\".)\n\nTL;DR: unless you\u0027re _looking_ for battles to fight (which isn\u0027t as insane as it might seem --- there can be value to \"dealing with all the pain in one go\"), and your mono/golang/absl comments make me think you\u0027re very much _not_ looking to move anyone off what they\u0027re already doing, then i think \"leave the existing options, just add your new thing in front of them, and add \u0027static binaries\u0027 to your list of things to test\".",
+      "parentUuid": "fcf07250_49ac0feb",
+      "range": {
+        "startLine": 252,
+        "startChar": 52,
+        "endLine": 252,
+        "endChar": 58
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
