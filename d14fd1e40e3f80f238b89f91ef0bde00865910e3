@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c20a8b37_4e2cb1a8",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1793992
+      },
+      "writtenOn": "2024-05-17T14:58:53Z",
+      "side": 1,
+      "message": "\u003e The docs will need to communicate what it means and why it should change.\n\nAgree. I wanted to land code changes first to update prebuilts faster and remove obsolete code (like reading from etc/tz/tzdata).\n\n\u003e i think it\u0027s because you want static binaries to find the version of tzdata that corresponds to their version of tzcode\n\nNope, reasoning is different and where probably disagree. There were no issues with tzcode reading TZif files, but I think it\u0027s safer to read TZif files generated from the same checkout even if there is RFC.",
+      "parentUuid": "b0111fff_5793660c",
+      "range": {
+        "startLine": 248,
+        "startChar": 76,
+        "endLine": 248,
+        "endChar": 77
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "72134417_4b060e83",
         "filename": "libc/tzcode/bionic.cpp",
         "patchSetId": 2
@@ -101,6 +125,30 @@
       "writtenOn": "2024-05-16T16:46:33Z",
       "side": 1,
       "message": "should we drop the /system one?",
+      "parentUuid": "72134417_4b060e83",
+      "range": {
+        "startLine": 252,
+        "startChar": 52,
+        "endLine": 252,
+        "endChar": 58
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92f3366c_663e4d90",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1793992
+      },
+      "writtenOn": "2024-05-17T14:58:53Z",
+      "side": 1,
+      "message": "I left it just in case if there are configurations which will include this topic in system image, but use old tzdata prebuilt. Once prebuilts are updated, I will remove this path check.\n\n\u003e should we drop the /system one?\n\nProbably not in this CL :) Is it safe in general?",
       "parentUuid": "72134417_4b060e83",
       "range": {
         "startLine": 252,
