@@ -182,6 +182,30 @@
       },
       "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcf07250_49ac0feb",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1793992
+      },
+      "writtenOn": "2024-05-17T16:52:44Z",
+      "side": 1,
+      "message": "Can it affect anything from Android-only perspective? Nothing cares about time zones before /apex is mounted, right?",
+      "parentUuid": "1d023d36_efad7b9d",
+      "range": {
+        "startLine": 252,
+        "startChar": 52,
+        "endLine": 252,
+        "endChar": 58
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
