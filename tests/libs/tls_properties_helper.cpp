@@ -26,12 +26,6 @@
  * SUCH DAMAGE.
  */
 
-// Prevent tests from being compiled with glibc because thread_properties.h
-// only exists in Bionic.
-#if defined(__BIONIC__)
-
-#include <sys/thread_properties.h>
-
 #include <assert.h>
 #include <dlfcn.h>
 #include <elf.h>
@@ -47,6 +41,10 @@
 #include <sys/user.h>
 #include <sys/wait.h>
 #include <unistd.h>
+
+#if __has_include(<sys/thread_properties.h>)
+
+#include <sys/thread_properties.h>
 
 // Helper binary to use TLS-related functions in thread_properties
 
@@ -122,7 +120,10 @@ int main() {
 }
 
 #else
+
 int main() {
-  return 0;
+  printf("test binary built without <sys/thread_properties.h>");
+  return 1;
 }
-#endif  // __BIONIC__
+
+#endif
