@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cd65366_d68a5f48",
+        "filename": "linker/linker_main.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-05-17T00:41:21Z",
+      "side": 1,
+      "message": "Should the error keep the newline? It seems that __linker_error writes its message to both logcat and stderr, and I\u0027d expect the newline for stderr. I guess it\u0027s mostly harmless for logcat?",
+      "revId": "4cfd974d67f00db4cf4e09359801c9d29d70ec9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
