@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd112d56_0edc164e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2024-05-20T17:37:04Z",
+      "side": 1,
+      "message": "Unless someone is compiling with (-Wsystem-headers) https://clang.llvm.org/docs/UsersManual.html#cmdoption-Wsystem-headers, I don\u0027t understand how anyone would see diagnostics from bionic\u0027s headers. Or perhaps they\u0027re using -I rather -isystem?",
+      "revId": "3469e7df9b6c762d98c0e390e6d74408265a2e6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
