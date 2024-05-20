@@ -70,6 +70,24 @@
       "parentUuid": "3d201d00_0d298d8c",
       "revId": "58f06e11122723d68c5cb393aeb4ed1c7a2e7bfe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "425f29ff_622db96f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-20T17:30:30Z",
+      "side": 1,
+      "message": "only people with a broken c library would want to use such a mode :-)",
+      "parentUuid": "c9fe80a1_746c8ed0",
+      "revId": "58f06e11122723d68c5cb393aeb4ed1c7a2e7bfe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
