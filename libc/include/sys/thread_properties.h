@@ -55,14 +55,15 @@ void __libc_get_static_tls_bounds(void* _Nonnull * _Nonnull __static_tls_begin,
 
 
 /**
- * Registers callback to be called right before the thread is dead.
- * The callbacks are chained, they are called in the order opposite to the order
- * they were registered.
+ * Registers a callback to be called right before a dynamically-created thread
+ * exits.
+ * Callbacks are called in the order opposite to the order they were registered.
  *
- * The callbacks must be registered only before any threads were created.
+ * Callbacks must be registered only before any threads were created.
+ * Callbacks are not called when the main thread exits.
  * No signals may arrive during the calls to these callbacks.
- * The callbacks may not access the thread's dynamic TLS because they will have
- * been freed by the time these callbacks are invoked.
+ * Callbacks may not access the thread's dynamic TLS because it will have
+ * been freed before the callback is invoked.
  *
  * Available since API level 31.
  */

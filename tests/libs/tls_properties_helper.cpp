@@ -26,103 +26,95 @@
  * SUCH DAMAGE.
  */
 
-// Prevent tests from being compiled with glibc because thread_properties.h
-// only exists in Bionic.
-#if defined(__BIONIC__)
+#include <dlfcn.h>
+#include <stdio.h>
+#include <sys/ptrace.h>
+#include <sys/wait.h>
+
+#include <thread>
+
+#include "CHECK.h"
+
+#if __has_include(<sys/thread_properties.h>)
 
 #include <sys/thread_properties.h>
 
-#include <assert.h>
-#include <dlfcn.h>
-#include <elf.h>
-#include <err.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <sched.h>
-#include <stdio.h>
-#include <string.h>
-#include <sys/prctl.h>
-#include <sys/ptrace.h>
-#include <sys/uio.h>
-#include <sys/user.h>
-#include <sys/wait.h>
-#include <unistd.h>
+thread_local int thread_local_var;
 
-// Helper binary to use TLS-related functions in thread_properties
-
-// Tests __get_static_tls_bound.
-thread_local int local_var;
-void test_static_tls_bounds() {
-  local_var = 123;
+static void test_static_tls_bounds() {
+  thread_local_var = 123;
   void* start_addr = nullptr;
   void* end_addr = nullptr;
 
   __libc_get_static_tls_bounds(reinterpret_cast<void**>(&start_addr),
                                reinterpret_cast<void**>(&end_addr));
-  assert(start_addr != nullptr);
-  assert(end_addr != nullptr);
+  CHECK(start_addr != nullptr);
+  CHECK(end_addr != nullptr);
 
-  assert(&local_var >= start_addr && &local_var < end_addr);
-
-  printf("done_get_static_tls_bounds\n");
+  CHECK(&thread_local_var >= start_addr && &thread_local_var < end_addr);
 }
 
 // Tests iterate_dynamic tls chunks.
 // Export a var from the shared so.
-__thread char large_tls_var[4 * 1024 * 1024];
-// found_count  has to be Global variable so that the non-capturing lambda
-// can access it.
-int found_count = 0;
-void test_iter_tls() {
+extern __thread char large_tls_var[4 * 1024 * 1024];
+
+static void test_iter_tls() {
   void* lib = dlopen("libtest_elftls_dynamic.so", RTLD_LOCAL | RTLD_NOW);
   large_tls_var[1025] = 'a';
-  auto cb = +[](void* dtls_begin, void* dtls_end, size_t dso_id, void* arg) {
-    if (&large_tls_var >= dtls_begin && &large_tls_var < dtls_end) ++found_count;
+
+  struct Data {
+    int call_count, found_count;
+  } data = {};
+  auto cb = +[](void* dtls_begin, void* dtls_end, size_t /*dso_id*/, void* arg) {
+    Data* d = static_cast<Data*>(arg);
+    d->call_count++;
+    if (&large_tls_var >= dtls_begin && &large_tls_var < dtls_end) d->found_count++;
   };
-  __libc_iterate_dynamic_tls(gettid(), cb, nullptr);
+  __libc_iterate_dynamic_tls(gettid(), cb, &data);
 
-  // It should be found exactly once.
-  assert(found_count == 1);
-  printf("done_iterate_dynamic_tls\n");
+  printf("done_iterate_dynamic_tls call_count=%d found_count=%d\n", data.call_count,
+         data.found_count);
 }
 
-void* parent_addr = nullptr;
-void test_iterate_another_thread_tls() {
+static pid_t g_parent_tid;
+static void* g_parent_addr = nullptr;
+
+static void test_iterate_another_thread_tls() {
   large_tls_var[1025] = 'b';
-  parent_addr = &large_tls_var;
-  found_count = 0;
+  g_parent_addr = &large_tls_var;
 
-  pid_t pid = fork();
-  assert(pid != -1);
-  int status;
-  if (pid) {
-    // Parent.
-    assert(pid == wait(&status));
-    assert(0 == status);
-  } else {
-    // Child.
-    pid_t parent_pid = getppid();
-    assert(0 == ptrace(PTRACE_ATTACH, parent_pid));
-    assert(parent_pid == waitpid(parent_pid, &status, 0));
+  g_parent_tid = gettid();
 
-    auto cb = +[](void* dtls_begin, void* dtls_end, size_t dso_id, void* arg) {
-      if (parent_addr >= dtls_begin && parent_addr < dtls_end) ++found_count;
+  std::thread([] {
+    struct Data {
+      int call_count, found_count;
+    } data = {};
+    auto cb = +[](void* dtls_begin, void* dtls_end, size_t /*dso_id*/, void* arg) {
+      Data* d = static_cast<Data*>(arg);
+      d->call_count++;
+      if (g_parent_addr >= dtls_begin && g_parent_addr < dtls_end) d->found_count++;
     };
-    __libc_iterate_dynamic_tls(parent_pid, cb, nullptr);
-    // It should be found exactly once.
-    assert(found_count == 1);
-    printf("done_iterate_another_thread_tls\n");
-  }
+    __libc_iterate_dynamic_tls(g_parent_tid, cb, &data);
+    printf("done_iterate_another_thread_tls call_count=%d found_count=%d\n", data.call_count,
+           data.found_count);
+  }).join();
 }
+
 int main() {
+  printf("test_static_tls_bounds()\n");
   test_static_tls_bounds();
-  test_iter_tls();
+  printf("test_iter_tls()\n");
+  std::thread([] { test_iter_tls(); }).join();
+  printf("test_iterate_another_thread_tls()\n");
   test_iterate_another_thread_tls();
   return 0;
 }
 
 #else
+
 int main() {
-  return 0;
+  printf("test binary built without <sys/thread_properties.h>\n");
+  return 1;
 }
-#endif  // __BIONIC__
+
+#endif

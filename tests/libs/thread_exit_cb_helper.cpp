@@ -26,41 +26,49 @@
  * SUCH DAMAGE.
  */
 
-// Prevent tests from being compiled with glibc because thread_properties.h
-// only exists in Bionic.
-#if defined(__BIONIC__)
+#if __has_include(<sys/thread_properties.h>)
 
-#include <stdio.h>
 #include <sys/thread_properties.h>
+#include <unistd.h>
 
-// Helper binary for testing thread_exit_cb registration.
+#include <thread>
 
 void exit_cb_1() {
-  printf("exit_cb_1 called ");
+  write(1, "<cb1>", 5);
 }
 
 void exit_cb_2() {
-  printf("exit_cb_2 called ");
+  write(1, "<cb2>", 5);
 }
 
 void exit_cb_3() {
-  printf("exit_cb_3 called");
+  write(1, "<cb3>", 5);
 }
 
 void test_register_thread_exit_cb() {
-  // Register the exit-cb in reverse order (3,2,1)
-  // so that they'd be called in 1,2,3 order.
-  __libc_register_thread_exit_callback(&exit_cb_3);
-  __libc_register_thread_exit_callback(&exit_cb_2);
   __libc_register_thread_exit_callback(&exit_cb_1);
+  __libc_register_thread_exit_callback(&exit_cb_2);
+  __libc_register_thread_exit_callback(&exit_cb_3);
 }
 
 int main() {
+  write(1, "<main>", 6);
   test_register_thread_exit_cb();
+  write(1, "<t1>", 4);
+  std::thread([] { write(1, "A", 1); }).join();
+  write(1, "<t2>", 4);
+  std::thread([] { write(1, "B", 1); }).join();
+  write(1, "<exit>", 6);
   return 0;
 }
+
 #else
+
+#include <stdio.h>
+
 int main() {
-  return 0;
+  printf("test binary built without <sys/thread_properties.h>\n");
+  return 1;
 }
-#endif  // __BIONIC__
+
+#endif
