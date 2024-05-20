@@ -52,6 +52,24 @@
       "parentUuid": "be514751_9649519c",
       "revId": "58f06e11122723d68c5cb393aeb4ed1c7a2e7bfe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9fe80a1_746c8ed0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2024-05-20T17:15:45Z",
+      "side": 1,
+      "message": "Doesn\u0027t the compiler elide emitting diagnostics for system headers?  It shouldn\u0027t matter whether user code is compiled in ANSI mode or not.  Can you link me to a bug report or something with more info?",
+      "parentUuid": "3d201d00_0d298d8c",
+      "revId": "58f06e11122723d68c5cb393aeb4ed1c7a2e7bfe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
