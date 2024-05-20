@@ -495,6 +495,7 @@ cc_test_library {
         "sys_syscall_test.cpp",
         "sys_sysinfo_test.cpp",
         "sys_sysmacros_test.cpp",
+        "sys_thread_properties_test.cpp",
         "sys_time_test.cpp",
         "sys_timex_test.cpp",
         "sys_ttydefaults_test.cpp",
