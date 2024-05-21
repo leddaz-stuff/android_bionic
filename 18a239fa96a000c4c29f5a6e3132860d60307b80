@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec4feb3b_90b9b48b",
+        "filename": "tests/time_test.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 834,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-05-21T18:43:11Z",
+      "side": 1,
+      "message": "Any worry that this might cause flaky failures? Would it be better to add a loop where you check that the threads are gone for X number of seconds and fail if it doesn\u0027t happen. This would allow the test to finish earlier than 1 second if you do the check more than once  second.\n\nAnd should the timeout be affected by the hw timeout multiplier?",
+      "range": {
+        "startLine": 834,
+        "startChar": 2,
+        "endLine": 834,
+        "endChar": 11
+      },
+      "revId": "18a239fa96a000c4c29f5a6e3132860d60307b80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
