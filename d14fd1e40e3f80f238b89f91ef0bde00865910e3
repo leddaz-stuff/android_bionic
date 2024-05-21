@@ -89,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "162901e4_64571c40",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1793992
+      },
+      "writtenOn": "2024-05-21T12:18:49Z",
+      "side": 1,
+      "message": "Marking as resolved.",
+      "parentUuid": "c20a8b37_4e2cb1a8",
+      "range": {
+        "startLine": 248,
+        "startChar": 76,
+        "endLine": 248,
+        "endChar": 77
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72134417_4b060e83",
@@ -222,6 +246,30 @@
       "side": 1,
       "message": "my point was that if you _build_ a static binary with this version of libc, it might _run_ on an older system. this doesn\u0027t usually matter for _dynamic_ linking because you\u0027ll be using the libc that corresponds to the device (and if that\u0027s broken, well, you\u0027re screwed anyway and may as well give up). but the theory with static linking is \"one binary works everywhere\". which is why developers like it, and infrastructure maintainers hate it (because that\u0027s a really hard promise to keep, and who\u0027s doing all the testing anyway?).\n\nthere\u0027s a larger question of \"to what extent are static binaries really supported, beyond init and vold on the system [which is _effectively_ the same as the dynamic case, so easier]?\", but -- unlike Apple who say \"fuck no\", and glibc who have a sort of passive-aggressive \"we\u0027ll complain loudly but we won\u0027t actually stop you\" -- we haven\u0027t really taken a stance. (which effectively means \"we support this\".)\n\nTL;DR: unless you\u0027re _looking_ for battles to fight (which isn\u0027t as insane as it might seem --- there can be value to \"dealing with all the pain in one go\"), and your mono/golang/absl comments make me think you\u0027re very much _not_ looking to move anyone off what they\u0027re already doing, then i think \"leave the existing options, just add your new thing in front of them, and add \u0027static binaries\u0027 to your list of things to test\".",
       "parentUuid": "fcf07250_49ac0feb",
+      "range": {
+        "startLine": 252,
+        "startChar": 52,
+        "endLine": 252,
+        "endChar": 58
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88849e69_7f40f623",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1793992
+      },
+      "writtenOn": "2024-05-21T12:18:49Z",
+      "side": 1,
+      "message": "Mono is when I started to think about fixing this situation: in mono / dotnet they are falling back to TZif v1 if they encounter unsupported TZif (i.e. not v1 or v2 or v3) and do not throw exception [1]. They don\u0027t even log anything.\n\nSo I want to fix this because I do not want to be responsible for bugs in 3p code and spend time finding root cause.\n\n[1] https://github.com/dotnet/runtime/issues/93216#issuecomment-1753412998",
+      "parentUuid": "c47a6ba3_274d6599",
       "range": {
         "startLine": 252,
         "startChar": 52,
