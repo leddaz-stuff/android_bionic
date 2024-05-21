@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e32aa44_b414640b",
+        "filename": "libc/malloc_debug/MapData.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-21T12:11:00Z",
+      "side": 1,
+      "message": "should this be private now, if you\u0027re supposed to use the accessor to get it?",
+      "revId": "40d6486a9110c6241535246a9c4facfa9ed32161",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d40bc2e7_6b6665b4",
+        "filename": "tests/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1049,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-21T12:11:00Z",
+      "side": 1,
+      "message": "worth a comment?",
+      "revId": "40d6486a9110c6241535246a9c4facfa9ed32161",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
