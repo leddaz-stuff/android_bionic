@@ -278,6 +278,30 @@
       },
       "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8afaae27_9bbb3dea",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1038039
+      },
+      "writtenOn": "2024-05-21T16:34:10Z",
+      "side": 1,
+      "message": "Question for enh@\n\nFor the static NDK use case, I thought (perhaps incorrectly) that the version of bionic was very old and may pre-date apex completely.\n\nIs there the possibility of encountering a statically linked binary with a version of bionic after the APEX was introduced?\n\n-------\n\nGeneral comment:\n\nI think we\u0027re mostly digging into the case of \"{static binary built with bionic from Q-U} + {apex will be mounted} + {tz calcs must work and the system image tzdata file isn\u0027t good enough}\". I don\u0027t know how common that is but it feel niche. \n\nI don\u0027t mind either way, and I will always defer to enh@ when it comes to bionic. My general bias is always that less code is good and if this code stays then somebody in future will also try to keep it because they\u0027ll be even less able to reason about \"is this safe to remove?\"",
+      "parentUuid": "88849e69_7f40f623",
+      "range": {
+        "startLine": 252,
+        "startChar": 52,
+        "endLine": 252,
+        "endChar": 58
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
