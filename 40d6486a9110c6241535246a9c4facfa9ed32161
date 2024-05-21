@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf5915fb_13966a48",
+        "filename": "libc/malloc_debug/MapData.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-05-21T21:20:06Z",
+      "side": 1,
+      "message": "Yeah, I uploaded this but I wasn\u0027t quite done. I was arguing with myself and just made it a full blown class now. It should have probably been this way already.",
+      "parentUuid": "0e32aa44_b414640b",
+      "revId": "40d6486a9110c6241535246a9c4facfa9ed32161",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d40bc2e7_6b6665b4",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-05-21T12:11:00Z",
       "side": 1,
       "message": "worth a comment?",
+      "revId": "40d6486a9110c6241535246a9c4facfa9ed32161",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "361189ea_205dc645",
+        "filename": "tests/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1049,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-05-21T21:20:06Z",
+      "side": 1,
+      "message": "This was actually for a different bug as an experiment that accidentally snuck in to this cl.\n\nSo removed.",
+      "parentUuid": "d40bc2e7_6b6665b4",
       "revId": "40d6486a9110c6241535246a9c4facfa9ed32161",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
