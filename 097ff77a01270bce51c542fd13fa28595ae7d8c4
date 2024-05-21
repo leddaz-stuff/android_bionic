@@ -16,6 +16,24 @@
       "message": "but only \"while it\u0027s still in the call stack\", right? if you\u0027ve done that, you\u0027re going to crash sooner or later anyway...",
       "revId": "097ff77a01270bce51c542fd13fa28595ae7d8c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "212841a5_29505792",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-05-21T21:25:18Z",
+      "side": 1,
+      "message": "This is for symbolizing pcs that were recorded previously. Before, if the code was unloaded or a map changes over time you could crash reading from what you think is a readable map. Now you won\u0027t no matter what. The pcs were recorded a long time ago, but the symbolization doesn\u0027t happen until some time later. That\u0027s why I added this caveat. If the map does disappear, all that happens now is that you have a raw pc with no other information.",
+      "parentUuid": "a49c40e5_223a121f",
+      "revId": "097ff77a01270bce51c542fd13fa28595ae7d8c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
