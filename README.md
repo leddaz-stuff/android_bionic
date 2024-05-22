@@ -19,6 +19,8 @@ The C library. Stuff like `fopen(3)` and `kill(2)`.
 
 #### libm/ --- libm.so, libm.a
 
+// DO NOT SUBMIT: TESTING ONLY
+
 The math library. Traditionally Unix systems kept stuff like `sin(3)` and
 `cos(3)` in a separate library to save space in the days before shared
 libraries.
