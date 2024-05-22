@@ -302,6 +302,30 @@
       },
       "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5804b1ec_bcf241a2",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-22T19:04:26Z",
+      "side": 1,
+      "message": "\u003e For the static NDK use case, I thought (perhaps incorrectly) that the version of bionic was very old and may pre-date apex completely.\n\nwell, the problem is -- as the name suggests -- that the version is statically determined by the NDK you build with. so if you build a static binary with NDK r14 and run it on api level 35, you\u0027re running api level 21 (or whatever; i didn\u0027t actually look that up) libc code. whereas if you build with NDK r27 and run on api level 21, you\u0027re doing the opposite. which is why i\u0027m thinking about forwards and backwards compatibility.\n\n\u003e Is there the possibility of encountering a statically linked binary with a version of bionic after the APEX was introduced?\n\nyes. (and also from before.)\n\nand this isn\u0027t just us --- glibc has this too. (Apple doesn\u0027t; while glibc _grumbles_ about static linking, Apple just doesn\u0027t let you do it.) that\u0027s why i think upstream would see incompatible changes as a bug to be fixed. i think you\u0027ve been scared by the way icu controls both sides [code and data] and expects them to be distributed together into worrying too much about libc.\n\n-*-\n\ni think this cl as-is expresses your desired intent of \"we know how to use apex version 8 if it\u0027s available, but we\u0027re also compatible with the pre-versioned apex data, and we\u0027re even compatible with the pre-apex data\".\n\ni think my main comment would mainly be \"explicitly say that you\u0027re hard-coding 8 on purpose because \u00278\u0027 corresponds to the specific version of tzdata that the current tzcode understands\"? (this is also why i think it\u0027s mad to even consider incrementing the version number for _compatible_ changes. and that in turn is why i\u0027m skeptical that we\u0027ll actually need to deal with real incompatibility.)\n\nand \"are we sure we want to start at 8?\". i\u0027d argue that this is the _first_ versioned version :-)",
+      "parentUuid": "8afaae27_9bbb3dea",
+      "range": {
+        "startLine": 252,
+        "startChar": 52,
+        "endLine": 252,
+        "endChar": 58
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
