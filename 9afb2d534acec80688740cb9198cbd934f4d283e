@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcd596d5_dc3017b1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-22T12:25:34Z",
+      "side": 1,
+      "message": "update the commit message to match the new function name",
+      "range": {
+        "startLine": 7,
+        "startChar": 8,
+        "endLine": 7,
+        "endChar": 21
+      },
+      "revId": "9afb2d534acec80688740cb9198cbd934f4d283e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36d0cf4b_0932d464",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-22T12:25:34Z",
+      "side": 1,
+      "message": "yeah, the new function name makes sense to me...",
+      "revId": "9afb2d534acec80688740cb9198cbd934f4d283e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a4c69fd_63c3f234",
+        "filename": "libc/platform/bionic/page.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-22T12:25:34Z",
+      "side": 1,
+      "message": "prefer api levels as the thing everyone understands (especially now we\u0027ve wrapped and \"15\" either means 15 [ics-mr1] or 35 [\"v\"]!)",
+      "range": {
+        "startLine": 36,
+        "startChar": 6,
+        "endLine": 36,
+        "endChar": 16
+      },
+      "revId": "9afb2d534acec80688740cb9198cbd934f4d283e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
