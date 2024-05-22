@@ -326,6 +326,30 @@
       },
       "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfff85e2_3e4a85da",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1793992
+      },
+      "writtenOn": "2024-05-22T19:16:16Z",
+      "side": 1,
+      "message": "There are tz_version files [1, 2] and we are just reusing its major number here. It was introduced in O-MR1 and bumped each SDK Level update (expect SC -\u003e SC v2 because neither ICU nor tzcode-s were updated).\n\nI added some information to a README file in aosp/3088745. Should I extend it and / or write more information here?\n\n[1] https://android.googlesource.com/platform/system/timezone/+/refs/heads/main/output_data/version/tz_version\n\n[2] https://android.googlesource.com/platform/system/timezone/+/refs/heads/android14-dev/output_data/version/tz_version",
+      "parentUuid": "5804b1ec_bcf241a2",
+      "range": {
+        "startLine": 252,
+        "startChar": 52,
+        "endLine": 252,
+        "endChar": 58
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
