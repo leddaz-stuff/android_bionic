@@ -350,6 +350,30 @@
       },
       "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8a8d4be_6c47f824",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-22T19:21:41Z",
+      "side": 1,
+      "message": "oh, so the version number is really the _icu_ version number, and the tzdata just happens to be stuck with the same number? that\u0027s unfortunate...",
+      "parentUuid": "dfff85e2_3e4a85da",
+      "range": {
+        "startLine": 252,
+        "startChar": 52,
+        "endLine": 252,
+        "endChar": 58
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
