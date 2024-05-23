@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81ceeb65_0e4de1bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-05-23T22:29:57Z",
+      "side": 1,
+      "message": "The situation prompting this CL was that the libc++.so prebuilt correctly had a DT_GNU_HASH entry, but its pages were 4KiB aligned instead of 16KiB. I was/am confused as to why the linker is complaining about hash sections instead of something else. e.g. The error should be, \"insufficient page alignment\"?",
+      "revId": "ed72d935183f12e29360989c192d71a33bec86c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
