@@ -34,6 +34,24 @@
       "parentUuid": "81ceeb65_0e4de1bf",
       "revId": "ed72d935183f12e29360989c192d71a33bec86c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ce0ab4d_9a195171",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-05-23T22:46:17Z",
+      "side": 1,
+      "message": "Yeah - that too. For apps, they get prevented from being installed in PM, but libc++ is installed unconditionally.",
+      "parentUuid": "5083178a_25d47782",
+      "revId": "ed72d935183f12e29360989c192d71a33bec86c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
