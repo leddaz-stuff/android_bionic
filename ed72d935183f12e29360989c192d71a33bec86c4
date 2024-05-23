@@ -16,6 +16,24 @@
       "message": "The situation prompting this CL was that the libc++.so prebuilt correctly had a DT_GNU_HASH entry, but its pages were 4KiB aligned instead of 16KiB. I was/am confused as to why the linker is complaining about hash sections instead of something else. e.g. The error should be, \"insufficient page alignment\"?",
       "revId": "ed72d935183f12e29360989c192d71a33bec86c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5083178a_25d47782",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-05-23T22:40:48Z",
+      "side": 1,
+      "message": "Actually, what _is_ supposed to happen when the loader tries to load a 4KiB-aligned file on a 16KiB target? I think mmap quietly rounds addresses/sizes to the page size, so are we just loading the ELF file completely incorrectly, without a diagnostic?\n\nPresumably something needs to scan the PT_LOAD segments and verify \"something\". Maybe check that they don\u0027t overlap, in general, and/or check that p_align is \u003e\u003d the real page size.\n\nI\u0027m guessing the reason for the missing DT_HASH/DT_GNU_HASH error is that it just happens to be the first thing diagnosed in soinfo::prelink_image. Maybe we\u0027re loading a dynamic section of all zeros because the mmap ranges overlap (once the 4KiB addresses are adjusted to 16KiB).",
+      "parentUuid": "81ceeb65_0e4de1bf",
+      "revId": "ed72d935183f12e29360989c192d71a33bec86c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
