@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b868f12_e7442390",
+        "filename": "linker/linker.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 3281,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-05-23T22:31:03Z",
+      "side": 1,
+      "message": "We already know the values of nbucket_ and gnu_nbucket_ are 0, because we only print the error in that case anyway...?",
+      "revId": "14a933a292674e08d3a61661d53b1731c23e1428",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
