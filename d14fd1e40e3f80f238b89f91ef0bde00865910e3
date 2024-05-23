@@ -398,6 +398,30 @@
       },
       "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5da2e45f_91b75381",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-23T20:17:30Z",
+      "side": 1,
+      "message": "\u003e I don\u0027t think there\u0027s a lot of cost in having a version number in the path that is incremented for bionic more often than strictly necessary.\n\nbut it won\u0027t be incremented, right? you\u0027ll end up checking \"12 else if 11 else if 10 else if 9 else if 8 else if apex else if /system\"?\n\nif on the other hand you really do just mean \"\u003ccurrent number\u003e else if apex else if /system\", that doesn\u0027t seem like it adds any value over just having the symlink and bionic always goes straight to that. (in fact, it adds _negative_ value because you\u0027re increasing maintenance costs and runtime costs _and_ making static binaries work less well, to get at best the same effect you could have had with less effort/code.)",
+      "parentUuid": "10b67144_075f8f55",
+      "range": {
+        "startLine": 252,
+        "startChar": 52,
+        "endLine": 252,
+        "endChar": 58
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
