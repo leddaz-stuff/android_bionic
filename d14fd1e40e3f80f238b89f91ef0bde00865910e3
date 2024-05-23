@@ -374,6 +374,30 @@
       },
       "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10b67144_075f8f55",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1038039
+      },
+      "writtenOn": "2024-05-23T15:46:13Z",
+      "side": 1,
+      "message": "RE \"ICU version number\": Not quite, it\u0027s a \"tz data set version number\" as currently doc\u0027d in external/icu/android_icu4j/libcore_bridge/src/java/com/android/i18n/timezone/TzDataSetVersion.java and https://cs.android.com/android/platform/superproject/main/+/main:system/timezone/README.android;l\u003d94\n\n(Though it will need to be updated a bit after these changes)\n\nThis versioning system was originally developed for the first tz update system (APK), then carried over to APEX, and it now that version system forms the basis for the path in the new multi-version APEX - i.e. so the code looks for the version it needs out of several now available.\n\nBecause it\u0027s a single version number that covers the file _set_, Android increments the version by one any time something is changed that is likely to / actually affects the format of any of the files inside the set in a non-backwards compatible way.\n\nThe most obvious reason to do that would be when updating ICU, and when that happens Almaz will need to update the value for all things that read files from the apex.  It only needs to be incremented once per Android release - e.g. if tzcode _and_ ICU were updated within one release, that\u0027s still only one increment. As Almaz mentioned, it\u0027s not tied to Android API level deliberately because there have been API bumps which didn\u0027t involve any tz data format changes.\n\nInstead, there could be separate version numbers for different files within the set, but it would get more complicated for (for example) libs that read multiple files. Almaz is also preserving the old paths which will continue to point to a consistent set of files - the latest version.\n\nI don\u0027t think there\u0027s a lot of cost in having a version number in the path that is incremented for bionic more often than strictly necessary.\n\nFrom a system health PoV, Almaz has been experimenting and having the same file under multiple paths appears to be handled by the .img format without increasing the space too much. Block-level compression, I assume. I\u0027ve also suggested he look at hard linking to have the same file content under multiple paths/names if that turns out not to be the case or it stops working.\n\nThere are several ways to slice this - this certainly isn\u0027t the only way, but I _think_ it\u0027ll work.",
+      "parentUuid": "b8a8d4be_6c47f824",
+      "range": {
+        "startLine": 252,
+        "startChar": 52,
+        "endLine": 252,
+        "endChar": 58
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
