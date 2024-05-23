@@ -3275,8 +3275,10 @@ bool soinfo::prelink_image() {
     return false;
   }
   if (nbucket_ == 0 && gnu_nbucket_ == 0) {
-    DL_ERR("empty/missing DT_HASH/DT_GNU_HASH in \"%s\" "
-        "(new hash type from the future?)", get_realpath());
+    DL_ERR(
+        "empty/missing DT_HASH/DT_GNU_HASH in \"%s\" (new hash type from the future? DT_HASH: "
+        "%" PRIu32 ", DT_GNU_HASH: %" PRIu32 ")",
+        get_realpath(), nbucket_, gnu_nbucket_);
     return false;
   }
   if (strtab_ == nullptr) {
