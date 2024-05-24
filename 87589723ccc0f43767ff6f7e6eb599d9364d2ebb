@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0550a9a7_aaf1ad0c",
+        "filename": "libc/bionic/sys_thread_properties.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1890456
+      },
+      "writtenOn": "2024-05-24T19:12:03Z",
+      "side": 1,
+      "message": "Please fix this INFO reported by Open-source Licensing: FYI: Found in unchanged code: Third-party license (BSD) allowed in repository platform/bionic:\n\nAnalyzer Description: Identifies changes requiring human review for potential licensing issues.\nOwner: opensource-licensing@google.com\n\nFYI: Found in unchanged code: Third-party license (BSD) allowed in repository platform/bionic:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution.",
+      "range": {
+        "startLine": 5,
+        "startChar": 4,
+        "endLine": 13,
+        "endChar": 20
+      },
+      "revId": "87589723ccc0f43767ff6f7e6eb599d9364d2ebb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
