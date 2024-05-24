@@ -446,6 +446,30 @@
       },
       "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b80c7086_2e43e4dd",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-24T11:42:29Z",
+      "side": 1,
+      "message": "\u003e It will be only incremented. An APEX shipped to a device which checks for versioned/N will always have versioned/N directory. versioned/N will be removed only when we drop mainline support of a corresponding Android release.\n\nbut that makes no sense for static binaries.\n\n(and at that point, i don\u0027t understand why we don\u0027t just continue to use a symlink.)\n\n\u003e What symlink do mean?\n\netc/tz/tzdata, without a version.",
+      "parentUuid": "bb2da855_5a1e6504",
+      "range": {
+        "startLine": 252,
+        "startChar": 52,
+        "endLine": 252,
+        "endChar": 58
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
