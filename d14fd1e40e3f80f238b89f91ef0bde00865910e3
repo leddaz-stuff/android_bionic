@@ -494,6 +494,30 @@
       },
       "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bee6c4d_e6b62947",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1038039
+      },
+      "writtenOn": "2024-05-24T13:11:27Z",
+      "side": 1,
+      "message": "\u003e but it won\u0027t be incremented, right? you\u0027ll end up checking \"12 else if 11 else if 10 else if 9 else if 8 else if apex else if /system\"?\n\nThere\u0027s no proposal to do this number of fallbacks. The logic will check one versioned path - the one that matches the code. \n\nDynamic case: We expect it to find the version that matches the code.\n\ninitd/vold -type case: There\u0027s no apex, it will just have to find what it\u0027s looking for in the /system path (like today)\n\nStatic NDK case: we acknowledge that we\u0027re into edge cases. It will look for the versioned path that matches the age of the code. If it\u0027s running on a device within a certain release window, let\u0027s say it\u0027s looking for version 20, and the tzdata module on device has the paths for version 17 to version 24, it finds what it\u0027s looking for because that\u0027s inside the support window.\n\nIf it\u0027s outside of that window, e.g. it\u0027s looking for version 20 and the tzdata apex only has versions 21-28 in it, it won\u0027t find what it\u0027s looking for under a versioned path (because that path won\u0027t exist), it will do the fallback look under the unversioned path, which will be a symlink to _a_ version, I\u0027ve suggested the unversioned symlink should link to the latest version, in this example version 28. That means that the static bionic will read the latest tzdata and so there will be the biggest gap between code age (v20) and format age (v28), even though that static version of bionic is most likely to be compatible with v21 given the smaller age gap. This forces issues early, but while there\u0027s the most time to do something about it, e.g. v21 is still there to be used, but they have to update their binary (better waiting to a time when potentially there\u0027s no compatible file in the apex at all, as would happen if the symlink always pointed to the _oldest_ version in the apex).\n\nIf we find a problem - i.e. if choosing to make the symlink point to the newest version flushed out a ton of issues with static binaries to the point where it was unacceptable to go ahead, then we could keep the old version or have the symlink point to {not the latest version} while we work it out - e.g. keep it pointing to v27 for a year. People who have static binaries and are still maintaining them can rebuild them and point them at a specific version, e.g. v21, if that works for them, or update to a newer version of static bionic containing a newer version of tzcode (maybe).\n\nThe static NDK case also fairly closely mirrors the 3rd party library case - e.g. mono, rust, etc. libs that are using the unversioned path today.\n\nIf they like, they can change to point to a versioned path - they\u0027ll periodically have to update the path and make any changes to their code, but it\u0027ll be relatively stable, better than today. The case with libs like mono / rust is that they\u0027re often able to just \"rebuild your app with the latest version our lib and re-release\".\n\nIf they want to continue using the unversioned path, they can - nothing really changes Vs today - they\u0027ll just randomly break on new devices if the semantics of the file have changed.\n\nIf they want to continue supporting a wide range of devices (outside of the 7 years we are now committing to) they can also check for the existence of paths - e.g. if path /20/ exists, use impl A code, else if path /8/ exists, use impl B code, etc.",
+      "parentUuid": "1323c8da_157dff8e",
+      "range": {
+        "startLine": 252,
+        "startChar": 52,
+        "endLine": 252,
+        "endChar": 58
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
