@@ -22,6 +22,30 @@
       },
       "revId": "87589723ccc0f43767ff6f7e6eb599d9364d2ebb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "942ae5f3_ec227653",
+        "filename": "libc/bionic/sys_thread_properties.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1890456
+      },
+      "writtenOn": "2024-05-24T19:15:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0550a9a7_aaf1ad0c",
+      "range": {
+        "startLine": 5,
+        "startChar": 4,
+        "endLine": 13,
+        "endChar": 20
+      },
+      "revId": "87589723ccc0f43767ff6f7e6eb599d9364d2ebb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
