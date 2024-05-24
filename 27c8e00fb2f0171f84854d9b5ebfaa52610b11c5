@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3005cb5_f6e92437",
+        "filename": "tests/wchar_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1087,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-24T22:57:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5265a8fd_0fa5081b",
+      "range": {
+        "startLine": 1087,
+        "startChar": 10,
+        "endLine": 1087,
+        "endChar": 42
+      },
+      "revId": "27c8e00fb2f0171f84854d9b5ebfaa52610b11c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c21845d3_4177789c",
@@ -129,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "5402ebed_57691976",
+        "filename": "tests/wchar_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1101,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-24T22:57:38Z",
+      "side": 1,
+      "message": "neutral\u0027s a bit weirder than that: https://www.unicode.org/reports/tr11/#ED7\n\nmore of a \"not my problem\" than a recommendation of a specific width :-)\n\n(but to perhaps answer your question more usefully, \"the whole reason i\u0027m looking at this is because someone reported a bug against glibc that sounded like it would affect us too, despite our completely different implementation of wcwidth()\" :-) )",
+      "parentUuid": "c1f77414_47612d41",
+      "range": {
+        "startLine": 1091,
+        "startChar": 0,
+        "endLine": 1101,
+        "endChar": 63
+      },
+      "revId": "27c8e00fb2f0171f84854d9b5ebfaa52610b11c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e224791b_8e838925",
@@ -190,6 +238,30 @@
       "side": 1,
       "message": "yeah, I didn\u0027t mean to use a string (the two characters). I just wanted to say that ㅠㅠ is much more common than ㅜㅜ as a crying emoticon. sorry, I didn\u0027t want to take seriously.\n\nBy the way, characters in this block (Hangul Compat Jamo) don\u0027t represent mistypes. There are some uses of standalone jamo characters.",
       "parentUuid": "da98a07f_3edd836d",
+      "range": {
+        "startLine": 1172,
+        "startChar": 2,
+        "endLine": 1172,
+        "endChar": 30
+      },
+      "revId": "27c8e00fb2f0171f84854d9b5ebfaa52610b11c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4da892c8_c799b3c9",
+        "filename": "tests/wchar_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1172,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-24T22:57:38Z",
+      "side": 1,
+      "message": "\u003e yeah, I didn\u0027t mean to use a string (the two characters). I just wanted to say that ㅠㅠ is much more common than ㅜㅜ as a crying emoticon. sorry, I didn\u0027t want to take seriously.\n\nah, sorry. i see what you mean. fixed!\n\n\u003e By the way, characters in this block (Hangul Compat Jamo) don\u0027t represent mistypes. There are some uses of standalone jamo characters.\n\noh, interesting! do you have an example?",
+      "parentUuid": "8a4f591e_b88f455f",
       "range": {
         "startLine": 1172,
         "startChar": 2,
