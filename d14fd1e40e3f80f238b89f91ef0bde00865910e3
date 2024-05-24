@@ -470,6 +470,30 @@
       },
       "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1323c8da_157dff8e",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1793992
+      },
+      "writtenOn": "2024-05-24T12:11:42Z",
+      "side": 1,
+      "message": "If it was built reading `versioned/N` and file is there, it will read it. If the path does not exist, `etc/tz/tzdata` will be read, just like now.\n\n\u003e (and at that point, i don\u0027t understand why we don\u0027t just continue to use a symlink.)\n\nWe want different releases to read from different paths (and possibly different files).",
+      "parentUuid": "b80c7086_2e43e4dd",
+      "range": {
+        "startLine": 252,
+        "startChar": 52,
+        "endLine": 252,
+        "endChar": 58
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
