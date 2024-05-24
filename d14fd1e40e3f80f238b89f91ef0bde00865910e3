@@ -422,6 +422,30 @@
       },
       "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb2da855_5a1e6504",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1793992
+      },
+      "writtenOn": "2024-05-24T10:45:37Z",
+      "side": 1,
+      "message": "It will be only incremented. An APEX shipped to a device which checks for `versioned/N` will always have `versioned/N` directory. `versioned/N` will be removed only when we drop mainline support of a corresponding Android release.\n\n\u003e  that doesn\u0027t seem like it adds any value over just having the symlink and bionic always goes straight to that\n\nWe are preserving what we already have in the current tzdata module per release setup: tzcode reading TZif files and tzcode generating these files are roughly the same. \n\nWhat symlink do mean?",
+      "parentUuid": "5da2e45f_91b75381",
+      "range": {
+        "startLine": 252,
+        "startChar": 52,
+        "endLine": 252,
+        "endChar": 58
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
