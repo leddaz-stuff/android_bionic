@@ -16,6 +16,41 @@
       "message": "PTAL",
       "revId": "0b83fd2c50000175b6fa1315d735082dc27a435c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b4c646d_7762d4a7",
+        "filename": "libc/bionic/pthread_create.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1005967
+      },
+      "writtenOn": "2024-05-28T23:31:49Z",
+      "side": 1,
+      "message": "This seems unsynchronized.\nImagine that __pthread_internal_remap_stack_with_mte executes on a different thread immediately after this block.\nA decision about buffer allocation needs to be done under a lock. Atomic looks both unnecessary and insufficient.",
+      "fixSuggestions": [
+        {
+          "fixId": "718ad1a2_524bd52a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "libc/bionic/pthread_create.cpp",
+              "range": {
+                "startLine": 325,
+                "startChar": 0,
+                "endLine": 326,
+                "endChar": 0
+              },
+              "replacement": "  if (atomic_load(\u0026__libc_memtag_stack_abi) !\u003d 0) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0b83fd2c50000175b6fa1315d735082dc27a435c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
