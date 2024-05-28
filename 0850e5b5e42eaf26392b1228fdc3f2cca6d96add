@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4202f1c0_46f2a77e",
+        "filename": "libc/bionic/libc_init_static.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1005967
+      },
+      "writtenOn": "2024-05-28T23:38:02Z",
+      "side": 1,
+      "message": "%x would be better",
+      "fixSuggestions": [
+        {
+          "fixId": "4524f219_a542262f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "libc/bionic/libc_init_static.cpp",
+              "range": {
+                "startLine": 302,
+                "startChar": 0,
+                "endLine": 303,
+                "endChar": 0
+              },
+              "replacement": "  async_safe_format_log(ANDROID_LOG_INFO, \"libc\", \"Re-enabling MTE on thread, value: %x.\",\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0850e5b5e42eaf26392b1228fdc3f2cca6d96add",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
