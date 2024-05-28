@@ -518,6 +518,30 @@
       },
       "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5460133c_5c9743e0",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-28T19:40:15Z",
+      "side": 1,
+      "message": "the more both of you talk about this, the less i think this makes sense.\n\nfor me the static binary problem is a reason why i don\u0027t expect breaking changes (and a reason why i don\u0027t want to change paths unless absolutely necessary). and i don\u0027t think there\u0027s any benefit _or_ need right now?\n\nand i think the golang/mono argument shows you think the same --- if we wouldn\u0027t break golang/mono, we _certainly_ wouldn\u0027t break c/c++/rust...\n\ni think just sticking with the existing symlink for now is the right choice. there\u0027s no advantage to requiring a path with a version number in it until/unless we actually have a breaking change.",
+      "parentUuid": "4bee6c4d_e6b62947",
+      "range": {
+        "startLine": 252,
+        "startChar": 52,
+        "endLine": 252,
+        "endChar": 58
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
