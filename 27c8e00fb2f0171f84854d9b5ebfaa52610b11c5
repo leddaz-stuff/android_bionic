@@ -179,6 +179,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "5ad14bf5_9f617160",
+        "filename": "tests/wchar_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1101,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-28T18:25:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5402ebed_57691976",
+      "range": {
+        "startLine": 1091,
+        "startChar": 0,
+        "endLine": 1101,
+        "endChar": 63
+      },
+      "revId": "27c8e00fb2f0171f84854d9b5ebfaa52610b11c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "e224791b_8e838925",
         "filename": "tests/wchar_test.cpp",
         "patchSetId": 2
@@ -286,6 +310,30 @@
       "side": 1,
       "message": "examples:\n* ㅇㅇ which means 응 (yes)\n* ㄱㅅ which means 감사 (thanks)\n* ㅂㄱㅎ which means 박근혜 (a former president. we often use this form to avoid censorship) \n\nThese are very informal, but popular; so they are not mistypes and we don\u0027t consider these as emoticons, but as a shorthand.\n\nOther than such informal use cases, we sometimes want to write these characters when explaining Hangul itself; ex: in a Hangul textbook.",
       "parentUuid": "4da892c8_c799b3c9",
+      "range": {
+        "startLine": 1172,
+        "startChar": 2,
+        "endLine": 1172,
+        "endChar": 30
+      },
+      "revId": "27c8e00fb2f0171f84854d9b5ebfaa52610b11c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c4e9cf9_81865477",
+        "filename": "tests/wchar_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1172,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-28T18:25:07Z",
+      "side": 1,
+      "message": "i\u0027ve replaced the second emoticon example with ㄱㅅ for a bit of variety, and i\u0027ve renamed the test case. i\u0027ve also changed the introductory comment in this test to (hopefully!) make it clearer what\u0027s special about these code points versus the others...\n\n(but let me know if you think it\u0027s still misleading, or prefer other text or examples!)",
+      "parentUuid": "641212ea_e79b7529",
       "range": {
         "startLine": 1172,
         "startChar": 2,
