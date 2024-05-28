@@ -16,6 +16,23 @@
       "message": "LGTM",
       "revId": "6682ab0108c0a92862dcace2f5bdf422c6c1faa2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4abbbdf6_49390285",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3227152
+      },
+      "writtenOn": "2024-05-28T11:35:13Z",
+      "side": 1,
+      "message": "@enh@google.com\nHi we have fixed issue for 32 bit. \ncould you please review it.",
+      "revId": "6682ab0108c0a92862dcace2f5bdf422c6c1faa2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
