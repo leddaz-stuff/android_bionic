@@ -342,6 +342,30 @@
       },
       "revId": "27c8e00fb2f0171f84854d9b5ebfaa52610b11c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd384303_d732489a",
+        "filename": "tests/wchar_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1172,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-05-29T07:16:54Z",
+      "side": 1,
+      "message": "That looks good!",
+      "parentUuid": "1c4e9cf9_81865477",
+      "range": {
+        "startLine": 1172,
+        "startChar": 2,
+        "endLine": 1172,
+        "endChar": 30
+      },
+      "revId": "27c8e00fb2f0171f84854d9b5ebfaa52610b11c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
