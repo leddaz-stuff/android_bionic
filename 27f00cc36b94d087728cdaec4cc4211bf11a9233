@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7cc5e55_3e4d2397",
+        "filename": "tests/wchar_test.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-05-29T20:11:27Z",
+      "side": 1,
+      "message": "shy?",
+      "range": {
+        "startLine": 1089,
+        "startChar": 49,
+        "endLine": 1089,
+        "endChar": 52
+      },
+      "revId": "27f00cc36b94d087728cdaec4cc4211bf11a9233",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
