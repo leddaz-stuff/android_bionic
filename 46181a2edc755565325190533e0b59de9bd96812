@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5199e575_4060735a",
+        "filename": "libc/bionic/bionic_allocator.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-05-29T04:00:43Z",
+      "side": 1,
+      "message": "I wonder if we should add an annotation to guarantee that kSignature is 4-byte aligned. It\u0027s _probably_ aligned currently, and it\u0027s _probably_ OK if it\u0027s misaligned, though?",
+      "fixSuggestions": [
+        {
+          "fixId": "3c94ff88_0a38dd9a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "libc/bionic/bionic_allocator.cpp",
+              "range": {
+                "startLine": 335,
+                "startChar": 0,
+                "endLine": 336,
+                "endChar": 0
+              },
+              "replacement": "                     *reinterpret_cast\u003cconst unsigned*\u003e(kSignature));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "46181a2edc755565325190533e0b59de9bd96812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
