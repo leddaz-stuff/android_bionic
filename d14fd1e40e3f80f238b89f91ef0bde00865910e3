@@ -542,6 +542,30 @@
       },
       "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51c12862_84e4e360",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1793992
+      },
+      "writtenOn": "2024-05-29T16:46:24Z",
+      "side": 1,
+      "message": "\u003e and i think the golang/mono argument shows you think the same --- if we wouldn\u0027t break golang/mono, we certainly wouldn\u0027t break c/c++/rust...\n\nI don\u0027t really care _that_ much about golang/mono/\u003cwhatever-non-platform-code\u003e: if they fail to read a valid TZif entry within tzdata file that\u0027s their problem.\n\n\u003e until/unless we actually have a breaking change\n\nThat\u0027s one of the reasons why we introduce versioning: it allows for each release to read its specific version of tzdata. Currently that\u0027s achieved it by having release specific tzdata (tzdata5 for U, tzdata4 for T and so on). But that won\u0027t work if we ship the same APEX to a range of Android releases.",
+      "parentUuid": "5460133c_5c9743e0",
+      "range": {
+        "startLine": 252,
+        "startChar": 52,
+        "endLine": 252,
+        "endChar": 58
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
