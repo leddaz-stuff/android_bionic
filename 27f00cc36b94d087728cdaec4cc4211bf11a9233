@@ -22,6 +22,30 @@
       },
       "revId": "27f00cc36b94d087728cdaec4cc4211bf11a9233",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18ece210_423e2156",
+        "filename": "tests/wchar_test.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-29T21:46:30Z",
+      "side": 1,
+      "message": "yeah, that\u0027s its traditional name in various encodings. see the picture in https://en.wikipedia.org/wiki/ISO/IEC_8859-1#Code_page_layout for example. (the unusual part is that it isn\u0027t in the 0x00-0x1f space with all the other control codes.)\n\nit\u0027s in HTML as `\u0026shy;` too.\n\ni\u0027ll add a link to https://en.wikipedia.org/wiki/Soft_hyphen#Text_to_be_formatted_by_the_recipient since that both explains this and is somewhat pertinent to my claim of how this is supposed to be interpreted.",
+      "parentUuid": "d7cc5e55_3e4d2397",
+      "range": {
+        "startLine": 1089,
+        "startChar": 49,
+        "endLine": 1089,
+        "endChar": 52
+      },
+      "revId": "27f00cc36b94d087728cdaec4cc4211bf11a9233",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
