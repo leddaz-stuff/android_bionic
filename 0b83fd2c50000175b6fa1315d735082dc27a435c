@@ -51,6 +51,24 @@
       ],
       "revId": "0b83fd2c50000175b6fa1315d735082dc27a435c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52e6e792_6831adf0",
+        "filename": "libc/bionic/pthread_create.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-05-29T21:09:03Z",
+      "side": 1,
+      "message": "Good catch, thanks. I left the `atomic_load` because the type of the global is `_Atomic`.",
+      "parentUuid": "0b4c646d_7762d4a7",
+      "revId": "0b83fd2c50000175b6fa1315d735082dc27a435c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
