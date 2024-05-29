@@ -34,6 +34,24 @@
       ],
       "revId": "46181a2edc755565325190533e0b59de9bd96812",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07d05060_1f1aaa83",
+        "filename": "libc/bionic/bionic_allocator.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-29T22:26:25Z",
+      "side": 1,
+      "message": "yeah, we don\u0027t support hardware that doesn\u0027t support unaligned accesses any more.\n\n(but \"done\" for the ai-suggested fix.)",
+      "parentUuid": "5199e575_4060735a",
+      "revId": "46181a2edc755565325190533e0b59de9bd96812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
