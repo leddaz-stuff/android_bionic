@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a002f57_602450ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1727050
+      },
+      "writtenOn": "2024-05-29T00:11:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81f11172_d0d21c91",
+      "revId": "37c62cc06d4de0dcbc1e279c5fa1bd09bc41e028",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a78cb65a_3bbee3a7",
@@ -77,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e4f3e90_c9d07344",
+        "filename": "linker/arch/riscv64/tlsdesc_resolver.S",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1727050
+      },
+      "writtenOn": "2024-05-29T00:11:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a78cb65a_3bbee3a7",
+      "range": {
+        "startLine": 74,
+        "startChar": 7,
+        "endLine": 74,
+        "endChar": 9
+      },
+      "revId": "37c62cc06d4de0dcbc1e279c5fa1bd09bc41e028",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1999108c_8c7e7452",
@@ -90,6 +132,30 @@
       "writtenOn": "2024-04-08T16:41:34Z",
       "side": 1,
       "message": "and riscv64 :-)",
+      "range": {
+        "startLine": 442,
+        "startChar": 52,
+        "endLine": 442,
+        "endChar": 57
+      },
+      "revId": "37c62cc06d4de0dcbc1e279c5fa1bd09bc41e028",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fd4ba29_27ce460d",
+        "filename": "linker/linker_relocate.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1727050
+      },
+      "writtenOn": "2024-05-29T00:11:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1999108c_8c7e7452",
       "range": {
         "startLine": 442,
         "startChar": 52,
@@ -131,6 +197,24 @@
       "side": 1,
       "message": "yeah. I had been adding `-mtls-dialect\u003ddesc` here and mistakenly removed the whole line when uploading. I seem to have fixed this locally though, so I doubt its affected my local testing/verification.",
       "parentUuid": "502719b9_7e339565",
+      "revId": "37c62cc06d4de0dcbc1e279c5fa1bd09bc41e028",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "739dd1c5_712fa2bd",
+        "filename": "tests/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1727050
+      },
+      "writtenOn": "2024-05-29T00:11:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6cdd11ca_e3ba2269",
       "revId": "37c62cc06d4de0dcbc1e279c5fa1bd09bc41e028",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
