@@ -34,6 +34,24 @@
       ],
       "revId": "cda41cd819c1f76e61c665aee226e1a8c685fdee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76e1799b_a421bf95",
+        "filename": "libc/bionic/pthread_create.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-05-30T01:26:55Z",
+      "side": 1,
+      "message": "We can make the decision here (load libc_memtag_stack_abi) and then allocate outside of the lock. WDYT?",
+      "parentUuid": "f40d2bbd_7de2bb8d",
+      "revId": "cda41cd819c1f76e61c665aee226e1a8c685fdee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
