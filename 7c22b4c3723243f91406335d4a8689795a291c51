@@ -46,6 +46,30 @@
       },
       "revId": "7c22b4c3723243f91406335d4a8689795a291c51",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b92786c_04fa0f20",
+        "filename": "libc/bionic/pthread_exit.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-05-30T17:48:39Z",
+      "side": 0,
+      "message": "Aha, for some reason my brain completely ignored those calls.",
+      "parentUuid": "14c046fa_28d42d71",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 29
+      },
+      "revId": "7c22b4c3723243f91406335d4a8689795a291c51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
