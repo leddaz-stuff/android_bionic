@@ -86,6 +86,8 @@ cc_test {
         "-Wall",
         "-Werror",
         "-O1", // FIXME: http://b/169206016 - issues with aligned_alloc and -O2
+        "-U_FORTIFY_SOURCE",
+        "-D_FORTIFY_SOURCE=2",
     ],
     test_suites: ["general-tests"],
 }
