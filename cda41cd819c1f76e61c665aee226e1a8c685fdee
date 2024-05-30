@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f40d2bbd_7de2bb8d",
+        "filename": "libc/bionic/pthread_create.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1005967
+      },
+      "writtenOn": "2024-05-30T00:30:01Z",
+      "side": 1,
+      "message": "I\u0027m a little concerned about adding a slow call under the global lock, but at least it is only done when something is built with stack instrumentation.\n\nWe could also put a placeholder here, and actually allocate the memory in the child thread.",
+      "fixSuggestions": [
+        {
+          "fixId": "b71a80c0_03691755",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "libc/bionic/pthread_create.cpp",
+              "range": {
+                "startLine": 447,
+                "startChar": 0,
+                "endLine": 449,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "cda41cd819c1f76e61c665aee226e1a8c685fdee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
