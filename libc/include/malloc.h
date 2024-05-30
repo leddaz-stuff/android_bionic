@@ -110,7 +110,19 @@ void* _Nullable memalign(size_t __alignment, size_t __byte_count) __mallocfunc _
  * [malloc_usable_size(3)](http://man7.org/linux/man-pages/man3/malloc_usable_size.3.html)
  * returns the actual size of the given heap block.
  */
-size_t malloc_usable_size(const void* _Nullable __ptr) __wur;
+#if defined(_FORTIFY_SOURCE)
+   #define fortify_value _FORTIFY_SOURCE
+#else
+   #define fortify_value 0
+#endif
+size_t malloc_usable_size(const void* _Nullable __ptr) __wur __attribute__((diagnose_if(fortify_value == 3, "malloc_usable_size and _FORTIFY_SOURCE=3 are incompatible. Please either discontinue use of this function, or use _FORTIFY_SOURCE=2", "error")));
+
+// Old versions of the NDK did not export malloc_usable_size, but did
+// export dlmalloc_usable_size. We are moving away from dlmalloc in L
+// so make this call malloc_usable_size.
+#if !defined(__LP64__)
+__strong_alias(dlmalloc_usable_size, malloc_usable_size);
+#endif
 
 #define __MALLINFO_BODY \
   /** Total number of non-mmapped bytes currently allocated from OS. */ \
