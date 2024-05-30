@@ -52,6 +52,24 @@
       "parentUuid": "f40d2bbd_7de2bb8d",
       "revId": "cda41cd819c1f76e61c665aee226e1a8c685fdee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60e8a6c8_09282557",
+        "filename": "libc/bionic/pthread_create.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-05-30T01:32:42Z",
+      "side": 1,
+      "message": "Actually doing it in the thread sounds better, we don\u0027t really need to put a placeholder here, we can just read the `__libc_memtag_stack_abi` and  allocate the buffer in `__pthread_start`",
+      "parentUuid": "76e1799b_a421bf95",
+      "revId": "cda41cd819c1f76e61c665aee226e1a8c685fdee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
