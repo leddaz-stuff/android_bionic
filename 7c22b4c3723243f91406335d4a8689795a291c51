@@ -22,6 +22,30 @@
       },
       "revId": "7c22b4c3723243f91406335d4a8689795a291c51",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14c046fa_28d42d71",
+        "filename": "libc/bionic/pthread_exit.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-30T17:39:22Z",
+      "side": 0,
+      "message": "now both paths use the copies on L138-139 below, meaning that if we add/remove stuff from this, we only have one copy to update, not two. (this is _exactly_ the bit i found so confusing in this code that made me want to rewrite it :-) )",
+      "parentUuid": "9f201a18_f26fb035",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 29
+      },
+      "revId": "7c22b4c3723243f91406335d4a8689795a291c51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
