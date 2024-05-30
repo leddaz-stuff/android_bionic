@@ -128,7 +128,7 @@ static void generateTargetCC1Flags(llvm::IntrusiveRefCntPtr<llvm::vfs::FileSyste
   cmd.push_back("-DANDROID");
   cmd.push_back("-D__BIONIC_VERSIONER=1");
   cmd.push_back("-D__ANDROID_API__="s + std::to_string(type.api_level));
-  cmd.push_back("-D_FORTIFY_SOURCE=2");
+  cmd.push_back("-D_FORTIFY_SOURCE=3");
   cmd.push_back("-D_GNU_SOURCE");
   cmd.push_back("-D_FILE_OFFSET_BITS="s + std::to_string(type.file_offset_bits));
 

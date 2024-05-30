@@ -338,13 +338,6 @@ void arc4random_addrandom(unsigned char*, int) {
   // The current implementation adds randomness as needed.
 }
 
-// Old versions of the NDK did not export malloc_usable_size, but did
-// export dlmalloc_usable_size. We are moving away from dlmalloc in L
-// so make this call malloc_usable_size.
-size_t dlmalloc_usable_size(void* ptr) {
-  return malloc_usable_size(ptr);
-}
-
 // In L we added a public pthread_gettid_np, but some apps were using the private API.
 pid_t __pthread_gettid(pthread_t t) {
   return pthread_gettid_np(t);
