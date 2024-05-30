@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f201a18_f26fb035",
+        "filename": "libc/bionic/pthread_exit.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-05-30T17:14:35Z",
+      "side": 0,
+      "message": "This isn\u0027t in the new code. Is it supposed to be in the _exit_with_stack_teardown function.",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 29
+      },
+      "revId": "7c22b4c3723243f91406335d4a8689795a291c51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
