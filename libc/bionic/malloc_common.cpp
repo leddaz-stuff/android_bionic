@@ -157,6 +157,13 @@ extern "C" size_t malloc_usable_size(const void* mem) {
   return Malloc(malloc_usable_size)(mem);
 }
 
+// Old versions of the NDK did not export malloc_usable_size, but did
+// export dlmalloc_usable_size. We are moving away from dlmalloc in L
+// so make this call malloc_usable_size.
+#if !defined(__LP64__)
+__strong_alias(dlmalloc_usable_size, malloc_usable_size);
+#endif
+
 extern "C" void* memalign(size_t alignment, size_t bytes) {
   auto dispatch_table = GetDispatchTable();
   if (__predict_false(dispatch_table != nullptr)) {
