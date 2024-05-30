@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6149f742_1b6f6b04",
+        "filename": "linker/arch/riscv64/tlsdesc_resolver.S",
+        "patchSetId": 13
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1727050
+      },
+      "writtenOn": "2024-05-30T14:47:58Z",
+      "side": 1,
+      "message": "No, it was a debugging measure to limit the asm bits I had to look at. Thanks for pointing that out. I\u0027ll upload a new version soon with this re-enabled, since I think I may have a decent way to handle the DWARF for the vector regs. I\u0027ll leave this unresolved, so I don\u0027t forget to do that.",
+      "parentUuid": "0c368971_f050abaa",
+      "revId": "aaa4569de8bcb6f9022af54fe5483d060a40e5f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0be78fca_d00309f6",
         "filename": "tests/elftls_dl_test.cpp",
         "patchSetId": 13
@@ -66,6 +84,30 @@
       "writtenOn": "2024-05-30T12:48:24Z",
       "side": 1,
       "message": "(unused)",
+      "range": {
+        "startLine": 129,
+        "startChar": 48,
+        "endLine": 129,
+        "endChar": 62
+      },
+      "revId": "aaa4569de8bcb6f9022af54fe5483d060a40e5f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "446f3ac4_3ac009f7",
+        "filename": "tests/elftls_dl_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1727050
+      },
+      "writtenOn": "2024-05-30T14:47:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0be78fca_d00309f6",
       "range": {
         "startLine": 129,
         "startChar": 48,
@@ -89,6 +131,24 @@
       "writtenOn": "2024-05-30T12:48:24Z",
       "side": 1,
       "message": "(whitespace)",
+      "revId": "aaa4569de8bcb6f9022af54fe5483d060a40e5f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c143a9be_8c169f7c",
+        "filename": "tests/elftls_dl_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1727050
+      },
+      "writtenOn": "2024-05-30T14:47:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8436b18f_02f939f2",
       "revId": "aaa4569de8bcb6f9022af54fe5483d060a40e5f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
