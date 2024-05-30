@@ -70,6 +70,24 @@
       "parentUuid": "76e1799b_a421bf95",
       "revId": "cda41cd819c1f76e61c665aee226e1a8c685fdee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9b799a0_c16ae311",
+        "filename": "libc/bionic/pthread_create.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-05-30T01:39:56Z",
+      "side": 1,
+      "message": "(Nevermind, then we once again need to compete with `__pthread_internal_remap_stack_with_mte` and do a complicated swap)",
+      "parentUuid": "60e8a6c8_09282557",
+      "revId": "cda41cd819c1f76e61c665aee226e1a8c685fdee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
