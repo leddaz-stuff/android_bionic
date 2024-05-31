@@ -614,6 +614,30 @@
       },
       "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1f6faac_de279423",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-05-31T11:23:15Z",
+      "side": 1,
+      "message": "\u003e Well, exactly! This change is about having more options if breaking change does happen.\n\nbut it doesn\u0027t give us any more options --- adding _9_ would give us the option. and by definition we\u0027d need the corresponding \"big\" code change to cope with the breakage, and could just slip the trivial \"look for the new data in the new place\" one-liner in with _that_ change. having a new name for the _same_ data makes no sense, and we couldn\u0027t change what that data means after the fact without breaking existing callers anyway, defeating the whole purpose of \"being prepared\".\n\n\u003e other OS / platforms might be more tolerant towards breaking changes.\n\nstatic binaries are still a thing on other OSes. (as is \"we still do some updates for older OS releases\". as is \"every extra configuration you make us deal with is extra maintenance cost, so it had better be worth it\".)",
+      "parentUuid": "69ebb2c2_2c8629ff",
+      "range": {
+        "startLine": 252,
+        "startChar": 52,
+        "endLine": 252,
+        "endChar": 58
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
