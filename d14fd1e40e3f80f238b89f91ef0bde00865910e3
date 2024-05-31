@@ -590,6 +590,30 @@
       },
       "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69ebb2c2_2c8629ff",
+        "filename": "libc/tzcode/bionic.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1793992
+      },
+      "writtenOn": "2024-05-31T10:26:46Z",
+      "side": 1,
+      "message": "\u003e you do need to keep the symlink\n\nYes, we have no plans to remove `/apex/com.android.tzdata/etc/tzdata` file.\n\n\u003e i just don\u0027t think this makes any sense until/unless we actually do have a breaking change\n\nWell, exactly! This change is about having more options _if_ breaking change does happen.\n\n\u003e i honestly don\u0027t believe will happen. and even if it does happen, i still struggle to believe that the solution wouldn\u0027t be \"revert that\"!\n\nI agree, but don\u0027t feel comfortable with \"if that happens it will affect not just Android, so there will be solution for us too\" in our update process. Also bionic is not updatable, so other OS / platforms might be more tolerant towards breaking changes.",
+      "parentUuid": "b76863ea_58891a65",
+      "range": {
+        "startLine": 252,
+        "startChar": 52,
+        "endLine": 252,
+        "endChar": 58
+      },
+      "revId": "d14fd1e40e3f80f238b89f91ef0bde00865910e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
