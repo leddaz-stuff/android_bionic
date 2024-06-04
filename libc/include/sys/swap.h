@@ -51,6 +51,15 @@ __BEGIN_DECLS
 /** See SWAP_FLAG_PREFER. */
 #define SWAP_FLAG_PRIO_SHIFT 0
 
+/* set if swap cluters reserve order and percent specified */
+#define SWAP_FLAG_MTHP_RESERVE 0x80000
+/* order to reserve: Orders 1 to 24 are valid */
+#define SWAP_FLAG_MTHP_RESERVE_ORDER_MASK 0x01F00000
+#define SWAP_FLAG_MTHP_RESERVE_ORDER_SHIFT 20
+/* percentage of swap clusters to reserve, 1 to 99 are valid */
+#define SWAP_FLAG_MTHP_RESERVE_PERCENT_MASK 0xFE000000
+#define SWAP_FLAG_MTHP_RESERVE_PERCENT_SHIFT 25
+
 /**
  * [swapon(2)](http://man7.org/linux/man-pages/man2/swapon.2.html) enables swapping.
  *
