@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b7fd1f4_936035b9",
+        "filename": "docs/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-06-04T18:18:10Z",
+      "side": 1,
+      "message": "Was there supposed to be some extra text here?",
+      "range": {
+        "startLine": 13,
+        "startChar": 44,
+        "endLine": 13,
+        "endChar": 47
+      },
+      "revId": "28c68c9abae79d43f4be558c59913f0a0239e64a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0aa38972_99d4c6fc",
+        "filename": "docs/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-06-04T18:18:10Z",
+      "side": 1,
+      "message": "I think this is supposed to point to the README.md from the previous directory? Right now this doesn\u0027t point any where.",
+      "range": {
+        "startLine": 22,
+        "startChar": 34,
+        "endLine": 22,
+        "endChar": 39
+      },
+      "revId": "28c68c9abae79d43f4be558c59913f0a0239e64a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
