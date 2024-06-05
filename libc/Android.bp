@@ -57,6 +57,11 @@ cc_defaults {
     defaults: ["linux_bionic_supported"],
     cflags: libc_common_flags + [
         "-DUSE_SCUDO",
+
+        // clang-19 and later default to C++14 sized de-allocation.  Disable it
+        // in libc which provides its own new/delete wrappers that delegate to
+        // malloc/free - where there's no added value from sized de-allocation.
+        "-fno-sized-deallocation",
     ],
     asflags: libc_common_flags,
     conlyflags: ["-std=gnu99"],
