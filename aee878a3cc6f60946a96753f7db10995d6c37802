@@ -16,6 +16,41 @@
       "message": "PTAL",
       "revId": "aee878a3cc6f60946a96753f7db10995d6c37802",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d761f058_2cda7944",
+        "filename": "libc/bionic/pthread_internal.cpp",
+        "patchSetId": 30
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1005967
+      },
+      "writtenOn": "2024-06-05T17:34:59Z",
+      "side": 1,
+      "message": "Link to the specification of the \"fancy codegen\", either here or in __pthread_internal_free. It would also help preempt the questions about the hardcoded 4096 (which kind of looks like PAGESIZE, but is not).",
+      "fixSuggestions": [
+        {
+          "fixId": "fe2adbe4_11c553cd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "libc/bionic/pthread_internal.cpp",
+              "range": {
+                "startLine": 191,
+                "startChar": 0,
+                "endLine": 192,
+                "endChar": 0
+              },
+              "replacement": "  // Allocation needs to be aligned to 2*size to make the fancy code-gen work\n  // (see https://developer.arm.com/documentation/102151/0100/Memory-Tagging-Extension-MTE-support).\n"
+            }
+          ]
+        }
+      ],
+      "revId": "aee878a3cc6f60946a96753f7db10995d6c37802",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
