@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6602209a_6aba81c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-06-06T20:46:23Z",
+      "side": 1,
+      "message": "Just a few nitpicks really.",
+      "revId": "d57b82ba8cd83aaf9dc1e18cf75e91b713b2f4af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fcff246_c8a73bbf",
+        "filename": "libc/bionic/legacy_32_bit_support.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-06-06T20:46:23Z",
+      "side": 1,
+      "message": "I assume this is really page size, not 4096-bytes?",
+      "range": {
+        "startLine": 109,
+        "startChar": 50,
+        "endLine": 109,
+        "endChar": 54
+      },
+      "revId": "d57b82ba8cd83aaf9dc1e18cf75e91b713b2f4af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69414436_7ee082e3",
+        "filename": "libc/bionic/legacy_32_bit_support.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-06-06T20:46:23Z",
+      "side": 1,
+      "message": "Same as above, I assume this is supposed to be page size.",
+      "range": {
+        "startLine": 115,
+        "startChar": 36,
+        "endLine": 115,
+        "endChar": 40
+      },
+      "revId": "d57b82ba8cd83aaf9dc1e18cf75e91b713b2f4af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79cf91c7_a5a35137",
+        "filename": "libc/bionic/legacy_32_bit_support.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-06-06T20:46:23Z",
+      "side": 1,
+      "message": "I know this is from the old code, but this be better as a constexpr in the function? This is really a nit pick though feel free to ignore.",
+      "range": {
+        "startLine": 115,
+        "startChar": 8,
+        "endLine": 115,
+        "endChar": 19
+      },
+      "revId": "d57b82ba8cd83aaf9dc1e18cf75e91b713b2f4af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
