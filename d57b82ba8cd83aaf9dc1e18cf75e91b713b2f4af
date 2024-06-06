@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47ea26ff_d5a32276",
+        "filename": "libc/bionic/legacy_32_bit_support.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-06-06T21:09:07Z",
+      "side": 1,
+      "message": "no, it\u0027s really 4096 bytes. (though that is \"coincidentally\" also the page size on all architectures that have this system call.)",
+      "parentUuid": "9fcff246_c8a73bbf",
+      "range": {
+        "startLine": 109,
+        "startChar": 50,
+        "endLine": 109,
+        "endChar": 54
+      },
+      "revId": "d57b82ba8cd83aaf9dc1e18cf75e91b713b2f4af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69414436_7ee082e3",
@@ -82,6 +106,54 @@
         "startChar": 8,
         "endLine": 115,
         "endChar": 19
+      },
+      "revId": "d57b82ba8cd83aaf9dc1e18cf75e91b713b2f4af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "534fbc73_8b997069",
+        "filename": "libc/bionic/legacy_32_bit_support.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-06-06T21:09:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79cf91c7_a5a35137",
+      "range": {
+        "startLine": 115,
+        "startChar": 8,
+        "endLine": 115,
+        "endChar": 19
+      },
+      "revId": "d57b82ba8cd83aaf9dc1e18cf75e91b713b2f4af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "932615cd_bc097dab",
+        "filename": "libc/bionic/legacy_32_bit_support.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-06-06T21:09:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69414436_7ee082e3",
+      "range": {
+        "startLine": 115,
+        "startChar": 36,
+        "endLine": 115,
+        "endChar": 40
       },
       "revId": "d57b82ba8cd83aaf9dc1e18cf75e91b713b2f4af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
