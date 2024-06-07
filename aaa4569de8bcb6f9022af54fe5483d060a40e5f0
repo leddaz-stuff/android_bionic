@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47f50aea_871e438d",
+        "filename": "linker/arch/riscv64/tlsdesc_resolver.S",
+        "patchSetId": 13
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1727050
+      },
+      "writtenOn": "2024-06-07T17:12:19Z",
+      "side": 1,
+      "message": "I\u0027m going to mark this resolved for now. The CFI is sufficiently complicated that it should be its own CL.",
+      "parentUuid": "6149f742_1b6f6b04",
+      "revId": "aaa4569de8bcb6f9022af54fe5483d060a40e5f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0be78fca_d00309f6",
