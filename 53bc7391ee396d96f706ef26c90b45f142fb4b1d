@@ -16,6 +16,69 @@
       "message": "@enh@google.com PTAL",
       "revId": "53bc7391ee396d96f706ef26c90b45f142fb4b1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "329abb12_d225a900",
+        "filename": "libc/bionic/pthread_internal.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-06-07T21:46:37Z",
+      "side": 1,
+      "message": "what\u0027s this 4096?",
+      "range": {
+        "startLine": 80,
+        "startChar": 18,
+        "endLine": 80,
+        "endChar": 22
+      },
+      "revId": "53bc7391ee396d96f706ef26c90b45f142fb4b1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31de72ac_0769522d",
+        "filename": "libc/bionic/pthread_internal.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-06-07T21:46:37Z",
+      "side": 1,
+      "message": "i\u0027m assuming the other one was the same? do we have a name for this \"4096\" so we can have a constant and one comment?",
+      "range": {
+        "startLine": 201,
+        "startChar": 37,
+        "endLine": 202,
+        "endChar": 69
+      },
+      "revId": "53bc7391ee396d96f706ef26c90b45f142fb4b1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76304fbe_2c54aa8d",
+        "filename": "libc/private/bionic_globals.h",
+        "patchSetId": 31
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-06-07T21:46:37Z",
+      "side": 1,
+      "message": "explain why you also need to know this?",
+      "revId": "53bc7391ee396d96f706ef26c90b45f142fb4b1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
