@@ -16,6 +16,24 @@
       "message": "stray tab",
       "revId": "25e69358353934e76886dfb4b814a4187926aac8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a84d3b93_72617735",
+        "filename": "libfdtrack/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1878380
+      },
+      "writtenOn": "2024-06-07T21:34:43Z",
+      "side": 1,
+      "message": "Thanks for spotting this, I have fixed this in the latest patchset.",
+      "parentUuid": "bfd6ac2d_ac28ed11",
+      "revId": "25e69358353934e76886dfb4b814a4187926aac8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
