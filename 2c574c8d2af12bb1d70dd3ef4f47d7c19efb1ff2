@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c6f98b5_5ae03ca0",
+        "filename": "linker/arch/riscv64/tlsdesc_resolver.S",
+        "patchSetId": 20
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1727050
+      },
+      "writtenOn": "2024-06-07T21:33:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e50662d7_8e40022f",
+      "revId": "2c574c8d2af12bb1d70dd3ef4f47d7c19efb1ff2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7025ccda_374471e2",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-06-07T21:12:51Z",
       "side": 1,
       "message": "three slots?",
+      "range": {
+        "startLine": 181,
+        "startChar": 28,
+        "endLine": 181,
+        "endChar": 32
+      },
+      "revId": "2c574c8d2af12bb1d70dd3ef4f47d7c19efb1ff2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e91816a_e2d5b356",
+        "filename": "linker/arch/riscv64/tlsdesc_resolver.S",
+        "patchSetId": 20
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1727050
+      },
+      "writtenOn": "2024-06-07T21:33:06Z",
+      "side": 1,
+      "message": "Shoot, I over aligned it earlier when testing, but 36 slots should be enough. Locally this is passing for me, but do give the new, offsets a once over.",
+      "parentUuid": "7025ccda_374471e2",
       "range": {
         "startLine": 181,
         "startChar": 28,
