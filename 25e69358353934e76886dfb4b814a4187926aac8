@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfd6ac2d_ac28ed11",
+        "filename": "libfdtrack/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-06-07T21:30:08Z",
+      "side": 1,
+      "message": "stray tab",
+      "revId": "25e69358353934e76886dfb4b814a4187926aac8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
