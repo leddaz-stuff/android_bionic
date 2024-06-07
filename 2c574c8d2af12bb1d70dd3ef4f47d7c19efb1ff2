@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e50662d7_8e40022f",
+        "filename": "linker/arch/riscv64/tlsdesc_resolver.S",
+        "patchSetId": 20
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-06-07T21:12:51Z",
+      "side": 1,
+      "message": "just delete these?",
+      "revId": "2c574c8d2af12bb1d70dd3ef4f47d7c19efb1ff2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7025ccda_374471e2",
+        "filename": "linker/arch/riscv64/tlsdesc_resolver.S",
+        "patchSetId": 20
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-06-07T21:12:51Z",
+      "side": 1,
+      "message": "three slots?",
+      "range": {
+        "startLine": 181,
+        "startChar": 28,
+        "endLine": 181,
+        "endChar": 32
+      },
+      "revId": "2c574c8d2af12bb1d70dd3ef4f47d7c19efb1ff2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2d0ac293_993e13cf",
