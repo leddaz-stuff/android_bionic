@@ -16,6 +16,23 @@
       "message": "what\u0027s the specific build failure?\n\nthis doesn\u0027t seem right, because anyone using \u003ccomplex.h\u003e and \u003ciostream\u003e will have to hack around this. (and for other libcs too --- musl and glibc both do this, and it\u0027s part of ISO C [https://en.cppreference.com/w/c/numeric/complex/complex].)\n\nthis seems like a libc++ regression?",
       "revId": "eae85ad1557f4b2537e9de37ae4fd117ed66e19f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d570cc8_0c2a7189",
+        "filename": "tests/complex_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-06-10T20:11:59Z",
+      "side": 1,
+      "message": "ah, so this is presumably why it isn\u0027t causing wider breakage --- libc++ tries to prevent you from including libc\u0027s \u003ccomplex.h\u003e, and this test is deliberately subverting that.\n\ngiven that, this fix seems fine.",
+      "revId": "eae85ad1557f4b2537e9de37ae4fd117ed66e19f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
