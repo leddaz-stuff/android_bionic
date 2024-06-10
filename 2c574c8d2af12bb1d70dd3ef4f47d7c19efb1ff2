@@ -85,6 +85,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "da00ffe4_303ff247",
+        "filename": "linker/arch/riscv64/tlsdesc_resolver.S",
+        "patchSetId": 20
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-06-10T11:44:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e91816a_e2d5b356",
+      "range": {
+        "startLine": 181,
+        "startChar": 28,
+        "endLine": 181,
+        "endChar": 32
+      },
+      "revId": "2c574c8d2af12bb1d70dd3ef4f47d7c19efb1ff2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "2d0ac293_993e13cf",
         "filename": "linker/linker_relocate.cpp",
         "patchSetId": 20
