@@ -335,6 +335,10 @@ extern "C" int __sanitizer_malloc_info(int, FILE*) {
 // =============================================================================
 // Platform-internal mallopt variant.
 // =============================================================================
+
+extern "C" size_t __scudo_get_secondary_cache_num_entries();
+extern "C" size_t __scudo_get_secondary_cache_max_num_entries();
+
 #if defined(LIBC_STATIC)
 extern "C" bool android_mallopt(int opcode, void* arg, size_t arg_size) {
   if (opcode == M_SET_ALLOCATION_LIMIT_BYTES) {
@@ -362,6 +366,21 @@ extern "C" bool android_mallopt(int opcode, void* arg, size_t arg_size) {
       return false;
     }
     *reinterpret_cast<bool*>(arg) = atomic_load(&__libc_globals->decay_time_enabled);
+    return true;
+  }
+  if (opcode == M_GET_CACHE_INFO) {
+    if (arg == nullptr || arg_size != sizeof(android_mallopt_cache_info_t)) {
+      errno = EINVAL;
+      return false;
+    }
+
+#if defined(USE_SCUDO)
+    *reinterpret_cast<android_mallopt_cache_info_t*>(arg) = {
+        __scudo_get_secondary_cache_num_entries(), __scudo_get_secondary_cache_max_num_entries()};
+#else
+    *reinterpret_cast<android_mallopt_cache_info_t*>(arg) = {0, 0};
+#endif
+
     return true;
   }
   errno = ENOTSUP;
