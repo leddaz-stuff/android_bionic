@@ -37,9 +37,7 @@
 
 // This function needs to be safe to call before TLS is set up, so it can't
 // access errno or the stack protector.
-// Cannot use HWASan, as this is called during setup of the HWASan runtime to
-// determine the page size.
-__LIBC_HIDDEN__ unsigned long __bionic_getauxval(unsigned long type, bool* exists) __attribute__((no_sanitize("hwaddress"))) {
+__LIBC_HIDDEN__ unsigned long __bionic_getauxval(unsigned long type, bool* exists) {
   for (ElfW(auxv_t)* v = __libc_shared_globals()->auxv; v->a_type != AT_NULL; ++v) {
     if (v->a_type == type) {
       *exists = true;
@@ -50,9 +48,7 @@ __LIBC_HIDDEN__ unsigned long __bionic_getauxval(unsigned long type, bool* exist
   return 0;
 }
 
-// Cannot use HWASan, as this is called during setup of the HWASan runtime to
-// determine the page size.
-extern "C" unsigned long getauxval(unsigned long type) __attribute__((no_sanitize("hwaddress"))) {
+extern "C" unsigned long getauxval(unsigned long type) {
   bool exists;
   unsigned long result = __bionic_getauxval(type, &exists);
   if (!exists) errno = ENOENT;
