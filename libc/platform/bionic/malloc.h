@@ -51,6 +51,15 @@ typedef struct {
 #pragma clang diagnostic pop
 // Opcodes for android_mallopt.
 
+typedef struct android_mallopt_cache_info_t {
+  // The current size (number of possible entries)
+  // of the secondary allocator cache
+  size_t secondary_num_entries;
+  // The maximum size (number of possible entries)
+  // of the secondary allocator cache
+  size_t secondary_max_num_entries;
+} android_mallopt_cache_info_t;
+
 enum {
   // Marks the calling process as a profileable zygote child, possibly
   // initializing profiling infrastructure.
@@ -111,6 +120,12 @@ enum {
   //   arg_size = sizeof(bool)
   M_GET_DECAY_TIME_ENABLED = 12,
 #define M_GET_DECAY_TIME_ENABLED M_GET_DECAY_TIME_ENABLED
+  // Get information about the primary and secondary caches of the
+  // scudo allocator
+  //   arg = android_mallopt_cache_info_t*
+  //   arg_size = sizeof(android_mallopt_cache_info_t)
+  M_GET_CACHE_INFO = 13,
+#define M_GET_CACHE_INFO M_GET_CACHE_INFO
 };
 
 #pragma clang diagnostic push
