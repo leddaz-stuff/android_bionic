@@ -474,6 +474,10 @@ extern "C" ssize_t malloc_backtrace(void* pointer, uintptr_t* frames, size_t fra
 // =============================================================================
 // Platform-internal mallopt variant.
 // =============================================================================
+
+extern "C" size_t __scudo_get_secondary_cache_num_entries();
+extern "C" size_t __scudo_get_secondary_cache_max_num_entries();
+
 __BIONIC_WEAK_FOR_NATIVE_BRIDGE
 extern "C" bool android_mallopt(int opcode, void* arg, size_t arg_size) {
   if (opcode == M_SET_ZYGOTE_CHILD) {
@@ -553,6 +557,23 @@ extern "C" bool android_mallopt(int opcode, void* arg, size_t arg_size) {
     *reinterpret_cast<bool*>(arg) = atomic_load(&__libc_globals->decay_time_enabled);
     return true;
   }
+
+  if (opcode == M_GET_CACHE_INFO) {
+    if (arg == nullptr || arg_size != sizeof(android_mallopt_cache_info_t)) {
+      errno = EINVAL;
+      return false;
+    }
+
+#if defined(USE_SCUDO)
+    *reinterpret_cast<android_mallopt_cache_info_t*>(arg) = {
+        __scudo_get_secondary_cache_num_entries(), __scudo_get_secondary_cache_max_num_entries()};
+#else
+    *reinterpret_cast<android_mallopt_cache_info_t*>(arg) = {0, 0};
+#endif
+
+    return true;
+  }
+
   // Try heapprofd's mallopt, as it handles options not covered here.
   return HeapprofdMallopt(opcode, arg, arg_size);
 }
