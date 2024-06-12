@@ -1245,6 +1245,11 @@ cc_test {
 // -----------------------------------------------------------------------------
 // Tests to run on the host and linked against glibc. Run with:
 //   cd bionic/tests; mm bionic-unit-tests-glibc-run
+// 
+// May also run tests on device by first building with:
+//   cd bionic/tests; mm bionic-unit-tests-glibc
+// and then running on device with:
+//   adb shell /data/nativetest64/bionic-unit-tests-static/bionic-unit-tests
 // -----------------------------------------------------------------------------
 
 cc_test_host {

@@ -1774,3 +1774,39 @@ TEST(android_mallopt, get_decay_time_enabled) {
   GTEST_SKIP() << "bionic-only test";
 #endif
 }
+
+TEST(android_mallopt, get_allocator_cache_data) {
+#if defined(__BIONIC__)
+  bool allocator_scudo;
+
+  GetAllocatorVersion(&allocator_scudo);
+  if (!allocator_scudo) {
+    GTEST_SKIP() << "scudo allocator only test";
+  }
+
+  android_mallopt_cache_info_t cache_info;
+
+  EXPECT_EQ(1, mallopt(M_CACHE_COUNT_MAX, 0x40));
+  EXPECT_TRUE(android_mallopt(M_GET_CACHE_INFO, &cache_info, sizeof(cache_info)));
+  EXPECT_EQ(((size_t)0x40), cache_info.secondary_current_size);
+  EXPECT_LE(cache_info.secondary_current_size, cache_info.secondary_maximum_size);
+#endif
+}
+
+TEST(android_mallopt, exceed_max_cache_size) {
+#if defined(__BIONIC__)
+  bool allocator_scudo;
+
+  GetAllocatorVersion(&allocator_scudo);
+  if (!allocator_scudo) {
+    GTEST_SKIP() << "scudo allocator only test";
+  }
+
+  android_mallopt_cache_info_t cache_info;
+
+  EXPECT_TRUE(android_mallopt(M_GET_CACHE_INFO, &cache_info, sizeof(cache_info)));
+  EXPECT_EQ(1, mallopt(M_CACHE_COUNT_MAX, cache_info.secondary_maximum_size + 1));
+  EXPECT_TRUE(android_mallopt(M_GET_CACHE_INFO, &cache_info, sizeof(cache_info)));
+  EXPECT_EQ(cache_info.secondary_current_size, cache_info.secondary_maximum_size);
+#endif
+}
