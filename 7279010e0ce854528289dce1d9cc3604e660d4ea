@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ee5869a_4441a4d5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-06-13T00:33:50Z",
+      "side": 1,
+      "message": "You somehow got two Change-ids in here. You need to remove one, I think you need to delete the second one.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 52
+      },
+      "revId": "7279010e0ce854528289dce1d9cc3604e660d4ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e35c8d30_4a867ef7",
+        "filename": "libc/bionic/malloc_common_dynamic.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-06-13T00:33:50Z",
+      "side": 1,
+      "message": "I originally told you that this was only needed here, but I was wrong. You need to add this to the malloc_common code implementatoin of android_mallopt.\n\nTo verify this, run the bionic-unit-tests and bionic-unit-tests-static.",
+      "revId": "7279010e0ce854528289dce1d9cc3604e660d4ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ad9f838_512bd137",
+        "filename": "libc/platform/bionic/malloc.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-06-13T00:33:50Z",
+      "side": 1,
+      "message": "The variable name would be better as secondary_num_entries and secondary_max_num_entries, or something similar.",
+      "range": {
+        "startLine": 57,
+        "startChar": 9,
+        "endLine": 57,
+        "endChar": 31
+      },
+      "revId": "7279010e0ce854528289dce1d9cc3604e660d4ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e9e972a_9a69d9a5",
+        "filename": "tests/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1252,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-06-13T00:33:50Z",
+      "side": 1,
+      "message": "I\u0027m not sure what this comment is saying, it doesn\u0027t appear to apply to the glibc host unit tests.",
+      "range": {
+        "startLine": 1249,
+        "startChar": 0,
+        "endLine": 1252,
+        "endChar": 76
+      },
+      "revId": "7279010e0ce854528289dce1d9cc3604e660d4ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f361050_60fa706d",
+        "filename": "tests/malloc_test.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1784,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-06-13T00:33:50Z",
+      "side": 1,
+      "message": "You shouldn\u0027t skip the test, instead it would be better to verify it passes, but returns zero on jemalloc.\n\nYou could do something like:\n\n  size_t expected_cache_count_num_entries \u003d 0;\n\n  if (is_scudo) {\n    expected_cache_count_num_entries \u003d 0x40;\n    mallopt(M_CACHE_COUNT_MAX, 0x40);\n  }\n \n Then check the values from the expected variable.",
+      "range": {
+        "startLine": 1784,
+        "startChar": 0,
+        "endLine": 1784,
+        "endChar": 48
+      },
+      "revId": "7279010e0ce854528289dce1d9cc3604e660d4ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e800d522_13b7c261",
+        "filename": "tests/malloc_test.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1793,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-06-13T00:33:50Z",
+      "side": 1,
+      "message": "You need something like:\n\n#else\n  GTEST_SKIP() \u003c\u003c \"bionic-only test\";\n#endif\n\nHere and below so that it\u0027s obvious this test is skipped.",
+      "range": {
+        "startLine": 1793,
+        "startChar": 1,
+        "endLine": 1793,
+        "endChar": 6
+      },
+      "revId": "7279010e0ce854528289dce1d9cc3604e660d4ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
