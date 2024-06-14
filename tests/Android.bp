@@ -547,6 +547,15 @@ cc_test_library {
                 // musl #defines utmp to utmpx, causing a collision with
                 // utmpx_test.cpp
                 "utmp_test.cpp",
+
+                // musl doesn't have bits/stdatomic.h
+                "stdatomic_test.cpp",
+            ],
+        },
+        glibc: {
+            exclude_srcs: [
+                // glibc doesn't have bits/stdatomic.h
+                "stdatomic_test.cpp",
             ],
         },
     },
