@@ -158,10 +158,34 @@ static const size_t kPageSize = page_size();
 static const size_t kPmdSize = (kPageSize / sizeof(uint64_t)) * kPageSize;
 
 ElfReader::ElfReader()
-    : did_read_(false), did_load_(false), fd_(-1), file_offset_(0), file_size_(0), phdr_num_(0),
-      phdr_table_(nullptr), shdr_table_(nullptr), shdr_num_(0), dynamic_(nullptr), strtab_(nullptr),
-      strtab_size_(0), load_start_(nullptr), load_size_(0), load_bias_(0), loaded_phdr_(nullptr),
-      mapped_by_caller_(false) {
+    : did_read_(false), did_load_(false), fd_(-1), file_offset_(0), file_size_(0),
+      file_data_(nullptr), phdr_num_(0), phdr_table_(nullptr), shdr_table_(nullptr), shdr_num_(0),
+      dynamic_(nullptr), strtab_(nullptr), strtab_size_(0), load_start_(nullptr), load_size_(0),
+      load_bias_(0), loaded_phdr_(nullptr), mapped_by_caller_(false) {
+}
+
+ElfReader::~ElfReader() {
+  if (file_data_ != nullptr) {
+    munmap(file_data_, file_size_);
+  }
+}
+
+
+bool ElfReader::MapElfFile() {
+  if (file_size_ < static_cast<off64_t>(sizeof(header_))) {
+    DL_ERR("\"%s\" is too small to be an ELF executable: only found %zd bytes", name_.c_str(),
+           static_cast<size_t>(file_size_));
+    return false;
+  }
+
+  file_data_ = static_cast<uint8_t*>(mmap64(nullptr, file_size_, PROT_READ, MAP_PRIVATE, fd_, 0));
+
+  if (file_data_ == MAP_FAILED) {
+    DL_ERR("\"%s\" phdr mmap failed: %s", name_.c_str(), strerror(errno));
+    file_data_ = nullptr;
+    return false;
+  }
+  return true;
 }
 
 bool ElfReader::Read(const char* name, int fd, off64_t file_offset, off64_t file_size) {
@@ -173,8 +197,8 @@ bool ElfReader::Read(const char* name, int fd, off64_t file_offset, off64_t file
   file_offset_ = file_offset;
   file_size_ = file_size;
 
-  if (ReadElfHeader() &&
-      VerifyElfHeader() &&
+  if (MapElfFile() &&
+      ReadElfHeader() &&
       ReadProgramHeaders() &&
       ReadSectionHeaders() &&
       ReadDynamicSection() &&
@@ -213,26 +237,17 @@ bool ElfReader::Load(address_space_params* address_space) {
   return did_load_;
 }
 
+const void* ElfReader::data_at(off64_t offset) const {
+  off64_t data_offset;
+  CHECK(safe_add(&data_offset, file_offset_, offset));
+  return file_data_ + data_offset;
+}
+
 const char* ElfReader::get_string(ElfW(Word) index) const {
   CHECK(strtab_ != nullptr);
   CHECK(index < strtab_size_);
 
   return strtab_ + index;
-}
-
-bool ElfReader::ReadElfHeader() {
-  ssize_t rc = TEMP_FAILURE_RETRY(pread64(fd_, &header_, sizeof(header_), file_offset_));
-  if (rc < 0) {
-    DL_ERR("can't read file \"%s\": %s", name_.c_str(), strerror(errno));
-    return false;
-  }
-
-  if (rc != sizeof(header_)) {
-    DL_ERR("\"%s\" is too small to be an ELF executable: only found %zd bytes", name_.c_str(),
-           static_cast<size_t>(rc));
-    return false;
-  }
-  return true;
 }
 
 static const char* EM_to_string(int em) {
@@ -244,7 +259,9 @@ static const char* EM_to_string(int em) {
   return "EM_???";
 }
 
-bool ElfReader::VerifyElfHeader() {
+bool ElfReader::ReadElfHeader() {
+  header_ = *static_cast<const ElfW(Ehdr)*>(data_at(0));
+
   if (memcmp(header_.e_ident, ELFMAG, SELFMAG) != 0) {
     DL_ERR("\"%s\" has bad ELF magic: %02x%02x%02x%02x", name_.c_str(),
            header_.e_ident[0], header_.e_ident[1], header_.e_ident[2], header_.e_ident[3]);
@@ -362,12 +379,7 @@ bool ElfReader::ReadProgramHeaders() {
     return false;
   }
 
-  if (!phdr_fragment_.Map(fd_, file_offset_, header_.e_phoff, size)) {
-    DL_ERR("\"%s\" phdr mmap failed: %s", name_.c_str(), strerror(errno));
-    return false;
-  }
-
-  phdr_table_ = static_cast<ElfW(Phdr)*>(phdr_fragment_.data());
+  phdr_table_ = static_cast<const ElfW(Phdr)*>(data_at(header_.e_phoff));
   return true;
 }
 
@@ -388,12 +400,7 @@ bool ElfReader::ReadSectionHeaders() {
     return false;
   }
 
-  if (!shdr_fragment_.Map(fd_, file_offset_, header_.e_shoff, size)) {
-    DL_ERR("\"%s\" shdr mmap failed: %s", name_.c_str(), strerror(errno));
-    return false;
-  }
-
-  shdr_table_ = static_cast<const ElfW(Shdr)*>(shdr_fragment_.data());
+  shdr_table_ = static_cast<const ElfW(Shdr)*>(data_at(header_.e_shoff));
   return true;
 }
 
@@ -481,12 +488,7 @@ bool ElfReader::ReadDynamicSection() {
     return false;
   }
 
-  if (!dynamic_fragment_.Map(fd_, file_offset_, dynamic_shdr->sh_offset, dynamic_shdr->sh_size)) {
-    DL_ERR("\"%s\" dynamic section mmap failed: %s", name_.c_str(), strerror(errno));
-    return false;
-  }
-
-  dynamic_ = static_cast<const ElfW(Dyn)*>(dynamic_fragment_.data());
+  dynamic_ = static_cast<const ElfW(Dyn)*>(data_at(dynamic_shdr->sh_offset));
 
   if (!CheckFileRange(strtab_shdr->sh_offset, strtab_shdr->sh_size, alignof(const char))) {
     DL_ERR_AND_LOG("\"%s\" has invalid offset/size of the .strtab section linked from .dynamic section",
@@ -494,13 +496,8 @@ bool ElfReader::ReadDynamicSection() {
     return false;
   }
 
-  if (!strtab_fragment_.Map(fd_, file_offset_, strtab_shdr->sh_offset, strtab_shdr->sh_size)) {
-    DL_ERR("\"%s\" strtab section mmap failed: %s", name_.c_str(), strerror(errno));
-    return false;
-  }
-
-  strtab_ = static_cast<const char*>(strtab_fragment_.data());
-  strtab_size_ = strtab_fragment_.size();
+  strtab_ = static_cast<const char*>(data_at(strtab_shdr->sh_offset));
+  strtab_size_ = strtab_shdr->sh_size;
   return true;
 }
 
@@ -753,20 +750,10 @@ bool ElfReader::ReadPadSegmentNote() {
       continue;
     }
 
-    // note_fragment is scoped to within the loop so that there is
-    // at most 1 PT_NOTE mapped at anytime during this search.
-    MappedFileFragment note_fragment;
-    if (!note_fragment.Map(fd_, file_offset_, phdr->p_offset, phdr->p_memsz)) {
-      DL_ERR("\"%s\": PT_NOTE mmap(nullptr, %p, PROT_READ, MAP_PRIVATE, %d, %p) failed: %m",
-             name_.c_str(), reinterpret_cast<void*>(phdr->p_memsz), fd_,
-             reinterpret_cast<void*>(page_start(file_offset_ + phdr->p_offset)));
-      return false;
-    }
-
     const ElfW(Nhdr)* note_hdr = nullptr;
     const char* note_desc = nullptr;
     if (!__get_elf_note(NT_ANDROID_TYPE_PAD_SEGMENT, "Android",
-                        reinterpret_cast<ElfW(Addr)>(note_fragment.data()),
+                        reinterpret_cast<const ElfW(Addr)>(data_at(phdr->p_offset)),
                         phdr, &note_hdr, &note_desc)) {
       continue;
     }
