@@ -42,6 +42,7 @@
 class ElfReader {
  public:
   ElfReader();
+  ~ElfReader();
 
   [[nodiscard]] bool Read(const char* name, int fd, off64_t file_offset, off64_t file_size);
   [[nodiscard]] bool Load(address_space_params* address_space);
@@ -61,6 +62,7 @@ class ElfReader {
   bool should_pad_segments() const { return should_pad_segments_; }
 
  private:
+  [[nodiscard]] bool MapElfFile();
   [[nodiscard]] bool ReadElfHeader();
   [[nodiscard]] bool VerifyElfHeader();
   [[nodiscard]] bool ReadProgramHeaders();
@@ -73,6 +75,7 @@ class ElfReader {
   [[nodiscard]] bool FindGnuPropertySection();
   [[nodiscard]] bool CheckPhdr(ElfW(Addr));
   [[nodiscard]] bool CheckFileRange(ElfW(Addr) offset, size_t size, size_t alignment);
+  [[nodiscard]] const void* data_at(off64_t offset) const;
 
   bool did_read_;
   bool did_load_;
@@ -80,21 +83,18 @@ class ElfReader {
   int fd_;
   off64_t file_offset_;
   off64_t file_size_;
+  uint8_t* file_data_;
 
   ElfW(Ehdr) header_;
   size_t phdr_num_;
 
-  MappedFileFragment phdr_fragment_;
   const ElfW(Phdr)* phdr_table_;
 
-  MappedFileFragment shdr_fragment_;
   const ElfW(Shdr)* shdr_table_;
   size_t shdr_num_;
 
-  MappedFileFragment dynamic_fragment_;
   const ElfW(Dyn)* dynamic_;
 
-  MappedFileFragment strtab_fragment_;
   const char* strtab_;
   size_t strtab_size_;
 
