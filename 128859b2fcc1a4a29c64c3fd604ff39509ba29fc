@@ -16,6 +16,24 @@
       "message": "we want to keep this? llvm doesn\u0027t offer the C \u003cstdatomic.h\u003e? should this be in a `__cplusplus`-guarded section? shouldn\u0027t there still be a redirect to \u003catomic\u003e?",
       "revId": "128859b2fcc1a4a29c64c3fd604ff39509ba29fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7a775cb_31fc36b5",
+        "filename": "libc/include/stdatomic.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-06-17T20:12:19Z",
+      "side": 1,
+      "message": "If we can enable libc++\u0027s redirection for all C++ versions (https://github.com/llvm/llvm-project/pull/95498), then I think we can skip the redirection here.",
+      "parentUuid": "e7d6dff3_8ea7fa5d",
+      "revId": "128859b2fcc1a4a29c64c3fd604ff39509ba29fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
