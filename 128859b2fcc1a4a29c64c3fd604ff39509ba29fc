@@ -52,6 +52,24 @@
       "parentUuid": "c7a775cb_31fc36b5",
       "revId": "128859b2fcc1a4a29c64c3fd604ff39509ba29fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21346ef7_8cd7ece7",
+        "filename": "libc/include/stdatomic.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-06-17T20:36:20Z",
+      "side": 1,
+      "message": "Clang did make it possible to use its stdatomic.h in C++ mode (by supporting the `_Atomic` type-qualifier in C++ mode), but that\u0027s mostly only useful if a C++ file doesn\u0027t use the STL.\n\nI\u0027m guessing iOS hasn\u0027t cared about this C/C++ incompatibility (until C++23 fixed it).",
+      "parentUuid": "19c1f0bb_563091a1",
+      "revId": "128859b2fcc1a4a29c64c3fd604ff39509ba29fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
