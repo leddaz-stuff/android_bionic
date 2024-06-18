@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "442f44f2_498780d7",
+        "filename": "libc/malloc_debug/tests/malloc_debug_unit_tests.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 2436,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-06-18T21:35:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd5a41e3_8e0fd15f",
+      "range": {
+        "startLine": 2436,
+        "startChar": 18,
+        "endLine": 2436,
+        "endChar": 24
+      },
+      "revId": "b0550fac9f3749624c1dd7db5f82e5d7984e3951",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f55fb153_081637d0",
@@ -54,6 +78,24 @@
       "writtenOn": "2024-06-18T21:27:40Z",
       "side": 1,
       "message": "is it worth keeping one of the earlier style of test with an `exit()` call to check that it\u0027s actually wired up right?",
+      "revId": "b0550fac9f3749624c1dd7db5f82e5d7984e3951",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4eae4282_36214111",
+        "filename": "libc/malloc_debug/tests/malloc_debug_unit_tests.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 2449,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-06-18T21:35:08Z",
+      "side": 1,
+      "message": "To be honest, I think some of those tests even doing a fork is not strictly necessary. Since none of these tests really set up the hooks, exit or _exit changes nothing. If I had extra time, I would remove any of the forks that don\u0027t fundamentally test anything of value.\n\nThe system tests do a better job of testing that mechanism.",
+      "parentUuid": "f55fb153_081637d0",
       "revId": "b0550fac9f3749624c1dd7db5f82e5d7984e3951",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
