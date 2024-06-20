@@ -16,6 +16,23 @@
       "message": "+1 - the exclude-libs removal LGTM.  Deferring to rprichard for the linker changes.",
       "revId": "4b5d62e25147c40eeb7dda3e033a036927b630dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba4c53f7_c64d4676",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-06-20T20:37:33Z",
+      "side": 1,
+      "message": "LGTM. Nice cleanup!",
+      "revId": "4b5d62e25147c40eeb7dda3e033a036927b630dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
