@@ -308,20 +308,6 @@ long double fmal(long double __x, long double __y, long double __z);
 #define islessgreater(x, y) __builtin_islessgreater((x), (y))
 #define isunordered(x, y) __builtin_isunordered((x), (y))
 
-/*
- * https://code.google.com/p/android/issues/detail?id=271629
- * To be fully compliant with C++, we need to not define these (C doesn't
- * specify them either). Exposing these means that isinf and isnan will have a
- * return type of int in C++ rather than bool like they're supposed to be.
- *
- * GNU libstdc++ 4.9 isn't able to handle a standard compliant C library. Its
- * <cmath> will `#undef isnan` from math.h and only adds the function overloads
- * to the std namespace, making it impossible to use both <cmath> (which gets
- * included by a lot of other standard headers) and ::isnan.
- */
-int (isinf)(double __x) __attribute_const__;
-int (isnan)(double __x) __attribute_const__;
-
 /* POSIX extensions. */
 
 extern int signgam;
