@@ -69,3 +69,12 @@ struct ScopedDisableMTE {
   ScopedDisableMTE() {}
 };
 #endif
+
+// N.B. that this is NOT the pagesize, but 4096. This is hardcoded in the codegen.
+// See
+// https://github.com/search?q=repo%3Allvm/llvm-project%20AArch64StackTagging%3A%3AinsertBaseTaggedPointer&type=code
+constexpr size_t kStackMteRingbufferSizeMultiplier = 4096;
+
+inline size_t stack_mte_ringbuffer_size(uintptr_t size_cls) {
+  return kStackMteRingbufferSizeMultiplier * (1 << size_cls);
+}
