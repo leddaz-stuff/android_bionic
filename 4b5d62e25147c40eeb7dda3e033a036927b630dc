@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf3945d0_3d9f40b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1058860
+      },
+      "writtenOn": "2024-06-20T16:27:24Z",
+      "side": 1,
+      "message": "+1 - the exclude-libs removal LGTM.  Deferring to rprichard for the linker changes.",
+      "revId": "4b5d62e25147c40eeb7dda3e033a036927b630dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
