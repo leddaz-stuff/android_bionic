@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63cf3f21_5c0e423e",
+        "filename": "libc/include/malloc.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1890456
+      },
+      "writtenOn": "2024-06-20T21:26:44Z",
+      "side": 1,
+      "message": "This will cause https://source.corp.google.com/h/android/platform/superproject/main/+/main:bionic/libc/bionic/ndk_cruft.cpp;l\u003d345?q\u003dbionic%2Flibc%2Fbionic%2Fndk_cruft.cpp\u0026ss\u003dh%2Fandroid%2Fplatform%2Fsuperproject%2Fmain%2F%2B%2Frefs%2Fheads%2Fmain raise error. And the fix needs TBD.",
+      "revId": "9c33b92cba61d95ce40bce748e71da9dcca233d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
