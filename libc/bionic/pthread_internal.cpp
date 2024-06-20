@@ -36,9 +36,10 @@
 #include <sys/prctl.h>
 
 #include <async_safe/log.h>
+#include <bionic/mte.h>
 #include <bionic/reserved_signals.h>
+#include <bionic/tls_defines.h>
 
-#include "bionic/tls_defines.h"
 #include "private/ErrnoRestorer.h"
 #include "private/ScopedRWLock.h"
 #include "private/bionic_futex.h"
@@ -73,16 +74,12 @@ void __pthread_internal_remove(pthread_internal_t* thread) {
     g_thread_list = thread->next;
   }
 }
-// N.B. that this is NOT the pagesize, but 4096. This is hardcoded in the codegen.
-// See
-// https://github.com/search?q=repo%3Allvm/llvm-project%20AArch64StackTagging%3A%3AinsertBaseTaggedPointer&type=code
-constexpr size_t kStackMteRingbufferSizeMultiplier = 4096;
 
 static void __pthread_internal_free(pthread_internal_t* thread) {
 #ifdef __aarch64__
   if (void* stack_mte_tls = thread->bionic_tcb->tls_slot(TLS_SLOT_STACK_MTE)) {
     size_t size =
-        kStackMteRingbufferSizeMultiplier * (reinterpret_cast<uintptr_t>(stack_mte_tls) >> 56ULL);
+        stack_mte_ringbuffer_size_from_pointer(reinterpret_cast<uintptr_t>(stack_mte_tls));
     void* ptr = reinterpret_cast<void*>(reinterpret_cast<uintptr_t>(stack_mte_tls) &
                                         ((1ULL << 56ULL) - 1ULL));
     munmap(ptr, size);
@@ -203,7 +200,7 @@ __LIBC_HIDDEN__ void* __allocate_stack_mte_ringbuffer(size_t n, pthread_internal
   // aligned address, in which case we have to unmap the previous
   // 2*size - pagesz bytes. In that case, we still have size properly aligned
   // bytes left.
-  size_t size = (1 << n) * kStackMteRingbufferSizeMultiplier;
+  size_t size = stack_mte_ringbuffer_size(n);
   size_t pgsize = page_size();
 
   size_t alloc_size = __BIONIC_ALIGN(3 * size - pgsize, pgsize);
@@ -237,7 +234,7 @@ __LIBC_HIDDEN__ void* __allocate_stack_mte_ringbuffer(size_t n, pthread_internal
   prctl(PR_SET_VMA, PR_SET_VMA_ANON_NAME, reinterpret_cast<void*>(aligned_allocation), size, name);
 
   // We store the size in the top byte of the pointer (which is ignored)
-  return reinterpret_cast<void*>(aligned_allocation | ((1ULL << n) << 56ULL));
+  return reinterpret_cast<void*>(stack_mte_ringbuffer_size_add_to_pointer(aligned_allocation, n));
 }
 
 bool __pthread_internal_remap_stack_with_mte() {
