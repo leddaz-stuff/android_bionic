@@ -33,6 +33,57 @@
       "message": "been running this for the past two months on a local build with zero issues, I think we should try it.",
       "revId": "499e823370a264aac4091d185689ef06665a58e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae118b2d_a124e48b",
+        "filename": "linker/dlfcn.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-06-21T22:25:15Z",
+      "side": 1,
+      "message": "This code copies the non-thread-local error buffer into a thread-local error buffer. Not sure why there\u0027s a non-thread-local error buffer. Maybe it\u0027s tech debt? It\u0027s a race, though.",
+      "revId": "499e823370a264aac4091d185689ef06665a58e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf47bb45_454a3b1b",
+        "filename": "linker/linker.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 2112,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-06-21T22:25:15Z",
+      "side": 1,
+      "message": "~string can call free, and the loader\u0027s malloc/free are protected by the same g_dl_mutex. (I think if we\u0027re moving to fine-grained locking, then adding a lock for the loader\u0027s heap is a good idea.)\n\nThere are a couple of other `std::string`s to destruct later on.",
+      "revId": "499e823370a264aac4091d185689ef06665a58e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d49d2c74_f9636632",
+        "filename": "linker/linker.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 2226,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-06-21T22:25:15Z",
+      "side": 1,
+      "message": "~ProtectedDataGuard looks unsafe to call with the loader lock released.",
+      "revId": "499e823370a264aac4091d185689ef06665a58e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
