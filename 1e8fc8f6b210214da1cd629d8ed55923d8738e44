@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb2a51a1_4b6eee98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-06-21T20:45:36Z",
+      "side": 1,
+      "message": "thanks! (if you\u0027re curious and ndesaulniers hasn\u0027t already explained how, ask me how to \"lurk\" and see every change that\u0027s uploaded for a git project on gerrit :-) )",
+      "revId": "1e8fc8f6b210214da1cd629d8ed55923d8738e44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
