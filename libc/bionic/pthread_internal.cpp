@@ -33,12 +33,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/mman.h>
-#include <sys/prctl.h>
 
 #include <async_safe/log.h>
 #include <bionic/reserved_signals.h>
 
-#include "bionic/tls_defines.h"
 #include "private/ErrnoRestorer.h"
 #include "private/ScopedRWLock.h"
 #include "private/bionic_futex.h"
@@ -73,21 +71,8 @@ void __pthread_internal_remove(pthread_internal_t* thread) {
     g_thread_list = thread->next;
   }
 }
-// N.B. that this is NOT the pagesize, but 4096. This is hardcoded in the codegen.
-// See
-// https://github.com/search?q=repo%3Allvm/llvm-project%20AArch64StackTagging%3A%3AinsertBaseTaggedPointer&type=code
-constexpr size_t kStackMteRingbufferSizeMultiplier = 4096;
 
 static void __pthread_internal_free(pthread_internal_t* thread) {
-#ifdef __aarch64__
-  if (void* stack_mte_tls = thread->bionic_tcb->tls_slot(TLS_SLOT_STACK_MTE)) {
-    size_t size =
-        kStackMteRingbufferSizeMultiplier * (reinterpret_cast<uintptr_t>(stack_mte_tls) >> 56ULL);
-    void* ptr = reinterpret_cast<void*>(reinterpret_cast<uintptr_t>(stack_mte_tls) &
-                                        ((1ULL << 56ULL) - 1ULL));
-    munmap(ptr, size);
-  }
-#endif
   if (thread->mmap_size != 0) {
     // Free mapped space, including thread stack and pthread_internal_t.
     munmap(thread->mmap_base, thread->mmap_size);
@@ -191,6 +176,9 @@ void __find_main_stack_limits(uintptr_t* low, uintptr_t* high) {
   async_safe_fatal("stack not found in /proc/self/maps");
 }
 
+<<<<<<< PATCH SET (95f219 Revert "[MTE] allocate ring buffer for stack history")
+void __pthread_internal_remap_stack_with_mte() {
+=======
 __LIBC_HIDDEN__ void* __allocate_stack_mte_ringbuffer(size_t n, pthread_internal_t* thread) {
   if (n > 7) async_safe_fatal("error: invalid mte stack ring buffer size");
   // Allocation needs to be aligned to 2*size to make the fancy code-gen work.
@@ -241,7 +229,14 @@ __LIBC_HIDDEN__ void* __allocate_stack_mte_ringbuffer(size_t n, pthread_internal
 }
 
 bool __pthread_internal_remap_stack_with_mte() {
+>>>>>>> BASE      (b8e7b3 Merge "libc/Android.bp: fix bpfmt lint." into main)
 #if defined(__aarch64__)
+<<<<<<< PATCH SET (95f219 Revert "[MTE] allocate ring buffer for stack history")
+  // If process doesn't have MTE enabled, we don't need to do anything.
+  if (!atomic_load(&__libc_globals->memtag)) return;
+  bool prev = atomic_exchange(&__libc_memtag_stack, true);
+  if (prev) return;
+=======
   ScopedWriteLock creation_locker(&g_thread_creation_lock);
   ScopedReadLock list_locker(&g_thread_list_lock);
   // If process already uses memtag-stack ABI, we don't need to do anything.
@@ -255,6 +250,7 @@ bool __pthread_internal_remap_stack_with_mte() {
   }
   if (!atomic_load(&__libc_globals->memtag)) return false;
   if (atomic_exchange(&__libc_memtag_stack, true)) return false;
+>>>>>>> BASE      (b8e7b3 Merge "libc/Android.bp: fix bpfmt lint." into main)
   uintptr_t lo, hi;
   __find_main_stack_limits(&lo, &hi);
 
@@ -262,6 +258,8 @@ bool __pthread_internal_remap_stack_with_mte() {
                PROT_READ | PROT_WRITE | PROT_MTE | PROT_GROWSDOWN)) {
     async_safe_fatal("error: failed to set PROT_MTE on main thread");
   }
+  ScopedWriteLock creation_locker(&g_thread_creation_lock);
+  ScopedReadLock list_locker(&g_thread_list_lock);
   for (pthread_internal_t* t = g_thread_list; t != nullptr; t = t->next) {
     if (t->terminating || t->is_main()) continue;
     if (mprotect(t->mmap_base_unguarded, t->mmap_size_unguarded,
