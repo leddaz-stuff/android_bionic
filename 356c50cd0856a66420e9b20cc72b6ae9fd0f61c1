@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36539a3f_8a5f5147",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2024-06-21T15:54:54Z",
+      "side": 1,
+      "message": "FWIW: filed https://github.com/llvm/llvm-project/issues/96322",
+      "revId": "356c50cd0856a66420e9b20cc72b6ae9fd0f61c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
