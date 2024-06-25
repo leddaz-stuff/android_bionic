@@ -178,6 +178,10 @@ class pthread_internal_t {
   bionic_tls* bionic_tls;
 
   int errno_value;
+
+  bionic_tcb* bionic_tcb;
+  char stack_mte_ringbuffer_vma_name_buffer[32];
+
   bool is_main() { return start_routine == nullptr; }
 };
 
