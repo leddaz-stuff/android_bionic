@@ -70,12 +70,13 @@
   .hidden __f;
 
 // (Implementation detail.)
-#define __ENTRY_NO_DWARF(__f, __binding) \
-  .text;                                 \
-  __binding __f;                         \
-  .balign __bionic_asm_align;            \
-  .type __f, __bionic_asm_function_type; \
-  __f:                                   \
+#define __ENTRY_NO_DWARF(__f, __binding)   \
+  .text;                                   \
+  .section .text. ## __f, "ax", %progbits; \
+  __binding __f;                           \
+  .balign __bionic_asm_align;              \
+  .type __f, __bionic_asm_function_type;   \
+  __f:                                     \
   __bionic_asm_custom_entry(__f);
 
 // (Implementation detail.)
