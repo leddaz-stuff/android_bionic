@@ -16,6 +16,24 @@
       "message": "It looks like there are still some places the syscalls don\u0027t exist.",
       "revId": "397e83ab8b29d5949ea95221846c9c7aec928272",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b55e73d_c92c0b45",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-06-25T21:51:29Z",
+      "side": 1,
+      "message": "how did this build locally?!\n\nyeah, looks like they only added a 2038-safe variant of semtimedop (reasonably enough). so that\u0027ll still need an #if. in which case, it\u0027s probably _less_ trouble to stick with ipc(2) for that one? (rather than convert the struct timespec to timespec64 ... which we don\u0027t currently have, and aren\u0027t likely to add because we\u0027re not going to add _new_ ILP32 ABIs, so why do the work? especially for a syscall that apps can\u0027t make anyway.)",
+      "parentUuid": "73a4e559_9628bccf",
+      "revId": "397e83ab8b29d5949ea95221846c9c7aec928272",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
