@@ -72,6 +72,7 @@
 // (Implementation detail.)
 #define __ENTRY_NO_DWARF(__f, __binding) \
   .text;                                 \
+  .section .text. ## f, "ax", %progbits; \
   __binding __f;                         \
   .balign __bionic_asm_align;            \
   .type __f, __bionic_asm_function_type; \
