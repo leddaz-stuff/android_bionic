@@ -40,7 +40,6 @@
 #error PLD threshold must be greater than or equal to the PLD offset
 #endif
 
-	.text
 	.syntax unified
 	.fpu    neon
 
