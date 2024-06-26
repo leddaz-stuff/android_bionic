@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d90c3b8_63a09c20",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-06-26T22:48:32Z",
+      "side": 1,
+      "message": "(tbh, i\u0027m also confused by the fact that soong only seems to refer to the \"wrong\" one of the two libgoogle-benchmark libraries...)",
+      "revId": "1337dd3973c212968d30aa136faff4c0982216ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
