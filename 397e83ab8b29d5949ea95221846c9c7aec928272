@@ -34,6 +34,24 @@
       "parentUuid": "73a4e559_9628bccf",
       "revId": "397e83ab8b29d5949ea95221846c9c7aec928272",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb34e2e3_95c79d02",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-06-26T17:17:03Z",
+      "side": 1,
+      "message": "i was hoping you\u0027d express an opinion :-)\n\nin lieu of that, i\u0027ve taken your silence to mean \"yeah, let\u0027s clear out the bits we don\u0027t need, but just leave the one bit we do need for now\".",
+      "parentUuid": "6b55e73d_c92c0b45",
+      "revId": "397e83ab8b29d5949ea95221846c9c7aec928272",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
