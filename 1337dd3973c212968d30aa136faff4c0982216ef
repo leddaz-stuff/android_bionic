@@ -16,6 +16,24 @@
       "message": "(tbh, i\u0027m also confused by the fact that soong only seems to refer to the \"wrong\" one of the two libgoogle-benchmark libraries...)",
       "revId": "1337dd3973c212968d30aa136faff4c0982216ef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81f5a679_1c212c71",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-06-26T22:50:24Z",
+      "side": 1,
+      "message": "no hurry on this if you want plenty of time to think of a better way --- this is a continuation of the https://android-review.git.corp.google.com/c/platform/bionic/+/2944756 saga from february, so it won\u0027t hurt to wait a bit longer. i\u0027m hoping to bang my head against the function-sections thing tomorrow, which is an even older idea _by several years_ :-)",
+      "parentUuid": "0d90c3b8_63a09c20",
+      "revId": "1337dd3973c212968d30aa136faff4c0982216ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
