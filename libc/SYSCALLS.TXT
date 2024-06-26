@@ -2,7 +2,7 @@
 #
 # Each non-blank, non-comment line has the following format:
 #
-# return_type func_name[|alias_list][:syscall_name[:socketcall_id]]([parameter_list]) arch_list
+# return_type func_name[|alias_list][:syscall_name]([parameter_list]) arch_list
 #
 # where:
 #       arch_list ::= "all" | arches
@@ -15,13 +15,6 @@
 #        function, which is not the same as the standard C exit() function which calls it)
 #
 #      - alias_list is optional comma separated list of function aliases.
-#
-#      - The call_id parameter, given that func_name and syscall_name have
-#        been provided, allows the user to specify dispatch style syscalls.
-#        For example, socket() syscall on i386 actually becomes:
-#          socketcall(__NR_socket, 1, *(rest of args on stack)).
-#
-#      - Each parameter type is assumed to be stored in 32 bits.
 #
 # This file is processed by a python script named gensyscalls.py, run via
 # genrules in Android.bp.
@@ -255,42 +248,23 @@ int     __rt_sigqueueinfo:rt_sigqueueinfo(pid_t, int, siginfo_t*)  all
 int     __signalfd4:signalfd4(int, const sigset64_t*, size_t, int)  all
 
 # sockets
-int           __socket:socket(int, int, int)              arm,lp64
-int           __socketpair:socketpair(int, int, int, int*)    arm,lp64
-int           bind(int, struct sockaddr*, socklen_t)  arm,lp64
-int           __connect:connect(int, struct sockaddr*, socklen_t)   arm,lp64
-int           listen(int, int)                   arm,lp64
-int           __accept4:accept4(int, struct sockaddr*, socklen_t*, int)  arm,lp64
-int           getsockname(int, struct sockaddr*, socklen_t*)  arm,lp64
-int           getpeername(int, struct sockaddr*, socklen_t*)  arm,lp64
-ssize_t       __sendto:sendto(int, const void*, size_t, int, const struct sockaddr*, socklen_t)  arm,lp64
-ssize_t       recvfrom(int, void*, size_t, unsigned int, struct sockaddr*, socklen_t*)  arm,lp64
-int           shutdown(int, int)  arm,lp64
-int           setsockopt(int, int, int, const void*, socklen_t)  arm,lp64
-int           getsockopt(int, int, int, void*, socklen_t*)    arm,lp64
-ssize_t       __recvmsg:recvmsg(int, struct msghdr*, unsigned int)   arm,lp64
-ssize_t       __sendmsg:sendmsg(int, const struct msghdr*, unsigned int)  arm,lp64
-int           __recvmmsg:recvmmsg(int, struct mmsghdr*, unsigned int, int, const struct timespec*)   arm,lp64
-int           __sendmmsg:sendmmsg(int, struct mmsghdr*, unsigned int, int)   arm,lp64
-
-# sockets for x86. These are done as an "indexed" call to socketcall syscall.
-int           __socket:socketcall:1(int, int, int) x86
-int           bind:socketcall:2(int, struct sockaddr*, int)  x86
-int           __connect:socketcall:3(int, struct sockaddr*, socklen_t)   x86
-int           listen:socketcall:4(int, int)                   x86
-int           getsockname:socketcall:6(int, struct sockaddr*, socklen_t*)  x86
-int           getpeername:socketcall:7(int, struct sockaddr*, socklen_t*)  x86
-int           __socketpair:socketcall:8(int, int, int, int*)    x86
-ssize_t       __sendto:socketcall:11(int, const void*, size_t, int, const struct sockaddr*, socklen_t)  x86
-ssize_t       recvfrom:socketcall:12(int, void*, size_t, unsigned int, struct sockaddr*, socklen_t*)  x86
-int           shutdown:socketcall:13(int, int)  x86
-int           setsockopt:socketcall:14(int, int, int, const void*, socklen_t)  x86
-int           getsockopt:socketcall:15(int, int, int, void*, socklen_t*)    x86
-int           __sendmsg:socketcall:16(int, const struct msghdr*, unsigned int)  x86
-int           __recvmsg:socketcall:17(int, struct msghdr*, unsigned int)   x86
-int           __accept4:socketcall:18(int, struct sockaddr*, socklen_t*, int)  x86
-int           __recvmmsg:socketcall:19(int, struct mmsghdr*, unsigned int, int, const struct timespec*)   x86
-int           __sendmmsg:socketcall:20(int, struct mmsghdr*, unsigned int, int)   x86
+int __socket:socket(int, int, int) all
+int __socketpair:socketpair(int, int, int, int*) all
+int bind(int, struct sockaddr*, socklen_t) all
+int __connect:connect(int, struct sockaddr*, socklen_t) all
+int listen(int, int) all
+int __accept4:accept4(int, struct sockaddr*, socklen_t*, int) all
+int getsockname(int, struct sockaddr*, socklen_t*) all
+int getpeername(int, struct sockaddr*, socklen_t*) all
+ssize_t __sendto:sendto(int, const void*, size_t, int, const struct sockaddr*, socklen_t) all
+ssize_t recvfrom(int, void*, size_t, unsigned int, struct sockaddr*, socklen_t*) all
+int shutdown(int, int) all
+int setsockopt(int, int, int, const void*, socklen_t) all
+int getsockopt(int, int, int, void*, socklen_t*) all
+ssize_t __recvmsg:recvmsg(int, struct msghdr*, unsigned int) all
+ssize_t __sendmsg:sendmsg(int, const struct msghdr*, unsigned int) all
+int __recvmmsg:recvmmsg(int, struct mmsghdr*, unsigned int, int, const struct timespec*) all
+int __sendmmsg:sendmmsg(int, struct mmsghdr*, unsigned int, int) all
 
 # scheduler & real-time
 int sched_setscheduler(pid_t pid, int policy, const struct sched_param* param)  all

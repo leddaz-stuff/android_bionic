@@ -276,44 +276,6 @@ def x86_genstub(syscall):
     return result
 
 
-def x86_genstub_socketcall(syscall):
-    #   %ebx <--- Argument 1 - The call id of the needed vectored
-    #                          syscall (socket, bind, recv, etc)
-    #   %ecx <--- Argument 2 - Pointer to the rest of the arguments
-    #                          from the original function called (socket())
-
-    result = syscall_stub_header % syscall
-
-    # save the regs we need
-    result += "    pushl   %ebx\n"
-    result += "    .cfi_def_cfa_offset 8\n"
-    result += "    .cfi_rel_offset ebx, 0\n"
-    result += "    pushl   %ecx\n"
-    result += "    .cfi_adjust_cfa_offset 4\n"
-    result += "    .cfi_rel_offset ecx, 0\n"
-    stack_bias = 16
-
-    result += x86_call_prepare
-
-    # set the call id (%ebx)
-    result += "    mov     $%d, %%ebx\n" % syscall["socketcall_id"]
-
-    # set the pointer to the rest of the args into %ecx
-    result += "    mov     %esp, %ecx\n"
-    result += "    addl    $%d, %%ecx\n" % (stack_bias)
-
-    # now do the syscall code itself
-    result += x86_call % syscall
-
-    # now restore the saved regs
-    result += "    popl    %ecx\n"
-    result += "    popl    %ebx\n"
-
-    # epilog
-    result += x86_return % syscall
-    return result
-
-
 def x86_64_genstub(syscall):
     result = syscall_stub_header % syscall
     num_regs = count_generic_param_registers64(syscall["params"])
@@ -339,7 +301,7 @@ class SysCallsTxtParser:
         """ parse a syscall spec line.
 
         line processing, format is
-           return type    func_name[|alias_list][:syscall_name[:socketcall_id]] ( [paramlist] ) architecture_list
+           return type    func_name[|alias_list][:syscall_name] ( [paramlist] ) architecture_list
         """
         pos_lparen = line.find('(')
         E          = self.E
@@ -359,7 +321,6 @@ class SysCallsTxtParser:
 
         syscall_func = return_type[-1]
         return_type  = ' '.join(return_type[:-1])
-        socketcall_id = -1
 
         pos_colon = syscall_func.find(':')
         if pos_colon < 0:
@@ -369,19 +330,8 @@ class SysCallsTxtParser:
                 E("misplaced colon in '%s'" % line)
                 return
 
-            # now find if there is a socketcall_id for a dispatch-type syscall
-            # after the optional 2nd colon
-            pos_colon2 = syscall_func.find(':', pos_colon + 1)
-            if pos_colon2 < 0:
-                syscall_name = syscall_func[pos_colon+1:]
-                syscall_func = syscall_func[:pos_colon]
-            else:
-                if pos_colon2+1 >= len(syscall_func):
-                    E("misplaced colon2 in '%s'" % line)
-                    return
-                syscall_name = syscall_func[(pos_colon+1):pos_colon2]
-                socketcall_id = int(syscall_func[pos_colon2+1:])
-                syscall_func = syscall_func[:pos_colon]
+            syscall_name = syscall_func[pos_colon+1:]
+            syscall_func = syscall_func[:pos_colon]
 
         alias_delim = syscall_func.find('|')
         if alias_delim > 0:
@@ -407,7 +357,6 @@ class SysCallsTxtParser:
               "aliases" : syscall_aliases,
               "params"  : syscall_params,
               "decl"    : "%-15s  %s (%s);" % (return_type, syscall_func, params),
-              "socketcall_id" : socketcall_id
         }
 
         # Parse the architecture list.
@@ -456,23 +405,18 @@ def main(arch, syscall_file):
         syscall["__NR_name"] = make__NR_name(syscall["name"])
 
         if "arm" in syscall:
+<<<<<<< PATCH SET (97251c Switch x86 over to the regular socket syscalls.)
+            syscall["asm-arm"] = add_footer(32, arm_eabi_genstub(syscall), syscall)
+=======
             syscall["asm-arm"] = add_footer(32, arm_genstub(syscall), syscall)
 
+>>>>>>> BASE      (186597 Merge "Just say "arm" rather than "arm_eabi"." into main)
         if "arm64" in syscall:
             syscall["asm-arm64"] = add_footer(64, arm64_genstub(syscall), syscall)
-
         if "riscv64" in syscall:
             syscall["asm-riscv64"] = add_footer(64, riscv64_genstub(syscall), syscall)
-
         if "x86" in syscall:
-            if syscall["socketcall_id"] >= 0:
-                syscall["asm-x86"] = add_footer(32, x86_genstub_socketcall(syscall), syscall)
-            else:
-                syscall["asm-x86"] = add_footer(32, x86_genstub(syscall), syscall)
-        elif syscall["socketcall_id"] >= 0:
-            E("socketcall_id for dispatch syscalls is only supported for x86 in '%s'" % t)
-            return
-
+            syscall["asm-x86"] = add_footer(32, x86_genstub(syscall), syscall)
         if "x86_64" in syscall:
             syscall["asm-x86_64"] = add_footer(64, x86_64_genstub(syscall), syscall)
 
