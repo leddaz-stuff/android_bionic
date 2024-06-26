@@ -16,17 +16,87 @@
 
 #include <wctype.h>
 
+#include <numeric>
+#include <random>
+#include <vector>
+
 #include <benchmark/benchmark.h>
 #include "util.h"
 
-BIONIC_TRIVIAL_BENCHMARK(BM_wctype_towlower_ascii_y, towlower('X'));
-BIONIC_TRIVIAL_BENCHMARK(BM_wctype_towlower_ascii_n, towlower('x'));
+void BM_wctype(benchmark::State& state, std::function<wint_t(wint_t)> fn, std::vector<wint_t>& chars) {
+  size_t sum = 0;
+  for (auto _ : state) {
+    for (char ch : chars) {
+      sum += fn(ch) ? 1 : 0;
+    }
+  }
+  benchmark::DoNotOptimize(sum);
+  state.SetBytesProcessed(state.iterations() * chars.size());
+}
 
-BIONIC_TRIVIAL_BENCHMARK(BM_wctype_towlower_unicode_y, towlower(0x0391));
-BIONIC_TRIVIAL_BENCHMARK(BM_wctype_towlower_unicode_n, towlower(0x03b1));
+static std::vector<wint_t> RandomAscii() {
+  std::vector<wint_t> result{128};
+  std::iota(result.begin(), result.end(), 0);
+  std::shuffle(result.begin(), result.end(), std::mt19937{std::random_device{}()});
+  return result;
+}
 
-BIONIC_TRIVIAL_BENCHMARK(BM_wctype_towupper_ascii_y, towupper('x'));
-BIONIC_TRIVIAL_BENCHMARK(BM_wctype_towupper_ascii_n, towupper('X'));
+static std::vector<wint_t> RandomNonAscii() {
+  std::vector<wint_t> result;
+  std::mt19937 rng{std::random_device{}()};
+  std::uniform_int_distribution<> d(0x80, 0xffff);
+  for (size_t i = 0; i < result.size(); i++) result.push_back(d(rng));
+  return result;
+}
 
-BIONIC_TRIVIAL_BENCHMARK(BM_wctype_towupper_unicode_y, towupper(0x03b1));
-BIONIC_TRIVIAL_BENCHMARK(BM_wctype_towupper_unicode_n, towupper(0x0391));
+template <int(*fn)(wint_t)> void BM_wctype_ascii(benchmark::State& state) {
+  auto chars = RandomAscii();
+  BM_wctype(state, fn, chars);
+}
+
+template <wint_t(*fn)(wint_t)> void BM_wctype_ascii_transform(benchmark::State& state) {
+  auto chars = RandomAscii();
+  BM_wctype(state, fn, chars);
+}
+
+template <int(*fn)(wint_t)> void BM_wctype_non_ascii(benchmark::State& state) {
+  auto chars = RandomNonAscii();
+  BM_wctype(state, fn, chars);
+}
+
+template <wint_t(*fn)(wint_t)> void BM_wctype_non_ascii_transform(benchmark::State& state) {
+  auto chars = RandomNonAscii();
+  BM_wctype(state, fn, chars);
+}
+
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_ascii, iswalnum);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_ascii, iswalpha);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_ascii, iswblank);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_ascii, iswcntrl);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_ascii, iswdigit);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_ascii, iswgraph);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_ascii, iswlower);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_ascii, iswprint);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_ascii, iswpunct);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_ascii, iswspace);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_ascii, iswupper);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_ascii, iswxdigit);
+
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_ascii_transform, towlower);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_ascii_transform, towupper);
+
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_non_ascii, iswalnum);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_non_ascii, iswalpha);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_non_ascii, iswblank);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_non_ascii, iswcntrl);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_non_ascii, iswdigit);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_non_ascii, iswgraph);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_non_ascii, iswlower);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_non_ascii, iswprint);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_non_ascii, iswpunct);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_non_ascii, iswspace);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_non_ascii, iswupper);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_non_ascii, iswxdigit);
+
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_non_ascii_transform, towlower);
+BIONIC_BENCHMARK_TEMPLATE(BM_wctype_non_ascii_transform, towupper);

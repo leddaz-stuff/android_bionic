@@ -83,7 +83,7 @@ static std::map<std::string, const std::vector<int> &> kSizes{
   { "LARGE",  kLargeSizes },
 };
 
-std::map<std::string, std::pair<benchmark_func_t, std::string>> g_str_to_func;
+std::map<std::string, std::pair<std::function<void(benchmark::State&)>, std::string>> g_str_to_func;
 
 std::mutex g_map_lock;
 
@@ -213,12 +213,9 @@ bench_opts_t ParseOpts(int argc, char** argv) {
 }
 
 // This is a wrapper for every function call for per-benchmark cpu pinning.
-void LockAndRun(benchmark::State& state, benchmark_func_t func_to_bench, int cpu_to_lock) {
+void LockAndRun(benchmark::State& state, std::function<void(benchmark::State&)> func_to_bench, int cpu_to_lock) {
   if (cpu_to_lock >= 0) LockToCPU(cpu_to_lock);
-
-  // To avoid having to link against Google benchmarks in libutil,
-  // benchmarks are kept without parameter information, necessitating this cast.
-  reinterpret_cast<void(*) (benchmark::State&)>(func_to_bench)(state);
+  func_to_bench(state);
 }
 
 static constexpr char kOnebufManualStr[] = "AT_ONEBUF_MANUAL_ALIGN_";
@@ -385,7 +382,7 @@ void RegisterGoogleBenchmarks(bench_opts_t primary_opts, bench_opts_t secondary_
     cpu_to_use = secondary_opts.cpu_to_lock;
   }
 
-  benchmark_func_t benchmark_function = g_str_to_func.at(fn_name).first;
+  std::function<void(benchmark::State&)> benchmark_function = g_str_to_func.at(fn_name).first;
   for (const std::vector<int64_t>& args : (*run_args)) {
     auto registration = benchmark::RegisterBenchmark(fn_name.c_str(), LockAndRun,
                                                      benchmark_function,

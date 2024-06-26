@@ -95,9 +95,10 @@ cc_defaults {
 // Build benchmarks for the device (with bionic's .so). Run with:
 //   adb shell /data/benchmarktest/bionic-benchmarks/bionic-benchmarks
 //   adb shell /data/benchmarktest64/bionic-benchmarks/bionic-benchmarks
-cc_benchmark {
+cc_test {
     name: "bionic-benchmarks",
     defaults: ["bionic-benchmarks-defaults"],
+    gtest: false,
     srcs: [
         "dlfcn_benchmark.cpp",
     ],
@@ -109,9 +110,10 @@ cc_benchmark {
     include_dirs: ["bionic/libc"],
 }
 
-cc_benchmark {
+cc_test {
     name: "bionic-benchmarks-static",
     defaults: ["bionic-benchmarks-defaults"],
+    gtest: false,
     data: ["suites/*"],
     static_libs: [
         "liblog",
@@ -123,9 +125,10 @@ cc_benchmark {
 }
 
 // Build benchmarks for the host (against glibc!). Run with:
-cc_benchmark_host {
+cc_test_host {
     name: "bionic-benchmarks-glibc",
     defaults: ["bionic-benchmarks-defaults"],
+    gtest: false,
     srcs: [
         "dlfcn_benchmark.cpp",
     ],
@@ -142,6 +145,7 @@ cc_library_static {
     name: "libBionicBenchmarksUtils",
     defaults: ["bionic-benchmarks-extras-defaults"],
     srcs: ["util.cpp"],
+    whole_static_libs: ["libgoogle-benchmark-main"],
     host_supported: true,
 }
 

@@ -18,19 +18,20 @@
 
 #include <stdint.h>
 
+#include <functional>
 #include <map>
 #include <mutex>
 #include <string>
 #include <utility>
 #include <vector>
 
-typedef void (*benchmark_func_t) (void);
+#include <benchmark/benchmark.h>
 
 extern std::mutex g_map_lock;
 
-extern std::map<std::string, std::pair<benchmark_func_t, std::string>> g_str_to_func;
+extern std::map<std::string, std::pair<std::function<void(benchmark::State&)>, std::string>> g_str_to_func;
 
-static int  __attribute__((unused)) EmplaceBenchmark(const std::string& fn_name, benchmark_func_t fn_ptr, const std::string& arg = "") {
+static int  __attribute__((unused)) EmplaceBenchmark(const std::string& fn_name, void (*fn_ptr)(benchmark::State&), const std::string& arg = "") {
   g_map_lock.lock();
   g_str_to_func.emplace(std::string(fn_name), std::make_pair(fn_ptr, arg));
   g_map_lock.unlock();
@@ -38,10 +39,17 @@ static int  __attribute__((unused)) EmplaceBenchmark(const std::string& fn_name,
 }
 
 #define BIONIC_BENCHMARK(n) \
-  int _bionic_benchmark_##n __attribute__((unused)) = EmplaceBenchmark(std::string(#n), reinterpret_cast<benchmark_func_t>(n))
+  int _bionic_benchmark_##n __attribute__((unused)) = \
+      EmplaceBenchmark(std::string(#n), n)
+
+#define BIONIC_BENCHMARK_TEMPLATE(n, template_arg) \
+  int _bionic_benchmark_##n##template_arg __attribute__((unused)) = \
+      EmplaceBenchmark(std::string(#n "<" #template_arg ">"), \
+                       [](benchmark::State& state) { n<template_arg>(state); })
 
 #define BIONIC_BENCHMARK_WITH_ARG(n, arg) \
-  int _bionic_benchmark_##n __attribute__((unused)) = EmplaceBenchmark(std::string(#n), reinterpret_cast<benchmark_func_t>(n), arg)
+  int _bionic_benchmark_##n __attribute__((unused)) = \
+      EmplaceBenchmark(std::string(#n), n, arg)
 
 #define BIONIC_TRIVIAL_BENCHMARK(__name, __expression) \
   static void __name(benchmark::State& state) { \
