@@ -50,20 +50,14 @@
 
 #include "private/ErrnoRestorer.h"
 
-// Don't call libc's close or socket, since it might call back into us as a result of fdsan/fdtrack.
-#pragma GCC poison close
+// Don't call libc's close() or socket(), since they might call back into us as a result of fdsan/fdtrack.
+#pragma clang poison close
 static int __close(int fd) {
   return syscall(__NR_close, fd);
 }
-
+#pragma clang poison socket
 static int __socket(int domain, int type, int protocol) {
-#if defined(__i386__)
-  unsigned long args[3] = {static_cast<unsigned long>(domain), static_cast<unsigned long>(type),
-                           static_cast<unsigned long>(protocol)};
-  return syscall(__NR_socketcall, SYS_SOCKET, &args);
-#else
   return syscall(__NR_socket, domain, type, protocol);
-#endif
 }
 
 // Must be kept in sync with frameworks/base/core/java/android/util/EventLog.java.
