@@ -34,6 +34,24 @@
       "parentUuid": "4b5d0a44_270224b6",
       "revId": "bac7e69704e7bdf342c710522991cc7a8f534ee3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8178ab4_8ac8aa15",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1453063
+      },
+      "writtenOn": "2024-06-28T15:03:09Z",
+      "side": 1,
+      "message": "Ah, it\u0027s __gwp_asan_error_is_mine() from gwp_asan/crash_handler.cpp which we need for recoverable mode.\n\nIn hindsight maybe the protocol between libc and debuggerd should have just been a pointer to `GuardedAlloc` rather than passing the allocator state, metadata region, and three helper functions that all are basically thin wrappers around `GuardedAlloc`. Then we could move the \"needs recoverable\" (that is the dependency on __gwp_asan_error_is_mine()) from being a helper function inside of libc, passed by pointer to debuggerd, into debuggerd itself.\n\nAh well.\n\nFor now, there\u0027s no harm in just adding `crash_handler.cpp` to `gwp_asan` so it can be used in libc. We just can\u0027t use `gwp_asan` in debuggerd because we don\u0027t want all the symbols over there inside of debuggerd.\n\nI\u0027ll send you the patches in a sec (validated with `m libc` with the `-Wl,-z,muldefs` commented out, same thing as this patch).",
+      "parentUuid": "2ff55919_40eac963",
+      "revId": "bac7e69704e7bdf342c710522991cc7a8f534ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
