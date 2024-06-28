@@ -16,6 +16,24 @@
       "message": "looks like we have duplicate definitions of various gwp_asan symbols via gwp_asan and gwp_asan_crash_handler --- do we actually need both libraries? (i\u0027m wondering whether it\u0027s a better fix to _merge_ them into one, or to split them into _three_ libraries, with a new one for the currently-duplicated stuff...)",
       "revId": "bac7e69704e7bdf342c710522991cc7a8f534ee3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ff55919_40eac963",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1453063
+      },
+      "writtenOn": "2024-06-28T14:44:09Z",
+      "side": 1,
+      "message": "I can take a look next week, but the idea should be that `gwp_asan_crash_handler` is only for debuggerd (but some of declarations in the headers might be needed) and that `gwp_asan` is for libc.",
+      "parentUuid": "4b5d0a44_270224b6",
+      "revId": "bac7e69704e7bdf342c710522991cc7a8f534ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
