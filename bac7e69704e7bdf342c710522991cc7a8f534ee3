@@ -52,6 +52,24 @@
       "parentUuid": "2ff55919_40eac963",
       "revId": "bac7e69704e7bdf342c710522991cc7a8f534ee3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35c1d6dc_c63e764b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-06-28T16:50:32Z",
+      "side": 1,
+      "message": "it\u0027s never _too_ late... libc.so and debuggerd ship as a matched pair on the OS, so even if we didn\u0027t bother keeping the old stuff for backwards compatibility, only \"old static binaries using gwp_asan on new OSes\" and \"new static binaries using gwp_asan on old OSes\" would notice --- and we don\u0027t do any static binary testing anyway, so i\u0027d be [pleasantly!] surprised if there wasn\u0027t already stuff that didn\u0027t work :-)",
+      "parentUuid": "e8178ab4_8ac8aa15",
+      "revId": "bac7e69704e7bdf342c710522991cc7a8f534ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
