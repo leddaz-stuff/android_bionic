@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74e78b54_d3a3c5db",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-06-30T17:13:43Z",
+      "side": 1,
+      "message": "actually, this is a bad example because we really _do_ have an optimized sincosf() but no optimized sincos().\n\nfor arm-optimized-routines, the likely collisions seem to be erf() and erff().",
+      "range": {
+        "startLine": 9,
+        "startChar": 45,
+        "endLine": 9,
+        "endChar": 57
+      },
+      "revId": "f67f89b31b88ae441c42d52bd0702acc7f87c0e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
