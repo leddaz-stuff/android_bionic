@@ -22,6 +22,30 @@
       },
       "revId": "f67f89b31b88ae441c42d52bd0702acc7f87c0e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d52dd4f3_01429247",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-06-30T17:21:37Z",
+      "side": 1,
+      "message": "and even that seems legit based on the discussion in https://android-review.git.corp.google.com/c/platform/external/arm-optimized-routines/+/1515050 where we chose to explicitly exclude the corresponding source files.\n\nso i\u0027ll just remove this paragraph from the commit message.\n\none follow-up change i will make, though, is to switch from *.c + exclude_srcs to just explicitly naming the things we want to build. if nothing else, that\u0027ll stop random stuff creeping in by accident.",
+      "parentUuid": "74e78b54_d3a3c5db",
+      "range": {
+        "startLine": 9,
+        "startChar": 45,
+        "endLine": 9,
+        "endChar": 57
+      },
+      "revId": "f67f89b31b88ae441c42d52bd0702acc7f87c0e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
