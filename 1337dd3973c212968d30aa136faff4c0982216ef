@@ -69,6 +69,23 @@
       "parentUuid": "5d30e913_c4fb4a70",
       "revId": "1337dd3973c212968d30aa136faff4c0982216ef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71398d28_0a962b23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-07-02T23:17:48Z",
+      "side": 1,
+      "message": "I think I have a simpler version of this. I verified that it appears to work properly and only changes the wctype and ctype benchmark files. I\u0027ll upload it so you can see what it looks like, and if it\u0027s acceptable as a replacement.",
+      "revId": "1337dd3973c212968d30aa136faff4c0982216ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
