@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a4a869a_dec2b401",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-07-02T23:45:03Z",
+      "side": 1,
+      "message": "Fixes the wctype RandomAscii since the previous constructor only created a single element.\n\nNow both the Random functions create 128 element arrays.",
+      "revId": "be36fc54a9ecca98d6f0e9cadff1e2e371f9e99b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
