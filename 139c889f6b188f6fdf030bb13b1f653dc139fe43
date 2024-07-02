@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0b421e3_2aba125d",
+        "filename": "benchmarks/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-02T12:50:10Z",
+      "side": 1,
+      "message": "why is this needed now? that seems like a bug if you\u0027re generating the file with the wrong permissions...",
+      "revId": "139c889f6b188f6fdf030bb13b1f653dc139fe43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
