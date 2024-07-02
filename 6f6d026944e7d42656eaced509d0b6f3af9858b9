@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc0bff5c_21e98b42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-07-02T23:28:56Z",
+      "side": 1,
+      "message": "I did this as a patchset since most of the code is yours.\n\nI changed a couple of things, I did a do not optimize around the actual calls since it seemed to optimize away the _tolower call on device with the sum method. I also fixed RandonNonAscii since the size of the vector was always zero, so I made the loop hard-coded to 128 when generating non-ascii characters.\n\nWhen running it, I\u0027m still worried that something is getting optimized away, since the wctype with ascii ones seem too fast. All of the other numbers feel correct though.",
+      "revId": "6f6d026944e7d42656eaced509d0b6f3af9858b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
