@@ -16,6 +16,24 @@
       "message": "why is this needed now? that seems like a bug if you\u0027re generating the file with the wrong permissions...",
       "revId": "139c889f6b188f6fdf030bb13b1f653dc139fe43",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d216c216_0b8dc9a3",
+        "filename": "benchmarks/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1308044
+      },
+      "writtenOn": "2024-07-03T04:07:22Z",
+      "side": 1,
+      "message": "Thank you, oh actually it really don\u0027t needed, I just retested it, it could work without chmod.\n\n```\n~/aosp_main/$ adb push $ANDROID_PRODUCT_OUT/obj/NATIVE_TESTS/perf-setup_intermediates/perf-setup.sh /data/local/tmp/perf-setup.sh\n/obj/NATIVE_TESTS/perf-setup_intermediates/perf-setup.sh: 1 file pushed, 0 skipped. 0.4 MB/s (82 bytes in 0.000s)\n~/aosp_main/$ adb shell /data/local/tmp/perf-setup.sh\n~/aosp_main/$ adb shell\nvsoc_x86_64:/ $ /data/local/tmp/perf-setup.sh                                                                                                                                          \nvsoc_x86_64:/ $ exit\n```\n\nI added it just because other place has this kind of instruction that I think I should sync them together.\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:frameworks/base/apct-tests/perftests/inputmethod/README.md;l\u003d12?q\u003dapct-tests%2Fperftests%2Finputmethod%2FREADME.md\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20branch:main",
+      "parentUuid": "e0b421e3_2aba125d",
+      "revId": "139c889f6b188f6fdf030bb13b1f653dc139fe43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
