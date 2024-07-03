@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a79b873_ce0afb12",
+        "filename": "benchmarks/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-03T11:44:42Z",
+      "side": 1,
+      "message": "this seems terrible ... the whole point of having a build target was to put the file in a place where it would \"just work\", no?",
+      "revId": "51e9d001147524996165bca30e0f6c52133f8132",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
