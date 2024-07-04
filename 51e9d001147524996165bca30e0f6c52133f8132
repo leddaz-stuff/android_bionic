@@ -16,6 +16,24 @@
       "message": "this seems terrible ... the whole point of having a build target was to put the file in a place where it would \"just work\", no?",
       "revId": "51e9d001147524996165bca30e0f6c52133f8132",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "990a46fb_f457a494",
+        "filename": "benchmarks/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1308044
+      },
+      "writtenOn": "2024-07-04T01:51:56Z",
+      "side": 1,
+      "message": "Agree with you, but for this case, I think it is actually not going to build build this file directly, it writing build file due to it will need to pack the file with test-suite packages and push it by TF.\n\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:platform_testing/scripts/perf-setup/tests/configs/perf-setup.xml;l\u003d23?q\u003dperf-setup%20file:xml\u0026sq\u003dgit:android%2F%2F%2Fmain@main\n\nAnd the final path will be out/target/product/vsoc_x86_64/testcases/perf-setup/x86_64/perf-setup.sh, the reason why I choose the obj folder is that the path is fixed, but if using the final testcase folder it will change the path by the arch of the lunch target.",
+      "parentUuid": "6a79b873_ce0afb12",
+      "revId": "51e9d001147524996165bca30e0f6c52133f8132",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
