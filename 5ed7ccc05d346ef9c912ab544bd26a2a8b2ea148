@@ -34,6 +34,52 @@
       "parentUuid": "96f13854_d6423299",
       "revId": "5ed7ccc05d346ef9c912ab544bd26a2a8b2ea148",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70928fd8_cbaf0a4c",
+        "filename": "libc/bionic/wctype.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2024-07-08T17:58:55Z",
+      "side": 1,
+      "message": "Does `WC_TYPE_ALNUM` make this more clear?",
+      "range": {
+        "startLine": 104,
+        "startChar": 26,
+        "endLine": 104,
+        "endChar": 27
+      },
+      "revId": "5ed7ccc05d346ef9c912ab544bd26a2a8b2ea148",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b948b281_80b93993",
+        "filename": "libc/bionic/wctype.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1010056
+      },
+      "writtenOn": "2024-07-08T17:58:55Z",
+      "side": 1,
+      "message": "`WC_TYPE_ALNUM`",
+      "range": {
+        "startLine": 145,
+        "startChar": 39,
+        "endLine": 145,
+        "endChar": 40
+      },
+      "revId": "5ed7ccc05d346ef9c912ab544bd26a2a8b2ea148",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
