@@ -484,7 +484,6 @@ cc_library_static {
         "upstream-netbsd/lib/libc/regex/regerror.c",
         "upstream-netbsd/lib/libc/regex/regexec.c",
         "upstream-netbsd/lib/libc/regex/regfree.c",
-        "upstream-netbsd/lib/libc/stdlib/bsearch.c",
         "upstream-netbsd/lib/libc/stdlib/drand48.c",
         "upstream-netbsd/lib/libc/stdlib/erand48.c",
         "upstream-netbsd/lib/libc/stdlib/jrand48.c",
@@ -1405,6 +1404,7 @@ cc_library_static {
         "libc_syscalls",
         "libc_tzcode",
         "libstdc++",
+        "llvmlibc",
     ],
 
     arch: {
