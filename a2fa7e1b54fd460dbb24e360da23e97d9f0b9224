@@ -16,6 +16,24 @@
       "message": "Thanks for putting up with my pedantry around enums. LOL",
       "revId": "a2fa7e1b54fd460dbb24e360da23e97d9f0b9224",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1892f4b_27b7f644",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-08T20:43:28Z",
+      "side": 1,
+      "message": "yeah, it sounded a bit weird at first, but the fact that both functions literally have a table in them that starts with alnum --- that does make using the enum value more intention-revealing.",
+      "parentUuid": "20deaf72_3be7aa19",
+      "revId": "a2fa7e1b54fd460dbb24e360da23e97d9f0b9224",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
