@@ -16,6 +16,24 @@
       "message": "LGTM\n\nJust a minor nit in the commit message. The call to wctype() no longer contains an early exit if \"\u003cinvalid\u003e\" is passed in, so it will now take ~12x as long to handle those cases (which may not matter if known to be infrequent).",
       "revId": "5ed7ccc05d346ef9c912ab544bd26a2a8b2ea148",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0719094b_16fba6da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-08T15:33:43Z",
+      "side": 1,
+      "message": "yeah, the \"\u003cinvalid\u003e\" was just something we made up anyway ... it could equally well have been nullptr and starting the loop at 1. or (as i went with here) removing the unused element that would correspond to 0 were 0 a valid `wctype_t` and adding 1 to get the `wctype_t` value from the array index.\n\n(but, no, we also have no reason to believe wctype() has any non-test callers.)",
+      "parentUuid": "96f13854_d6423299",
+      "revId": "5ed7ccc05d346ef9c912ab544bd26a2a8b2ea148",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
