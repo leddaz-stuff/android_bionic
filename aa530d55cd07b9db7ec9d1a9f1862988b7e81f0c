@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0b7cc573_02558f14",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-09T18:11:23Z",
+      "side": 0,
+      "message": "yeah, you can either do it before the mmap() even happens in MapElfFile(), or before we do the implicit memcpy() here. i think there\u0027s a reasonable argument for either of those, and i think either\u0027s fine.",
+      "parentUuid": "d14c9ab8_c9ec4625",
+      "revId": "aa530d55cd07b9db7ec9d1a9f1862988b7e81f0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2732be2e_29209d84",
         "filename": "linker/linker_phdr.h",
         "patchSetId": 3
