@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d14c9ab8_c9ec4625",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-09T15:26:51Z",
+      "side": 0,
+      "message": "So, add a check for `file_size_\u003e\u003dsizeof(header_)` inside MapElfFile()?",
+      "parentUuid": "db16694e_ca4e4386",
+      "revId": "aa530d55cd07b9db7ec9d1a9f1862988b7e81f0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2732be2e_29209d84",
         "filename": "linker/linker_phdr.h",
         "patchSetId": 3
@@ -31,6 +49,30 @@
       "writtenOn": "2024-07-09T11:43:31Z",
       "side": 0,
       "message": "does this mean you can delete the .h and .cpp file with MappedFileFragment too?",
+      "range": {
+        "startLine": 87,
+        "startChar": 2,
+        "endLine": 87,
+        "endChar": 20
+      },
+      "revId": "aa530d55cd07b9db7ec9d1a9f1862988b7e81f0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4889b8e_d653cb07",
+        "filename": "linker/linker_phdr.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-09T15:26:51Z",
+      "side": 0,
+      "message": "Hmm. I thought it was used somewhere else but rechecking now, seems it\u0027s another class named the same under framework/ there are not other users. So, yes, I think we can remove it completely.",
+      "parentUuid": "2732be2e_29209d84",
       "range": {
         "startLine": 87,
         "startChar": 2,
