@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bb27bd6_aebbb3d7",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-09T11:43:31Z",
+      "side": 1,
+      "message": "braces",
+      "revId": "81580301ddcb6c95f2d0bc69a0fc34ee42e4a888",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bd0612a_76e0e476",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-09T11:43:31Z",
+      "side": 1,
+      "message": "delete this whole function?",
+      "revId": "81580301ddcb6c95f2d0bc69a0fc34ee42e4a888",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09d3e948_5dfbf1a7",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-09T11:43:31Z",
+      "side": 1,
+      "message": "this can go in VerifyElfHeader (and VerifyElfHeader can then be renamed back to ReadElfHeader :-) ).",
+      "revId": "81580301ddcb6c95f2d0bc69a0fc34ee42e4a888",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
