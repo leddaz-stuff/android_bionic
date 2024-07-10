@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5a049f2_f567f8c8",
+        "filename": "libc/SECCOMP_ALLOWLIST_COMMON.TXT",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-10T17:34:43Z",
+      "side": 1,
+      "message": "do you have a bug # or the name of someone on Android/ChromeOS you\u0027re working with? this is either too wide (because not all processes need this) or too narrow (because it\u0027s just a coincidence that current emulators are x86/x86-64, but they could equally well be arm64), and even if it\u0027s \"just right\", i\u0027ll still need to talk to security about this, so the more background information you have, the better...",
+      "revId": "ad31ece33e347528ddb632124311820c5a147b65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
