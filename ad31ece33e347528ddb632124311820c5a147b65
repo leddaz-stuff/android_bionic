@@ -16,6 +16,24 @@
       "message": "do you have a bug # or the name of someone on Android/ChromeOS you\u0027re working with? this is either too wide (because not all processes need this) or too narrow (because it\u0027s just a coincidence that current emulators are x86/x86-64, but they could equally well be arm64), and even if it\u0027s \"just right\", i\u0027ll still need to talk to security about this, so the more background information you have, the better...",
       "revId": "ad31ece33e347528ddb632124311820c5a147b65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "109c5208_a45b2a43",
+        "filename": "libc/SECCOMP_ALLOWLIST_COMMON.TXT",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1597896
+      },
+      "writtenOn": "2024-07-10T17:47:41Z",
+      "side": 1,
+      "message": "Yes, Please find bug id : https://issuetracker.google.com/issues/339332645.\nBackground of this is, We had GPU pagefaults on long test (mainly with monkey for 16 hours) on AMD x86_64 based platform. On further debugging we observed that, the pagefault was due to GPU accessing already freed buffer pointed by a file descriptor.\n\nMesa has a dependency on kcmp to check if 2 file descriptors are same. If same, mesa has a logic to handle gracefully of not freeing fd if still in use",
+      "parentUuid": "d5a049f2_f567f8c8",
+      "revId": "ad31ece33e347528ddb632124311820c5a147b65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
