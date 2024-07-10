@@ -158,6 +158,7 @@ static wctrans_t wctrans_toupper = wctrans_t(2);
 wctrans_t wctrans(const char* name) {
   if (strcmp(name, "tolower") == 0) return wctrans_tolower;
   if (strcmp(name, "toupper") == 0) return wctrans_toupper;
+  errno = EINVAL;
   return nullptr;
 }
 
