@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6766be4_a9f017da",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-10T00:05:54Z",
+      "side": 0,
+      "message": "Added at the beginning of MapElfFile()",
+      "parentUuid": "0b7cc573_02558f14",
+      "revId": "aa530d55cd07b9db7ec9d1a9f1862988b7e81f0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2732be2e_29209d84",
@@ -91,6 +109,30 @@
       "side": 0,
       "message": "Hmm. I thought it was used somewhere else but rechecking now, seems it\u0027s another class named the same under framework/ there are not other users. So, yes, I think we can remove it completely.",
       "parentUuid": "2732be2e_29209d84",
+      "range": {
+        "startLine": 87,
+        "startChar": 2,
+        "endLine": 87,
+        "endChar": 20
+      },
+      "revId": "aa530d55cd07b9db7ec9d1a9f1862988b7e81f0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba0278c1_57974cb5",
+        "filename": "linker/linker_phdr.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-10T00:05:54Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "c4889b8e_d653cb07",
       "range": {
         "startLine": 87,
         "startChar": 2,
