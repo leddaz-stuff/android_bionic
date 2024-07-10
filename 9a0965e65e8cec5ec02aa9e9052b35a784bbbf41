@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d515e666_c4d1101f",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-07-10T23:35:33Z",
+      "side": 1,
+      "message": "I think this check also needs to be looking at file_offset_? That field is non-zero for loading an ELF file within a ZIP file (APK).\n\nBut in general, I\u0027m trying to figure out how we handle reads past the end of the ELF file. It seems like something that ought to generate a reliable error, but I can\u0027t tell what the old or new behavior is.\n\nWe really ought to flag attempts to read past the end of the ELF file in the the ZIP file, not just past the end of the ZIP file, but LoadTask is propagating the size of the fd, not the size of the ZIP entry. Also, I think this CL is going to map the entire ZIP file when one of the ELF files is loaded? The ZIP file could be large-ish, but I guess there are good reasons to keep an APK file small, so maybe it\u0027s fine.",
+      "revId": "9a0965e65e8cec5ec02aa9e9052b35a784bbbf41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
