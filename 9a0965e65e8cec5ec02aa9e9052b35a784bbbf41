@@ -128,6 +128,30 @@
       },
       "revId": "9a0965e65e8cec5ec02aa9e9052b35a784bbbf41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee8b43da_912277c3",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-11T16:40:08Z",
+      "side": 1,
+      "message": "In such a case, do we instantiate a new `ElfReader` object and call `ElfReader::Read()` for each .so file in this .zip file? I think that is the case because `file_offset_` would be different for each .so file and it\u0027s set inside the `ElfReader` constructor.\n\nIf so, I can change this mmap64() call to map only `[file_offset_, max(ends of all sections we read)]` area, so even if there are multiple .so files in this .zip file we will always be mapping sections from only one .so. Would that address this concern?",
+      "parentUuid": "28150458_143592ab",
+      "range": {
+        "startLine": 181,
+        "startChar": 94,
+        "endLine": 181,
+        "endChar": 95
+      },
+      "revId": "9a0965e65e8cec5ec02aa9e9052b35a784bbbf41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
