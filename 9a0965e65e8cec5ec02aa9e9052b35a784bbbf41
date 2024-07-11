@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e8549e79_1e2aeb15",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-11T14:03:17Z",
+      "side": 1,
+      "message": "Yes, you are right. If should be `if (file_size_ - file_offset_ \u003c static_cast\u003coff64_t\u003e(sizeof(header_)))`. Will fix.",
+      "parentUuid": "d515e666_c4d1101f",
+      "revId": "9a0965e65e8cec5ec02aa9e9052b35a784bbbf41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "abf4951a_6cd68e4d",
         "filename": "linker/linker_phdr.cpp",
         "patchSetId": 4
@@ -59,6 +77,30 @@
         "startChar": 37,
         "endLine": 181,
         "endChar": 43
+      },
+      "revId": "9a0965e65e8cec5ec02aa9e9052b35a784bbbf41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75143a4d_e317fb64",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-11T14:03:17Z",
+      "side": 1,
+      "message": "This mmap64 maps the entire file, that\u0027s why it\u0027s 0. I can optimize the area we map to cover only `[file_offset_, max(ends of all sections we read)]` if that\u0027s desirable. Mapping the whole file was just simpler.",
+      "parentUuid": "abf4951a_6cd68e4d",
+      "range": {
+        "startLine": 181,
+        "startChar": 94,
+        "endLine": 181,
+        "endChar": 95
       },
       "revId": "9a0965e65e8cec5ec02aa9e9052b35a784bbbf41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
