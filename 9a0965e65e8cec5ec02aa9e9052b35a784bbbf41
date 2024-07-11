@@ -152,6 +152,30 @@
       },
       "revId": "9a0965e65e8cec5ec02aa9e9052b35a784bbbf41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "709724cc_b6dc56de",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-11T16:55:27Z",
+      "side": 1,
+      "message": "\u003e do we instantiate...\n\ni think so, yes. see open_library_in_zipfile() for the magic of \"where do the file_offset values come from?\".\n\n\u003e Would that address this concern?\n\ni think so, yes, though obviously my judgement is worth less than rprichard\u0027s :-)",
+      "parentUuid": "ee8b43da_912277c3",
+      "range": {
+        "startLine": 181,
+        "startChar": 94,
+        "endLine": 181,
+        "endChar": 95
+      },
+      "revId": "9a0965e65e8cec5ec02aa9e9052b35a784bbbf41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
