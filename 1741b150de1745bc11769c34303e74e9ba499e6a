@@ -16,6 +16,24 @@
       "message": "These are the ones that go through ICU for the interesting cases, right? Turkish `\u0027i\u0027` and `\u0027I\u0027` would be easy tests for the slow path.",
       "revId": "1741b150de1745bc11769c34303e74e9ba499e6a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "330127d7_c5ddd9ba",
+        "filename": "tests/ctype_test.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-11T20:52:09Z",
+      "side": 1,
+      "message": "no, it\u0027s the functions with a `w` in their name that go via icu... and the dirty secret is that we _don\u0027t_ translate C `locale_t`s into equivalent icu4c objects. we probably could -- i don\u0027t know of any technical limitation there -- it\u0027s just never seemed convincingly useful because the POSIX APIs are so crap you really want _real_ icu4c. even here, for example, you can get Turkish/Azeri right, but you\u0027ll struggle with German[1].\n\n___\n1. unless you want to go with the post-2017 https://de.wikipedia.org/wiki/Gro%C3%9Fes_%C3%9F ... since you made me wonder, no, UnicodeData.txt does _not_ have U+1E9E as the uppercase of U+00DF, but it does have U+00DF as the lowercase of U+1E9E. (which isn\u0027t as mad as it might sound, until/unless it sees more widespread usage.)",
+      "parentUuid": "60207c9a_2685588b",
+      "revId": "1741b150de1745bc11769c34303e74e9ba499e6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
