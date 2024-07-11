@@ -176,6 +176,30 @@
       },
       "revId": "9a0965e65e8cec5ec02aa9e9052b35a784bbbf41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50ec5da7_4e6e66f1",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-11T16:57:22Z",
+      "side": 1,
+      "message": "Ok, I\u0027ll post a new version implementing that and let\u0027s see where we end up. Thanks!",
+      "parentUuid": "709724cc_b6dc56de",
+      "range": {
+        "startLine": 181,
+        "startChar": 94,
+        "endLine": 181,
+        "endChar": 95
+      },
+      "revId": "9a0965e65e8cec5ec02aa9e9052b35a784bbbf41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
