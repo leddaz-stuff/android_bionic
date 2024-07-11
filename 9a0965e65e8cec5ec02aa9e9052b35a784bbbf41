@@ -104,6 +104,30 @@
       },
       "revId": "9a0965e65e8cec5ec02aa9e9052b35a784bbbf41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28150458_143592ab",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-11T16:34:20Z",
+      "side": 1,
+      "message": "i think rprichard\u0027s point (which i\u0027d forgotten/didn\u0027t know) is that the \"open direct from zip file\" path comes through here too. in which case you might have a huge apk containing lots of .so files, and you\u0027d map the whole file for each .so file. that\u0027s potentially a lot of address space for ILP32. (the apk will contain all the java and assets and everything too, not just the .so files.)",
+      "parentUuid": "75143a4d_e317fb64",
+      "range": {
+        "startLine": 181,
+        "startChar": 94,
+        "endLine": 181,
+        "endChar": 95
+      },
+      "revId": "9a0965e65e8cec5ec02aa9e9052b35a784bbbf41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
