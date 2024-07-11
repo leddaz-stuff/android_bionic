@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60207c9a_2685588b",
+        "filename": "tests/ctype_test.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-07-11T20:19:37Z",
+      "side": 1,
+      "message": "These are the ones that go through ICU for the interesting cases, right? Turkish `\u0027i\u0027` and `\u0027I\u0027` would be easy tests for the slow path.",
+      "revId": "1741b150de1745bc11769c34303e74e9ba499e6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
