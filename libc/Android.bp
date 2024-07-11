@@ -2234,7 +2234,7 @@ cc_library_static {
 // NDK headers.
 // ========================================================
 
-versioned_ndk_headers {
+ndk_headers {
     name: "common_libc",
     from: "include",
     to: "",
