@@ -121,6 +121,24 @@
       "parentUuid": "984c7cb0_7c100e74",
       "revId": "6682ab0108c0a92862dcace2f5bdf422c6c1faa2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54f18684_59ecafa6",
+        "filename": "libc/bionic/libc_init_common.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 3227152
+      },
+      "writtenOn": "2024-07-12T05:19:14Z",
+      "side": 1,
+      "message": "I have removed shared cache size change for memset and made it same as previous config.",
+      "parentUuid": "d267caca_5f2f789b",
+      "revId": "6682ab0108c0a92862dcace2f5bdf422c6c1faa2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
