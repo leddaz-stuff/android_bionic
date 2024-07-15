@@ -352,11 +352,17 @@ cc_library {
 
         x86: {
             srcs: [
+<<<<<<< PATCH SET (0a6c85 Use builtins for the x86/x86-64 lrint family.)
+                "i387/fenv.c",
+=======
                 "fenv-x86.c",
                 "x86/lrint.S",
                 "x86/lrintf.S",
+>>>>>>> BASE      (add277 Merge "Remove the libm-global `#pragma STDC FENV_ACCESS ON` )
             ],
             exclude_srcs: [
+                "upstream-freebsd/lib/msun/src/s_llrint.c",
+                "upstream-freebsd/lib/msun/src/s_llrintf.c",
                 "upstream-freebsd/lib/msun/src/s_lrint.c",
                 "upstream-freebsd/lib/msun/src/s_lrintf.c",
             ],
@@ -368,9 +374,13 @@ cc_library {
 
         x86_64: {
             srcs: [
+<<<<<<< PATCH SET (0a6c85 Use builtins for the x86/x86-64 lrint family.)
+                "amd64/fenv.c",
+=======
                 "fenv-x86_64.c",
                 "x86_64/lrint.S",
                 "x86_64/lrintf.S",
+>>>>>>> BASE      (add277 Merge "Remove the libm-global `#pragma STDC FENV_ACCESS ON` )
             ],
             exclude_srcs: [
                 "upstream-freebsd/lib/msun/src/s_llrint.c",
