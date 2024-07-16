@@ -16,6 +16,24 @@
       "message": "given that there\u0027s no analysis in the bug, you\u0027ve tested this and it works? (if you\u0027ve done more analysis and know _why_ they\u0027re unhappy, please add it to the bug and commit message!)\n\ndo we actually benefit from lto in the linker, or do we want to just `lto: never` the linker, just like libc/libm?",
       "revId": "aede6ea8d39868c7bf358ee8ee4208a6431d5f57",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afa14bd1_e672bbc6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087625
+      },
+      "writtenOn": "2024-07-16T16:48:10Z",
+      "side": 1,
+      "message": "\u003e given that there\u0027s no analysis in the bug, you\u0027ve tested this and it works? (if you\u0027ve done more analysis and know why they\u0027re unhappy, please add it to the bug and commit message!)\n\nThe analysis was on an email thread, added to the bug.\n\n\u003e do we actually benefit from lto in the linker, or do we want to just lto: never the linker, just like libc/libm?\n\nWe haven\u0027t done any experiment on performance effect of `--lto-O2` on linker64, but we have no reason not to do it -- `--lto-O0` is known to be missing several critical optimization passes.",
+      "parentUuid": "28925db4_dc1e4516",
+      "revId": "aede6ea8d39868c7bf358ee8ee4208a6431d5f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
