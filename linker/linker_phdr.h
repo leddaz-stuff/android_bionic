@@ -39,6 +39,11 @@
 #include "linker_mapped_file_fragment.h"
 #include "linker_note_gnu_property.h"
 
+#define MAYBE_MAP_FLAG(x, from, to)  (((x) & (from)) ? (to) : 0)
+#define PFLAGS_TO_PROT(x)            (MAYBE_MAP_FLAG((x), PF_X, PROT_EXEC) | \
+                                      MAYBE_MAP_FLAG((x), PF_R, PROT_READ) | \
+                                      MAYBE_MAP_FLAG((x), PF_W, PROT_WRITE))
+
 class ElfReader {
  public:
   ElfReader();
@@ -59,6 +64,8 @@ class ElfReader {
   bool is_mapped_by_caller() const { return mapped_by_caller_; }
   ElfW(Addr) entry_point() const { return header_.e_entry + load_bias_; }
   bool should_pad_segments() const { return should_pad_segments_; }
+  ElfW(Addr) compat_relro_start() const { return compat_relro_start_; }
+  ElfW(Addr) compat_relro_size() const { return compat_relro_size_; }
 
  private:
   [[nodiscard]] bool ReadElfHeader();
@@ -69,6 +76,7 @@ class ElfReader {
   [[nodiscard]] bool ReadPadSegmentNote();
   [[nodiscard]] bool ReserveAddressSpace(address_space_params* address_space);
   [[nodiscard]] bool LoadSegments();
+  [[nodiscard]] bool LoadSegments4kbCompat();
   [[nodiscard]] bool FindPhdr();
   [[nodiscard]] bool FindGnuPropertySection();
   [[nodiscard]] bool CheckPhdr(ElfW(Addr));
@@ -117,6 +125,10 @@ class ElfReader {
 
   // Pad gaps between segments when memory mapping?
   bool should_pad_segments_ = false;
+
+  // RELRO region for compat loading
+  ElfW(Addr) compat_relro_start_ = 0;
+  ElfW(Addr) compat_relro_size_ = 0;
 
   // Only used by AArch64 at the moment.
   GnuPropertySection note_gnu_property_ __unused;
