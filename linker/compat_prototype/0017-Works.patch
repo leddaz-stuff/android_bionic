@@ -1,0 +1,230 @@
+From 29e02b3b6acb6891fe2badeaeb463df829be60c6 Mon Sep 17 00:00:00 2001
+From: Kalesh Singh <kaleshsingh@google.com>
+Date: Tue, 23 Jul 2024 13:34:36 -0700
+Subject: [PATCH 17/20] Works :)
+
+Change-Id: I7351f086277f438189ceee90d12ea9fd4307fe69
+---
+ linker/linker.cpp             | 11 +++++++++++
+ linker/linker_globals.h       |  2 +-
+ linker/linker_main.cpp        |  5 +++++
+ linker/linker_phdr.cpp        |  9 +++++++++
+ linker/linker_phdr_compat.cpp | 18 +++++++++++++-----
+ 5 files changed, 39 insertions(+), 6 deletions(-)
+
+diff --git a/linker/linker.cpp b/linker/linker.cpp
+index 935cc71a6..2e96d2dea 100644
+--- a/linker/linker.cpp
++++ b/linker/linker.cpp
+@@ -1692,8 +1692,12 @@ bool find_libraries(android_namespace_t* ns,
+   for (auto&& task : load_list) {
+     address_space_params* address_space =
+         (reserved_address_recursive || !task->is_dt_needed()) ? &extinfo_params : &default_params;
++    DL_ERR_LOADER_TEST("find_libraries: Loading %s", task->get_soinfo()->get_soname());
+     if (!task->load(address_space)) {
++      DL_ERR_LOADER_TEST("find_libraries: Loading %s failed", task->get_soinfo()->get_soname());
+       return false;
++    } else {
++      DL_ERR_LOADER_TEST("find_libraries: Loading %s success", task->get_soinfo()->get_soname());
+     }
+   }
+ 
+@@ -1701,6 +1705,7 @@ bool find_libraries(android_namespace_t* ns,
+   bool any_memtag_stack = false;
+   for (auto&& task : load_tasks) {
+     soinfo* si = task->get_soinfo();
++    DL_ERR_LOADER_TEST("find_libraries: Prelinking %s", si->get_soname());
+     if (!si->is_linked() && !si->prelink_image()) {
+       return false;
+     }
+@@ -2837,22 +2842,27 @@ bool relocate_relr(const ElfW(Relr)* begin, const ElfW(Relr)* end, ElfW(Addr) lo
+ static soinfo_list_t g_empty_list;
+ 
+ bool soinfo::prelink_image() {
++  DL_ERR_LOADER_TEST("%s: prelink_image: start", get_soname());
+   if (flags_ & FLAG_PRELINKED) return true;
+   /* Extract dynamic section */
++  DL_ERR_LOADER_TEST("%s: prelink_image: load_bias = %p", get_soname(), reinterpret_cast<void*>(load_bias));
+   ElfW(Word) dynamic_flags = 0;
+   phdr_table_get_dynamic_section(phdr, phnum, load_bias, &dynamic, &dynamic_flags);
++  DL_ERR_LOADER_TEST("prelink_image: dynamic_flags = %p, dynamic = %p", reinterpret_cast<void*>(dynamic_flags), reinterpret_cast<void*>(dynamic));
+ 
+   /* We can't log anything until the linker is relocated */
+   bool relocating_linker = (flags_ & FLAG_LINKER) != 0;
+   if (!relocating_linker) {
+     INFO("[ Linking \"%s\" ]", get_realpath());
+     DEBUG("si->base = %p si->flags = 0x%08x", reinterpret_cast<void*>(base), flags_);
++    DL_ERR_LOADER_TEST("prelink_image: !relocating_linker");
+   }
+ 
+   if (dynamic == nullptr) {
+     if (!relocating_linker) {
+       DL_ERR("missing PT_DYNAMIC in \"%s\"", get_realpath());
+     }
++    DL_ERR_LOADER_TEST("prelink_image: dynamic == nullptr");
+     return false;
+   } else {
+     if (!relocating_linker) {
+@@ -2865,6 +2875,7 @@ bool soinfo::prelink_image() {
+                                   &ARM_exidx, &ARM_exidx_count);
+ #endif
+ 
++  DL_ERR_LOADER_TEST("prelink_image: Doing TLS stuff now");
+   TlsSegment tls_segment;
+   if (__bionic_get_tls_segment(phdr, phnum, load_bias, &tls_segment)) {
+     // The loader does not (currently) support ELF TLS, so it shouldn't have
+diff --git a/linker/linker_globals.h b/linker/linker_globals.h
+index 7e29d7100..0d028224c 100644
+--- a/linker/linker_globals.h
++++ b/linker/linker_globals.h
+@@ -81,7 +81,7 @@ void DL_WARN_documented_change(int api_level, const char* doc_link, const char*
+ #define DL_ERR_LOADER_TEST(fmt, x...) \
+   do { \
+     if (IsLoaderTest()) { \
+-      fprintf(stderr, "[%s]" fmt "\n", "LOADER COMPAT", ##x); \
++      fprintf(stderr, "[%s] " fmt "\n", "LOADER COMPAT", ##x); \
+     } \
+   } while (false)
+ 
+diff --git a/linker/linker_main.cpp b/linker/linker_main.cpp
+index 2b230a870..fccc1ea6a 100644
+--- a/linker/linker_main.cpp
++++ b/linker/linker_main.cpp
+@@ -204,6 +204,7 @@ struct ExecutableInfo {
+   size_t phdr_count;
+   ElfW(Addr) entry_point;
+   bool should_pad_segments;
++  ElfW(Addr) load_bias;
+ };
+ 
+ static ExecutableInfo get_executable_info(const char* arg_path) {
+@@ -293,6 +294,10 @@ static ExecutableInfo load_executable(const char* orig_path) {
+   result.phdr_count = elf_reader.phdr_count();
+   result.entry_point = elf_reader.entry_point();
+   result.should_pad_segments = elf_reader.should_pad_segments();
++  result.load_bias = elf_reader.load_bias();
++
++  DL_ERR_LOADER_TEST("ExecInfo::load_bias = %p", result.load_bias);
++
+   return result;
+ }
+ 
+diff --git a/linker/linker_phdr.cpp b/linker/linker_phdr.cpp
+index 00ce98b74..4bb15b1ea 100644
+--- a/linker/linker_phdr.cpp
++++ b/linker/linker_phdr.cpp
+@@ -36,6 +36,7 @@
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include <unistd.h>
++#include <stdlib.h>
+ 
+ #include "linker.h"
+ #include "linker_dlwarning.h"
+@@ -1395,15 +1396,20 @@ int phdr_table_get_arm_exidx(const ElfW(Phdr)* phdr_table, size_t phdr_count,
+ void phdr_table_get_dynamic_section(const ElfW(Phdr)* phdr_table, size_t phdr_count,
+                                     ElfW(Addr) load_bias, ElfW(Dyn)** dynamic,
+                                     ElfW(Word)* dynamic_flags) {
++  DL_ERR_LOADER_TEST("phdr_table_get_dynamic_section: load_bias = %p", reinterpret_cast<void*>(load_bias));
+   *dynamic = nullptr;
+   for (size_t i = 0; i<phdr_count; ++i) {
++    DL_ERR_LOADER_TEST("phdr_table_get_dynamic_section: phdr # %zu", i);
+     const ElfW(Phdr)& phdr = phdr_table[i];
+     if (phdr.p_type == PT_DYNAMIC) {
++      DL_ERR_LOADER_TEST("phdr_table_get_dynamic_section: found dynamic section: vaddr = %p", reinterpret_cast<void*>(phdr.p_vaddr));
+       *dynamic = reinterpret_cast<ElfW(Dyn)*>(load_bias + phdr.p_vaddr);
+       if (dynamic_flags) {
+         *dynamic_flags = phdr.p_flags;
+       }
+       return;
++    } else {
++      DL_ERR_LOADER_TEST("phdr_table_get_dynamic_section: section is not dynamic: vaddr = %p", reinterpret_cast<void*>(phdr.p_vaddr));
+     }
+   }
+ }
+@@ -1434,9 +1440,11 @@ const char* phdr_table_get_interpreter_name(const ElfW(Phdr)* phdr_table, size_t
+ bool ElfReader::FindPhdr() {
+   const ElfW(Phdr)* phdr_limit = phdr_table_ + phdr_num_;
+ 
++  DL_ERR_LOADER_TEST("%s: FindPhdr: Start", name_.c_str());
+   // If there is a PT_PHDR, use it directly.
+   for (const ElfW(Phdr)* phdr = phdr_table_; phdr < phdr_limit; ++phdr) {
+     if (phdr->p_type == PT_PHDR) {
++      DL_ERR_LOADER_TEST("%s: FindPhdr: Found phdr segment: at %p", name_.c_str(), reinterpret_cast<void*>(load_bias_ + phdr->p_vaddr));
+       return CheckPhdr(load_bias_ + phdr->p_vaddr);
+     }
+   }
+@@ -1450,6 +1458,7 @@ bool ElfReader::FindPhdr() {
+         ElfW(Addr)  elf_addr = load_bias_ + phdr->p_vaddr;
+         const ElfW(Ehdr)* ehdr = reinterpret_cast<const ElfW(Ehdr)*>(elf_addr);
+         ElfW(Addr)  offset = ehdr->e_phoff;
++      DL_ERR_LOADER_TEST("%s: FindPhdr: Assume phdr in first loadable segment at %p", name_.c_str(), reinterpret_cast<void*>(reinterpret_cast<ElfW(Addr)>(ehdr) + offset));
+         return CheckPhdr(reinterpret_cast<ElfW(Addr)>(ehdr) + offset);
+       }
+       break;
+diff --git a/linker/linker_phdr_compat.cpp b/linker/linker_phdr_compat.cpp
+index f7fcc3cae..8f369da65 100644
+--- a/linker/linker_phdr_compat.cpp
++++ b/linker/linker_phdr_compat.cpp
+@@ -175,6 +175,7 @@ int phdr_table_protect_gnu_relro_compat(ElfW(Addr) start, ElfW(Addr) size) {
+ }
+ 
+ bool ElfReader::LoadSegments4kbCompat() {
++  DL_ERR_LOADER_TEST("%s: LoadSegments4kbCompat: start", name_.c_str());
+   ElfW(Addr) perm_boundary_vaddr;
+ 
+   if (!rx_rw_vaddr(phdr_table_, phdr_num_, &perm_boundary_vaddr, name_.c_str())) {
+@@ -184,7 +185,7 @@ bool ElfReader::LoadSegments4kbCompat() {
+   ElfW(Addr) perm_offset = perm_boundary_offset(perm_boundary_vaddr);
+ 
+   ElfW(Addr) load_bias = load_bias_ + perm_offset;
+-  load_bias_ = load_bias;
++  DL_ERR_LOADER_TEST("%s: load_bias_ old = %p, load_bias new = %p", name_.c_str(), reinterpret_cast<void*>(load_bias_), reinterpret_cast<void*>(load_bias));
+ 
+   // Make .data ... .bss region RW only (not X)
+   ElfW(Addr) rw_start = load_bias + perm_boundary_vaddr;
+@@ -218,8 +219,8 @@ bool ElfReader::LoadSegments4kbCompat() {
+     ElfW(Addr) seg_start = phdr->p_vaddr + load_bias;
+     ElfW(Addr) seg_end = seg_start + phdr->p_memsz;
+ 
+-    ElfW(Addr) seg_page_start = page_start(seg_start);
+-    ElfW(Addr) seg_page_end = page_end(seg_end);
++    ElfW(Addr) seg_page_start = page_start_compat(seg_start);
++    ElfW(Addr) seg_page_end = page_end_compat(seg_end);
+ 
+     ElfW(Addr) seg_file_end = seg_start + phdr->p_filesz;
+ 
+@@ -227,7 +228,7 @@ bool ElfReader::LoadSegments4kbCompat() {
+     ElfW(Addr) file_start = phdr->p_offset;
+     ElfW(Addr) file_end = file_start + phdr->p_filesz;
+ 
+-    ElfW(Addr) file_page_start = page_start(file_start);
++    ElfW(Addr) file_page_start = page_start_compat(file_start);
+     ElfW(Addr) file_length = file_end - file_page_start;
+ 
+     if (file_size_ <= 0) {
+@@ -274,7 +275,7 @@ bool ElfReader::LoadSegments4kbCompat() {
+     // usually need to zero-fill it until the page limit; however in this case the
+     // mapping is anonymous, so it is not needed.
+ 
+-    seg_file_end = page_end(seg_file_end);
++    seg_file_end = page_end_compat(seg_file_end);
+ 
+     // NOTE: We do not need to handle .bss since the mapping reservation is
+     // anonymous and RW.
+@@ -283,5 +284,12 @@ bool ElfReader::LoadSegments4kbCompat() {
+     std::string compat_name = name_ + " (compat loaded)";
+     prctl(PR_SET_VMA, PR_SET_VMA_ANON_NAME, load_start_, load_size_ - rw_size, compat_name.c_str());
+   }
++
++  memset(reinterpret_cast<void*>(load_bias_), 0, load_bias - load_bias_);
++
++  // TODO: revisit this
++  load_bias_ = load_bias;
++
++  DL_ERR_LOADER_TEST("%s: LoadSegments4kbCompat: end", name_.c_str());
+   return true;
+ }
+-- 
+2.45.2.1089.g2a221341d9-goog
+

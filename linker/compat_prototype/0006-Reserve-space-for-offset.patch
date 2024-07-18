@@ -1,0 +1,71 @@
+From d35c5ad845de09f5ea3601a9fcfb976b11a2ea53 Mon Sep 17 00:00:00 2001
+From: Kalesh Singh <kaleshsingh@google.com>
+Date: Thu, 18 Jul 2024 15:48:44 -0700
+Subject: [PATCH 06/20] Reserve space for offset
+
+Change-Id: Ia048bb6310c82d72f21a20498ae9aef728cc6d37
+---
+ linker/linker_phdr.cpp        | 8 ++++++--
+ linker/linker_phdr_compat.cpp | 2 +-
+ linker/linker_phdr_compat.h   | 2 +-
+ 3 files changed, 8 insertions(+), 4 deletions(-)
+
+diff --git a/linker/linker_phdr.cpp b/linker/linker_phdr.cpp
+index 29f3981dc..a729e7f08 100644
+--- a/linker/linker_phdr.cpp
++++ b/linker/linker_phdr.cpp
+@@ -664,6 +664,10 @@ bool ElfReader::ReserveAddressSpace(address_space_params* address_space) {
+     return false;
+   }
+ 
++  if (loader_4kb_compat_enabled() && min_palign(phdr_table_, phdr_num_) < kPageSize) {
++    load_size_ = page_end(load_size_ + 12*1024);
++  }
++
+   uint8_t* addr = reinterpret_cast<uint8_t*>(min_vaddr);
+   void* start;
+ 
+@@ -702,7 +706,7 @@ bool ElfReader::ReserveAddressSpace(address_space_params* address_space) {
+ 
+ 
+ 
+-  if (min_load_alignment(phdr_table_, phdr_num_) < kPageSize && loader_4kb_compat_enabled()) {
++  if (min_palign(phdr_table_, phdr_num_) < kPageSize && loader_4kb_compat_enabled()) {
+     mprotect(reinterpret_cast<void*>(start), load_size_, PROT_READ|PROT_WRITE|PROT_EXEC);
+   }
+   return true;
+@@ -832,7 +836,7 @@ static inline void _extend_load_segment_vma(const ElfW(Phdr)* phdr_table, size_t
+ }
+ 
+ bool ElfReader::LoadSegments() {
+-  if (min_load_alignment(phdr_table_, phdr_num_) < kPageSize && loader_4kb_compat_enabled()) {
++  if (min_palign(phdr_table_, phdr_num_) < kPageSize && loader_4kb_compat_enabled()) {
+     return LoadSegments4kbCompat();
+   }
+ 
+diff --git a/linker/linker_phdr_compat.cpp b/linker/linker_phdr_compat.cpp
+index 3660ac226..1601acf93 100644
+--- a/linker/linker_phdr_compat.cpp
++++ b/linker/linker_phdr_compat.cpp
+@@ -44,7 +44,7 @@ bool loader_4kb_compat_enabled() {
+   return true;
+ }
+ 
+-ElfW(Addr) min_load_alignment(const ElfW(Phdr)* phdr_table, size_t phdr_count) {
++ElfW(Addr) min_palign(const ElfW(Phdr)* phdr_table, size_t phdr_count) {
+   ElfW(Addr) min_align = UINTPTR_MAX;
+ 
+   for (size_t i = 0; i < phdr_count; ++i) {
+diff --git a/linker/linker_phdr_compat.h b/linker/linker_phdr_compat.h
+index 77d78fd89..9c58e05ba 100644
+--- a/linker/linker_phdr_compat.h
++++ b/linker/linker_phdr_compat.h
+@@ -33,4 +33,4 @@
+ 
+ bool loader_4kb_compat_enabled();
+ 
+-ElfW(Addr) min_load_alignment(const ElfW(Phdr)* phdr_table, size_t phdr_count);
++ElfW(Addr) min_palign(const ElfW(Phdr)* phdr_table, size_t phdr_count);
+-- 
+2.45.2.1089.g2a221341d9-goog
+

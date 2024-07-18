@@ -1,0 +1,58 @@
+From 90eb99f61734611722ea575260722a8e9da00e19 Mon Sep 17 00:00:00 2001
+From: Kalesh Singh <kaleshsingh@google.com>
+Date: Mon, 22 Jul 2024 09:19:03 -0700
+Subject: [PATCH 12/20] Add Loader debug macro
+
+Change-Id: Id4c98a5a6458edc570669d6c7510813da93a3dd0
+---
+ linker/linker_globals.h | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+
+diff --git a/linker/linker_globals.h b/linker/linker_globals.h
+index 0cb7ca9b6..abef1f617 100644
+--- a/linker/linker_globals.h
++++ b/linker/linker_globals.h
+@@ -36,6 +36,26 @@
+ 
+ #include <async_safe/log.h>
+ 
++#include <android-base/file.h>
++
++static inline bool IsComm(const std::string comm) {
++  std::string content;
++
++  if (!android::base::ReadFileToString("/proc/self/cmdline", &content)) {
++    return false;
++  }
++
++  if (content.find(comm) != std::string::npos) {
++    return true;
++  }
++
++  return false;
++}
++
++static inline bool IsLoaderTest() {
++  return IsComm("loader_test");
++}
++
+ #define DL_ERR(fmt, x...) \
+     do { \
+       async_safe_format_buffer(linker_get_error_buffer(), linker_get_error_buffer_size(), fmt, ##x); \
+@@ -57,6 +77,13 @@ void DL_WARN_documented_change(int api_level, const char* doc_link, const char*
+     PRINT(fmt, ##x); \
+   } while (false)
+ 
++#define DL_ERR_LOADER_TEST(fmt, x...) \
++  do { \
++    if (IsLoaderTest()) { \
++      DL_ERR_AND_LOG("[%s]" fmt, "LOADER COMPAT", ##x); \
++    } \
++  } while (false)
++
+ #define DL_OPEN_ERR(fmt, x...) \
+   do { \
+     DL_ERR(fmt, ##x); \
+-- 
+2.45.2.1089.g2a221341d9-goog
+

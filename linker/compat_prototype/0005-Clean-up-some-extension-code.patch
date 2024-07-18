@@ -1,0 +1,42 @@
+From 2e5916272bbb5bc2a464260d1e6762d422cc4552 Mon Sep 17 00:00:00 2001
+From: Kalesh Singh <kaleshsingh@google.com>
+Date: Thu, 18 Jul 2024 15:35:45 -0700
+Subject: [PATCH 05/20] Clean up some extension code
+
+Change-Id: I70f351d6fe582da0e566bf51813b7375ac5afe38
+---
+ linker/linker_phdr_compat.cpp | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
+
+diff --git a/linker/linker_phdr_compat.cpp b/linker/linker_phdr_compat.cpp
+index 3e59d5104..3660ac226 100644
+--- a/linker/linker_phdr_compat.cpp
++++ b/linker/linker_phdr_compat.cpp
+@@ -74,21 +74,18 @@ bool ElfReader::LoadSegments4kbCompat() {
+       continue;
+     }
+ 
+-    ElfW(Addr) p_memsz = phdr->p_memsz;
+-    ElfW(Addr) p_filesz = phdr->p_filesz;
+-
+     // Segment addresses in memory.
+     ElfW(Addr) seg_start = phdr->p_vaddr + load_bias_;
+-    ElfW(Addr) seg_end = seg_start + p_memsz;
++    ElfW(Addr) seg_end = seg_start + phdr->p_memsz;
+ 
+     ElfW(Addr) seg_page_start = page_start(seg_start);
+     ElfW(Addr) seg_page_end = page_end(seg_end);
+ 
+-    ElfW(Addr) seg_file_end = seg_start + p_filesz;
++    ElfW(Addr) seg_file_end = seg_start + phdr->p_filesz;
+ 
+     // File offsets.
+     ElfW(Addr) file_start = phdr->p_offset;
+-    ElfW(Addr) file_end = file_start + p_filesz;
++    ElfW(Addr) file_end = file_start + phdr->p_filesz;
+ 
+     ElfW(Addr) file_page_start = page_start(file_start);
+     ElfW(Addr) file_length = file_end - file_page_start;
+-- 
+2.45.2.1089.g2a221341d9-goog
+

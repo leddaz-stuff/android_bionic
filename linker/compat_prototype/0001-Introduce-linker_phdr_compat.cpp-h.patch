@@ -1,0 +1,212 @@
+From 42149706e5c82e9d16ca43d3f494379e5ba5076b Mon Sep 17 00:00:00 2001
+From: Kalesh Singh <kaleshsingh@google.com>
+Date: Thu, 18 Jul 2024 13:52:56 -0700
+Subject: [PATCH 01/20] Introduce linker_phdr_compat.cpp/h
+
+Change-Id: I74d48d54d516a05333fea13365353a5a94bf6e8d
+---
+ linker/Android.bp             |  1 +
+ linker/linker_phdr.cpp        | 46 +++++++++++++++++++----------
+ linker/linker_phdr_compat.cpp | 55 +++++++++++++++++++++++++++++++++++
+ linker/linker_phdr_compat.h   | 36 +++++++++++++++++++++++
+ 4 files changed, 123 insertions(+), 15 deletions(-)
+ create mode 100644 linker/linker_phdr_compat.cpp
+ create mode 100644 linker/linker_phdr_compat.h
+
+diff --git a/linker/Android.bp b/linker/Android.bp
+index d82e687b2..6e119a14e 100644
+--- a/linker/Android.bp
++++ b/linker/Android.bp
+@@ -184,6 +184,7 @@ filegroup {
+         "linker_mapped_file_fragment.cpp",
+         "linker_note_gnu_property.cpp",
+         "linker_phdr.cpp",
++        "linker_phdr_compat.cpp",
+         "linker_relocate.cpp",
+         "linker_sdk_versions.cpp",
+         "linker_soinfo.cpp",
+diff --git a/linker/linker_phdr.cpp b/linker/linker_phdr.cpp
+index b9229caef..b5d3fefc5 100644
+--- a/linker/linker_phdr.cpp
++++ b/linker/linker_phdr.cpp
+@@ -27,6 +27,7 @@
+  */
+ 
+ #include "linker_phdr.h"
++#include "linker_phdr_compat.h"
+ 
+ #include <errno.h>
+ #include <string.h>
+@@ -703,6 +704,12 @@ bool ElfReader::ReserveAddressSpace(address_space_params* address_space) {
+ 
+   load_start_ = start;
+   load_bias_ = reinterpret_cast<uint8_t*>(start) - addr;
++
++
++
++  if (min_load_alignment(phdr_table_, phdr_num_) < kPageSize && loader_4kb_compat_enabled()) {
++    mprotect(reinterpret_cast<void*>(start), load_size_, PROT_READ|PROT_WRITE|PROT_EXEC);
++  }
+   return true;
+ }
+ 
+@@ -886,22 +893,27 @@ bool ElfReader::LoadSegments() {
+         add_dlwarning(name_.c_str(), "W+E load segments");
+       }
+ 
+-      void* seg_addr = mmap64(reinterpret_cast<void*>(seg_page_start),
+-                            file_length,
+-                            prot,
+-                            MAP_FIXED|MAP_PRIVATE,
+-                            fd_,
+-                            file_offset_ + file_page_start);
+-      if (seg_addr == MAP_FAILED) {
+-        DL_ERR("couldn't map \"%s\" segment %zd: %s", name_.c_str(), i, strerror(errno));
+-        return false;
+-      }
++      if (phdr->p_align < kPageSize && loader_4kb_compat_enabled()) {
++        lseek(fd_, file_offset_ + file_page_start, SEEK_SET);
++        read(fd_, reinterpret_cast<void*>(seg_page_start), file_length);
++      } else {
++        void* seg_addr = mmap64(reinterpret_cast<void*>(seg_page_start),
++                              file_length,
++                              prot,
++                              MAP_FIXED|MAP_PRIVATE,
++                              fd_,
++                              file_offset_ + file_page_start);
++        if (seg_addr == MAP_FAILED) {
++          DL_ERR("couldn't map \"%s\" segment %zd: %s", name_.c_str(), i, strerror(errno));
++          return false;
++        }
+ 
+-      // Mark segments as huge page eligible if they meet the requirements
+-      // (executable and PMD aligned).
+-      if ((phdr->p_flags & PF_X) && phdr->p_align == kPmdSize &&
+-          get_transparent_hugepages_supported()) {
+-        madvise(seg_addr, file_length, MADV_HUGEPAGE);
++        // Mark segments as huge page eligible if they meet the requirements
++        // (executable and PMD aligned).
++        if ((phdr->p_flags & PF_X) && phdr->p_align == kPmdSize &&
++            get_transparent_hugepages_supported()) {
++          madvise(seg_addr, file_length, MADV_HUGEPAGE);
++        }
+       }
+     }
+ 
+@@ -1127,6 +1139,10 @@ static int _phdr_table_set_gnu_relro_prot(const ElfW(Phdr)* phdr_table, size_t p
+   const ElfW(Phdr)* phdr = phdr_table;
+   const ElfW(Phdr)* phdr_limit = phdr + phdr_count;
+ 
++  if (loader_4kb_compat_enabled()) {
++    return 0;
++  }
++
+   for (phdr = phdr_table; phdr < phdr_limit; phdr++) {
+     if (phdr->p_type != PT_GNU_RELRO) {
+       continue;
+diff --git a/linker/linker_phdr_compat.cpp b/linker/linker_phdr_compat.cpp
+new file mode 100644
+index 000000000..d82a45c89
+--- /dev/null
++++ b/linker/linker_phdr_compat.cpp
+@@ -0,0 +1,55 @@
++/*
++ * Copyright (C) 2024 The Android Open Source Project
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *  * Redistributions of source code must retain the above copyright
++ *    notice, this list of conditions and the following disclaimer.
++ *  * Redistributions in binary form must reproduce the above copyright
++ *    notice, this list of conditions and the following disclaimer in
++ *    the documentation and/or other materials provided with the
++ *    distribution.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++ * FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++ * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
++ * OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
++ * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
++ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
++ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
++ * SUCH DAMAGE.
++ */
++
++#include "linker_phdr_compat.h"
++
++bool loader_4kb_compat_enabled() {
++  return true;
++}
++
++ElfW(Addr) min_load_alignment(const ElfW(Phdr)* phdr_table, size_t phdr_count) {
++  ElfW(Addr) min_align = UINTPTR_MAX;
++
++  for (size_t i = 0; i < phdr_count; ++i) {
++    const ElfW(Phdr)* phdr = &phdr_table[i];
++
++    if (phdr->p_type != PT_LOAD) {
++      continue;
++    }
++
++    if (phdr->p_align < min_align) {
++      min_align = phdr->p_align;
++    }
++  }
++
++  if (min_align == UINTPTR_MAX) {
++    min_align = 0;
++  }
++
++  return min_align;
++}
+diff --git a/linker/linker_phdr_compat.h b/linker/linker_phdr_compat.h
+new file mode 100644
+index 000000000..77d78fd89
+--- /dev/null
++++ b/linker/linker_phdr_compat.h
+@@ -0,0 +1,36 @@
++/*
++ * Copyright (C) 2024 The Android Open Source Project
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ *  * Redistributions of source code must retain the above copyright
++ *    notice, this list of conditions and the following disclaimer.
++ *  * Redistributions in binary form must reproduce the above copyright
++ *    notice, this list of conditions and the following disclaimer in
++ *    the documentation and/or other materials provided with the
++ *    distribution.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
++ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
++ * FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
++ * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
++ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
++ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
++ * OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
++ * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
++ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
++ * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
++ * SUCH DAMAGE.
++ */
++
++#pragma once
++
++#include <elf.h>
++#include <link.h>
++
++bool loader_4kb_compat_enabled();
++
++ElfW(Addr) min_load_alignment(const ElfW(Phdr)* phdr_table, size_t phdr_count);
+-- 
+2.45.2.1089.g2a221341d9-goog
+
