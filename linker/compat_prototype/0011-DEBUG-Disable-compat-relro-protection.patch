@@ -1,0 +1,28 @@
+From b8d001b12a2cf28689af1f54a361d05748a604c1 Mon Sep 17 00:00:00 2001
+From: Kalesh Singh <kaleshsingh@google.com>
+Date: Fri, 19 Jul 2024 13:40:54 -0700
+Subject: [PATCH 11/20] DEBUG: Disable compat relro protection
+
+Change-Id: I5f8b4c5455d5c0e7497cb70531d9872174981d09
+---
+ linker/linker_phdr_compat.cpp | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/linker/linker_phdr_compat.cpp b/linker/linker_phdr_compat.cpp
+index 96f7054b8..dac841763 100644
+--- a/linker/linker_phdr_compat.cpp
++++ b/linker/linker_phdr_compat.cpp
+@@ -153,6 +153,10 @@ static inline int _phdr_table_set_gnu_relro_prot_compat(ElfW(Addr) start, ElfW(A
+ }
+ 
+ int phdr_table_protect_gnu_relro_compat(ElfW(Addr) start, ElfW(Addr) size) {
++  // TODO: Remove this once we debug why compat relro protection isn't working
++  if (true) {
++    return 0;
++  }
+   return _phdr_table_set_gnu_relro_prot_compat(start, size, PROT_READ|PROT_EXEC);
+ }
+ 
+-- 
+2.45.2.1089.g2a221341d9-goog
+

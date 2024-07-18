@@ -1,0 +1,72 @@
+From 4775d744853286603ab78fd18edd03484ab0d2bf Mon Sep 17 00:00:00 2001
+From: Kalesh Singh <kaleshsingh@google.com>
+Date: Fri, 19 Jul 2024 13:32:28 -0700
+Subject: [PATCH 10/20] Implement protect_relro_compat
+
+Change-Id: I8efe51de8320a5557f0048cf32dcd857f3fd3d0b
+---
+ linker/linker.cpp             | 10 ++++++++++
+ linker/linker_phdr_compat.cpp |  8 ++++++++
+ linker/linker_phdr_compat.h   |  2 ++
+ 3 files changed, 20 insertions(+)
+
+diff --git a/linker/linker.cpp b/linker/linker.cpp
+index caddbe2f0..935cc71a6 100644
+--- a/linker/linker.cpp
++++ b/linker/linker.cpp
+@@ -66,6 +66,7 @@
+ #include "linker_namespaces.h"
+ #include "linker_sleb128.h"
+ #include "linker_phdr.h"
++#include "linker_phdr_compat.h"
+ #include "linker_relocate.h"
+ #include "linker_tls.h"
+ #include "linker_translate_path.h"
+@@ -3419,6 +3420,15 @@ bool soinfo::link_image(const SymbolLookupList& lookup_list, soinfo* local_group
+ }
+ 
+ bool soinfo::protect_relro() {
++  if (loader_4kb_compat_enabled() && min_palign(phdr, phnum) < page_size()) {
++    if (phdr_table_protect_gnu_relro_compat(compat_relro_start_, compat_relro_size_) < 0) {
++      DL_ERR_AND_LOG("can't enable COMPAT GNU RELRO protection for \"%s\": %s",
++             get_realpath(), strerror(errno));
++      return false;
++    }
++    return true;
++  }
++
+   if (phdr_table_protect_gnu_relro(phdr, phnum, load_bias, should_pad_segments_) < 0) {
+     DL_ERR("can't enable GNU RELRO protection for \"%s\": %s",
+            get_realpath(), strerror(errno));
+diff --git a/linker/linker_phdr_compat.cpp b/linker/linker_phdr_compat.cpp
+index 5e57e42c6..96f7054b8 100644
+--- a/linker/linker_phdr_compat.cpp
++++ b/linker/linker_phdr_compat.cpp
+@@ -148,6 +148,14 @@ ElfW(Addr) perm_boundary_offset(const ElfW(Addr) vaddr) {
+   return offset ? page_size() - page_offset(vaddr) : 0;
+ }
+ 
++static inline int _phdr_table_set_gnu_relro_prot_compat(ElfW(Addr) start, ElfW(Addr) size, int prot_flags) {
++  return mprotect(reinterpret_cast<void*>(start), size, prot_flags);
++}
++
++int phdr_table_protect_gnu_relro_compat(ElfW(Addr) start, ElfW(Addr) size) {
++  return _phdr_table_set_gnu_relro_prot_compat(start, size, PROT_READ|PROT_EXEC);
++}
++
+ bool ElfReader::LoadSegments4kbCompat() {
+   ElfW(Addr) perm_boundary_vaddr;
+ 
+diff --git a/linker/linker_phdr_compat.h b/linker/linker_phdr_compat.h
+index 9c58e05ba..4f1a5e690 100644
+--- a/linker/linker_phdr_compat.h
++++ b/linker/linker_phdr_compat.h
+@@ -34,3 +34,5 @@
+ bool loader_4kb_compat_enabled();
+ 
+ ElfW(Addr) min_palign(const ElfW(Phdr)* phdr_table, size_t phdr_count);
++
++int phdr_table_protect_gnu_relro_compat(ElfW(Addr) start, ElfW(Addr) size);
+-- 
+2.45.2.1089.g2a221341d9-goog
+

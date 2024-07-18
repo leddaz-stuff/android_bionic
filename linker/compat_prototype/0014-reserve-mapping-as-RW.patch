@@ -1,0 +1,26 @@
+From d46412367fef5b5b91591514fdad97ec942dea7d Mon Sep 17 00:00:00 2001
+From: Kalesh Singh <kaleshsingh@google.com>
+Date: Mon, 22 Jul 2024 16:28:55 -0700
+Subject: [PATCH 14/20] reserve mapping as RW
+
+Change-Id: Ib3f0c464342ddef7f89976f449be0ac5b6cbffd1
+---
+ linker/linker_phdr.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/linker/linker_phdr.cpp b/linker/linker_phdr.cpp
+index a729e7f08..00ce98b74 100644
+--- a/linker/linker_phdr.cpp
++++ b/linker/linker_phdr.cpp
+@@ -707,7 +707,7 @@ bool ElfReader::ReserveAddressSpace(address_space_params* address_space) {
+ 
+ 
+   if (min_palign(phdr_table_, phdr_num_) < kPageSize && loader_4kb_compat_enabled()) {
+-    mprotect(reinterpret_cast<void*>(start), load_size_, PROT_READ|PROT_WRITE|PROT_EXEC);
++    mprotect(reinterpret_cast<void*>(start), load_size_, PROT_READ|PROT_WRITE);
+   }
+   return true;
+ }
+-- 
+2.45.2.1089.g2a221341d9-goog
+

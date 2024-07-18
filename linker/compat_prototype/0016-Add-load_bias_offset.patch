@@ -1,0 +1,53 @@
+From edd27158950c0ddfc59a56897b7f99645e178aca Mon Sep 17 00:00:00 2001
+From: Kalesh Singh <kaleshsingh@google.com>
+Date: Mon, 22 Jul 2024 16:32:23 -0700
+Subject: [PATCH 16/20] Add load_bias_offset()
+
+Change-Id: I4437591336ea03ccf5bdb53af57a7ba848b3993b
+---
+ linker/linker_phdr_compat.cpp | 18 ++++++++++++++++++
+ linker/linker_phdr_compat.h   |  2 ++
+ 2 files changed, 20 insertions(+)
+
+diff --git a/linker/linker_phdr_compat.cpp b/linker/linker_phdr_compat.cpp
+index 7ce7a3f13..f7fcc3cae 100644
+--- a/linker/linker_phdr_compat.cpp
++++ b/linker/linker_phdr_compat.cpp
+@@ -148,6 +148,24 @@ ElfW(Addr) perm_boundary_offset(const ElfW(Addr) vaddr) {
+   return offset ? page_size() - page_offset(vaddr) : 0;
+ }
+ 
++/* Returns 0 is not offset or failure else the ofset for loading on 16kB device */
++ElfW(Addr) load_bias_offset(const ElfW(Phdr)* phdr_table, size_t phdr_count) {
++  ElfW(Addr) vaddr = 0;
++  ElfW(Addr) offset = 0;
++
++  if (min_palign(phdr_table, phdr_count) >= page_size()) {
++    return offset;
++  }
++
++  if (!rx_rw_vaddr(phdr_table, phdr_count, &vaddr, nullptr)) {
++    return offset;
++  }
++
++  offset = perm_boundary_offset(vaddr);
++
++  return offset;
++}
++
+ static inline int _phdr_table_set_gnu_relro_prot_compat(ElfW(Addr) start, ElfW(Addr) size, int prot_flags) {
+   return mprotect(reinterpret_cast<void*>(start), size, prot_flags);
+ }
+diff --git a/linker/linker_phdr_compat.h b/linker/linker_phdr_compat.h
+index 4f1a5e690..1dbf630c6 100644
+--- a/linker/linker_phdr_compat.h
++++ b/linker/linker_phdr_compat.h
+@@ -36,3 +36,5 @@ bool loader_4kb_compat_enabled();
+ ElfW(Addr) min_palign(const ElfW(Phdr)* phdr_table, size_t phdr_count);
+ 
+ int phdr_table_protect_gnu_relro_compat(ElfW(Addr) start, ElfW(Addr) size);
++
++ElfW(Addr) load_bias_offset(const ElfW(Phdr)* phdr_table, size_t phdr_count);
+-- 
+2.45.2.1089.g2a221341d9-goog
+

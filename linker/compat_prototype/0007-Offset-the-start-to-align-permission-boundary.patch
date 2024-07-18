@@ -1,0 +1,147 @@
+From 5b748af4f68ebc54bc907ef0ca9b9260003ee8c1 Mon Sep 17 00:00:00 2001
+From: Kalesh Singh <kaleshsingh@google.com>
+Date: Fri, 19 Jul 2024 10:12:46 -0700
+Subject: [PATCH 07/20] Offset the start to align permission boundary
+
+Change-Id: I1fda51d6fc3eb89b3c9bf31edd069aa9c16cc832
+---
+ linker/linker_phdr_compat.cpp | 97 +++++++++++++++++++++++++++++++++--
+ 1 file changed, 94 insertions(+), 3 deletions(-)
+
+diff --git a/linker/linker_phdr_compat.cpp b/linker/linker_phdr_compat.cpp
+index 1601acf93..eac6c0a0d 100644
+--- a/linker/linker_phdr_compat.cpp
++++ b/linker/linker_phdr_compat.cpp
+@@ -39,6 +39,7 @@
+ #include <sys/prctl.h>
+ 
+ static const size_t kPageSize = page_size();
++static constexpr size_t kCompatPageSize = 4096;
+ 
+ bool loader_4kb_compat_enabled() {
+   return true;
+@@ -66,7 +67,97 @@ ElfW(Addr) min_palign(const ElfW(Phdr)* phdr_table, size_t phdr_count) {
+   return min_align;
+ }
+ 
++static inline uintptr_t page_start_compat(uintptr_t x) {
++  return x & ~(kCompatPageSize - 1);
++}
++
++static inline uintptr_t page_end_compat(uintptr_t x) {
++  return page_start_compat(x + kCompatPageSize - 1);
++}
++
++inline bool has_relro_prefix(const ElfW(Phdr)* phdr, const ElfW(Phdr)* relro) {
++    return relro && phdr->p_type == PT_LOAD && phdr->p_vaddr == relro->p_vaddr;
++}
++
++const ElfW(Phdr)* relro_segment(const ElfW(Phdr)* phdr_table, size_t phdr_count) {
++  for (size_t i = 0; i < phdr_count; ++i) {
++    const ElfW(Phdr)* phdr = &phdr_table[i];
++
++    if (phdr->p_type == PT_GNU_RELRO) {
++      return phdr;
++    }
++  }
++
++  return nullptr;
++}
++
++/*
++ * Populates @vaddr with the boundary between RX|RW portions.
++ *
++ * Returns true if successful (there is only 1 such boundary), and false otherwise.
++ */
++bool rx_rw_vaddr(const ElfW(Phdr)* phdr_table, size_t phdr_count, ElfW(Addr) *vaddr, const char *name) {
++  const ElfW(Phdr)* relro_phdr = relro_segment(phdr_table, phdr_count);
++  ElfW(Phdr)* last_rw = nullptr;
++  ElfW(Phdr)* first_rw = nullptr;
++
++  for (size_t i = 0; i < phdr_count; ++i) {
++    const ElfW(Phdr)* curr = &phdr_table[i];
++    const ElfW(Phdr)* prev = (i > 0) ? &phdr_table[i-1] : nullptr;
++
++    if (curr->p_type != PT_LOAD) {
++      continue;
++    }
++
++    int prot = PFLAGS_TO_PROT(curr->p_flags);
++
++    if (prot & PROT_WRITE) {
++      if (!first_rw) {
++        first_rw = const_cast<ElfW(Phdr)*>(curr);
++      } else {
++        if (has_relro_prefix(curr, relro_phdr)) {
++          // The relro is not in the first RW segment :(
++          DL_ERR_AND_LOG("\"%s\": Compat loading failed: RELRO is not in the first RW segment", name);
++          return false;
++        }
++      }
++
++      if (last_rw && last_rw != prev) {
++        // There are mutiple non-adjacent RW segments :(
++        DL_ERR_AND_LOG("\"%s\": Compat loading failed: There are multiple non-adjacent RW segments", name);
++        return false;
++      } else {
++        last_rw = const_cast<ElfW(Phdr)*>(curr);
++      }
++    }
++  }
++
++  if (has_relro_prefix(first_rw, relro_phdr)) {
++    *vaddr = page_end_compat(relro_phdr->p_vaddr + relro_phdr->p_memsz);
++  } else {
++    *vaddr = page_start_compat(first_rw->p_vaddr);
++  }
++
++  return true;
++}
++
++ElfW(Addr) perm_boundary_offset(const ElfW(Addr) vaddr) {
++  ElfW(Addr) offset = page_offset(vaddr);
++
++  return offset ? page_size() - page_offset(vaddr) : 0;
++}
++
+ bool ElfReader::LoadSegments4kbCompat() {
++  ElfW(Addr) perm_boundary_vaddr;
++
++  if (!rx_rw_vaddr(phdr_table_, phdr_num_, &perm_boundary_vaddr, name_.c_str)) {
++    return false;
++  }
++
++  ElfW(Addr) perm_offset = perm_boundary_offset(perm_boundary_vaddr);
++
++  ElfW(Addr) load_bias = load_bias_ + perm_offset;
++
+   for (size_t i = 0; i < phdr_num_; ++i) {
+     const ElfW(Phdr)* phdr = &phdr_table_[i];
+ 
+@@ -75,7 +166,7 @@ bool ElfReader::LoadSegments4kbCompat() {
+     }
+ 
+     // Segment addresses in memory.
+-    ElfW(Addr) seg_start = phdr->p_vaddr + load_bias_;
++    ElfW(Addr) seg_start = phdr->p_vaddr + load_bias;
+     ElfW(Addr) seg_end = seg_start + phdr->p_memsz;
+ 
+     ElfW(Addr) seg_page_start = page_start(seg_start);
+@@ -120,12 +211,12 @@ bool ElfReader::LoadSegments4kbCompat() {
+       }
+ 
+       if (lseek(fd_, file_offset_ + file_page_start, SEEK_SET) == -1) {
+-        DL_ERR("\"%s\" failed lseek: %m", name_.c_str());
++        DL_ERR_AND_LOG("\"%s\" failed lseek: %m", name_.c_str());
+         return false;
+       }
+ 
+       if (read(fd_, reinterpret_cast<void*>(seg_page_start), file_length) == -1) {
+-        DL_ERR("\"%s\" failed lseek: %m", name_.c_str());
++        DL_ERR_AND_LOG("\"%s\" failed lseek: %m", name_.c_str());
+         return false;
+       }
+     }
+-- 
+2.45.2.1089.g2a221341d9-goog
+

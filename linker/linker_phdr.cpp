@@ -27,6 +27,7 @@
  */
 
 #include "linker_phdr.h"
+#include "linker_phdr_compat.h"
 
 #include <errno.h>
 #include <string.h>
@@ -35,6 +36,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 #include "linker.h"
 #include "linker_dlwarning.h"
@@ -138,11 +140,6 @@ static int GetTargetElfMachine() {
   determine the corresponding memory address.
 
  **/
-
-#define MAYBE_MAP_FLAG(x, from, to)  (((x) & (from)) ? (to) : 0)
-#define PFLAGS_TO_PROT(x)            (MAYBE_MAP_FLAG((x), PF_X, PROT_EXEC) | \
-                                      MAYBE_MAP_FLAG((x), PF_R, PROT_READ) | \
-                                      MAYBE_MAP_FLAG((x), PF_W, PROT_WRITE))
 
 static const size_t kPageSize = page_size();
 
@@ -668,6 +665,11 @@ bool ElfReader::ReserveAddressSpace(address_space_params* address_space) {
     return false;
   }
 
+  if (loader_4kb_compat_enabled() && min_palign(phdr_table_, phdr_num_) < kPageSize) {
+    // Reserve additional space for aligning the permission boundary
+    load_size_ = page_end(load_size_ + 12*1024);
+  }
+
   uint8_t* addr = reinterpret_cast<uint8_t*>(min_vaddr);
   void* start;
 
@@ -703,6 +705,12 @@ bool ElfReader::ReserveAddressSpace(address_space_params* address_space) {
 
   load_start_ = start;
   load_bias_ = reinterpret_cast<uint8_t*>(start) - addr;
+
+  if (min_palign(phdr_table_, phdr_num_) < kPageSize && loader_4kb_compat_enabled()) {
+    // In compat mode make the initial mapping RW since the ELF contents will be read
+    // into it; instead of mapped over it.
+    mprotect(reinterpret_cast<void*>(start), load_size_, PROT_READ|PROT_WRITE);
+  }
   return true;
 }
 
@@ -830,6 +838,10 @@ static inline void _extend_load_segment_vma(const ElfW(Phdr)* phdr_table, size_t
 }
 
 bool ElfReader::LoadSegments() {
+  if (min_palign(phdr_table_, phdr_num_) < kPageSize && loader_4kb_compat_enabled()) {
+    return LoadSegments4kbCompat();
+  }
+
   for (size_t i = 0; i < phdr_num_; ++i) {
     const ElfW(Phdr)* phdr = &phdr_table_[i];
 

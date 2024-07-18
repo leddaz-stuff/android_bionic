@@ -1,0 +1,159 @@
+From 0de2a59cb34575b064695682d1eece5f4adbc108 Mon Sep 17 00:00:00 2001
+From: Kalesh Singh <kaleshsingh@google.com>
+Date: Tue, 23 Jul 2024 14:46:05 -0700
+Subject: [PATCH 20/20] Clean up debug stuff
+
+Change-Id: I3f7edf413d2a23042bfd4c2bd0e2910877faa786
+---
+ linker/linker.cpp             |  1 -
+ linker/linker_main.cpp        |  3 ---
+ linker/linker_phdr.cpp        | 44 ++++++++++++++---------------------
+ linker/linker_phdr_compat.cpp |  7 +++---
+ 4 files changed, 21 insertions(+), 34 deletions(-)
+
+diff --git a/linker/linker.cpp b/linker/linker.cpp
+index c02c88216..935cc71a6 100644
+--- a/linker/linker.cpp
++++ b/linker/linker.cpp
+@@ -1694,7 +1694,6 @@ bool find_libraries(android_namespace_t* ns,
+         (reserved_address_recursive || !task->is_dt_needed()) ? &extinfo_params : &default_params;
+     if (!task->load(address_space)) {
+       return false;
+-    } else {
+     }
+   }
+ 
+diff --git a/linker/linker_main.cpp b/linker/linker_main.cpp
+index cd270dfcb..2b230a870 100644
+--- a/linker/linker_main.cpp
++++ b/linker/linker_main.cpp
+@@ -204,7 +204,6 @@ struct ExecutableInfo {
+   size_t phdr_count;
+   ElfW(Addr) entry_point;
+   bool should_pad_segments;
+-  ElfW(Addr) load_bias;
+ };
+ 
+ static ExecutableInfo get_executable_info(const char* arg_path) {
+@@ -294,8 +293,6 @@ static ExecutableInfo load_executable(const char* orig_path) {
+   result.phdr_count = elf_reader.phdr_count();
+   result.entry_point = elf_reader.entry_point();
+   result.should_pad_segments = elf_reader.should_pad_segments();
+-  result.load_bias = elf_reader.load_bias();
+-
+   return result;
+ }
+ 
+diff --git a/linker/linker_phdr.cpp b/linker/linker_phdr.cpp
+index 26578d9d1..7506eed30 100644
+--- a/linker/linker_phdr.cpp
++++ b/linker/linker_phdr.cpp
+@@ -666,6 +666,7 @@ bool ElfReader::ReserveAddressSpace(address_space_params* address_space) {
+   }
+ 
+   if (loader_4kb_compat_enabled() && min_palign(phdr_table_, phdr_num_) < kPageSize) {
++    // Reserve additional space for aligning the permission boundary
+     load_size_ = page_end(load_size_ + 12*1024);
+   }
+ 
+@@ -705,9 +706,9 @@ bool ElfReader::ReserveAddressSpace(address_space_params* address_space) {
+   load_start_ = start;
+   load_bias_ = reinterpret_cast<uint8_t*>(start) - addr;
+ 
+-
+-
+   if (min_palign(phdr_table_, phdr_num_) < kPageSize && loader_4kb_compat_enabled()) {
++    // In compat mode make the initial mapping RW since the ELF contents will be read
++    // into it; instead of mapped over it.
+     mprotect(reinterpret_cast<void*>(start), load_size_, PROT_READ|PROT_WRITE);
+   }
+   return true;
+@@ -897,27 +898,22 @@ bool ElfReader::LoadSegments() {
+         add_dlwarning(name_.c_str(), "W+E load segments");
+       }
+ 
+-      if (phdr->p_align < kPageSize && loader_4kb_compat_enabled()) {
+-        lseek(fd_, file_offset_ + file_page_start, SEEK_SET);
+-        read(fd_, reinterpret_cast<void*>(seg_page_start), file_length);
+-      } else {
+-        void* seg_addr = mmap64(reinterpret_cast<void*>(seg_page_start),
+-                              file_length,
+-                              prot,
+-                              MAP_FIXED|MAP_PRIVATE,
+-                              fd_,
+-                              file_offset_ + file_page_start);
+-        if (seg_addr == MAP_FAILED) {
+-          DL_ERR("couldn't map \"%s\" segment %zd: %s", name_.c_str(), i, strerror(errno));
+-          return false;
+-        }
++      void* seg_addr = mmap64(reinterpret_cast<void*>(seg_page_start),
++                            file_length,
++                            prot,
++                            MAP_FIXED|MAP_PRIVATE,
++                            fd_,
++                            file_offset_ + file_page_start);
++      if (seg_addr == MAP_FAILED) {
++        DL_ERR("couldn't map \"%s\" segment %zd: %s", name_.c_str(), i, strerror(errno));
++        return false;
++      }
+ 
+-        // Mark segments as huge page eligible if they meet the requirements
+-        // (executable and PMD aligned).
+-        if ((phdr->p_flags & PF_X) && phdr->p_align == kPmdSize &&
+-            get_transparent_hugepages_supported()) {
+-          madvise(seg_addr, file_length, MADV_HUGEPAGE);
+-        }
++      // Mark segments as huge page eligible if they meet the requirements
++      // (executable and PMD aligned).
++      if ((phdr->p_flags & PF_X) && phdr->p_align == kPmdSize &&
++          get_transparent_hugepages_supported()) {
++        madvise(seg_addr, file_length, MADV_HUGEPAGE);
+       }
+     }
+ 
+@@ -1143,10 +1139,6 @@ static int _phdr_table_set_gnu_relro_prot(const ElfW(Phdr)* phdr_table, size_t p
+   const ElfW(Phdr)* phdr = phdr_table;
+   const ElfW(Phdr)* phdr_limit = phdr + phdr_count;
+ 
+-  if (loader_4kb_compat_enabled()) {
+-    return 0;
+-  }
+-
+   for (phdr = phdr_table; phdr < phdr_limit; phdr++) {
+     if (phdr->p_type != PT_GNU_RELRO) {
+       continue;
+diff --git a/linker/linker_phdr_compat.cpp b/linker/linker_phdr_compat.cpp
+index 031fad443..512b53760 100644
+--- a/linker/linker_phdr_compat.cpp
++++ b/linker/linker_phdr_compat.cpp
+@@ -158,6 +158,7 @@ int phdr_table_protect_gnu_relro_compat(ElfW(Addr) start, ElfW(Addr) size) {
+ }
+ 
+ bool ElfReader::LoadSegments4kbCompat() {
++  std::string compat_name = name_  + " (compat loaded)";
+   ElfW(Addr) perm_boundary_vaddr;
+ 
+   if (!rx_rw_boundary_vaddr(phdr_table_, phdr_num_, &perm_boundary_vaddr, name_.c_str())) {
+@@ -175,8 +176,7 @@ bool ElfReader::LoadSegments4kbCompat() {
+   CHECK(rw_size % kPageSize == 0);
+ 
+   // Label the RW portion of the mapping
+-  prctl(PR_SET_VMA, PR_SET_VMA_ANON_NAME, rw_start, rw_size,
+-        std::string(name_ + " (compat loaded [.data ... .bss])").c_str());
++  prctl(PR_SET_VMA, PR_SET_VMA_ANON_NAME, rw_start, rw_size, compat_name.c_str());
+ 
+   // Save the compat RELRO (.text ... .data.relro) section limits
+   compat_relro_start_ = reinterpret_cast<ElfW(Addr)>(load_start_);
+@@ -257,8 +257,7 @@ bool ElfReader::LoadSegments4kbCompat() {
+     // anonymous and RW to begin with.
+ 
+     // Label the RW compat mapping
+-    prctl(PR_SET_VMA, PR_SET_VMA_ANON_NAME, load_start_, load_size_ - rw_size,
+-          std::string(name_ + " (compat loaded [.text ... .data.relro])").c_str());
++    prctl(PR_SET_VMA, PR_SET_VMA_ANON_NAME, load_start_, load_size_ - rw_size, compat_name.c_str());
+   }
+ 
+   return true;
+-- 
+2.45.2.1089.g2a221341d9-goog
+

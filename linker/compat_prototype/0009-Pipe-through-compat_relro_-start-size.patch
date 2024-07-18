@@ -1,0 +1,100 @@
+From 7df179352fc8e8d6f028e800233e7e747c60ed75 Mon Sep 17 00:00:00 2001
+From: Kalesh Singh <kaleshsingh@google.com>
+Date: Fri, 19 Jul 2024 12:52:25 -0700
+Subject: [PATCH 09/20] Pipe through compat_relro_[start|size]
+
+Change-Id: I8ff0781e2e0ff8a77b62afa523685588c9666a51
+---
+ linker/linker.cpp             |  2 ++
+ linker/linker_phdr.h          |  6 ++++++
+ linker/linker_phdr_compat.cpp |  4 ++++
+ linker/linker_soinfo.h        | 14 ++++++++++++++
+ 4 files changed, 26 insertions(+)
+
+diff --git a/linker/linker.cpp b/linker/linker.cpp
+index e13d37de9..caddbe2f0 100644
+--- a/linker/linker.cpp
++++ b/linker/linker.cpp
+@@ -640,6 +640,8 @@ class LoadTask {
+     si_->set_gap_start(elf_reader.gap_start());
+     si_->set_gap_size(elf_reader.gap_size());
+     si_->set_should_pad_segments(elf_reader.should_pad_segments());
++    si_->set_compat_relro_start(elf_reader.compat_relro_start());
++    si_->set_compat_relro_size(elf_reader.compat_relro_size());
+ 
+     return true;
+   }
+diff --git a/linker/linker_phdr.h b/linker/linker_phdr.h
+index c6e5cfce0..2db777cfa 100644
+--- a/linker/linker_phdr.h
++++ b/linker/linker_phdr.h
+@@ -64,6 +64,8 @@ class ElfReader {
+   bool is_mapped_by_caller() const { return mapped_by_caller_; }
+   ElfW(Addr) entry_point() const { return header_.e_entry + load_bias_; }
+   bool should_pad_segments() const { return should_pad_segments_; }
++  ElfW(Addr) compat_relro_start() const { return compat_relro_start_; }
++  ElfW(Addr) compat_relro_size() const { return compat_relro_size_; }
+ 
+  private:
+   [[nodiscard]] bool ReadElfHeader();
+@@ -124,6 +126,10 @@ class ElfReader {
+   // Pad gaps between segments when memory mapping?
+   bool should_pad_segments_ = false;
+ 
++  // RELRO region for compat loading
++  ElfW(Addr) compat_relro_start_ = 0;
++  ElfW(Addr) compat_relro_size_ = 0;
++
+   // Only used by AArch64 at the moment.
+   GnuPropertySection note_gnu_property_ __unused;
+ };
+diff --git a/linker/linker_phdr_compat.cpp b/linker/linker_phdr_compat.cpp
+index 96b79f0e8..5e57e42c6 100644
+--- a/linker/linker_phdr_compat.cpp
++++ b/linker/linker_phdr_compat.cpp
+@@ -179,6 +179,10 @@ bool ElfReader::LoadSegments4kbCompat() {
+     return false;
+   }
+ 
++  // Save the compat RELRO (.text .... .relro) section limits
++  compat_relro_start_ = reinterpret_cast<ElfW(Addr)>(load_start_);
++  compat_relro_size_ = load_size_ - rw_size;
++
+   std::string rw_name = name_ + " (compat loaded RW)";
+   prctl(PR_SET_VMA, PR_SET_VMA_ANON_NAME, rw_start, rw_size, rw_name.c_str());
+ 
+diff --git a/linker/linker_soinfo.h b/linker/linker_soinfo.h
+index 9a13af2a6..685d79725 100644
+--- a/linker/linker_soinfo.h
++++ b/linker/linker_soinfo.h
+@@ -369,6 +369,16 @@ struct soinfo {
+   }
+   bool should_pad_segments() const { return should_pad_segments_; }
+ 
++  void set_compat_relro_start(ElfW(Addr) start) {
++   compat_relro_start_ = start;
++  }
++  ElfW(Addr) compat_relro_start() const { return compat_relro_start_; }
++
++  void set_compat_relro_size(ElfW(Addr) size) {
++   compat_relro_size_ = size;
++  }
++  ElfW(Addr) compat_relro_size() const { return compat_relro_start_; }
++
+  private:
+   bool is_image_linked() const;
+   void set_image_linked();
+@@ -455,6 +465,10 @@ struct soinfo {
+ 
+   // Pad gaps between segments when memory mapping?
+   bool should_pad_segments_ = false;
++
++  // RELRO region for compat loading
++  ElfW(Addr) compat_relro_start_ = 0;
++  ElfW(Addr) compat_relro_size_ = 0;
+ };
+ 
+ // This function is used by dlvsym() to calculate hash of sym_ver
+-- 
+2.45.2.1089.g2a221341d9-goog
+

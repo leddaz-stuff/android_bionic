@@ -1,0 +1,49 @@
+From bf81a041a3844c75a27aaeb85a97281a39778165 Mon Sep 17 00:00:00 2001
+From: Kalesh Singh <kaleshsingh@google.com>
+Date: Mon, 22 Jul 2024 16:31:38 -0700
+Subject: [PATCH 15/20] Clean up LoadCompat
+
+Change-Id: I9720167869438e1f3b20204898cf2711e33ab198
+---
+ linker/linker_phdr_compat.cpp | 11 +----------
+ 1 file changed, 1 insertion(+), 10 deletions(-)
+
+diff --git a/linker/linker_phdr_compat.cpp b/linker/linker_phdr_compat.cpp
+index dac841763..7ce7a3f13 100644
+--- a/linker/linker_phdr_compat.cpp
++++ b/linker/linker_phdr_compat.cpp
+@@ -153,10 +153,6 @@ static inline int _phdr_table_set_gnu_relro_prot_compat(ElfW(Addr) start, ElfW(A
+ }
+ 
+ int phdr_table_protect_gnu_relro_compat(ElfW(Addr) start, ElfW(Addr) size) {
+-  // TODO: Remove this once we debug why compat relro protection isn't working
+-  if (true) {
+-    return 0;
+-  }
+   return _phdr_table_set_gnu_relro_prot_compat(start, size, PROT_READ|PROT_EXEC);
+ }
+ 
+@@ -170,6 +166,7 @@ bool ElfReader::LoadSegments4kbCompat() {
+   ElfW(Addr) perm_offset = perm_boundary_offset(perm_boundary_vaddr);
+ 
+   ElfW(Addr) load_bias = load_bias_ + perm_offset;
++  load_bias_ = load_bias;
+ 
+   // Make .data ... .bss region RW only (not X)
+   ElfW(Addr) rw_start = load_bias + perm_boundary_vaddr;
+@@ -185,12 +182,6 @@ bool ElfReader::LoadSegments4kbCompat() {
+     return false;
+   }
+ 
+-  int ret = mprotect(reinterpret_cast<void*>(rw_start), rw_size, PROT_READ|PROT_WRITE);
+-  if (ret) {
+-    DL_ERR("\"%s\" RW mprotect on anon mapping failed: %m", name_.c_str());
+-    return false;
+-  }
+-
+   // Save the compat RELRO (.text .... .relro) section limits
+   compat_relro_start_ = reinterpret_cast<ElfW(Addr)>(load_start_);
+   compat_relro_size_ = load_size_ - rw_size;
+-- 
+2.45.2.1089.g2a221341d9-goog
+

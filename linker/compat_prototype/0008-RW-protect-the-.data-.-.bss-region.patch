@@ -1,0 +1,73 @@
+From fed5e761718936e30fb9e01412553c4e3d12b575 Mon Sep 17 00:00:00 2001
+From: Kalesh Singh <kaleshsingh@google.com>
+Date: Fri, 19 Jul 2024 11:18:46 -0700
+Subject: [PATCH 08/20] RW protect the .data ... .bss region
+
+Change-Id: I9694ade08d322cac635a5ea8d3ede15339d46456
+---
+ linker/linker_phdr_compat.cpp | 28 ++++++++++++++++++++++++++--
+ 1 file changed, 26 insertions(+), 2 deletions(-)
+
+diff --git a/linker/linker_phdr_compat.cpp b/linker/linker_phdr_compat.cpp
+index eac6c0a0d..96b79f0e8 100644
+--- a/linker/linker_phdr_compat.cpp
++++ b/linker/linker_phdr_compat.cpp
+@@ -37,6 +37,7 @@
+ 
+ #include <linux/prctl.h>  /* Definition of PR_* constants */
+ #include <sys/prctl.h>
++#include <sys/mman.h>
+ 
+ static const size_t kPageSize = page_size();
+ static constexpr size_t kCompatPageSize = 4096;
+@@ -150,7 +151,7 @@ ElfW(Addr) perm_boundary_offset(const ElfW(Addr) vaddr) {
+ bool ElfReader::LoadSegments4kbCompat() {
+   ElfW(Addr) perm_boundary_vaddr;
+ 
+-  if (!rx_rw_vaddr(phdr_table_, phdr_num_, &perm_boundary_vaddr, name_.c_str)) {
++  if (!rx_rw_vaddr(phdr_table_, phdr_num_, &perm_boundary_vaddr, name_.c_str())) {
+     return false;
+   }
+ 
+@@ -158,6 +159,29 @@ bool ElfReader::LoadSegments4kbCompat() {
+ 
+   ElfW(Addr) load_bias = load_bias_ + perm_offset;
+ 
++  // Make .data ... .bss region RW only (not X)
++  ElfW(Addr) rw_start = load_bias + perm_boundary_vaddr;
++  ElfW(Addr) rw_size = load_size_ - (rw_start - reinterpret_cast<ElfW(Addr)>(load_start_));
++
++  if (rw_start % kPageSize) {
++    DL_ERR("\"%s\" rw_start (%p) is not page aligned", name_.c_str(), reinterpret_cast<void*>(rw_start));
++    return false;
++  }
++
++  if (rw_size % kPageSize) {
++    DL_ERR("\"%s\" rw_size (%p) is not page aligned", name_.c_str(), reinterpret_cast<void*>(rw_size));
++    return false;
++  }
++
++  int ret = mprotect(reinterpret_cast<void*>(rw_start), rw_size, PROT_READ|PROT_WRITE);
++  if (ret) {
++    DL_ERR("\"%s\" RW mprotect on anon mapping failed: %m", name_.c_str());
++    return false;
++  }
++
++  std::string rw_name = name_ + " (compat loaded RW)";
++  prctl(PR_SET_VMA, PR_SET_VMA_ANON_NAME, rw_start, rw_size, rw_name.c_str());
++
+   for (size_t i = 0; i < phdr_num_; ++i) {
+     const ElfW(Phdr)* phdr = &phdr_table_[i];
+ 
+@@ -232,7 +256,7 @@ bool ElfReader::LoadSegments4kbCompat() {
+ 
+     // Label the compat mapping
+     std::string compat_name = name_ + " (compat loaded)";
+-    prctl(PR_SET_VMA, PR_SET_VMA_ANON_NAME, load_start_, load_size_, compat_name.c_str());
++    prctl(PR_SET_VMA, PR_SET_VMA_ANON_NAME, load_start_, load_size_ - rw_size, compat_name.c_str());
+   }
+   return true;
+ }
+-- 
+2.45.2.1089.g2a221341d9-goog
+

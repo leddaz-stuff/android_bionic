@@ -1,0 +1,44 @@
+From 696b24db064f92f53f3b1de158b6ca8c9ed563ca Mon Sep 17 00:00:00 2001
+From: Kalesh Singh <kaleshsingh@google.com>
+Date: Thu, 18 Jul 2024 15:03:58 -0700
+Subject: [PATCH 04/20] Check lseek and read error codes
+
+Change-Id: Id374a3ca2691fe12cf31dd8d38adbcab175a61c9
+---
+ linker/linker_phdr_compat.cpp | 13 ++++++++++---
+ 1 file changed, 10 insertions(+), 3 deletions(-)
+
+diff --git a/linker/linker_phdr_compat.cpp b/linker/linker_phdr_compat.cpp
+index 9ed3f6228..3e59d5104 100644
+--- a/linker/linker_phdr_compat.cpp
++++ b/linker/linker_phdr_compat.cpp
+@@ -122,8 +122,15 @@ bool ElfReader::LoadSegments4kbCompat() {
+         add_dlwarning(name_.c_str(), "W+E load segments");
+       }
+ 
+-      lseek(fd_, file_offset_ + file_page_start, SEEK_SET);
+-      read(fd_, reinterpret_cast<void*>(seg_page_start), file_length);
++      if (lseek(fd_, file_offset_ + file_page_start, SEEK_SET) == -1) {
++        DL_ERR("\"%s\" failed lseek: %m", name_.c_str());
++        return false;
++      }
++
++      if (read(fd_, reinterpret_cast<void*>(seg_page_start), file_length) == -1) {
++        DL_ERR("\"%s\" failed lseek: %m", name_.c_str());
++        return false;
++      }
+     }
+ 
+     // NOTE: if the segment is writable, and does not end on a page boundary,
+@@ -132,7 +139,7 @@ bool ElfReader::LoadSegments4kbCompat() {
+ 
+     seg_file_end = page_end(seg_file_end);
+ 
+-    // NOTE: We do not need to handle .bss since the mapping reservation is 
++    // NOTE: We do not need to handle .bss since the mapping reservation is
+     // anonymous and RW.
+ 
+     // Label the compat mapping
+-- 
+2.45.2.1089.g2a221341d9-goog
+
