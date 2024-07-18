@@ -33,8 +33,29 @@
 
 #include <string>
 #include <unordered_map>
+#include <stdio.h>
 
 #include <async_safe/log.h>
+
+#include <android-base/file.h>
+
+static inline bool IsComm(const std::string comm) {
+  std::string content;
+
+  if (!android::base::ReadFileToString("/proc/self/cmdline", &content)) {
+    return false;
+  }
+
+  if (content.find(comm) != std::string::npos) {
+    return true;
+  }
+
+  return false;
+}
+
+static inline bool IsLoaderTest() {
+  return IsComm("loader_test");
+}
 
 #define DL_ERR(fmt, x...) \
     do { \
@@ -55,6 +76,13 @@ void DL_WARN_documented_change(int api_level, const char* doc_link, const char* 
   do { \
     DL_ERR(fmt, ##x); \
     PRINT(fmt, ##x); \
+  } while (false)
+
+#define DL_ERR_LOADER_TEST(fmt, x...) \
+  do { \
+    if (IsLoaderTest()) { \
+      fprintf(stderr, "[%s] " fmt "\n", "LOADER COMPAT", ##x); \
+    } \
   } while (false)
 
 #define DL_OPEN_ERR(fmt, x...) \
