@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98ce9d3b_0a12f177",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-07-19T20:01:16Z",
+      "side": 1,
+      "message": "Would it not be simpler to move the non-builtin implementations to an armv7 `target` block in the `Android.bp`?\n\nI\u0027m fine either way, but that sounds simpler to me.",
+      "revId": "8e738e4432accf43a2d787b75dceafefa3d359f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
