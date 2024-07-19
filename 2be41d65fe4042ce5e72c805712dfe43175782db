@@ -98,6 +98,30 @@
       },
       "revId": "2be41d65fe4042ce5e72c805712dfe43175782db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6082d9d_b0690778",
+        "filename": "linker/linker_main.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-07-19T20:46:27Z",
+      "side": 0,
+      "message": "prelink_image seems more open to failing than link_image, though in practice, neither should ever fail. We could abort the process in that case, maybe?\n\nI looked for things that could plausibly fail, and the protect_relro call looked interesting. I\u0027m guessing a vdso never has a PT_GNU_RELRO segment, but if it did, the kernel would\u0027ve already applied the appropriate protections? Just guessing, though...",
+      "parentUuid": "9e280a23_efe05941",
+      "range": {
+        "startLine": 183,
+        "startChar": 2,
+        "endLine": 183,
+        "endChar": 26
+      },
+      "revId": "2be41d65fe4042ce5e72c805712dfe43175782db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
