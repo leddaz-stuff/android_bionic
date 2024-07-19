@@ -52,6 +52,24 @@
       "parentUuid": "109c5208_a45b2a43",
       "revId": "ad31ece33e347528ddb632124311820c5a147b65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b88abd8f_32dad813",
+        "filename": "libc/SECCOMP_ALLOWLIST_COMMON.TXT",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-19T11:07:15Z",
+      "side": 1,
+      "message": "did you stop getting updates on bug 339332645 when it was moved to the Auto component? there was a discussion there, with several alternatives proposed...",
+      "parentUuid": "baca6dcb_f875d922",
+      "revId": "ad31ece33e347528ddb632124311820c5a147b65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
