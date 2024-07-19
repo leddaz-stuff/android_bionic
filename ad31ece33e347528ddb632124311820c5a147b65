@@ -88,6 +88,24 @@
       "parentUuid": "b88abd8f_32dad813",
       "revId": "ad31ece33e347528ddb632124311820c5a147b65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59474493_f8912d46",
+        "filename": "libc/SECCOMP_ALLOWLIST_COMMON.TXT",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-19T11:29:49Z",
+      "side": 1,
+      "message": "try again now? i\u0027ve moved it back, so you should be able to see the comments you\u0027ve missed...",
+      "parentUuid": "6fe6e0a1_5d5c8321",
+      "revId": "ad31ece33e347528ddb632124311820c5a147b65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
