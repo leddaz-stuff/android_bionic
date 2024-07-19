@@ -50,6 +50,30 @@
       ],
       "revId": "2be41d65fe4042ce5e72c805712dfe43175782db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e218c5a3_908078af",
+        "filename": "linker/linker_main.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-19T18:48:58Z",
+      "side": 0,
+      "message": "\u003e Why is this removed?\n\nsee the commit message :-)\n\n\u003e Also, wasn\u0027t the intention to make vdso update atomic (e.g. if something fails then vdso ends in a half-updated state, not good)?\n\ni think there\u0027s a bug here, but i don\u0027t think that\u0027s the fix ... i think this call of link_image() [the only bit that can fail] should have its return value checked, and we error out in that case. the previous code _looked_ like it was safe, but i don\u0027t think it was actually doing anything useful.",
+      "parentUuid": "aafa9d7f_3e04ffbf",
+      "range": {
+        "startLine": 183,
+        "startChar": 2,
+        "endLine": 183,
+        "endChar": 26
+      },
+      "revId": "2be41d65fe4042ce5e72c805712dfe43175782db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
