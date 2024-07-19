@@ -70,6 +70,24 @@
       "parentUuid": "baca6dcb_f875d922",
       "revId": "ad31ece33e347528ddb632124311820c5a147b65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fe6e0a1_5d5c8321",
+        "filename": "libc/SECCOMP_ALLOWLIST_COMMON.TXT",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1597896
+      },
+      "writtenOn": "2024-07-19T11:27:26Z",
+      "side": 1,
+      "message": "Am not able to access the ticket, am seeing \"Access is denied\" error when i try to access the ticket. Can you help to share the alternatives mentioned in that ticket ?",
+      "parentUuid": "b88abd8f_32dad813",
+      "revId": "ad31ece33e347528ddb632124311820c5a147b65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
