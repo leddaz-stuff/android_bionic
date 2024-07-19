@@ -16,6 +16,24 @@
       "message": "Would it not be simpler to move the non-builtin implementations to an armv7 `target` block in the `Android.bp`?\n\nI\u0027m fine either way, but that sounds simpler to me.",
       "revId": "8e738e4432accf43a2d787b75dceafefa3d359f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85b62aad_180e4daf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-07-19T20:02:03Z",
+      "side": 1,
+      "message": "(simpler as in \"it took me a bit to figure out how this CL worked\", but I suppose what\u0027s here makes sense as long as I\u0027m not trying to figure out what\u0027s _changed_)",
+      "parentUuid": "98ce9d3b_0a12f177",
+      "revId": "8e738e4432accf43a2d787b75dceafefa3d359f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
