@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5c4f9a5_7969f572",
+        "filename": "linker/linker_soinfo.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-07-19T21:34:47Z",
+      "side": 0,
+      "message": "You\u0027re also removing a few \"FOUND\" outputs in addition to \"NOT FOUND\"...",
+      "revId": "2be41d65fe4042ce5e72c805712dfe43175782db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
