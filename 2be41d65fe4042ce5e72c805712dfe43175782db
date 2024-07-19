@@ -122,6 +122,30 @@
       },
       "revId": "2be41d65fe4042ce5e72c805712dfe43175782db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99d97134_529481fc",
+        "filename": "linker/linker_main.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-19T21:16:50Z",
+      "side": 0,
+      "message": "yeah, good point. i\u0027ve done both.",
+      "parentUuid": "e6082d9d_b0690778",
+      "range": {
+        "startLine": 183,
+        "startChar": 2,
+        "endLine": 183,
+        "endChar": 26
+      },
+      "revId": "2be41d65fe4042ce5e72c805712dfe43175782db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
