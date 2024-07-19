@@ -34,6 +34,24 @@
       "parentUuid": "98ce9d3b_0a12f177",
       "revId": "8e738e4432accf43a2d787b75dceafefa3d359f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8fb2f54_1f844302",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-19T20:02:59Z",
+      "side": 1,
+      "message": "i\u0027m copy and pasting existing practice which -- at the time -- was because i couldn\u0027t distinguish armv7 and 32-bit armv8 in the .bp file. can i do that now?",
+      "parentUuid": "85b62aad_180e4daf",
+      "revId": "8e738e4432accf43a2d787b75dceafefa3d359f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
