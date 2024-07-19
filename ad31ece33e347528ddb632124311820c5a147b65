@@ -106,6 +106,24 @@
       "parentUuid": "6fe6e0a1_5d5c8321",
       "revId": "ad31ece33e347528ddb632124311820c5a147b65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f386c260_63dfa66b",
+        "filename": "libc/SECCOMP_ALLOWLIST_COMMON.TXT",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1597896
+      },
+      "writtenOn": "2024-07-19T11:38:03Z",
+      "side": 1,
+      "message": "Thank you, now am able to access. Let me check the comments.",
+      "parentUuid": "59474493_f8912d46",
+      "revId": "ad31ece33e347528ddb632124311820c5a147b65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
