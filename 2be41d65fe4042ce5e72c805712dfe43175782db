@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aafa9d7f_3e04ffbf",
+        "filename": "linker/linker_main.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1550939
+      },
+      "writtenOn": "2024-07-19T18:39:01Z",
+      "side": 0,
+      "message": "Why is this removed?\n\nAlso, wasn\u0027t the intention to make vdso update atomic (e.g. if something fails then vdso ends in a half-updated state, not good)?",
+      "range": {
+        "startLine": 183,
+        "startChar": 2,
+        "endLine": 183,
+        "endChar": 26
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3312109b_efd3284b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "linker/linker_main.cpp",
+              "range": {
+                "startLine": 185,
+                "startChar": 0,
+                "endLine": 185,
+                "endChar": 0
+              },
+              "replacement": "static void add_vdso_if_needed() {\n  if (vdso !\u003d nullptr) {\n    return;\n  }\n\n  add_vdso();\n\n  // If the vdso is not present, we don\u0027t need to do anything.\n  if (vdso \u003d\u003d nullptr) {\n    return;\n  }\n\n  // Add the vdso to the global group.\n  vdso-\u003eset_dt_flags_1(vdso-\u003eget_dt_flags_1() | DF_1_GLOBAL);\n\n  // Add the vdso to all other linked namespaces.\n  for (auto linked_ns : g_default_namespace.get_linked_namespaces()) {\n    linked_ns-\u003eadd_soinfo(vdso);\n    vdso-\u003eadd_secondary_namespace(linked_ns);\n  }\n}\n\n\n"
+            },
+            {
+              "path": "linker/linker_main.cpp",
+              "range": {
+                "startLine": 415,
+                "startChar": 0,
+                "endLine": 416,
+                "endChar": 0
+              },
+              "replacement": "  add_vdso_if_needed();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2be41d65fe4042ce5e72c805712dfe43175782db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

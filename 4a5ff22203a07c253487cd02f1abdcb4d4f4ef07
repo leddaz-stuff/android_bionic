@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f94e4751_36e8b259",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1550939
+      },
+      "writtenOn": "2024-07-19T18:39:01Z",
+      "side": 1,
+      "message": "Mention why we can be sure of it? \nhttps://lore.kernel.org/lkml/7fac15fb-83e0-4711-91a0-db0cb616c2c9@ghiti.fr/T/",
+      "range": {
+        "startLine": 9,
+        "startChar": 63,
+        "endLine": 10,
+        "endChar": 17
+      },
+      "revId": "4a5ff22203a07c253487cd02f1abdcb4d4f4ef07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a941350_d8cd576b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1550939
+      },
+      "writtenOn": "2024-07-19T18:39:01Z",
+      "side": 1,
+      "message": "Thanks Elliott!",
+      "revId": "4a5ff22203a07c253487cd02f1abdcb4d4f4ef07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
