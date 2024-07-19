@@ -167,22 +167,19 @@ static void add_vdso() {
     return;
   }
 
-  soinfo* si = soinfo_alloc(&g_default_namespace, "[vdso]", nullptr, 0, 0);
+  vdso = soinfo_alloc(&g_default_namespace, "[vdso]", nullptr, 0, 0);
 
-  si->phdr = reinterpret_cast<ElfW(Phdr)*>(reinterpret_cast<char*>(ehdr_vdso) + ehdr_vdso->e_phoff);
-  si->phnum = ehdr_vdso->e_phnum;
-  si->base = reinterpret_cast<ElfW(Addr)>(ehdr_vdso);
-  si->size = phdr_table_get_load_size(si->phdr, si->phnum);
-  si->load_bias = get_elf_exec_load_bias(ehdr_vdso);
+  vdso->phdr = reinterpret_cast<ElfW(Phdr)*>(reinterpret_cast<char*>(ehdr_vdso) + ehdr_vdso->e_phoff);
+  vdso->phnum = ehdr_vdso->e_phnum;
+  vdso->base = reinterpret_cast<ElfW(Addr)>(ehdr_vdso);
+  vdso->size = phdr_table_get_load_size(vdso->phdr, vdso->phnum);
+  vdso->load_bias = get_elf_exec_load_bias(ehdr_vdso);
 
-  si->prelink_image();
-  si->link_image(SymbolLookupList(si), si, nullptr, nullptr);
-  // prevents accidental unloads...
-  si->set_dt_flags_1(si->get_dt_flags_1() | DF_1_NODELETE);
-  si->set_linked();
-  si->call_constructors();
-
-  vdso = si;
+  vdso->prelink_image();
+  vdso->link_image(SymbolLookupList(vdso), vdso, nullptr, nullptr);
+  // Prevent accidental unloads...
+  vdso->set_dt_flags_1(vdso->get_dt_flags_1() | DF_1_NODELETE);
+  vdso->set_linked();
 }
 
 // Initializes an soinfo's link_map_head field using other fields from the
