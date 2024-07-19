@@ -74,6 +74,30 @@
       },
       "revId": "2be41d65fe4042ce5e72c805712dfe43175782db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e280a23_efe05941",
+        "filename": "linker/linker_main.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1550939
+      },
+      "writtenOn": "2024-07-19T18:51:27Z",
+      "side": 0,
+      "message": "\u003e see the commit message :-)\n\nAh, I can\u0027t read.\n\n\u003e the previous code looked like it was safe, but i don\u0027t think it was actually doing anything useful\n\nMakes sense.",
+      "parentUuid": "e218c5a3_908078af",
+      "range": {
+        "startLine": 183,
+        "startChar": 2,
+        "endLine": 183,
+        "endChar": 26
+      },
+      "revId": "2be41d65fe4042ce5e72c805712dfe43175782db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
