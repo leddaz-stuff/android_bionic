@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f668b6ce_cd6a6636",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-19T11:10:29Z",
+      "side": 1,
+      "message": "(this will require abi dump regeneration, so i\u0027ll leave this until september...)",
+      "revId": "d512580522ab8024264b08b19fc2c1951aefbc5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
