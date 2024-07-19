@@ -34,6 +34,24 @@
       "parentUuid": "6a79b873_ce0afb12",
       "revId": "51e9d001147524996165bca30e0f6c52133f8132",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "768e341e_96d164ab",
+        "filename": "benchmarks/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1308044
+      },
+      "writtenOn": "2024-07-19T08:12:30Z",
+      "side": 1,
+      "message": "Just make the script be installed in device for eng and userdebug build. And the step is be simplified to only `$ adb shell perf-setup.sh`",
+      "parentUuid": "990a46fb_f457a494",
+      "revId": "51e9d001147524996165bca30e0f6c52133f8132",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
