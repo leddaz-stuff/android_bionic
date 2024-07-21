@@ -70,6 +70,24 @@
       "parentUuid": "b8fb2f54_1f844302",
       "revId": "8e738e4432accf43a2d787b75dceafefa3d359f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b22a1f4_553dc949",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-21T23:33:35Z",
+      "side": 1,
+      "message": "actually, ccross has an idea... and https://android-review.git.corp.google.com/c/platform/build/soong/+/3185003 makes it so we don\u0027t need to duplicate it for `armv7_a` too.",
+      "parentUuid": "08419c50_912ef1b6",
+      "revId": "8e738e4432accf43a2d787b75dceafefa3d359f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
