@@ -18,6 +18,9 @@
 
 // Some FreeBSD source includes <complex.h> and assumes <math.h> from that.
 #include <math.h>
+
+// Some FreeBSD source assumes FLT_EVAL_METHOD is defined, but forgets to
+// include <float.h> first.
 #include <float.h>
 
 #define __weak_reference(sym,alias)     \
