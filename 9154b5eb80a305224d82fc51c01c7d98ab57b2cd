@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37ae7d93_f78183a7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1058860
+      },
+      "writtenOn": "2024-07-23T16:56:37Z",
+      "side": 1,
+      "message": "Walking back on the bug trail leads to b/149839606#comment40:\n\n[  FAILED  ] 2 tests, listed below:\n[  FAILED  ] math_h.roundl\n[  FAILED  ] math_h_force_long_double.roundl\n\nLGTM since it looks like the two tests are passing without this.",
+      "range": {
+        "startLine": 9,
+        "startChar": 10,
+        "endLine": 9,
+        "endChar": 81
+      },
+      "revId": "9154b5eb80a305224d82fc51c01c7d98ab57b2cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
