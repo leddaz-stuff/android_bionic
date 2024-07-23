@@ -1,0 +1,262 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07475b6c_51f3b617",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-23T13:56:39Z",
+      "side": 1,
+      "message": "(lots of nits, but the principle seems fine to me...)",
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5977afac_8eb85ef5",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-23T13:56:39Z",
+      "side": 1,
+      "message": "use std::min() to avoid needing a single-use constant.\n\nprefer `1 * 1024 * 1024` to avoid needing to say that it\u0027s 1MiB.",
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34c3f9c1_15e4cf0f",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-23T13:56:39Z",
+      "side": 1,
+      "message": "s/area//\n\n(or add \"in the\" earlier)",
+      "range": {
+        "startLine": 353,
+        "startChar": 35,
+        "endLine": 353,
+        "endChar": 39
+      },
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bff5ac0_6e23ed76",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-23T13:56:39Z",
+      "side": 1,
+      "message": "use the subtraction style to avoid overflow\n\n(or `safe_add()` like the previous function)",
+      "range": {
+        "startLine": 354,
+        "startChar": 53,
+        "endLine": 354,
+        "endChar": 64
+      },
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3aaf37a2_2fa3479d",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-23T13:56:39Z",
+      "side": 1,
+      "message": "the previous name was more intention revealing",
+      "range": {
+        "startLine": 416,
+        "startChar": 8,
+        "endLine": 416,
+        "endChar": 12
+      },
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e742a89c_63a911a9",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-23T13:56:39Z",
+      "side": 1,
+      "message": "type*",
+      "range": {
+        "startLine": 416,
+        "startChar": 2,
+        "endLine": 416,
+        "endChar": 6
+      },
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97157284_6bf218dd",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-23T13:56:39Z",
+      "side": 1,
+      "message": "prefer more meaningful names...",
+      "range": {
+        "startLine": 510,
+        "startChar": 8,
+        "endLine": 510,
+        "endChar": 12
+      },
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8d02e9a_7efe3d74",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-23T13:56:39Z",
+      "side": 1,
+      "message": "...rather than reusing one local for two different purposes",
+      "range": {
+        "startLine": 524,
+        "startChar": 2,
+        "endLine": 524,
+        "endChar": 6
+      },
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f4e41c1_a613e8a2",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-23T13:56:39Z",
+      "side": 1,
+      "message": "...to make this final assignment more obviously correct",
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d069344_1c7658ba",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-23T13:56:39Z",
+      "side": 1,
+      "message": "the previous name was more intention revealing",
+      "range": {
+        "startLine": 787,
+        "startChar": 10,
+        "endLine": 787,
+        "endChar": 14
+      },
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e779e7c3_bd6c4584",
+        "filename": "linker/linker_phdr.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-23T13:56:39Z",
+      "side": 1,
+      "message": "now this is doing more work, it should be MapData() or somesuch, not look like a trivial getter",
+      "range": {
+        "startLine": 76,
+        "startChar": 22,
+        "endLine": 76,
+        "endChar": 29
+      },
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6ad6a86_a65bb350",
+        "filename": "linker/linker_phdr.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-23T13:56:39Z",
+      "side": 1,
+      "message": "type* here and elsewhere",
+      "range": {
+        "startLine": 76,
+        "startChar": 16,
+        "endLine": 76,
+        "endChar": 22
+      },
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
