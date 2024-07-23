@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f81b6011_aea68b6d",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-23T20:57:17Z",
+      "side": 1,
+      "message": "how do we know we never need more than two?",
+      "revId": "2dc23e041214fb5d66c61836829d05ca855d86e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
