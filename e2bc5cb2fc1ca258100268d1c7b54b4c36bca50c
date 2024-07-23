@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "752c98a1_88010ea2",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-23T03:37:35Z",
+      "side": 1,
+      "message": "Hmm. Somehow this is still not defined when I\u0027m building for Pixel 6 and the map_size gets trimmed. Need to investigate why. I thought this is defined by the compiler but maybe I need to include some header?",
+      "range": {
+        "startLine": 234,
+        "startChar": 0,
+        "endLine": 234,
+        "endChar": 16
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "524ccf92_ce8a73b2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "linker/linker_phdr.cpp",
+              "range": {
+                "startLine": 234,
+                "startChar": 0,
+                "endLine": 235,
+                "endChar": 0
+              },
+              "replacement": "#if defined(__LP64__)\n  // On 64-bit platforms, the ELF header is 64 bytes.\n  map_size \u003d std::max(map_size, 64ul);\n#else\n  // On 32-bit platforms, the ELF header is 52 bytes.\n  map_size \u003d std::max(map_size, 52ul);\n#endif\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e2bc5cb2fc1ca258100268d1c7b54b4c36bca50c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
