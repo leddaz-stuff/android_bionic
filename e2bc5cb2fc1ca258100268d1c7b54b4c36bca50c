@@ -40,6 +40,30 @@
       ],
       "revId": "e2bc5cb2fc1ca258100268d1c7b54b4c36bca50c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c9112e2_1d305501",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-23T13:57:45Z",
+      "side": 1,
+      "message": "pixel 6 is old enough that it still had 32-bit /bin/linker as well as 64-bit linker64, no?\n\n(nit: prefer the `#if !defined()` style)",
+      "parentUuid": "752c98a1_88010ea2",
+      "range": {
+        "startLine": 234,
+        "startChar": 0,
+        "endLine": 234,
+        "endChar": 16
+      },
+      "revId": "e2bc5cb2fc1ca258100268d1c7b54b4c36bca50c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
