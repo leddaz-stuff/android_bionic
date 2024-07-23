@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "77b66513_e9cf7473",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-23T16:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5977afac_8eb85ef5",
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34c3f9c1_15e4cf0f",
@@ -58,6 +76,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8124275d_7dee37b4",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-23T16:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34c3f9c1_15e4cf0f",
+      "range": {
+        "startLine": 353,
+        "startChar": 35,
+        "endLine": 353,
+        "endChar": 39
+      },
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1bff5ac0_6e23ed76",
@@ -71,6 +113,30 @@
       "writtenOn": "2024-07-23T13:56:39Z",
       "side": 1,
       "message": "use the subtraction style to avoid overflow\n\n(or `safe_add()` like the previous function)",
+      "range": {
+        "startLine": 354,
+        "startChar": 53,
+        "endLine": 354,
+        "endChar": 64
+      },
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19b5c47b_c1e4cb36",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-23T16:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1bff5ac0_6e23ed76",
       "range": {
         "startLine": 354,
         "startChar": 53,
@@ -127,6 +193,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b91d87b_4c8ffa2b",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-23T16:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e742a89c_63a911a9",
+      "range": {
+        "startLine": 416,
+        "startChar": 2,
+        "endLine": 416,
+        "endChar": 6
+      },
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da665f3c_8f9356db",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-23T16:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3aaf37a2_2fa3479d",
+      "range": {
+        "startLine": 416,
+        "startChar": 8,
+        "endLine": 416,
+        "endChar": 12
+      },
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97157284_6bf218dd",
@@ -140,6 +254,30 @@
       "writtenOn": "2024-07-23T13:56:39Z",
       "side": 1,
       "message": "prefer more meaningful names...",
+      "range": {
+        "startLine": 510,
+        "startChar": 8,
+        "endLine": 510,
+        "endChar": 12
+      },
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a1c32a9_23916c91",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-23T16:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97157284_6bf218dd",
       "range": {
         "startLine": 510,
         "startChar": 8,
@@ -173,6 +311,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91c1a96b_3cf05a64",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-23T16:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8d02e9a_7efe3d74",
+      "range": {
+        "startLine": 524,
+        "startChar": 2,
+        "endLine": 524,
+        "endChar": 6
+      },
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f4e41c1_a613e8a2",
@@ -190,6 +352,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75a9d3cf_118fd0bb",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-23T16:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f4e41c1_a613e8a2",
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d069344_1c7658ba",
@@ -203,6 +383,30 @@
       "writtenOn": "2024-07-23T13:56:39Z",
       "side": 1,
       "message": "the previous name was more intention revealing",
+      "range": {
+        "startLine": 787,
+        "startChar": 10,
+        "endLine": 787,
+        "endChar": 14
+      },
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8d612c3_3eb850cf",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-23T16:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d069344_1c7658ba",
       "range": {
         "startLine": 787,
         "startChar": 10,
@@ -249,6 +453,54 @@
       "writtenOn": "2024-07-23T13:56:39Z",
       "side": 1,
       "message": "type* here and elsewhere",
+      "range": {
+        "startLine": 76,
+        "startChar": 16,
+        "endLine": 76,
+        "endChar": 22
+      },
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96690bba_09bc2377",
+        "filename": "linker/linker_phdr.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-23T16:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e779e7c3_bd6c4584",
+      "range": {
+        "startLine": 76,
+        "startChar": 22,
+        "endLine": 76,
+        "endChar": 29
+      },
+      "revId": "3f258c77dbb1b3eaae23188e0af7586c2ae0572a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3285d010_863cdbf3",
+        "filename": "linker/linker_phdr.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-23T16:09:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6ad6a86_a65bb350",
       "range": {
         "startLine": 76,
         "startChar": 16,
