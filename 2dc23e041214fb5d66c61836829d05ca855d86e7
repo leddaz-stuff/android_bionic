@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21364b8d_4472d59a",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-24T20:59:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3be9a94f_41e36757",
+      "revId": "2dc23e041214fb5d66c61836829d05ca855d86e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "abfd57f0_0ba6d5bb",
@@ -67,6 +85,30 @@
       "writtenOn": "2024-07-24T19:06:17Z",
       "side": 1,
       "message": "something like \"The caller is responsible for the lifetime of the passed-in fragment.\"?",
+      "range": {
+        "startLine": 357,
+        "startChar": 22,
+        "endLine": 358,
+        "endChar": 63
+      },
+      "revId": "2dc23e041214fb5d66c61836829d05ca855d86e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eab2bfd7_5c2a3058",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-24T20:59:27Z",
+      "side": 1,
+      "message": "I wanted to explain why a local variable can\u0027t be used here, which was not obvious to me and that bit me when I was implementing this change.",
+      "parentUuid": "abfd57f0_0ba6d5bb",
       "range": {
         "startLine": 357,
         "startChar": 22,
