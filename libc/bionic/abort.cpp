@@ -29,27 +29,26 @@
 
 #include <signal.h>
 #include <stdlib.h>
-#include <sys/syscall.h>
 #include <unistd.h>
 
 #include "private/bionic_inline_raise.h"
 
 void abort() {
-  // Don't block SIGABRT to give any signal handler a chance; we ignore
-  // any errors -- X311J doesn't allow abort to return anyway.
+  // Unblock SIGABRT to give any signal handler a chance;
+  // we ignore any errors since there's nothing useful we can do anyway.
   sigset64_t mask;
-  sigfillset64(&mask);
+  sigemptyset64(&mask);
   sigdelset64(&mask, SIGABRT);
+  sigprocmask64(SIG_UNBLOCK, &mask, nullptr);
 
-  sigprocmask64(SIG_SETMASK, &mask, nullptr);
+  // Raise SIGABRT without adding an uninteresting stack frame
+  // that anyone investigating this crash would have to ignore.
   inline_raise(SIGABRT);
 
-  // If SIGABRT is ignored or it's caught and the handler returns,
+  // If that signal was ignored or was caught and the handler returned,
   // remove the SIGABRT signal handler and raise SIGABRT again.
   struct sigaction64 sa = { .sa_handler = SIG_DFL, .sa_flags = SA_RESTART };
   sigaction64(SIGABRT, &sa, nullptr);
-
-  sigprocmask64(SIG_SETMASK, &mask, nullptr);
   inline_raise(SIGABRT);
 
   // If we get this far, just exit.
