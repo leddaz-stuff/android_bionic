@@ -948,8 +948,6 @@ send_vc(res_state statp, struct __res_params* params,
 			else
 				break;
 		}
-		// return size should never exceed container size
-		resplen = anssiz;
 	}
 	/*
 	 * If the calling applicating has bailed out of
@@ -962,7 +960,7 @@ send_vc(res_state statp, struct __res_params* params,
 		DprintQ((statp->options & RES_DEBUG) ||
 			(statp->pfcode & RES_PRF_REPLY),
 			(stdout, ";; old answer (unexpected):\n"),
-			ans, resplen);
+			ans, (resplen > anssiz) ? anssiz: resplen);
 		goto read_len;
 	}
 

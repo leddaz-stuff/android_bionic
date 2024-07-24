@@ -32,13 +32,13 @@
 #define VIRTIO_BALLOON_CMD_ID_STOP 0
 #define VIRTIO_BALLOON_CMD_ID_DONE 1
 struct virtio_balloon_config {
-  __le32 num_pages;
-  __le32 actual;
+  __u32 num_pages;
+  __u32 actual;
   union {
-    __le32 free_page_hint_cmd_id;
-    __le32 free_page_report_cmd_id;
+    __u32 free_page_hint_cmd_id;
+    __u32 free_page_report_cmd_id;
   };
-  __le32 poison_val;
+  __u32 poison_val;
 };
 #define VIRTIO_BALLOON_S_SWAP_IN 0
 #define VIRTIO_BALLOON_S_SWAP_OUT 1

@@ -57,7 +57,8 @@
 #include "private/ErrnoRestorer.h"
 #include "private/thread_private.h"
 
-#include "private/bsd_sys_param.h" // For ALIGN/ALIGNBYTES.
+#define ALIGNBYTES (sizeof(uintptr_t) - 1)
+#define ALIGN(p) (((uintptr_t)(p) + ALIGNBYTES) &~ ALIGNBYTES)
 
 #define	NDYNAMIC 10		/* add ten more whenever necessary */
 

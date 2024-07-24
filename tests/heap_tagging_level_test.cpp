@@ -15,12 +15,10 @@
  */
 
 #include <gtest/gtest.h>
-
-#include <malloc.h>
 #include <sys/prctl.h>
 
 #if defined(__BIONIC__)
-#include "gtest_globals.h"
+#include "platform/bionic/malloc.h"
 #include "platform/bionic/mte.h"
 #include "utils.h"
 
@@ -38,7 +36,7 @@ static bool KernelSupportsTaggedPointers() {
 }
 
 static bool SetHeapTaggingLevel(HeapTaggingLevel level) {
-  return mallopt(M_BIONIC_SET_HEAP_TAGGING_LEVEL, level);
+  return android_mallopt(M_SET_HEAP_TAGGING_LEVEL, &level, sizeof(level));
 }
 #endif
 
@@ -78,48 +76,62 @@ TEST(heap_tagging_level, tagged_pointer_dies) {
 #endif // defined(__BIONIC__)
 }
 
-#if defined(__BIONIC__) && defined(__aarch64__)
-void ExitWithSiCode(int, siginfo_t* info, void*) {
-  _exit(info->si_code);
+#if defined(__BIONIC__) && defined(__aarch64__) && defined(ANDROID_EXPERIMENTAL_MTE)
+template <int SiCode> void CheckSiCode(int, siginfo_t* info, void*) {
+  if (info->si_code != SiCode) {
+    _exit(2);
+  }
+  _exit(1);
+}
+
+static bool SetTagCheckingLevel(int level) {
+  int tagged_addr_ctrl = prctl(PR_GET_TAGGED_ADDR_CTRL, 0, 0, 0, 0);
+  if (tagged_addr_ctrl < 0) {
+    return false;
+  }
+
+  tagged_addr_ctrl = (tagged_addr_ctrl & ~PR_MTE_TCF_MASK) | level;
+  return prctl(PR_SET_TAGGED_ADDR_CTRL, tagged_addr_ctrl, 0, 0, 0) == 0;
 }
 #endif
 
 TEST(heap_tagging_level, sync_async_bad_accesses_die) {
-#if defined(__BIONIC__) && defined(__aarch64__)
+#if defined(__BIONIC__) && defined(__aarch64__) && defined(ANDROID_EXPERIMENTAL_MTE)
   if (!(getauxval(AT_HWCAP2) & HWCAP2_MTE)) {
     GTEST_SKIP() << "requires MTE support";
   }
 
   std::unique_ptr<int[]> p = std::make_unique<int[]>(4);
 
-  // First, check that memory tagging is enabled and the default tag checking level is sync.
-  // cc_test targets get sync MTE by default.
+  // First, check that memory tagging is enabled and the default tag checking level is async.
   // We assume that scudo is used on all MTE enabled hardware; scudo inserts a header with a
   // mismatching tag before each allocation.
   EXPECT_EXIT(
       {
-        ScopedSignalHandler ssh(SIGSEGV, ExitWithSiCode, SA_SIGINFO);
+        ScopedSignalHandler ssh(SIGSEGV, CheckSiCode<SEGV_MTEAERR>, SA_SIGINFO);
         p[-1] = 42;
       },
-      testing::ExitedWithCode(SEGV_MTESERR), "");
+      testing::ExitedWithCode(1), "");
 
-  EXPECT_TRUE(SetHeapTaggingLevel(M_HEAP_TAGGING_LEVEL_ASYNC));
+  EXPECT_TRUE(SetTagCheckingLevel(PR_MTE_TCF_SYNC));
   EXPECT_EXIT(
       {
-        ScopedSignalHandler ssh(SIGSEGV, ExitWithSiCode, SA_SIGINFO);
+        ScopedSignalHandler ssh(SIGSEGV, CheckSiCode<SEGV_MTESERR>, SA_SIGINFO);
         p[-1] = 42;
       },
-      testing::ExitedWithCode(SEGV_MTEAERR), "");
+      testing::ExitedWithCode(1), "");
 
-  EXPECT_TRUE(SetHeapTaggingLevel(M_HEAP_TAGGING_LEVEL_NONE));
+  EXPECT_TRUE(SetTagCheckingLevel(PR_MTE_TCF_NONE));
   volatile int oob ATTRIBUTE_UNUSED = p[-1];
-#else
-  GTEST_SKIP() << "bionic/arm64 only";
 #endif
 }
 
 TEST(heap_tagging_level, none_pointers_untagged) {
 #if defined(__BIONIC__)
+#if defined(__aarch64__) && defined(ANDROID_EXPERIMENTAL_MTE)
+  EXPECT_TRUE(SetTagCheckingLevel(PR_MTE_TCF_NONE));
+#endif
+
   EXPECT_TRUE(SetHeapTaggingLevel(M_HEAP_TAGGING_LEVEL_NONE));
   std::unique_ptr<int[]> p = std::make_unique<int[]>(4);
   EXPECT_EQ(untag_address(p.get()), p.get());
@@ -133,6 +145,10 @@ TEST(heap_tagging_level, tagging_level_transitions) {
   if (!KernelSupportsTaggedPointers()) {
     GTEST_SKIP() << "Kernel doesn't support tagged pointers.";
   }
+
+#if defined(ANDROID_EXPERIMENTAL_MTE)
+  EXPECT_TRUE(SetTagCheckingLevel(PR_MTE_TCF_NONE));
+#endif
 
   EXPECT_FALSE(SetHeapTaggingLevel(static_cast<HeapTaggingLevel>(12345)));
 
@@ -174,40 +190,13 @@ TEST(heap_tagging_level, tagging_level_transition_sync_none) {
     GTEST_SKIP() << "requires MTE support";
   }
 
+#if defined(ANDROID_EXPERIMENTAL_MTE)
+  EXPECT_TRUE(SetTagCheckingLevel(PR_MTE_TCF_NONE));
+#endif
+
   EXPECT_TRUE(SetHeapTaggingLevel(M_HEAP_TAGGING_LEVEL_SYNC));
   EXPECT_TRUE(SetHeapTaggingLevel(M_HEAP_TAGGING_LEVEL_NONE));
 #else
   GTEST_SKIP() << "bionic/arm64 only";
 #endif
 }
-
-enum class MemtagNote { NONE, ASYNC, SYNC };
-class MemtagNoteTest : public testing::TestWithParam<std::tuple<MemtagNote, bool>> {};
-
-TEST_P(MemtagNoteTest, SEGV) {
-#if defined(__BIONIC__) && defined(__aarch64__)
-  if (!(getauxval(AT_HWCAP2) & HWCAP2_MTE)) {
-    GTEST_SKIP() << "requires MTE support";
-  }
-
-  const char* kNoteSuffix[] = {"disabled", "async", "sync"};
-  const char* kExpectedOutput[] = {"normal exit\n", "SEGV_MTEAERR\n", "SEGV_MTESERR\n"};
-
-  MemtagNote note = std::get<0>(GetParam());
-  bool isStatic = std::get<1>(GetParam());
-  std::string helper_base = std::string("heap_tagging_") + (isStatic ? "static_" : "") +
-                            kNoteSuffix[static_cast<int>(note)] + "_helper";
-  fprintf(stderr, "=== %s\n", helper_base.c_str());
-  std::string helper = GetTestlibRoot() + "/" + helper_base + "/" + helper_base;
-  chmod(helper.c_str(), 0755);
-  ExecTestHelper eth;
-  eth.SetArgs({helper.c_str(), nullptr});
-  eth.Run([&]() { execve(helper.c_str(), eth.GetArgs(), eth.GetEnv()); }, 0,
-          kExpectedOutput[static_cast<int>(note)]);
-#endif
-}
-
-INSTANTIATE_TEST_SUITE_P(, MemtagNoteTest,
-                         testing::Combine(testing::Values(MemtagNote::NONE, MemtagNote::ASYNC,
-                                                          MemtagNote::SYNC),
-                                          testing::Bool()));

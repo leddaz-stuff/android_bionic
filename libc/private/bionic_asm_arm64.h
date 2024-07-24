@@ -45,7 +45,7 @@
 #if defined(__ARM_FEATURE_BTI_DEFAULT)
 #define __bionic_asm_aarch64_feature_bti    (1 << 0)
 #undef __bionic_asm_custom_entry
-#define __bionic_asm_custom_entry(f)        bti c
+#define __bionic_asm_custom_entry(f)        hint #34  // BTI C
 #else
 #define __bionic_asm_aarch64_feature_bti    0
 #endif
@@ -69,10 +69,4 @@
     .long (__bionic_asm_aarch64_feature_pac | \
            __bionic_asm_aarch64_feature_bti); \
     .long 0; \
-    .popsection;
-
-#define NT_MEMTAG_LEVEL_MASK 3
-#define NT_MEMTAG_LEVEL_DEFAULT 0
-#define NT_MEMTAG_LEVEL_ASYNC 1
-#define NT_MEMTAG_LEVEL_SYNC 2
-#define NT_MEMTAG_HEAP 4
+    .popsection; \

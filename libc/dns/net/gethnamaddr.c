@@ -75,6 +75,9 @@
 #include <syslog.h>
 #include <unistd.h>
 
+#define ALIGNBYTES (sizeof(uintptr_t) - 1)
+#define ALIGN(p) (((uintptr_t)(p) + ALIGNBYTES) &~ ALIGNBYTES)
+
 #ifndef LOG_AUTH
 # define LOG_AUTH 0
 #endif
@@ -86,8 +89,6 @@
 #include <string.h>
 
 #include "hostent.h"
-
-#include "private/bionic_defs.h"
 
 #define maybe_ok(res, nm, ok) (((res)->options & RES_NOCHECKNAME) != 0U || \
                                (ok)(nm) != 0)
@@ -1532,7 +1533,6 @@ _yp_gethtbyname(void *rv, void *cb_data, va_list ap)
  * Non-reentrant versions.
  */
 
-__BIONIC_WEAK_FOR_NATIVE_BRIDGE
 struct hostent *
 gethostbyname(const char *name)
 {
@@ -1590,7 +1590,6 @@ android_gethostbynamefornetcontext(const char *name, int af,
 	return hp;
 }
 
-__BIONIC_WEAK_FOR_NATIVE_BRIDGE
 struct hostent *
 gethostbyaddr(const void *addr, socklen_t len, int af)
 {

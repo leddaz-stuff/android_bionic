@@ -58,7 +58,7 @@ extern "C" _Atomic(android_fdtrack_hook_t) __android_fdtrack_hook;
         event.fd = __fd;                                          \
         event.type = ANDROID_FDTRACK_EVENT_TYPE_CREATE;           \
         event.data.create.function_name = name;                   \
-        atomic_load(&__android_fdtrack_hook)(&event);             \
+        __android_fdtrack_hook(&event);                           \
         tls.fdtrack_disabled = false;                             \
       }                                                           \
     }                                                             \
@@ -86,7 +86,7 @@ extern "C" _Atomic(android_fdtrack_hook_t) __android_fdtrack_hook;
         android_fdtrack_event event;                             \
         event.fd = __fd;                                         \
         event.type = ANDROID_FDTRACK_EVENT_TYPE_CLOSE;           \
-        atomic_load(&__android_fdtrack_hook)(&event);            \
+        __android_fdtrack_hook(&event);                          \
         tls.fdtrack_disabled = false;                            \
         errno = saved_errno;                                     \
       }                                                          \

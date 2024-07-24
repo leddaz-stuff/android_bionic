@@ -28,16 +28,12 @@
 
 #pragma once
 
-#include <stdint.h>
 #include <sys/cdefs.h>
 
-typedef void init_func_t(int, char*[], char*[]);
-typedef void fini_func_t(void);
-
 typedef struct {
-  init_func_t** preinit_array;
-  init_func_t** init_array;
-  fini_func_t** fini_array;
+  void (**preinit_array)(void);
+  void (**init_array)(void);
+  void (**fini_array)(void);
 } structors_array_t;
 
 __BEGIN_DECLS
@@ -57,8 +53,6 @@ __END_DECLS
 __LIBC_HIDDEN__ void __libc_init_globals();
 
 __LIBC_HIDDEN__ void __libc_init_common();
-
-__LIBC_HIDDEN__ void __libc_init_scudo();
 
 __LIBC_HIDDEN__ void __libc_init_AT_SECURE(char** envp);
 
