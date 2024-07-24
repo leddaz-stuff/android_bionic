@@ -16,6 +16,24 @@
       "message": "how do we know we never need more than two?",
       "revId": "2dc23e041214fb5d66c61836829d05ca855d86e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9c085d9_235fb1e3",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-07-24T18:32:29Z",
+      "side": 1,
+      "message": "We have a dedicated originally unused fragment for each area we are reading (even before my CL) and additional 1MiB mapping that covers the header and possibly all other fragments (added in my CL). So, if the 1MiB fragment does not cover the necessary area we will use the dedicated one to map it. Once all areas are mapped and Elf sections are read by `ElfReader::Read` we never re-read them (see `did_read_` flag). So, we usually need only one 1MiB fragment and occasionally additional dedicated one but never more than that.",
+      "parentUuid": "f81b6011_aea68b6d",
+      "revId": "2dc23e041214fb5d66c61836829d05ca855d86e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
