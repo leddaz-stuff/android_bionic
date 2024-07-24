@@ -117,6 +117,30 @@
       },
       "revId": "2dc23e041214fb5d66c61836829d05ca855d86e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c89b960f_d75eaaa6",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-24T21:29:07Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "eab2bfd7_5c2a3058",
+      "range": {
+        "startLine": 357,
+        "startChar": 22,
+        "endLine": 358,
+        "endChar": 63
+      },
+      "revId": "2dc23e041214fb5d66c61836829d05ca855d86e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
