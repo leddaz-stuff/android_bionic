@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fc5ac01_8af399bb",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-07-25T20:25:03Z",
+      "side": 1,
+      "message": "Should this be: `file_size_ - file_offset_` ? (or use `map_size` from below)",
+      "range": {
+        "startLine": 224,
+        "startChar": 6,
+        "endLine": 224,
+        "endChar": 16
+      },
+      "revId": "d88378a579ae89d5dd378005b0c15c7f4b85e6a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
