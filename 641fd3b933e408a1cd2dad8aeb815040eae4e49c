@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a426f26_ebd8f48e",
+        "filename": "tests/stdlib_test.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-07-25T21:02:48Z",
+      "side": 1,
+      "message": "Is it always guaranteed to be output in this order?",
+      "range": {
+        "startLine": 698,
+        "startChar": 61,
+        "endLine": 698,
+        "endChar": 65
+      },
+      "revId": "641fd3b933e408a1cd2dad8aeb815040eae4e49c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
