@@ -88,6 +88,24 @@
       "parentUuid": "c9fe80a1_746c8ed0",
       "revId": "58f06e11122723d68c5cb393aeb4ed1c7a2e7bfe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bedd0e7_24ea31f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-07-25T22:15:08Z",
+      "side": 1,
+      "message": "\u003e Doesn\u0027t the compiler elide emitting diagnostics for system headers?\n\nIt suppresses warnings, yes, but `-ansi` doesn\u0027t enable warnings, it changes the language mode: https://godbolt.org/z/zKEnG6scT\n\nhttp://cs/h/android/platform/superproject/+/master-ndk:ndk/tests/build/ansi/ is the test in the NDK. iirc I ended up here because it broke.",
+      "parentUuid": "425f29ff_622db96f",
+      "revId": "58f06e11122723d68c5cb393aeb4ed1c7a2e7bfe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
