@@ -22,6 +22,30 @@
       },
       "revId": "641fd3b933e408a1cd2dad8aeb815040eae4e49c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec37fa22_14fd6b99",
+        "filename": "tests/stdlib_test.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-26T12:18:37Z",
+      "side": 1,
+      "message": "yes, though since that wasn\u0027t obvious, i\u0027ve added a comment explaining exactly what\u0027s being tested here and what the expectations are. (i\u0027ve found quite a few cases lately where the test must have been \"obvious\" when we added it, but i\u0027m left scratching my head trying to work out what exactly it\u0027s testing and why now a decade has passed...)",
+      "parentUuid": "6a426f26_ebd8f48e",
+      "range": {
+        "startLine": 698,
+        "startChar": 61,
+        "endLine": 698,
+        "endChar": 65
+      },
+      "revId": "641fd3b933e408a1cd2dad8aeb815040eae4e49c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
