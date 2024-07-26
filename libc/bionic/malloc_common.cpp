@@ -195,6 +195,39 @@ extern "C" void* aligned_alloc(size_t alignment, size_t size) {
   return MaybeTagPointer(result);
 }
 
+extern "C" void* aligned_realloc(void* old_mem, size_t alignment, size_t size) {
+  if (old_mem == nullptr) return aligned_alloc(alignment, size);
+
+  if (!powerof2(alignment) || (size % alignment) != 0) {
+    free(old_mem);
+    errno = EINVAL;
+    return nullptr;
+  }
+
+  void* result = realloc(old_mem, size);
+  if (result == nullptr) {
+    warning_log("aligned_realloc(%p, %zu, %zu) failed: returning null pointer", old_mem, alignment,
+                size);
+    return nullptr;
+  }
+
+  uintptr_t result_uptr = reinterpret_cast<uintptr_t>(result);
+  if (alignment == 1 || (result_uptr & (alignment - 1)) == 0) {
+    return MaybeTagPointer(result);
+  }
+  void* new_ptr = aligned_alloc(alignment, size);
+  if (new_ptr == nullptr) {
+    free(result);
+    warning_log("aligned_realloc(%p, %zu, %zu) failed: returning null pointer", old_mem, alignment,
+                size);
+    return nullptr;
+  }
+  size_t copy_bytes = malloc_usable_size(result);
+  memcpy(new_ptr, result, size < copy_bytes ? size : copy_bytes);
+  free(result);
+  return MaybeTagPointer(new_ptr);
+}
+
 extern "C" __attribute__((__noinline__)) void* realloc(void* old_mem, size_t bytes) {
   auto dispatch_table = GetDispatchTable();
   old_mem = MaybeUntagAndCheckPointer(old_mem);

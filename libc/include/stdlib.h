@@ -76,6 +76,7 @@ unsigned long long strtoull(const char* _Nonnull __s, char* _Nullable * _Nullabl
 int posix_memalign(void* _Nullable * _Nullable __memptr, size_t __alignment, size_t __size);
 
 void* _Nullable aligned_alloc(size_t __alignment, size_t __size) __INTRODUCED_IN(28);
+void* _Nullable aligned_realloc(void* _Nullable __ptr, size_t __alignment, size_t __size) __INTRODUCED_IN(35);
 
 double strtod(const char* _Nonnull __s, char* _Nullable * _Nullable __end_ptr);
 long double strtold(const char* _Nonnull __s, char* _Nullable * _Nullable __end_ptr);

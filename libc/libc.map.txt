@@ -1590,6 +1590,7 @@ LIBC_V { # introduced=35
     android_crash_detail_unregister;
     android_crash_detail_replace_name;
     android_crash_detail_replace_data;
+    aligned_realloc;
     epoll_pwait2;
     epoll_pwait2_64;
     _Fork;
