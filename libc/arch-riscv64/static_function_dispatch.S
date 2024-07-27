@@ -33,7 +33,23 @@ ENTRY(name); \
     j impl; \
 END(name)
 
-// TODO: switch to the V variants when qemu is fixed.
+#if 1 // V
+FUNCTION_DELEGATE(memchr, memchr_v)
+FUNCTION_DELEGATE(memcmp, memcmp_v)
+FUNCTION_DELEGATE(memcpy, memcpy_v)
+FUNCTION_DELEGATE(memmove, memmove_v)
+FUNCTION_DELEGATE(memset, memset_v)
+FUNCTION_DELEGATE(stpcpy, stpcpy_v)
+FUNCTION_DELEGATE(strcat, strcat_v)
+FUNCTION_DELEGATE(strchr, strchr_v)
+FUNCTION_DELEGATE(strcmp, strcmp_v)
+FUNCTION_DELEGATE(strcpy, strcpy_v)
+FUNCTION_DELEGATE(strlen, strlen_v)
+FUNCTION_DELEGATE(strncat, strncat_v)
+FUNCTION_DELEGATE(strncmp, strncmp_v)
+FUNCTION_DELEGATE(strncpy, strncpy_v)
+FUNCTION_DELEGATE(strnlen, strnlen_v)
+#else // no V
 FUNCTION_DELEGATE(memchr, memchr_gc)
 FUNCTION_DELEGATE(memcmp, memcmp_gc)
 FUNCTION_DELEGATE(memcpy, memcpy_gc)
@@ -49,3 +65,4 @@ FUNCTION_DELEGATE(strncat, strncat_gc)
 FUNCTION_DELEGATE(strncmp, strncmp_gc)
 FUNCTION_DELEGATE(strncpy, strncpy_gc)
 FUNCTION_DELEGATE(strnlen, strnlen_gc)
+#endif
