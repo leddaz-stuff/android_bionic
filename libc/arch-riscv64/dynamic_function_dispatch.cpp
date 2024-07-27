@@ -34,6 +34,9 @@
 
 extern "C" {
 
+#if 1 // V
+static bool have_fast_v() { return true; }
+#else
 static inline __always_inline int ifunc_faccessat(int dir_fd, const char* path, int mode) {
   register long a0 __asm__("a0") = dir_fd;
   register long a1 __asm__("a1") = reinterpret_cast<long>(path);
@@ -51,6 +54,7 @@ static bool have_fast_v() {
   }();
   return result;
 }
+#endif
 
 DEFINE_IFUNC_FOR(memchr) {
   if (have_fast_v()) RETURN_FUNC(memchr_func_t, memchr_v);
