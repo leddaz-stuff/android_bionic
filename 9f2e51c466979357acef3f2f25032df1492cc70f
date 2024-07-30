@@ -34,6 +34,24 @@
       "parentUuid": "69e2f2f3_c34a0a3a",
       "revId": "9f2e51c466979357acef3f2f25032df1492cc70f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ad4f8fc_41fb75b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-30T17:38:38Z",
+      "side": 1,
+      "message": "\u003e Just to double check, the newly added function on the stdlib.h will provide the same function signature as the qsort_r() available on Linux systems, correct?\n\ncorrect. POSIX went with the GNU signature.\n\n\u003e And other question I have, when it is expected to be available on the NDK?\n\nwell, the NDK isn\u0027t really the question --- until there\u0027s an OS version with this it\u0027s mostly useless outside the OS itself (and OS code doesn\u0027t need an NDK update). you can get an idea of how many years before qsort_r() is widely available from https://apilevels.com/ (with the not-yet-listed API level 36 being the one that will contain qsort_r()).",
+      "parentUuid": "33c35826_8f2c3041",
+      "revId": "9f2e51c466979357acef3f2f25032df1492cc70f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
