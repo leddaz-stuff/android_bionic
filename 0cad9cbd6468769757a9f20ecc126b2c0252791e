@@ -16,6 +16,24 @@
       "message": "There are build failures, but I don\u0027t think they are related to this change.",
       "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbaa7eeb_b5fa02bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-30T19:34:39Z",
+      "side": 1,
+      "message": "no, they seem legit:\n```\nld.lld: error: undefined symbol: strerrorname_np\n```\nfor values of \"legit\" that include \"we said don\u0027t call this unless you\u0027re building for a high enough target api level, but you called it and then complained it wouldn\u0027t link\".\n\ni think we were getting away with this before because the macro name was wrong, so the condition was always false, so we never compiled this path. but i don\u0027t understand _why_ we seem to have a target api vs linked-against-libraries discrepancy here...\n\nthough it\u0027s probably something to do with\n```\n-target aarch64-linux-android10000\n```\nand/or the many mentions of \"vendor\" here.\n\n+ccross?",
+      "parentUuid": "18d43d24_91679007",
+      "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
