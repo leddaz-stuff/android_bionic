@@ -34,6 +34,24 @@
       "parentUuid": "18d43d24_91679007",
       "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f04f0f74_e727cfff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002751
+      },
+      "writtenOn": "2024-07-31T05:33:12Z",
+      "side": 1,
+      "message": "The failing build is the vendor variant.  It is linking against the vendor variant of libc, which is stubs built from `out/soong/.intermediates/bionic/libc/libc/android_vendor_arm64_armv8-a_cortex-a53_shared/gen/stub.map`.  That file doesn\u0027t mention `strerrorname_np`, but the non-vendor stubs do.  The vendor stubs are built with `--api 202504`, which seems to come from the `BOARD_API_LEVEL` value.",
+      "parentUuid": "fbaa7eeb_b5fa02bf",
+      "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
