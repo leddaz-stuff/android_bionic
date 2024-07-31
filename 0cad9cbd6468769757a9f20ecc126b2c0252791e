@@ -70,6 +70,24 @@
       "parentUuid": "f04f0f74_e727cfff",
       "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4254afa5_d6ae2f98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-07-31T23:18:02Z",
+      "side": 1,
+      "message": "BOARD_API_LEVEL being 202504 is as expected for the trunk_staging release config because 202404 was already released and trunk_staging is future facing.\n\nWhat\u0027s not expected is the absence of strerrorname_np in the vendor-side stub.\n\nCan you try again after experimentally adding (not replacing the existing one) `strerrorname_np; # llndk\u003d202504` (or `llndk\u003d202404`) to the map.txt file? That may reveal what went wrong.\n\ncc: @justinyun@google.com",
+      "parentUuid": "422fc39f_1c794b46",
+      "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
