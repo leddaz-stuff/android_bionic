@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5ed1982_0398b90c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-31T21:07:06Z",
+      "side": 1,
+      "message": "ah, but this won\u0027t work until/unless we actually fix the code we\u0027re trying to test, because it\u0027s currently not _just_ broken for vendor stuff --- it\u0027s broken for everyone :-(",
+      "revId": "9bb59b5e2f726874d6202098d234b2c4b9162ee5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
