@@ -52,6 +52,24 @@
       "parentUuid": "fbaa7eeb_b5fa02bf",
       "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "422fc39f_1c794b46",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-07-31T18:40:28Z",
+      "side": 1,
+      "message": "+jiyong for whether that\u0027s expected, or another artifact of \"35 isn\u0027t in AOSP yet\". (i\u0027m surprised that\u0027s 202*five*04, not 202*four*04? surely _next year\u0027s_ abi should include this year\u0027s abi?)",
+      "parentUuid": "f04f0f74_e727cfff",
+      "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
