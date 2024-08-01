@@ -16,6 +16,24 @@
       "message": "Still investigating the PSS/RSS growth.",
       "revId": "c16828ba1c726bd21eaacdc4e9759a9d96c2564a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18ca5807_0eac323c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1157738
+      },
+      "writtenOn": "2024-08-01T18:33:54Z",
+      "side": 1,
+      "message": "Regression is confirmed. Reverting.",
+      "parentUuid": "a4b16619_80f87601",
+      "revId": "c16828ba1c726bd21eaacdc4e9759a9d96c2564a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
