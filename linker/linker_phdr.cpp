@@ -228,12 +228,23 @@ bool ElfReader::ReadElfHeader() {
     return false;
   }
 
+#if !defined(__LP64__)
   // Map at most 1MiB which should cover most cases
   map_size = std::min(map_size, static_cast<size_t>(1 * 1024 * 1024));
+#endif
 
   if (!file_fragment_.Map(fd_, file_offset_, 0, map_size)) {
-    DL_ERR("\"%s\" header mmap failed: %m", name_.c_str());
+    DL_ERR("\"%s\" header mmap failed: %s", name_.c_str(), strerror(errno));
     return false;
+  }
+
+  if (madvise(file_fragment_.data(), map_size, MADV_RANDOM)) {
+    DL_WARN("\"%s\" header madvise failed: %m", name_.c_str());
+  }
+
+  if (prctl(PR_SET_VMA, PR_SET_VMA_ANON_NAME, file_fragment_.data(),
+            map_size, "linker_phdr")) {
+    DL_WARN("\"%s\" header prctl failed: %m", name_.c_str());
   }
 
   header_ = *static_cast<ElfW(Ehdr)*>(file_fragment_.data());
