@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "974d0678_1a7b49a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-08-01T21:29:24Z",
+      "side": 1,
+      "message": "I\u0027m assuming you want this to prevent app compat issues, wdyt?\n\nI still need to run csuite appcompat on this CL, can add a test in bionic as well.",
+      "range": {
+        "startLine": 15,
+        "startChar": 40,
+        "endLine": 15,
+        "endChar": 65
+      },
+      "revId": "4ec3b17088dd3f8a0a56e588d1b5e81e3e0a117f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
