@@ -16,6 +16,23 @@
       "message": "I was never able to replicate the failing tests, but it really doesn\u0027t make sense to run these tests under hwasan anyway.",
       "revId": "fb4b87ba59745b6400f365f7e2100c9665d477e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b56a74e_f8cf5e4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-01T12:12:15Z",
+      "side": 1,
+      "message": "the bug seems to have closed itself, and hwasan _should_ have the same zeroing guarantee as scudo, no?",
+      "revId": "fb4b87ba59745b6400f365f7e2100c9665d477e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
