@@ -88,6 +88,24 @@
       "parentUuid": "422fc39f_1c794b46",
       "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7e28bd8_1ab8188d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1146974
+      },
+      "writtenOn": "2024-08-01T01:26:17Z",
+      "side": 1,
+      "message": "Since API level 35, symbols are not added to LLNDK automatically. They must be explicitly tagged with `llndk\u003d\u003cvendor api level\u003e` as Jiyong commented. See aosp/2997316 and this doc: https://docs.google.com/document/d/1r7H3fWQfPmIBPgREhpNAImGbK1mVXm3PpxNCE9h-Z6g/edit?resourcekey\u003d0-A3r_kSp8feBDLVthm2uy6g\u0026tab\u003dt.0#heading\u003dh.wke4uaif5p5z",
+      "parentUuid": "4254afa5_d6ae2f98",
+      "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
