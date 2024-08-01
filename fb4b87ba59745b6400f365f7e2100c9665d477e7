@@ -33,6 +33,24 @@
       "message": "the bug seems to have closed itself, and hwasan _should_ have the same zeroing guarantee as scudo, no?",
       "revId": "fb4b87ba59745b6400f365f7e2100c9665d477e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d1a2602_53746dc1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-08-01T17:17:15Z",
+      "side": 1,
+      "message": "It\u0027s already failing again, and it can be affected by a bunch of config variables and other things. Since the test is supposed to be testing the system allocator, it seems fine to just ignore hwasan.\n\nWhen I wrote these originally, I spent a lot of time tracking down weird quirks of the hwasan allocator that caused them to fail. I don\u0027t feel like that was time well spent since it didn\u0027t find any real bugs, which is why I decided to disable on hwasan and call it a day.",
+      "parentUuid": "3b56a74e_f8cf5e4b",
+      "revId": "fb4b87ba59745b6400f365f7e2100c9665d477e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
