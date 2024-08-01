@@ -106,6 +106,24 @@
       "parentUuid": "4254afa5_d6ae2f98",
       "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df666c7f_18873fca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-01T12:18:47Z",
+      "side": 1,
+      "message": "surely that\u0027s a bug for libc/libm/libdl though? why would we ever _not_ want libc symbols in the NDK but not LLNDK?",
+      "parentUuid": "d7e28bd8_1ab8188d",
+      "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
