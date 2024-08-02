@@ -56,6 +56,53 @@
       },
       "revId": "3bf404c29633465cabfcd464de4340f98e05ecf0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52e018b7_840fc26d",
+        "filename": "libc/bionic/pthread_sigqueue.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-02T21:49:47Z",
+      "side": 1,
+      "message": "it was originally, but it looked odd there, and seemed like it made more sense up with its friend/relative tid.\n\n(i also tried them the other way round, but tid,pid seemed weird since the order\u0027s usually pid,tid.)\n\n(i also tried a blank line between them, but that _definitely_ left a \"why is tid up here?\" feeling.)",
+      "parentUuid": "d42efec0_6f1e4a08",
+      "range": {
+        "startLine": 43,
+        "startChar": 2,
+        "endLine": 43,
+        "endChar": 23
+      },
+      "revId": "3bf404c29633465cabfcd464de4340f98e05ecf0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b03f048_464e9d0a",
+        "filename": "libc/bionic/pthread_sigqueue.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-02T21:49:47Z",
+      "side": 1,
+      "message": "the one alternative i didn\u0027t try was assigning getpid() directly to si_pid and then using siginfo.si_pid here ... but that doesn\u0027t seem any better?",
+      "range": {
+        "startLine": 54,
+        "startChar": 41,
+        "endLine": 54,
+        "endChar": 44
+      },
+      "revId": "3bf404c29633465cabfcd464de4340f98e05ecf0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
