@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "972fb573_e7d3b976",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-02T17:40:04Z",
+      "side": 1,
+      "message": "i have no strong opinion here, btw --- if you\u0027d rather remove both, that\u0027s fine by me too. (the tests already check that the recipient sees the expected value, which is what made me go and poke about in the kernel source to work out why the test was passing if the implementation was \"wrong\"...)",
+      "revId": "3bf404c29633465cabfcd464de4340f98e05ecf0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
