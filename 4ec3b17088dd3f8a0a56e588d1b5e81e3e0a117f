@@ -65,6 +65,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00096a1f_1a7f804b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-08-02T20:16:25Z",
+      "side": 1,
+      "message": "Seems OK",
+      "revId": "4ec3b17088dd3f8a0a56e588d1b5e81e3e0a117f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd791f96_322d31eb",
@@ -118,6 +135,24 @@
       "writtenOn": "2024-08-02T12:54:46Z",
       "side": 1,
       "message": "whitespace",
+      "revId": "4ec3b17088dd3f8a0a56e588d1b5e81e3e0a117f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4e91b4a_e6b2d9f4",
+        "filename": "linker/linker_phdr.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-08-02T20:16:25Z",
+      "side": 1,
+      "message": "FWIW, I suspect this extra space is coming from clang-format. It sees the `)` on the end of `ElfW(Phdr)` and adds in a space. I would use `repo upload --no-verify` and override clang-format.",
+      "parentUuid": "2b5cefdb_01cb6a4a",
       "revId": "4ec3b17088dd3f8a0a56e588d1b5e81e3e0a117f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
