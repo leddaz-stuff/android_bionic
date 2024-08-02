@@ -82,6 +82,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7945fcb5_dc530c3c",
+        "filename": "libc/bionic/pthread_sigqueue.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-08-02T21:55:39Z",
+      "side": 1,
+      "message": "It doesn\u0027t look that odd to me, but I was thinking it would be right above the siginfo_t declaration. It\u0027s not right before it\u0027s used, but in the right ballpark.\n\nHowever, I don\u0027t think it matters that much, so if it looks odd to you, I\u0027m fine with it being left where it is.",
+      "parentUuid": "52e018b7_840fc26d",
+      "range": {
+        "startLine": 43,
+        "startChar": 2,
+        "endLine": 43,
+        "endChar": 23
+      },
+      "revId": "3bf404c29633465cabfcd464de4340f98e05ecf0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5b03f048_464e9d0a",
@@ -95,6 +119,30 @@
       "writtenOn": "2024-08-02T21:49:47Z",
       "side": 1,
       "message": "the one alternative i didn\u0027t try was assigning getpid() directly to si_pid and then using siginfo.si_pid here ... but that doesn\u0027t seem any better?",
+      "range": {
+        "startLine": 54,
+        "startChar": 41,
+        "endLine": 54,
+        "endChar": 44
+      },
+      "revId": "3bf404c29633465cabfcd464de4340f98e05ecf0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da1d7fdc_5bc8c68b",
+        "filename": "libc/bionic/pthread_sigqueue.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-08-02T21:55:39Z",
+      "side": 1,
+      "message": "Yeah, I think that would be a little odd looking, so not preferrable.",
+      "parentUuid": "5b03f048_464e9d0a",
       "range": {
         "startLine": 54,
         "startChar": 41,
