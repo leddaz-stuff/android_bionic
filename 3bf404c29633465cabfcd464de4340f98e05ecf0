@@ -16,6 +16,46 @@
       "message": "i have no strong opinion here, btw --- if you\u0027d rather remove both, that\u0027s fine by me too. (the tests already check that the recipient sees the expected value, which is what made me go and poke about in the kernel source to work out why the test was passing if the implementation was \"wrong\"...)",
       "revId": "3bf404c29633465cabfcd464de4340f98e05ecf0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25fc12db_e016506d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-08-02T18:31:00Z",
+      "side": 1,
+      "message": "I think this is a good cleanup. It\u0027s always better to init and makes it easier to understand.",
+      "revId": "3bf404c29633465cabfcd464de4340f98e05ecf0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d42efec0_6f1e4a08",
+        "filename": "libc/bionic/pthread_sigqueue.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-08-02T18:31:00Z",
+      "side": 1,
+      "message": "This should probably be moved down closer to use.",
+      "range": {
+        "startLine": 43,
+        "startChar": 2,
+        "endLine": 43,
+        "endChar": 23
+      },
+      "revId": "3bf404c29633465cabfcd464de4340f98e05ecf0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
