@@ -22,6 +22,104 @@
       },
       "revId": "4ec3b17088dd3f8a0a56e588d1b5e81e3e0a117f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61254a33_e2f76054",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-02T12:54:46Z",
+      "side": 1,
+      "message": "yeah, that sgtm.",
+      "parentUuid": "974d0678_1a7b49a0",
+      "range": {
+        "startLine": 15,
+        "startChar": 40,
+        "endLine": 15,
+        "endChar": 65
+      },
+      "revId": "4ec3b17088dd3f8a0a56e588d1b5e81e3e0a117f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48b028b4_ca39c870",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-02T12:54:46Z",
+      "side": 1,
+      "message": "(otherwise lgtm.)",
+      "revId": "4ec3b17088dd3f8a0a56e588d1b5e81e3e0a117f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd791f96_322d31eb",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-02T12:54:46Z",
+      "side": 1,
+      "message": "type*",
+      "range": {
+        "startLine": 585,
+        "startChar": 46,
+        "endLine": 585,
+        "endChar": 58
+      },
+      "revId": "4ec3b17088dd3f8a0a56e588d1b5e81e3e0a117f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "189cd73e_99c68ef1",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-02T12:54:46Z",
+      "side": 1,
+      "message": "minimum_alignment \u003d std::min(minimum_alignment, phdr-\u003ep_align);",
+      "revId": "4ec3b17088dd3f8a0a56e588d1b5e81e3e0a117f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b5cefdb_01cb6a4a",
+        "filename": "linker/linker_phdr.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-02T12:54:46Z",
+      "side": 1,
+      "message": "whitespace",
+      "revId": "4ec3b17088dd3f8a0a56e588d1b5e81e3e0a117f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
