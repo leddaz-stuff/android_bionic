@@ -14,10 +14,6 @@
  * limitations under the License.
  */
 
-#ifndef __clang__
-#error "Non-clang isn't supported"
-#endif
-
 //
 // Clang compile-time and run-time tests for Bionic's FORTIFY.
 //
@@ -93,6 +89,8 @@
 #include <unistd.h>
 #include <wchar.h>
 
+#include <array>
+
 #ifndef COMPILATION_TESTS
 #include <android-base/silent_death_test.h>
 #include <gtest/gtest.h>
@@ -136,6 +134,31 @@ __attribute__((noreturn)) static void ExitAfter(Fn&& f) {
 #endif
 
 const static int kBogusFD = -1;
+
+FORTIFY_TEST(strlen) {
+  // `string_contents` must be an array of known size & unknowable contents to pass to
+  // EXPECT_FORTIFY_DEATH. 'Unknowable contents' are set by `set_string_contents`.
+  //
+  // This is all necessary, since Clang's frontend & LLVM's optimizer are _really_ eager to fold
+  // strlen calls away.
+  char string_contents[3];
+  auto set_string_contents = [&](std::array<char, sizeof(string_contents)> fill_with) {
+    volatile char always_zero = 0;
+    for (size_t i = 0; i < fill_with.size(); ++i) {
+      // The optimizer can't make any assumptions about `always_zero`'s value, and xor:
+      // - has no overflow-related baggage, and
+      // - is capable of modifying any bit in `fill_with[i]`, for an arbitrary RHS.
+      // So it's a very effective optimization blocker.
+      string_contents[i] = fill_with[i] ^ always_zero;
+    }
+  };
+
+  set_string_contents({'f', 'o', '\0'});
+  EXPECT_NO_DEATH((void)strlen(string_contents));
+
+  set_string_contents({'f', 'o', 'o'});
+  EXPECT_FORTIFY_DEATH((void)strlen(string_contents));
+}
 
 FORTIFY_TEST(string) {
   char small_buffer[8] = {};
