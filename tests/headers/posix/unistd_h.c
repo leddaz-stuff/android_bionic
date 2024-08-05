@@ -331,6 +331,7 @@ static void unistd_h() {
   FUNCTION(fdatasync, int (*f)(int));
   FUNCTION(fexecve, int (*f)(int, char* const[], char* const[]));
   FUNCTION(fork, pid_t (*f)(void));
+  FUNCTION(_Fork, pid_t (*f)(void));
   FUNCTION(fpathconf, long (*f)(int, int));
   FUNCTION(fsync, int (*f)(int));
   FUNCTION(ftruncate, int (*f)(int, off_t));
