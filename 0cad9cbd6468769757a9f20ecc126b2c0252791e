@@ -124,6 +124,24 @@
       "parentUuid": "d7e28bd8_1ab8188d",
       "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21186cfa_18228288",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-05T17:48:04Z",
+      "side": 1,
+      "message": "+danalbert: were you aware of this?\n\nllndk team: what\u0027s the way forward here? us having to track your llndk versions doesn\u0027t seem realistic, and we\u0027re just going to end up with more messes like this where something that\u0027s in 35 can now presumably never be in whatever the corresponding llndk was?",
+      "parentUuid": "df666c7f_18873fca",
+      "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
