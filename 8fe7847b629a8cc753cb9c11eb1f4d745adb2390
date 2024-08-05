@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad766f25_8925f694",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-05T20:37:35Z",
+      "side": 1,
+      "message": "(we added nullability annotations to all our pointers in libc while you were busy, so every _new_ pointer needs it too, because clang\u0027s fussy like that :-) )",
+      "revId": "8fe7847b629a8cc753cb9c11eb1f4d745adb2390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "416bac90_f03fbbe6",
+        "filename": "libc/include/bits/fortify/string.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-05T20:37:35Z",
+      "side": 1,
+      "message": "took me a while to understand what you were saying here ... would \"Since we could only use `__pass_object_size0` here anyway, we don\u0027t lose anything by not having it\"?",
+      "range": {
+        "startLine": 226,
+        "startChar": 11,
+        "endLine": 227,
+        "endChar": 25
+      },
+      "revId": "8fe7847b629a8cc753cb9c11eb1f4d745adb2390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f8897fc_e39ade35",
+        "filename": "tests/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 775,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-05T20:37:35Z",
+      "side": 1,
+      "message": "(i don\u0027t think you need this copy \u0026 paste any more? coincidentally, i was just deleting it from where i assume you copied it from :-) )",
+      "revId": "8fe7847b629a8cc753cb9c11eb1f4d745adb2390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4327918d_9282d5a7",
+        "filename": "tests/clang_fortify_c_only_tests.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-05T20:37:35Z",
+      "side": 1,
+      "message": "(i just removed something similar to this too ... it\u0027s fine to just assume clang everywhere now. most code does.)",
+      "revId": "8fe7847b629a8cc753cb9c11eb1f4d745adb2390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
