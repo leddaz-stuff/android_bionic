@@ -215,6 +215,24 @@
       "parentUuid": "a4e91b4a_e6b2d9f4",
       "revId": "4ec3b17088dd3f8a0a56e588d1b5e81e3e0a117f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56c8a573_092b1d86",
+        "filename": "linker/linker_phdr.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1499410
+      },
+      "writtenOn": "2024-08-05T17:02:33Z",
+      "side": 1,
+      "message": "I\u0027m not sure why clang-format does this. I do no-verify here for this reason.",
+      "parentUuid": "31b57da8_d2ff5f00",
+      "revId": "4ec3b17088dd3f8a0a56e588d1b5e81e3e0a117f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
