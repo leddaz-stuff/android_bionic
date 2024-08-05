@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "3275ca1c_fb0795e3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-08-05T17:36:27Z",
+      "side": 1,
+      "message": "I\u0027m taking that to mean, to add it like this. If we don\u0027t find any appcompat issues, can consider expanding this check to other page sizes later.",
+      "parentUuid": "61254a33_e2f76054",
+      "range": {
+        "startLine": 15,
+        "startChar": 40,
+        "endLine": 15,
+        "endChar": 65
+      },
+      "revId": "4ec3b17088dd3f8a0a56e588d1b5e81e3e0a117f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "48b028b4_ca39c870",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -129,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2d4ed88_b43aa0f9",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-08-05T17:36:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5282fbbc_e4d55331",
+      "range": {
+        "startLine": 585,
+        "startChar": 46,
+        "endLine": 585,
+        "endChar": 58
+      },
+      "revId": "4ec3b17088dd3f8a0a56e588d1b5e81e3e0a117f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "189cd73e_99c68ef1",
@@ -160,6 +208,24 @@
       "side": 1,
       "message": "I wrote it like this for symmetry with phdr_table_get_maximum_alignment",
       "parentUuid": "189cd73e_99c68ef1",
+      "revId": "4ec3b17088dd3f8a0a56e588d1b5e81e3e0a117f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "068af1a0_2fdc321b",
+        "filename": "linker/linker_phdr.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-08-05T17:36:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fcec8389_7d11ebd6",
       "revId": "4ec3b17088dd3f8a0a56e588d1b5e81e3e0a117f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -231,6 +297,24 @@
       "side": 1,
       "message": "I\u0027m not sure why clang-format does this. I do no-verify here for this reason.",
       "parentUuid": "31b57da8_d2ff5f00",
+      "revId": "4ec3b17088dd3f8a0a56e588d1b5e81e3e0a117f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d99c2a8_46005586",
+        "filename": "linker/linker_phdr.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-08-05T17:36:27Z",
+      "side": 1,
+      "message": "Done with other changes, but my professional opinion is, use the tool, don\u0027t waste time on formatting.",
+      "parentUuid": "56c8a573_092b1d86",
       "revId": "4ec3b17088dd3f8a0a56e588d1b5e81e3e0a117f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
