@@ -141,6 +141,17 @@ FORTIFY_TEST(string) {
   char small_buffer[8] = {};
 
   {
+    const char* const const_string_foo = "foo";
+    EXPECT_NO_DEATH((void)strlen(const_string_foo));
+
+    const char* string_fooo = "fooo";
+    EXPECT_NO_DEATH((void)strlen(string_fooo));
+
+    char no_nul_character[3] = {'f', 'o', 'o'};
+    EXPECT_FORTIFY_DEATH((void)strlen(no_nul_character));
+  }
+
+  {
     char large_buffer[sizeof(small_buffer) + 1] = {};
     // expected-error@+1{{will always overflow}}
     EXPECT_FORTIFY_DEATH(memcpy(small_buffer, large_buffer, sizeof(large_buffer)));
