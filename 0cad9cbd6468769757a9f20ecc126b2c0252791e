@@ -160,6 +160,24 @@
       "parentUuid": "21186cfa_18228288",
       "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a6b1277_3d72c39f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1146974
+      },
+      "writtenOn": "2024-08-05T23:32:55Z",
+      "side": 1,
+      "message": "The reason was the different finalization schedule for API level 35 and 202404.\nEven though the LLNDK 202404 was finalized in Q2, API 35 still can be changed until it is finalized in Q3.\nTo mitigate the problem, we may explicitly tag the newly added symbols after the vFRC by adding the symbols before the finalization automatically to the finalized LLNDK. @jooyung@google.com WDYT?",
+      "parentUuid": "4a073c89_2423ebf8",
+      "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
