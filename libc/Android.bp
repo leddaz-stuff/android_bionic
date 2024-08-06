@@ -1424,10 +1424,10 @@ cc_library_static {
 
     arch: {
         x86_64: {
-            srcs: ["arch-x86_64/static_function_dispatch.S"],
+            srcs: ["arch-x86_64/dynamic_function_dispatch.cpp"],
         },
         x86: {
-            srcs: ["arch-x86/static_function_dispatch.S"],
+            srcs: ["arch-x86/dynamic_function_dispatch.cpp"],
         },
         arm: {
             srcs: ["arch-arm/static_function_dispatch.S"],

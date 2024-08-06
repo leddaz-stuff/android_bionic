@@ -402,6 +402,7 @@ __attribute__((no_sanitize("memtag"))) __noreturn static void __real_libc_init(
   // Initialize TLS early so system calls and errno work.
   KernelArgumentBlock args(raw_args);
   __libc_init_main_thread_early(args, temp_tcb);
+  call_ifunc_resolvers();
   __libc_init_main_thread_late();
   __libc_init_globals();
   __libc_shared_globals()->init_progname = args.argv[0];
@@ -416,7 +417,6 @@ __attribute__((no_sanitize("memtag"))) __noreturn static void __real_libc_init(
   __libc_init_profiling_handlers();
   __libc_init_fork_handler();
 
-  call_ifunc_resolvers();
   apply_gnu_relro();
 
   // Several Linux ABIs don't pass the onexit pointer, and the ones that
