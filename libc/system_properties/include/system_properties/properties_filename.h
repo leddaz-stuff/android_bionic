@@ -47,5 +47,5 @@ class PropertiesFilename {
 
  private:
   // Typically something like "/dev/__properties__/properties_serial".
-  char filename_[128];
+  char filename_[256];
 };
