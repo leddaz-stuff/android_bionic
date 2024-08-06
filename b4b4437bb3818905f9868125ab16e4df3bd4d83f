@@ -16,6 +16,41 @@
       "message": "The trunk_staging breakage is amusing. I\u0027ll write up a CL to fix it...",
       "revId": "b4b4437bb3818905f9868125ab16e4df3bd4d83f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05cc1b83_c005e37e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-06T12:44:39Z",
+      "side": 1,
+      "message": "yeah, that whole project is full of horrors...",
+      "parentUuid": "39ae5fef_66a1f8fe",
+      "revId": "b4b4437bb3818905f9868125ab16e4df3bd4d83f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe47efe9_581197c2",
+        "filename": "tests/NOTICE",
+        "patchSetId": 3
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-06T12:44:39Z",
+      "side": 1,
+      "message": "use this BSD license instead?",
+      "revId": "b4b4437bb3818905f9868125ab16e4df3bd4d83f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
