@@ -51,6 +51,24 @@
       "message": "use this BSD license instead?",
       "revId": "b4b4437bb3818905f9868125ab16e4df3bd4d83f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7005b010_fd697d73",
+        "filename": "tests/NOTICE",
+        "patchSetId": 3
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2024-08-06T13:15:24Z",
+      "side": 1,
+      "message": "Ohh, I knew I saw `repo upload` complain with a licensey-looking diff at one point when I was iterating. This makes a lot of sense.",
+      "parentUuid": "fe47efe9_581197c2",
+      "revId": "b4b4437bb3818905f9868125ab16e4df3bd4d83f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
