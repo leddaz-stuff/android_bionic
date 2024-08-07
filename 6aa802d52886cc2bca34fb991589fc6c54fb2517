@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "594fbdf2_8142d117",
+        "filename": "tests/clang_fortify_tests.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2024-08-07T15:54:33Z",
+      "side": 1,
+      "message": "(i don\u0027t have a device to test locally atm, but treehugger\u0027s recent complaints were correct. had to add this new cruft to make the strlen tests go; please LMK if you have any feedback)",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 22
+      },
+      "revId": "6aa802d52886cc2bca34fb991589fc6c54fb2517",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
