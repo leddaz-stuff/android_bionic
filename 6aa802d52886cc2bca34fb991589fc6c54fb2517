@@ -22,6 +22,30 @@
       },
       "revId": "6aa802d52886cc2bca34fb991589fc6c54fb2517",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "908e6b2d_cf9606a1",
+        "filename": "tests/clang_fortify_tests.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-07T15:56:44Z",
+      "side": 1,
+      "message": "(yeah, lgtm. these tests are already full of \"outsmart the compiler\" cruft; this is just an exceptionally well-documented instance :-) )",
+      "parentUuid": "594fbdf2_8142d117",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 22
+      },
+      "revId": "6aa802d52886cc2bca34fb991589fc6c54fb2517",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
