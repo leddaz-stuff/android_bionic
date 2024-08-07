@@ -142,151 +142,167 @@ static CpuVariant get_cpu_variant() {
     return cpu_variant;
 }
 
-typedef void* memmove_func(void* __dst, const void* __src, size_t __n);
+typedef void* memmove_func_t(void*, const void*, size_t);
 DEFINE_IFUNC_FOR(memmove) {
-    RETURN_FUNC(memmove_func, memmove_a15);
+  RETURN_FUNC(memmove_func_t, memmove_a15);
 }
+MEMMOVE_SHIM()
 
-typedef void* memcpy_func(void*, const void*, size_t);
+typedef void* memcpy_func_t(void*, const void*, size_t);
 DEFINE_IFUNC_FOR(memcpy) {
     return memmove_resolver(hwcap);
 }
+MEMCPY_SHIM()
 
-typedef void* __memcpy_func(void*, const void*, size_t);
+// On arm32, __memcpy() is not publicly exposed, but gets called by memmove()
+// in cases where the copy is known to be overlap-safe.
+typedef void* __memcpy_func_t(void*, const void*, size_t);
 DEFINE_IFUNC_FOR(__memcpy) {
     switch(get_cpu_variant()) {
         case kCortexA7:
-            RETURN_FUNC(__memcpy_func, __memcpy_a7);
+          RETURN_FUNC(__memcpy_func_t, __memcpy_a7);
         case kCortexA9:
-            RETURN_FUNC(__memcpy_func, __memcpy_a9);
+          RETURN_FUNC(__memcpy_func_t, __memcpy_a9);
         case kKrait:
-            RETURN_FUNC(__memcpy_func, __memcpy_krait);
+          RETURN_FUNC(__memcpy_func_t, __memcpy_krait);
         case kCortexA53:
-            RETURN_FUNC(__memcpy_func, __memcpy_a53);
+          RETURN_FUNC(__memcpy_func_t, __memcpy_a53);
         case kCortexA55:
-            RETURN_FUNC(__memcpy_func, __memcpy_a55);
+          RETURN_FUNC(__memcpy_func_t, __memcpy_a55);
         case kKryo:
-            RETURN_FUNC(__memcpy_func, __memcpy_kryo);
+          RETURN_FUNC(__memcpy_func_t, __memcpy_kryo);
         default:
-            RETURN_FUNC(__memcpy_func, __memcpy_a15);
+          RETURN_FUNC(__memcpy_func_t, __memcpy_a15);
     }
 }
+DEFINE_STATIC_SHIM(void* __memcpy(void* dst, const void* src, size_t n) {
+  FORWARD(__memcpy)(dst, src, n);
+})
 
-typedef void* __memset_chk_func(void* s, int c, size_t n, size_t n2);
+typedef void* __memset_chk_func_t(void*, int, size_t, size_t);
 DEFINE_IFUNC_FOR(__memset_chk) {
     switch(get_cpu_variant()) {
         case kCortexA7:
         case kCortexA53:
         case kCortexA55:
         case kKryo:
-            RETURN_FUNC(__memset_chk_func, __memset_chk_a7);
+          RETURN_FUNC(__memset_chk_func_t, __memset_chk_a7);
         case kCortexA9:
-            RETURN_FUNC(__memset_chk_func, __memset_chk_a9);
+          RETURN_FUNC(__memset_chk_func_t, __memset_chk_a9);
         case kKrait:
-            RETURN_FUNC(__memset_chk_func, __memset_chk_krait);
+          RETURN_FUNC(__memset_chk_func_t, __memset_chk_krait);
         default:
-            RETURN_FUNC(__memset_chk_func, __memset_chk_a15);
+          RETURN_FUNC(__memset_chk_func_t, __memset_chk_a15);
     }
 }
+__MEMSET_CHK_SHIM()
 
-typedef void* memset_func(void* __dst, int __ch, size_t __n);
+typedef void* memset_func_t(void*, int, size_t);
 DEFINE_IFUNC_FOR(memset) {
     switch(get_cpu_variant()) {
         case kCortexA7:
         case kCortexA53:
         case kCortexA55:
         case kKryo:
-             RETURN_FUNC(memset_func, memset_a7);
+          RETURN_FUNC(memset_func_t, memset_a7);
         case kCortexA9:
-             RETURN_FUNC(memset_func, memset_a9);
+          RETURN_FUNC(memset_func_t, memset_a9);
         case kKrait:
-             RETURN_FUNC(memset_func, memset_krait);
+          RETURN_FUNC(memset_func_t, memset_krait);
         default:
-             RETURN_FUNC(memset_func, memset_a15);
+          RETURN_FUNC(memset_func_t, memset_a15);
     }
 }
+MEMSET_SHIM()
 
-typedef char* strcpy_func(char* __dst, const char* __src);
+typedef char* strcpy_func_t(char*, const char*);
 DEFINE_IFUNC_FOR(strcpy) {
     switch(get_cpu_variant()) {
         case kCortexA9:
-            RETURN_FUNC(strcpy_func, strcpy_a9);
+          RETURN_FUNC(strcpy_func_t, strcpy_a9);
         default:
-            RETURN_FUNC(strcpy_func, strcpy_a15);
+          RETURN_FUNC(strcpy_func_t, strcpy_a15);
     }
 }
+STRCPY_SHIM()
 
-typedef char* __strcpy_chk_func(char* dst, const char* src, size_t dst_len);
+typedef char* __strcpy_chk_func_t(char*, const char*, size_t);
 DEFINE_IFUNC_FOR(__strcpy_chk) {
     switch(get_cpu_variant()) {
         case kCortexA7:
-            RETURN_FUNC(__strcpy_chk_func, __strcpy_chk_a7);
+          RETURN_FUNC(__strcpy_chk_func_t, __strcpy_chk_a7);
         case kCortexA9:
-            RETURN_FUNC(__strcpy_chk_func, __strcpy_chk_a9);
+          RETURN_FUNC(__strcpy_chk_func_t, __strcpy_chk_a9);
         case kKrait:
         case kKryo:
-            RETURN_FUNC(__strcpy_chk_func, __strcpy_chk_krait);
+          RETURN_FUNC(__strcpy_chk_func_t, __strcpy_chk_krait);
         case kCortexA53:
-            RETURN_FUNC(__strcpy_chk_func, __strcpy_chk_a53);
+          RETURN_FUNC(__strcpy_chk_func_t, __strcpy_chk_a53);
         case kCortexA55:
-            RETURN_FUNC(__strcpy_chk_func, __strcpy_chk_a55);
+          RETURN_FUNC(__strcpy_chk_func_t, __strcpy_chk_a55);
         default:
-            RETURN_FUNC(__strcpy_chk_func, __strcpy_chk_a15);
+          RETURN_FUNC(__strcpy_chk_func_t, __strcpy_chk_a15);
     }
 }
+__STRCPY_CHK_SHIM()
 
-typedef char* stpcpy_func(char* __dst, const char* __src);
+typedef char* stpcpy_func_t(char*, const char*);
 DEFINE_IFUNC_FOR(stpcpy) {
     switch(get_cpu_variant()) {
         case kCortexA9:
-            RETURN_FUNC(stpcpy_func, stpcpy_a9);
+          RETURN_FUNC(stpcpy_func_t, stpcpy_a9);
         default:
-            RETURN_FUNC(stpcpy_func, stpcpy_a15);
+          RETURN_FUNC(stpcpy_func_t, stpcpy_a15);
     }
 }
+STPCPY_SHIM()
 
-typedef char* strcat_func(char* __dst, const char* __src);
+typedef char* strcat_func_t(char*, const char*);
 DEFINE_IFUNC_FOR(strcat) {
     switch(get_cpu_variant()) {
         case kCortexA9:
-            RETURN_FUNC(strcat_func, strcat_a9);
+          RETURN_FUNC(strcat_func_t, strcat_a9);
         default:
-            RETURN_FUNC(strcat_func, strcat_a15);
+          RETURN_FUNC(strcat_func_t, strcat_a15);
     }
 }
+STRCAT_SHIM()
 
-typedef char* __strcat_chk_func(char* dst, const char* src, size_t dst_buf_size);
+typedef char* __strcat_chk_func_t(char*, const char*, size_t);
 DEFINE_IFUNC_FOR(__strcat_chk) {
     switch(get_cpu_variant()) {
         case kCortexA7:
-            RETURN_FUNC(__strcat_chk_func, __strcat_chk_a7);
+          RETURN_FUNC(__strcat_chk_func_t, __strcat_chk_a7);
         case kCortexA9:
-            RETURN_FUNC(__strcat_chk_func, __strcat_chk_a9);
+          RETURN_FUNC(__strcat_chk_func_t, __strcat_chk_a9);
         case kKrait:
         case kKryo:
-            RETURN_FUNC(__strcat_chk_func, __strcat_chk_krait);
+          RETURN_FUNC(__strcat_chk_func_t, __strcat_chk_krait);
         case kCortexA53:
-            RETURN_FUNC(__strcat_chk_func, __strcat_chk_a53);
+          RETURN_FUNC(__strcat_chk_func_t, __strcat_chk_a53);
         case kCortexA55:
-            RETURN_FUNC(__strcat_chk_func, __strcat_chk_a55);
+          RETURN_FUNC(__strcat_chk_func_t, __strcat_chk_a55);
         default:
-            RETURN_FUNC(__strcat_chk_func, __strcat_chk_a15);
+          RETURN_FUNC(__strcat_chk_func_t, __strcat_chk_a15);
     }
 }
+__STRCAT_CHK_SHIM()
 
-typedef int strcmp_func(const char* __lhs, const char* __rhs);
+typedef int strcmp_func_t(const char*, const char*);
 DEFINE_IFUNC_FOR(strcmp) {
-    RETURN_FUNC(strcmp_func, strcmp_a15);
+  RETURN_FUNC(strcmp_func_t, strcmp_a15);
 }
+STRCMP_SHIM()
 
-typedef size_t strlen_func(const char* __s);
+typedef size_t strlen_func_t(const char*);
 DEFINE_IFUNC_FOR(strlen) {
     switch(get_cpu_variant()) {
         case kCortexA9:
-            RETURN_FUNC(strlen_func, strlen_a9);
+          RETURN_FUNC(strlen_func_t, strlen_a9);
         default:
-            RETURN_FUNC(strlen_func, strlen_a15);
+          RETURN_FUNC(strlen_func_t, strlen_a15);
     }
 }
+STRLEN_SHIM()
 
 }  // extern "C"
