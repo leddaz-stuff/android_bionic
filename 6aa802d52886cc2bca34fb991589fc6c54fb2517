@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "1e9dc669_a5da5b36",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-07T22:54:10Z",
+      "side": 1,
+      "message": "yeah, looks like a fairly convincing \"not working as we expected\" (rather than just infrastructure error):\n```\nbionic/tests/clang_fortify_tests.cpp:(160) Failure in test clang_fortify_test_1_DeathTest.strlen\nDeath test: ExitAfter([\u0026] { ((void)strlen(string_contents)); })\n    Result: died but not with expected exit code:\n            Exited with exit status 0\nActual msg:\n[  DEATH   ] \nclang_fortify_test_1_DeathTest.strlen exited with exitcode 1.\n```\none thing that might be useful to know is that if you `lunch aosp_cf_x86_64_phone-trunk_staging-userdebug` you can run tests directly on your host, without having to worry about devices or emulators. there\u0027s even a script lying around ... it\u0027s not the fastest option, but it\u0027s the \"don\u0027t make me think\" option: https://android.googlesource.com/platform/bionic/+/main#host-tests",
+      "parentUuid": "c85afa2b_e444f5e6",
+      "revId": "6aa802d52886cc2bca34fb991589fc6c54fb2517",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "594fbdf2_8142d117",
         "filename": "tests/clang_fortify_tests.cpp",
         "patchSetId": 5
