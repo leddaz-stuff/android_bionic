@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19b63e73_fe44467e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-08-08T19:52:56Z",
+      "side": 1,
+      "message": "Looks to be a pure move, +2. If there\u0027s something interesting I ought to be reviewing more carefully, lmk.",
+      "revId": "620eec1f3546523fab4f58fa6733e7faa34e4fd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
