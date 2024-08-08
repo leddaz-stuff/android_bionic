@@ -16,6 +16,41 @@
       "message": "I really wanted to add \"which should be enough for anyone\" here as a callback to the apocryphal quote and the previous commit message, but chickened out since one can never be sure that such jokes will land as intended. :)",
       "revId": "b497cc98ec68b9f7f45b89a60fd5d0a7aaf08394",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "832af752_0a01f68f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-08T16:30:09Z",
+      "side": 1,
+      "message": "yeah, i know what you mean --- my general policy has been to keep my jokes to commit messages, since far fewer people read those and it\u0027s less likely to be treated as ancient wisdom than a code comment :-)",
+      "parentUuid": "f5dd896b_74afdab5",
+      "revId": "b497cc98ec68b9f7f45b89a60fd5d0a7aaf08394",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7422741_00b1a1eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-08T16:30:09Z",
+      "side": 1,
+      "message": "+zijunzhao for second-googler +2 on an external change...",
+      "revId": "b497cc98ec68b9f7f45b89a60fd5d0a7aaf08394",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
