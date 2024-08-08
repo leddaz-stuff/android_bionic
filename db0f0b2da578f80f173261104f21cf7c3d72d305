@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aca6b037_2fefdf17",
+        "filename": "libc/system_properties/include/system_properties/properties_filename.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-08T13:12:15Z",
+      "side": 1,
+      "message": "probably worth adding a comment like \"...but can be as long as \u003cexample from commit message\u003e\"?",
+      "revId": "db0f0b2da578f80f173261104f21cf7c3d72d305",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
