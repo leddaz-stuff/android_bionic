@@ -529,6 +529,8 @@ union bpf_attr {
   struct {
     __u64 name;
     __u32 prog_fd;
+    __u32 :32;
+    __aligned_u64 cookie;
   } raw_tracepoint;
   struct {
     __aligned_u64 btf;
