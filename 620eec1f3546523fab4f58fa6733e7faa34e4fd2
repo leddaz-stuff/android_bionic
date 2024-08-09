@@ -16,6 +16,24 @@
       "message": "Looks to be a pure move, +2. If there\u0027s something interesting I ought to be reviewing more carefully, lmk.",
       "revId": "620eec1f3546523fab4f58fa6733e7faa34e4fd2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8677be7b_0fd68e8c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-09T13:51:43Z",
+      "side": 1,
+      "message": "there\u0027s some slight commentary improvement here and there, and there\u0027s one nullability attribute (because the _ file didn\u0027t have them), but mainly it was the philosophical \"should we break this into \u0027ndk\u0027 versus \u0027platform\u0027 headers?\" but i assumed your philosophical stance on such things is \"too late anyway; your #if guard means nothing\"...",
+      "parentUuid": "19b63e73_fe44467e",
+      "revId": "620eec1f3546523fab4f58fa6733e7faa34e4fd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
