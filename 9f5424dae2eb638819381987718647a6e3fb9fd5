@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e2725af_45e23025",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-08-12T20:02:51Z",
+      "side": 1,
+      "message": "Needs a blank line between subject and body (some tools, apparently including gerrit, get confused without one)",
+      "revId": "9f5424dae2eb638819381987718647a6e3fb9fd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
