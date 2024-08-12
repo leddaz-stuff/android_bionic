@@ -16,6 +16,24 @@
       "message": "Needs a blank line between subject and body (some tools, apparently including gerrit, get confused without one)",
       "revId": "9f5424dae2eb638819381987718647a6e3fb9fd5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "481a5afe_3225396e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-12T20:06:32Z",
+      "side": 1,
+      "message": "which is weird and annoying, _since those same tools wrote this commit message_!\n\n(i\u0027ll hassle sam...)",
+      "parentUuid": "2e2725af_45e23025",
+      "revId": "9f5424dae2eb638819381987718647a6e3fb9fd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
