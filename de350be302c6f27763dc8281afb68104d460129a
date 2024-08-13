@@ -16,6 +16,24 @@
       "message": "clang-format",
       "revId": "de350be302c6f27763dc8281afb68104d460129a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f096b32_63775bd4",
+        "filename": "libc/stdio/stdio.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1087,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-13T12:17:49Z",
+      "side": 1,
+      "message": "damn you, cider!",
+      "parentUuid": "ecd5c1fa_fe912e88",
+      "revId": "de350be302c6f27763dc8281afb68104d460129a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
