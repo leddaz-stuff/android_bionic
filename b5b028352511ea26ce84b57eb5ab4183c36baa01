@@ -16,6 +16,24 @@
       "message": "Hmm. Soong is using `--no-undefined-version`, so I must not understand what this changes. Where does the `__sync_file_range` symbol now get defined for non-arm32?",
       "revId": "b5b028352511ea26ce84b57eb5ab4183c36baa01",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f368456_9a3ffb27",
+        "filename": "libc/SYSCALLS.TXT",
+        "patchSetId": 1
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-13T12:53:37Z",
+      "side": 0,
+      "message": "...",
+      "parentUuid": "656e346c_bd34a820",
+      "revId": "b5b028352511ea26ce84b57eb5ab4183c36baa01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

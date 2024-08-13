@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3871c48b_81c99621",
+        "filename": "libc/SYSCALLS.TXT",
+        "patchSetId": 1
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-13T12:53:37Z",
+      "side": 1,
+      "message": "...right here :-)\n\nthere\u0027s a comment explaining the syntax at the top of the file. the red version of this line said \"generate a stub for the sync_file_range(2) syscall but call it __sync_file_range\". the green version says \"...and call it sync_file_range because it\u0027s fine as-is\".",
+      "revId": "a0d217e6b39dd60a65156055a14686aa158096dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b53a9ad_9078a351",
+        "filename": "libc/SYSCALLS.TXT",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-13T12:53:37Z",
+      "side": 1,
+      "message": "if it\u0027s this that confused you then, yes, there\u0027s actually no reason to rename the sync_file_range2 stub because (a) it already has a distinct name and (b) we switched to a linker script for hiding stuff years ago ... but i left it like this because it\u0027s still \"traditional\" to clearly mark the internal-use-only generated stubs with `__`.",
+      "revId": "a0d217e6b39dd60a65156055a14686aa158096dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
