@@ -178,6 +178,24 @@
       "parentUuid": "4a073c89_2423ebf8",
       "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7b2ea62_8e2b13ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-13T13:49:09Z",
+      "side": 1,
+      "message": "jooyung: what\u0027s the plan here? it isn\u0027t realistic to expect us to annotate every single bionic symbol, and i\u0027m assuming it\u0027s not _intentional_ for the llndk to just \"stop\" at api 34?",
+      "parentUuid": "5a6b1277_3d72c39f",
+      "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
