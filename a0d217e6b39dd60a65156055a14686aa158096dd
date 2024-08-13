@@ -38,6 +38,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "47e788cd_6fdf7ecc",
+        "filename": "libc/SYSCALLS.TXT",
+        "patchSetId": 1
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-13T21:10:28Z",
+      "side": 1,
+      "message": "yeah, even before the .map.txt stuff we had various hacks that meant that \"enough underscores get you privacy\" ... but sync_file_range(2) is new enough that it\u0027s api 26 (and thus covered by .map.txt) anyway.",
+      "parentUuid": "3f3f8805_040d2fa2",
+      "revId": "a0d217e6b39dd60a65156055a14686aa158096dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "4b53a9ad_9078a351",
         "filename": "libc/SYSCALLS.TXT",
         "patchSetId": 1
