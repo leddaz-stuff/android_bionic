@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "3f3f8805_040d2fa2",
+        "filename": "libc/SYSCALLS.TXT",
+        "patchSetId": 1
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-08-13T20:57:27Z",
+      "side": 1,
+      "message": "My question was \"where did the one named `__sync_file_range` go?\"\n\nTurns out I understood all the syntax and whatnot correctly, my mistake was believing that `__sync_file_range` was a public symbol. It\u0027s not, so that\u0027s not a problem.",
+      "parentUuid": "3871c48b_81c99621",
+      "revId": "a0d217e6b39dd60a65156055a14686aa158096dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "4b53a9ad_9078a351",
         "filename": "libc/SYSCALLS.TXT",
         "patchSetId": 1
