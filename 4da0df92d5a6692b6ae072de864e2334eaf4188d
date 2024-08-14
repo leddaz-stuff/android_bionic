@@ -16,6 +16,92 @@
       "message": "PTAL @enh@google.com",
       "revId": "4da0df92d5a6692b6ae072de864e2334eaf4188d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "147a5d13_c1e3b7c6",
+        "filename": "libc/bionic/libc_init_static.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-14T18:55:24Z",
+      "side": 1,
+      "message": "include the tid? (is MTE per-thread rather than per-process?)",
+      "range": {
+        "startLine": 302,
+        "startChar": 70,
+        "endLine": 302,
+        "endChar": 76
+      },
+      "revId": "4da0df92d5a6692b6ae072de864e2334eaf4188d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08c9429e_7444508d",
+        "filename": "libc/bionic/libc_init_static.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-14T18:55:24Z",
+      "side": 1,
+      "message": "move this log line later and show the actual tagged_addr_ctrl value we\u0027re using...",
+      "range": {
+        "startLine": 302,
+        "startChar": 78,
+        "endLine": 302,
+        "endChar": 83
+      },
+      "revId": "4da0df92d5a6692b6ae072de864e2334eaf4188d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03069137_8cf27be3",
+        "filename": "libc/bionic/libc_init_static.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-14T18:55:24Z",
+      "side": 1,
+      "message": "...given that there\u0027s this silent bail-out?",
+      "revId": "4da0df92d5a6692b6ae072de864e2334eaf4188d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd7f56df_95b27ac4",
+        "filename": "libc/bionic/libc_init_static.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-14T18:55:24Z",
+      "side": 1,
+      "message": "(definitely include the value used in a failure message.)",
+      "range": {
+        "startLine": 314,
+        "startChar": 32,
+        "endLine": 314,
+        "endChar": 55
+      },
+      "revId": "4da0df92d5a6692b6ae072de864e2334eaf4188d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
