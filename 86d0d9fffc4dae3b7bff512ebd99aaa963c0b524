@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1eedc66a_f31f3d85",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-14T14:08:07Z",
+      "side": 1,
+      "message": "i was curious about the background to this, and it looks like we didn\u0027t really have a good reason:\n```\nThe linker currently requires an absolute path. This restriction could be\nloosened, but it didn\u0027t seem important? If it allowed non-absolute paths,\nwe\u0027d need to decide how to handle:\n- foo/bar (relative to CWD?)\n- foo (search PATH / LD_LIBRARY_PATH, or also relative to CWD?)\n- foo.zip!/bar (normalize_path() requires an absolute path)\n```\nso maybe we should just fix that? (for which my suggestion would be \"let\u0027s do the realpath thing, but do it _inside_ load_executable()\"?)\n\n+rprichard",
+      "revId": "86d0d9fffc4dae3b7bff512ebd99aaa963c0b524",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe06b253_e7a74b54",
+        "filename": "linker/ldd.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-14T14:08:07Z",
+      "side": 1,
+      "message": "or just `file\u003d$(realpath \"$1\")`?",
+      "revId": "86d0d9fffc4dae3b7bff512ebd99aaa963c0b524",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
