@@ -64,6 +64,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4aaa599f_576148ab",
+        "filename": "libc/bionic/libc_init_static.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-08-14T23:14:56Z",
+      "side": 1,
+      "message": "The value we are using is in the sival_int, but i can pull it out explicitly in case someone stuffs something else in there later.",
+      "parentUuid": "08c9429e_7444508d",
+      "range": {
+        "startLine": 302,
+        "startChar": 78,
+        "endLine": 302,
+        "endChar": 83
+      },
+      "revId": "4da0df92d5a6692b6ae072de864e2334eaf4188d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87d708a6_3c8774b5",
+        "filename": "libc/bionic/libc_init_static.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-08-14T23:14:56Z",
+      "side": 1,
+      "message": "No it\u0027s not, removed the reference to thread.",
+      "parentUuid": "147a5d13_c1e3b7c6",
+      "range": {
+        "startLine": 302,
+        "startChar": 70,
+        "endLine": 302,
+        "endChar": 76
+      },
+      "revId": "4da0df92d5a6692b6ae072de864e2334eaf4188d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03069137_8cf27be3",
@@ -81,6 +129,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db1cf41e_75e11e30",
+        "filename": "libc/bionic/libc_init_static.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-08-14T23:14:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03069137_8cf27be3",
+      "revId": "4da0df92d5a6692b6ae072de864e2334eaf4188d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd7f56df_95b27ac4",
@@ -94,6 +160,30 @@
       "writtenOn": "2024-08-14T18:55:24Z",
       "side": 1,
       "message": "(definitely include the value used in a failure message.)",
+      "range": {
+        "startLine": 314,
+        "startChar": 32,
+        "endLine": 314,
+        "endChar": 55
+      },
+      "revId": "4da0df92d5a6692b6ae072de864e2334eaf4188d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45d89a3c_b1b735b4",
+        "filename": "libc/bionic/libc_init_static.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-08-14T23:14:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd7f56df_95b27ac4",
       "range": {
         "startLine": 314,
         "startChar": 32,
