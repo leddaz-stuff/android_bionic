@@ -10,13 +10,22 @@ function error() {
 
 [ $# -eq 1 ] || error "usage: ldd FILE"
 
-what=$(LD_LIBRARY_PATH= file -L "$1")
+case "$1" in
+  /*)
+    file="$1"
+    ;;
+  *)
+    file="$(pwd)/$1"
+    ;;
+esac
+
+what=$(LD_LIBRARY_PATH= file -L "$file")
 case "$what" in
   *32-bit*)
-    linker --list "$1"
+    linker --list "$file"
     ;;
   *64-bit*)
-    linker64 --list "$1"
+    linker64 --list "$file"
     ;;
   *)
     error "$what"
