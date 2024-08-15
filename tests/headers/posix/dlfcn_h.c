@@ -36,6 +36,14 @@ static void dlfcn_h() {
   MACRO(RTLD_GLOBAL);
   MACRO(RTLD_LOCAL);
 
+  // TODO: add Dl_info too when https://www.austingroupbugs.net/view.php?id=1847 is resolved.
+  TYPE(Dl_info_t);
+  STRUCT_MEMBER(Dl_info_t, const char*, dli_fname);
+  STRUCT_MEMBER(Dl_info_t, void*, dli_fbase);
+  STRUCT_MEMBER(Dl_info_t, const char*, dli_sname);
+  STRUCT_MEMBER(Dl_info_t, void*, dli_sbase);
+
+  FUNCTION(dladdr, int (*f)(const void*, Dl_info_t*);
   FUNCTION(dlclose, int (*f)(void*));
   FUNCTION(dlerror, char* (*f)(void));
   FUNCTION(dlopen, void* (*f)(const char*, int));
