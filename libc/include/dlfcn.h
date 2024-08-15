@@ -35,6 +35,9 @@ __BEGIN_DECLS
 
 /**
  * dladdr() returns information using this structure.
+ * `Dl_info` is the traditional name for this,
+ * and thus the more portable choice.
+ * POSIX accidentally standardized `Dl_info_t` instead in 2024.
  */
 typedef struct {
   /** Pathname of the shared object that contains the given address. */
@@ -45,7 +48,7 @@ typedef struct {
   const char* _Nullable dli_sname;
   /** Exact address of the symbol named in `dli_sname`. */
   void* _Nullable dli_saddr;
-} Dl_info;
+} Dl_info, Dl_info_t;
 
 /**
  * [dlopen(3)](https://man7.org/linux/man-pages/man3/dlopen.3.html)
