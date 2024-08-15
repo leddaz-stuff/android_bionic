@@ -214,6 +214,24 @@
       "parentUuid": "f7b2ea62_8e2b13ef",
       "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1343e25_ca6a0449",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-15T20:52:38Z",
+      "side": 1,
+      "message": "\u003e (Sorry for late responding)\n\nno worries --- kbs made it seem like everyone else had the day off, so i hope you did too :-)\n\n\u003e Any suggestion?\n\ni\u0027ll admit i\u0027ve never really understood llndk (other than the \"it\u0027s a subset\" part), _especially_ for bionic. given that bionic\u0027s compatibility guarantee is _stronger_ than any vendor guarantee, and there\u0027s no separate \"vendor libc\", i feel like bionic\u0027s involvement here is just a historical accident?\n\nso my first suggestion would be: can we just say \"all of bionic\"? our api/abi comes from gnu/posix/linux anyway, so it\u0027s not like we change anything during development.\n\nmy second alternative: if you really want to be behind, why not just have your tools lag by one api level? (which i think jiyong was implying is what _should_ have happened? that the vendor stub should already include strerrorname_np() because it\u0027s an api 35 api, and so by definition must be in any llndk later than that?)\n\n(a quick codesearch shows that only libbinder and libcgroups have llndk\u003d lines, and that seems fair enough [to me as someone who doesn\u0027t add api to either] --- they\u0027re not in the ndk, they don\u0027t conform to any external standard, and they do change over time. and presumably (?) they only need to add the llndk\u003d lines if they actually need to expose their stuff to vendors, and having that default \"off\" for those libraries sounds reasonable to me. but not for libc!)",
+      "parentUuid": "27fe4488_6c4083d1",
+      "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
