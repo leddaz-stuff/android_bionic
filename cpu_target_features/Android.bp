@@ -1,0 +1,31 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+cc_defaults {
+    name: "cpu_features_defaults",
+}
+
+cc_binary {
+    name: "cpu-target-features",
+    defaults: ["cpu_features_defaults"],
+    srcs: [
+        "main.cpp",
+        ":print_target_features.cpp",
+    ],
+    generated_headers: ["print_target_features.h"],
+}
+
+genrule {
+    name: "print_target_features.cpp",
+    out: ["print_target_target_features.cpp"],
+    tool_files: ["generate_printer.py"],
+    cmd: "$(location generate_printer.py) --cpp $(out)",
+}
+
+genrule {
+    name: "print_target_features.h",
+    out: ["print_target_features.h"],
+    tool_files: ["generate_printer.py"],
+    cmd: "$(location generate_printer.py) --header $(out)",
+}
