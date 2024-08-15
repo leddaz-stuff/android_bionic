@@ -196,6 +196,24 @@
       "parentUuid": "5a6b1277_3d72c39f",
       "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27fe4488_6c4083d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2024-08-15T03:18:50Z",
+      "side": 1,
+      "message": "(Sorry for late responding) I don\u0027t have any plan on this. I think we agreed upon the idea of explicit tagging for LLNDK symbols starting from 202404. If this doesn\u0027t work for you, I think we can fix it. I have no better idea yet. Any suggestion?",
+      "parentUuid": "f7b2ea62_8e2b13ef",
+      "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
