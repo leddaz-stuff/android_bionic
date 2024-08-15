@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2488391_3e5c159b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1873222
+      },
+      "writtenOn": "2024-08-15T23:27:10Z",
+      "side": 1,
+      "message": "First pass at this, without the build rule simply because I wanted to get this out there and get reviews on the generation script and the selected defines.\n\nThis does not install on the device yet. Haven\u0027t quite gotten that to work, or figured out how to do it like it was inside system/core.",
+      "revId": "f5181748bc54e7aab969e6d8a5374f923399e16b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
