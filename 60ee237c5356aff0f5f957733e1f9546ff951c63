@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eec60fb5_bb2816e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-15T16:33:54Z",
+      "side": 1,
+      "message": "not sure whether this is something we should actually do now, or we should just wait for the full resolution, since it was a mistake, and glibc/apple don\u0027t have the new type either [yet]?",
+      "revId": "60ee237c5356aff0f5f957733e1f9546ff951c63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
