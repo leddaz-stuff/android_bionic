@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d025a8a7_20e402f4",
+        "filename": "libc/bionic/libc_init_static.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-15T12:46:52Z",
+      "side": 1,
+      "message": "did you really want decimal?",
+      "range": {
+        "startLine": 310,
+        "startChar": 71,
+        "endLine": 310,
+        "endChar": 73
+      },
+      "revId": "5d9725be6cb4f014f8072724284986d52cee55dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c24f279_6154724b",
+        "filename": "libc/bionic/libc_init_static.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-15T12:46:52Z",
+      "side": 1,
+      "message": "did you really want decimal?",
+      "range": {
+        "startLine": 315,
+        "startChar": 57,
+        "endLine": 315,
+        "endChar": 58
+      },
+      "revId": "5d9725be6cb4f014f8072724284986d52cee55dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
