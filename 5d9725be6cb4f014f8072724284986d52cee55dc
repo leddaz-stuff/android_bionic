@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b2e6503_c8ed7682",
+        "filename": "libc/bionic/libc_init_static.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-08-15T17:18:21Z",
+      "side": 1,
+      "message": "It\u0027s 2 and 4, it\u0027s all the same: https://cs.android.com/android/platform/superproject/main/+/main:bionic/libc/kernel/uapi/linux/prctl.h?q\u003dR_MTE_TCF_SYNC",
+      "parentUuid": "d025a8a7_20e402f4",
+      "range": {
+        "startLine": 310,
+        "startChar": 71,
+        "endLine": 310,
+        "endChar": 73
+      },
+      "revId": "5d9725be6cb4f014f8072724284986d52cee55dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c24f279_6154724b",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-08-15T12:46:52Z",
       "side": 1,
       "message": "did you really want decimal?",
+      "range": {
+        "startLine": 315,
+        "startChar": 57,
+        "endLine": 315,
+        "endChar": 58
+      },
+      "revId": "5d9725be6cb4f014f8072724284986d52cee55dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5fa314f_f4c8a83a",
+        "filename": "libc/bionic/libc_init_static.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-08-15T17:18:21Z",
+      "side": 1,
+      "message": "It\u0027s 2 and 4, it\u0027s all the same: https://cs.android.com/android/platform/superproject/main/+/main:bionic/libc/kernel/uapi/linux/prctl.h?q\u003dR_MTE_TCF_SYNC",
+      "parentUuid": "4c24f279_6154724b",
       "range": {
         "startLine": 315,
         "startChar": 57,
