@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "13142f36_70237399",
+        "filename": "cpu_target_features/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-16T19:46:00Z",
+      "side": 1,
+      "message": "\u003e This does not install on the device yet. Haven\u0027t quite gotten that to work, or figured out how to do it like it was inside system/core.\n\noh, to be clear: i meant literally \"we\u0027ll just add this binary\u0027s name to the list in system/core/\". if you look, ldd is in bionic, but gets onto the device via that list in system/core/...\n\n\u003e I see though that this can\u0027t be merged without the source files themselves, as it fails the presubmit anyways... I guess I\u0027ll try to figure something out.\n\nyeah, may as well just go straight to writing the genrule. let me know if you feel like you\u0027re stuck/going round in circles though, and i\u0027ll try to help. (and if _i_ get stuck, i\u0027ll just ask ccross :-) )",
+      "parentUuid": "1773a52b_1fb0e741",
+      "revId": "6c0b838ecf6e2109a71d71254b5637fefa87c48d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2538c90a_3306f0d0",
@@ -79,6 +97,47 @@
         "endLine": 12,
         "endChar": 0
       },
+      "revId": "6c0b838ecf6e2109a71d71254b5637fefa87c48d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65e69d73_94892e84",
+        "filename": "cpu_target_features/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-16T19:46:00Z",
+      "side": 1,
+      "message": "yeah, this stuff is in https://source.corp.google.com/h/android/platform/superproject/main/+/main:build/soong/cc/config/global.go;l\u003d37?q\u003dfile:build%2Fsoong%20Wall%20case:yes\u0026sq\u003drepo:android%2Fplatform%2Fsuperproject%2Fmain%20b:main%20-file:prebuilts%2Fvndk%2F%20-file:prebuilts%2Fruntime%2F\n\nbut there\u0027s a _lot_ of copy and paste around the tree. we should clean that up one day...\n\ni\u0027m not sure where in system/core/ you found the -fno-exceptions though, or the -Oz?\n\n(but, yeah, i\u0027d just delete all this.)",
+      "parentUuid": "11a6be16_10a62be6",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "6c0b838ecf6e2109a71d71254b5637fefa87c48d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b920052_324f8550",
+        "filename": "cpu_target_features/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-16T19:46:00Z",
+      "side": 1,
+      "message": "one slightly subtle part of the genrule thing is you\u0027ll need a `:` name for this once it\u0027s generated. the one-true-awk example i gave you is a good place to start, and also shows you how the header file stuff works (since you mentioned a header).\n```\ncc_defaults {\n    name: \"awk-defaults\",\n    defaults: [\"awk-flags\"],\n    generated_headers: [\"awkgram.tab.h\"],\n    srcs: [\n        \"b.c\",\n        \"lex.c\",\n        \"lib.c\",\n        \"main.c\",\n        \"parse.c\",\n        \":proctab.c\",\n        \"run.c\",\n        \"tran.c\",\n        \":awkgram.tab.c\",\n    ],\n}\n```",
       "revId": "6c0b838ecf6e2109a71d71254b5637fefa87c48d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
