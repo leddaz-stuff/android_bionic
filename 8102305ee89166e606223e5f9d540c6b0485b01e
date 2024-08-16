@@ -1,0 +1,86 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e942b076_51e21b8e",
+        "filename": "tests/sys_statvfs_test.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1889140
+      },
+      "writtenOn": "2024-08-16T00:38:35Z",
+      "side": 1,
+      "message": "s/would be/is",
+      "range": {
+        "startLine": 29,
+        "startChar": 72,
+        "endLine": 29,
+        "endChar": 80
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c4a3c131_791f8fb2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "tests/sys_statvfs_test.cpp",
+              "range": {
+                "startLine": 29,
+                "startChar": 0,
+                "endLine": 30,
+                "endChar": 0
+              },
+              "replacement": "  // On x86_64 based 16kb page size targets, the page size in userspace is simulated to 16kb\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8102305ee89166e606223e5f9d540c6b0485b01e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "857462d7_64bc3ed7",
+        "filename": "tests/sys_statvfs_test.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1889140
+      },
+      "writtenOn": "2024-08-16T00:38:35Z",
+      "side": 1,
+      "message": "That is right. The `proc` filesystem uses `simple_statfs` as implementation of statfs. simple_statfs sets f_bsize to PAGE_SIZE (4096 for x_86_64).\n\n```\nint simple_statfs(struct dentry *dentry, struct kstatfs *buf)\n{\n\tu64 id \u003d huge_encode_dev(dentry-\u003ed_sb-\u003es_dev);\n\n\tbuf-\u003ef_fsid \u003d u64_to_fsid(id);\n\tbuf-\u003ef_type \u003d dentry-\u003ed_sb-\u003es_magic;\n\tbuf-\u003ef_bsize \u003d PAGE_SIZE;\n\tbuf-\u003ef_namelen \u003d NAME_MAX;\n\treturn 0;\n}\n```\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:common/fs/proc/inode.c;l\u003d192\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:common/fs/libfs.c;l\u003d43",
+      "range": {
+        "startLine": 30,
+        "startChar": 9,
+        "endLine": 30,
+        "endChar": 68
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "52349453_5f293eb4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "tests/sys_statvfs_test.cpp",
+              "range": {
+                "startLine": 29,
+                "startChar": 0,
+                "endLine": 31,
+                "endChar": 0
+              },
+              "replacement": "  // On x86_64 based 16kb page size targets, the page size in userspace would be\n  // simulated to 16kb but the underlying filesystem block size would remain\n  // unchanged, i.e., 4kb.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8102305ee89166e606223e5f9d540c6b0485b01e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
