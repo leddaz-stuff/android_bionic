@@ -232,6 +232,24 @@
       "parentUuid": "27fe4488_6c4083d1",
       "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ac03eb4_2680f8c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-08-16T06:14:14Z",
+      "side": 1,
+      "message": "libbinder_ndk *is* NDK, though libcgrouprc isn\u0027t.\n\n`llndk\u003d` in the map file is actually a good thing. It gives you an explicit control over what to expose to the vendor world, and *when*.\n\nI know; in the context of bionic, there\u0027s little to no reason to hide an NDK symbol to vendors. So, having to add `llndk\u003d` to all new NDK symbols may be considered a duplicated effort. Bug given that the number of NDK symbols added yearly is quite small (~10 - ~20), I guess it\u0027s not a really big burden (please correct me here). If needed, we can take that effort.\n\nWe (Treble team) have always wanted to decouple ourselves from the yearly release of the API surface for app developers. \"35 isn\u0027t in AOSP yet\" is one good example of kind of situations we\u0027d like to avoid. LLNDK neither is for app developers nor has to be release yearly in sync with the Android SDK release.",
+      "parentUuid": "c1343e25_ca6a0449",
+      "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
