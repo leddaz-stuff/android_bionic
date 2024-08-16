@@ -25,7 +25,13 @@
 #include <string>
 
 template <typename StatVfsT> void Check(StatVfsT& sb) {
+#if defined(__x86_64__)
+  // On x86_64 based 16kb page size targets, the page size in userspace is simulated to 16kb but
+  // the underlying filesystem block size would remain unchanged, i.e., 4kb.
+  EXPECT_EQ(4096, static_cast<int>(sb.f_bsize));
+#else
   EXPECT_EQ(getpagesize(), static_cast<int>(sb.f_bsize));
+#endif
   EXPECT_EQ(0U, sb.f_bfree);
   EXPECT_EQ(0U, sb.f_ffree);
   EXPECT_EQ(255U, sb.f_namemax);
