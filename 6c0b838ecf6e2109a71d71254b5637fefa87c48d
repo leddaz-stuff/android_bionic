@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "b55bf099_8788fae6",
+        "filename": "cpu_target_features/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1873222
+      },
+      "writtenOn": "2024-08-16T23:22:16Z",
+      "side": 1,
+      "message": "Alright, I think I finally have a working example. Fundamentally, the things I was getting hung up on were:\n\n1. There can only be one output file for each genrule.\n2. Dependency tracking is done through `:\u003coutput file\u003e`\n3. You can\u0027t nest output files.\n4. You can\u0027t list header files in srcs, even when generated.\n\nBut what I have now seems to work? No idea if it\u0027s best practices, so feel free to critique.",
+      "parentUuid": "13142f36_70237399",
+      "revId": "6c0b838ecf6e2109a71d71254b5637fefa87c48d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2538c90a_3306f0d0",
@@ -125,6 +143,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef007a60_8e4e6f44",
+        "filename": "cpu_target_features/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1873222
+      },
+      "writtenOn": "2024-08-16T23:22:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65e69d73_94892e84",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "6c0b838ecf6e2109a71d71254b5637fefa87c48d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b920052_324f8550",
@@ -138,6 +180,24 @@
       "writtenOn": "2024-08-16T19:46:00Z",
       "side": 1,
       "message": "one slightly subtle part of the genrule thing is you\u0027ll need a `:` name for this once it\u0027s generated. the one-true-awk example i gave you is a good place to start, and also shows you how the header file stuff works (since you mentioned a header).\n```\ncc_defaults {\n    name: \"awk-defaults\",\n    defaults: [\"awk-flags\"],\n    generated_headers: [\"awkgram.tab.h\"],\n    srcs: [\n        \"b.c\",\n        \"lex.c\",\n        \"lib.c\",\n        \"main.c\",\n        \"parse.c\",\n        \":proctab.c\",\n        \"run.c\",\n        \"tran.c\",\n        \":awkgram.tab.c\",\n    ],\n}\n```",
+      "revId": "6c0b838ecf6e2109a71d71254b5637fefa87c48d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5560a73_485c01ef",
+        "filename": "cpu_target_features/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1873222
+      },
+      "writtenOn": "2024-08-16T23:22:16Z",
+      "side": 1,
+      "message": "Thanks for the tip! This was very useful in trying to debug what I was doing wrong with genrule.",
+      "parentUuid": "1b920052_324f8550",
       "revId": "6c0b838ecf6e2109a71d71254b5637fefa87c48d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
