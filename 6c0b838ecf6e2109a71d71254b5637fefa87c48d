@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "1773a52b_1fb0e741",
+        "filename": "cpu_target_features/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1873222
+      },
+      "writtenOn": "2024-08-16T19:31:39Z",
+      "side": 1,
+      "message": "This was intentional. I\u0027ll just requote my last comment:\n\n\u003e First pass at this, without the build rule simply because I wanted to get this out there and get reviews on the generation script and the selected defines.\n\u003e \n\u003e This does not install on the device yet. Haven\u0027t quite gotten that to work, or figured out how to do it like it was inside system/core.\n\nI see though that this can\u0027t be merged without the source files themselves, as it fails the presubmit anyways... I guess I\u0027ll try to figure something out.",
+      "parentUuid": "ec232eeb_c8284ca3",
+      "revId": "6c0b838ecf6e2109a71d71254b5637fefa87c48d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2538c90a_3306f0d0",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-08-16T17:07:32Z",
       "side": 1,
       "message": "(i\u0027m kind of surprised there\u0027s no global defaults or similar that these get pulled from)",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "6c0b838ecf6e2109a71d71254b5637fefa87c48d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11a6be16_10a62be6",
+        "filename": "cpu_target_features/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1873222
+      },
+      "writtenOn": "2024-08-16T19:31:39Z",
+      "side": 1,
+      "message": "There may be, but these were present in system/core, so I thought better safe than sorry.",
+      "parentUuid": "2538c90a_3306f0d0",
       "range": {
         "startLine": 8,
         "startChar": 0,
