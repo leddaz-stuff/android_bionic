@@ -304,6 +304,24 @@
       "parentUuid": "8239801c_83f222b7",
       "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60b9fd72_7c4e8e9a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-16T20:33:37Z",
+      "side": 1,
+      "message": "\u003e There\u0027 isn\u0027t a separate vendor libc.so, is there?\n\nexactly --- that\u0027s the \"this makes no sense, we\u0027re just making life difficult/confusing for ourselves\" point for me...",
+      "parentUuid": "d4176ee1_5d28d075",
+      "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
