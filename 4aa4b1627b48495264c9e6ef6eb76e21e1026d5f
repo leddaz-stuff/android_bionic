@@ -16,6 +16,24 @@
       "message": "can we have a link to some documentation for this non-standard variant?",
       "revId": "4aa4b1627b48495264c9e6ef6eb76e21e1026d5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6dc9315_c409f20a",
+        "filename": "tests/sys_statvfs_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1889140
+      },
+      "writtenOn": "2024-08-16T14:35:02Z",
+      "side": 1,
+      "message": "That is a good point.\n\nWe could add the link to the architecture doc:\n\nhttps://source.android.com/docs/core/architecture/16kb-page-size/getting-started-cf-x86-64-pgagnostic",
+      "parentUuid": "d23ccd67_a12c9ced",
+      "revId": "4aa4b1627b48495264c9e6ef6eb76e21e1026d5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
