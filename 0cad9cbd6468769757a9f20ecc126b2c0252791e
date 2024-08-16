@@ -322,6 +322,24 @@
       "parentUuid": "d4176ee1_5d28d075",
       "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f561268e_3cc91d6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2024-08-16T22:14:03Z",
+      "side": 1,
+      "message": "\u003e . What\u0027s the benefit to hiding (at build time) NDK symbols from the LL-NDK?\n\nIt\u0027s about API freezing. We want vendor-available symbols to be frozen when NDK symbols are still not frozen.\n\nAnd last time I pointed out V symbols won\u0027t be available to vendor, Elliott, you mentioned that \"they didn\u0027t have them last year, so i don\u0027t see why they\u0027d have to have them this year\" 😊 (in aosp/2994436)\n\n\n\u003e \"your vendor thing should just be floor(our current thing)\"\n\nI think this sounds good and IMO this is exactly what we want to do for now. Btw it seems like we don\u0027t agree on how we do it. Would it be hard \"no\" to tag #llndk\u003dyyyymm for those new symbols?",
+      "parentUuid": "60b9fd72_7c4e8e9a",
+      "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
