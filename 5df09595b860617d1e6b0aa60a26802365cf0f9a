@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "758340ab_60ab31e9",
+        "filename": "libc/arch-arm64/dynamic_function_dispatch.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-08-16T00:10:26Z",
+      "side": 1,
+      "message": "If we\u0027re rewriting the whole func, may as well use 2 indent consistently?",
+      "revId": "5df09595b860617d1e6b0aa60a26802365cf0f9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
