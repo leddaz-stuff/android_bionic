@@ -268,6 +268,24 @@
       "parentUuid": "5ac03eb4_2680f8c6",
       "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8239801c_83f222b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-08-16T14:30:53Z",
+      "side": 1,
+      "message": "\u003e what exactly is the goal here, specifically with respect to bionic?\n\nThe goal here is to provide an API surface for (SoC) vendors which can be released independently from the Android SDK release cycle.\n\nIn other words, we want that vendors don\u0027t have to deal with the API levels (35, 36, ...) which basically is for app developers. Since the beginning of Treble, vendors do not build against NDK/SDK, but we implicitly extended the meaning of API levels to version something that is not NDK/SDK and became to have its own release schedule with trunk stable; we think this was a big mistake.  \n\nTherefore, YYYYMM (ex: 202404) is supposed to be a new version scheme (that is completely independent from the existing API level) that vendors use to identify the set of APIs available for them. VSR (vendor software requirement) is already written in terms of YYYYMM.",
+      "parentUuid": "8e263ffd_32a97d34",
+      "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
