@@ -16,6 +16,24 @@
       "message": "If we\u0027re rewriting the whole func, may as well use 2 indent consistently?",
       "revId": "5df09595b860617d1e6b0aa60a26802365cf0f9a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8124e41_1ee7e8e0",
+        "filename": "libc/arch-arm64/dynamic_function_dispatch.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-16T13:09:21Z",
+      "side": 1,
+      "message": "good idea... i\u0027ve let the computer reformat all of the architectures, not just this one.",
+      "parentUuid": "758340ab_60ab31e9",
+      "revId": "5df09595b860617d1e6b0aa60a26802365cf0f9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
