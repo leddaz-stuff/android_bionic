@@ -16,6 +16,23 @@
       "message": "+jorgelo: i see there\u0027s this in minijail:\n```\ndef parse_trace_file(trace_filename, syscalls, arg_inspection):\n    \"\"\"Parses one file produced by strace.\"\"\"\n    uses_socketcall \u003d (\u0027i386\u0027 in trace_filename or\n                       (\u0027x86\u0027 in trace_filename and\n                        \u002764\u0027 not in trace_filename))\n\n    with open(trace_filename, encoding\u003d\u0027utf8\u0027) as trace_file:\n        for line in trace_file:\n            matches \u003d LINE_RE.match(line)\n            if not matches:\n                continue\n\n            syscall, args \u003d matches.groups()\n            if uses_socketcall and syscall in SOCKETCALLS:\n                syscall \u003d \u0027socketcall\u0027\n```\nin 2024, should that be changed to add _both_? i\u0027m guessing bionic is the first libc to look at trying to move off socketcall, because everyone else wants compatibility back to 2.6 kernels?",
       "revId": "4d525d5856e03267c83d96b54d35fa7b9b114d73",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34da5c7d_003de065",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076138
+      },
+      "writtenOn": "2024-08-17T01:02:56Z",
+      "side": 1,
+      "message": "Apologies for the delayed reply, we can certainly change Minijail policy generation to not use socketcall anymore.",
+      "revId": "4d525d5856e03267c83d96b54d35fa7b9b114d73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
