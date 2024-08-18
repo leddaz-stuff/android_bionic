@@ -340,6 +340,24 @@
       "parentUuid": "60b9fd72_7c4e8e9a",
       "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e4d853a_76e01c46",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1146974
+      },
+      "writtenOn": "2024-08-18T23:58:53Z",
+      "side": 1,
+      "message": "\u003e There\u0027 isn\u0027t a separate vendor libc.so, is there? The library exposes NDK symbols to the LL-NDK regardless of what the map file says about the LL-NDK.\n\nNo, there isn\u0027t a separate vendor libc.so, but there is a separate stub file for the vendor libc.so to be used on build time. The vendor FRC is to freeze those vendor exposed symbols before they are frozen for the NDK. This means some symbols can be frozen earlier than the SDK API finalization if they are marked as LLNDK symbols.",
+      "parentUuid": "f561268e_3cc91d6d",
+      "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
