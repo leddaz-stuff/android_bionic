@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5f0c068_dbedf8a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1873222
+      },
+      "writtenOn": "2024-08-18T00:18:16Z",
+      "side": 1,
+      "message": "Re failures:\n\nSeems like /bin/env is not available on some systems? Is python?\nPerhaps I should just invoke python3 directly.\n\n```\n/bin/env: bad interpreter: No such file or directory\n```",
+      "revId": "cbec62a6d269ad172ff33c781579371a57d1b3f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
