@@ -376,6 +376,24 @@
       "parentUuid": "2e4d853a_76e01c46",
       "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c36d756_730ccbbe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-19T12:29:30Z",
+      "side": 1,
+      "message": "\u003e And last time I pointed out V symbols won\u0027t be available to vendor, Elliott, you mentioned that \"they didn\u0027t have them last year, so i don\u0027t see why they\u0027d have to have them this year\" 😊 (in aosp/2994436)\n\nbut this is *25* that\u0027s causing trouble, no? 25 should V? and since 25 won\u0027t have \"W\", you should be able to fill out 25 with V right now?\n\n\u003e I think this sounds good and IMO this is exactly what we want to do for now. Btw it seems like we don\u0027t agree on how we do it. Would it be hard \"no\" to tag #llndk\u003dyyyymm for those new symbols?\n\nyes, we shouldn\u0027t be crufting up anything maintained by humans with machine-generated boilerplate (where only one possible thing is correct, and everything else would be a mistake!).\n\n\u003e No, there isn\u0027t a separate vendor libc.so, but there is a separate stub file for the vendor libc.so to be used on build time. The vendor FRC is to freeze those vendor exposed symbols before they are frozen for the NDK. This means some symbols can be frozen earlier than the SDK API finalization if they are marked as LLNDK symbols.\n\n(to be clear: i still don\u0027t understand _why_ --- this just makes no sense to me. what purpose does pretending that these things don\u0027t exist actually serve?)",
+      "parentUuid": "7d5978c5_d3f365a4",
+      "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
