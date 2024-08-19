@@ -430,6 +430,24 @@
       "parentUuid": "86e48d0c_05ebda19",
       "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "841d2984_6bde144e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-08-19T18:55:12Z",
+      "side": 1,
+      "message": "\u003e\u003e What\u0027s the benefit to hiding (at build time) NDK symbols from the LL-NDK?\n\u003e\n\u003e It\u0027s about API freezing. We want vendor-available symbols to be frozen when NDK symbols are still not frozen.\n\n\u003e The vendor FRC is to freeze those vendor exposed symbols before they are frozen for the NDK.\n\nBut this is impossible. If you freeze one you freeze the other. The implementation is the part that\u0027s frozen, not the stubs, and there\u0027s only one implementation.\n\nThis is also why explicit LL-NDK introduction versions probably shouldn\u0027t exist, and should instead be implied by the platform\u0027s version: the LL-NDK shouldn\u0027t be advancing the platform\u0027s API freeze schedule. If the LL-NDK freezes _before_ the rest of the OS, it must freeze with the latest _final_ API level, not the in-development codename. afaict you\u0027re not actually freezing the LL-NDK 3 months early, you\u0027re freezing it 9 months late (previous platform API level of the shared APIs plus some LL-NDK-only APIs developed in those 9 months).\n\nOr perhaps I\u0027m misunderstanding and the part you\u0027re wanting to freeze early is the _absence_ of newer symbols? If so, then yeah, allowing explicit versioning (while helpful for at-a-glance \"what LL-NDK version was this first available in?\") sounds error-prone compared to inferring the version from the platform\u0027s `introduced\u003d`. If that is the case, I don\u0027t understand what the separate versioning scheme is for at all. LL-NDK API N would always be platform N plus the LL-NDK-only APIs developed between platform N finalization and LL-NDK N finalization, right? If you call that N then you don\u0027t need additional tagging in any of the map files, headers, or callsites, right?",
+      "parentUuid": "4ac9558d_c1916eac",
+      "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
