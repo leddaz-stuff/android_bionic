@@ -412,6 +412,24 @@
       "parentUuid": "8c36d756_730ccbbe",
       "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ac9558d_c1916eac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-19T14:29:09Z",
+      "side": 1,
+      "message": "\u003e No, we are not pretending, but they actually did not exist when finalizing the LLNDK.\n\n...but they do exist when the code is built/run, so \"who cares?\".\n\ni\u0027m not asking philosophical questions here, i\u0027m asking the completely practical question \"why does this matter?\". (though it might help to read the bit below first, about app compat, which is _why_ i think this philosophical distinction isn\u0027t helpful.)\n\n\u003e Assume we are finalizing the LLNDK libfoo with 202504. libfoo has only a single symbol foo_A that was added in early 2025. So the foo_A is not in NDK for V, but used from a vendor module for 202504.\n\nthis is not the case i\u0027m talking about, in several ways:\n\n1. i\u0027m claiming that \"libfoo\" and \"libc/libm/libdl\" are not comparable. i have no argument with (or, strictly, \"no interest in\") the \"libfoo\" case. i\u0027m claiming that the bionic libraries _specifically_ are a special case with _much stronger_ compatibility guarantees because they have to maintain _app_ compatibility.\n\n2. if a symbol is in V, it must be in 2025+, right? since V is 202*4*\u0027s api level, and 2025\u003e2024.\n\nso for bionic it seems like #1 warrants a special case, and #2 tells us the lower bound of what that special case is. (like i said, i don\u0027t actually care about the -- to me nonsensical -- \"wait a year for something that\u0027s already there\" issue that causes me to say \"the lower bound of what\" rather than just \"what\". my only interest is that we\u0027re not holding them back _indefinitely_, because that would be silly.)",
+      "parentUuid": "86e48d0c_05ebda19",
+      "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
