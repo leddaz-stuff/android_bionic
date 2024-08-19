@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "428efd6b_c11d8a74",
+        "filename": "cpu_target_features/generate_printer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-19T20:46:20Z",
+      "side": 1,
+      "message": "_is_ there a 32-bit PAC/BTI?",
+      "revId": "6d87e2a3f45f0a5bd49067043c326216279f81c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
