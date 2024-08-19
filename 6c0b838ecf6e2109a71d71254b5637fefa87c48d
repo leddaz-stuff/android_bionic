@@ -72,6 +72,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f93eee3_deca4f08",
+        "filename": "cpu_target_features/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-19T12:45:00Z",
+      "side": 1,
+      "message": "yeah, that\u0027s why i showed the one-true-awk example, because it includes the header file weirdness.\n\npersonally, for something simple like this, i\u0027d just skip that ... there\u0027s nothing of value/that changes in the header anyway. (in fact, there isn\u0027t really any reason to have different names for the different architectures\u0027 functions, though that does bring up the question of \"what do we do with systems that have mixed 32-bite/64-bit userspaces?\". personally i\u0027d be tempted to say \"it\u0027s 2024, that\u0027s increasingly disallowed, so who cares? primary arch only.\")",
+      "parentUuid": "b55bf099_8788fae6",
+      "revId": "6c0b838ecf6e2109a71d71254b5637fefa87c48d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2538c90a_3306f0d0",
