@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15077f31_71bcf47b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-19T19:17:49Z",
+      "side": 1,
+      "message": "(this looks like upstream code [and, obviously, is^was], but it\u0027s already quite forked, with no-one seeming to want our gnu/i18n extensions...)",
+      "revId": "7dbddd38ddddaab7a61b5fb943510e21c6aa8c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
