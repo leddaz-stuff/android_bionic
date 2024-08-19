@@ -394,6 +394,24 @@
       "parentUuid": "7d5978c5_d3f365a4",
       "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86e48d0c_05ebda19",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1146974
+      },
+      "writtenOn": "2024-08-19T13:14:36Z",
+      "side": 1,
+      "message": "\u003e what purpose does pretending that these things don\u0027t exist actually serve?\n\nNo, we are not pretending, but they actually did not exist when finalizing the LLNDK.\n\nAssume we are finalizing the LLNDK `libfoo` with 202504. `libfoo` has only a single symbol `foo_A` that was added in early 2025. So the `foo_A` is not in NDK for V, but used from a vendor module for 202504.\nAs vendor modules are using the `foo_A` it must not be modified even before the NDK for W is finalized. That is why we need to have a separate versioning for each symbol that cannot use the NDK versioning.\nThe `foo_A` will be finalized again for NDK-W along with some more symbols added after the vendor finalization.\n\nAs discussed before, we may have used a single versioning that bumps for both vendor and SDK finalizations. But that was not agreed. (go/vfrc-llndk-versioning)",
+      "parentUuid": "8c36d756_730ccbbe",
+      "revId": "0cad9cbd6468769757a9f20ecc126b2c0252791e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
