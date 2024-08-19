@@ -16,6 +16,24 @@
       "message": "Re failures:\n\nSeems like /bin/env is not available on some systems? Is python?\nPerhaps I should just invoke python3 directly.\n\n```\n/bin/env: bad interpreter: No such file or directory\n```",
       "revId": "cbec62a6d269ad172ff33c781579371a57d1b3f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8cd1f07_b20a18b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1873222
+      },
+      "writtenOn": "2024-08-19T19:44:34Z",
+      "side": 1,
+      "message": "It may be that it should be `/usr/bin/env python3` instead. Mimicking https://cs.android.com/android/platform/superproject/main/+/main:bionic/libc/tools/gensyscalls.py;l\u003d1;drc\u003db53e48f1246f9719a39af84808830421a6c8bd4b now.",
+      "parentUuid": "b5f0c068_dbedf8a0",
+      "revId": "cbec62a6d269ad172ff33c781579371a57d1b3f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
