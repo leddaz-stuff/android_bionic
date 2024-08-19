@@ -16,6 +16,24 @@
       "message": "_is_ there a 32-bit PAC/BTI?",
       "revId": "6d87e2a3f45f0a5bd49067043c326216279f81c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57dca2ff_813fa52b",
+        "filename": "cpu_target_features/generate_printer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1873222
+      },
+      "writtenOn": "2024-08-19T20:50:39Z",
+      "side": 1,
+      "message": "I know two things:\n\n* There\u0027s software support for PACBTI in arm32 (which is far slower but does exist)\n* There\u0027s a clang target feature flag for it in ARM32.\n\nIs there _hardware_ support for it ever? No idea. But it\u0027s there!",
+      "parentUuid": "428efd6b_c11d8a74",
+      "revId": "6d87e2a3f45f0a5bd49067043c326216279f81c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
