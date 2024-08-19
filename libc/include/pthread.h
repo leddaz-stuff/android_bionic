@@ -124,24 +124,47 @@ int pthread_condattr_setclock(pthread_condattr_t* _Nonnull __attr, clockid_t __c
 int pthread_condattr_setpshared(pthread_condattr_t* _Nonnull __attr, int __shared);
 
 int pthread_cond_broadcast(pthread_cond_t* _Nonnull __cond);
-int pthread_cond_clockwait(pthread_cond_t* _Nonnull __cond, pthread_mutex_t* _Nonnull __mutex, clockid_t __clock,
-                           const struct timespec* _Nullable __timeout) __INTRODUCED_IN(30);
+
+/**
+ * Like pthread_cond_timedwait() but using the given clock.
+ *
+ * Available since API level 30.
+ */
+int pthread_cond_clockwait(pthread_cond_t* _Nonnull __cond, pthread_mutex_t* _Nonnull __mutex, clockid_t __clock, const struct timespec* _Nullable __timeout) __INTRODUCED_IN(30) __wur;
+
 int pthread_cond_destroy(pthread_cond_t* _Nonnull __cond);
 int pthread_cond_init(pthread_cond_t* _Nonnull __cond, const pthread_condattr_t* _Nullable __attr);
 int pthread_cond_signal(pthread_cond_t* _Nonnull __cond);
-int pthread_cond_timedwait(pthread_cond_t* _Nonnull __cond, pthread_mutex_t* _Nonnull __mutex, const struct timespec* _Nullable __timeout);
-/*
- * Condition variables use CLOCK_REALTIME by default for their timeouts, however that is
- * typically inappropriate, since that clock can change dramatically, causing the timeout to
- * either expire earlier or much later than intended.
- * Condition variables have an initialization option to use CLOCK_MONOTONIC, and in addition,
- * Android provides pthread_cond_timedwait_monotonic_np to use CLOCK_MONOTONIC on a condition
- * variable for this single wait no matter how it was initialized.
- * Note that pthread_cond_clockwait() allows specifying an arbitrary clock and has superseded this
- * function.
+
+/**
+ * [pthread_cond_timedwait(3)](https://man7.org/linux/man-pages/man3/pthread_cond_timedwait.3p.html)
+ * waits on a condition variable with the given timeout.
+ *
+ * Condition variables use CLOCK_REALTIME by default for their timeouts,
+ * but that is typically a bad choice: that clock can change dramatically,
+ * causing the timeout to either expire earlier or much later than intended.
+ *
+ * See pthread_condattr_setclock() lets you initialize a condition variable to
+ * use CLOCK_MONOTONIC rather than CLOCK_REALTIME for all waits.
+ *
+ * See pthread_cond_timedwait_monotonic_np() to use CLOCK_MONOTONIC for one
+ * wait (no matter how the condition variable was initialized).
+ *
+ * See pthread_cond_clockwait() to use an arbitrary clock for one wait (no
+ * matter how the condition variable was initialized).
+ *
+ * Returns 0 on success and returns an error number on failure
+ * (specifically ETIMEDOUT in the case where the timeout expires).
  */
-int pthread_cond_timedwait_monotonic_np(pthread_cond_t* _Nonnull __cond, pthread_mutex_t* _Nonnull __mutex,
-                                        const struct timespec* _Nullable __timeout) __INTRODUCED_IN_64(28);
+int pthread_cond_timedwait(pthread_cond_t* _Nonnull __cond, pthread_mutex_t* _Nonnull __mutex, const struct timespec* _Nullable __timeout) __wur;
+
+/**
+ * Like pthread_cond_timedwait() but using CLOCK_MONOTONIC instead of CLOCK_REALTIME.
+ *
+ * Available since API level 28.
+ */
+int pthread_cond_timedwait_monotonic_np(pthread_cond_t* _Nonnull __cond, pthread_mutex_t* _Nonnull __mutex, const struct timespec* _Nullable __timeout) __INTRODUCED_IN_64(28) __wur;
+
 int pthread_cond_wait(pthread_cond_t* _Nonnull __cond, pthread_mutex_t* _Nonnull __mutex);
 
 int pthread_create(pthread_t* _Nonnull __pthread_ptr, pthread_attr_t const* _Nullable __attr, void* _Nonnull (* _Nonnull __start_routine)(void* _Nonnull), void* _Nullable);
@@ -195,24 +218,41 @@ int pthread_mutexattr_setpshared(pthread_mutexattr_t* _Nonnull __attr, int __sha
 int pthread_mutexattr_settype(pthread_mutexattr_t* _Nonnull __attr, int __type);
 int pthread_mutexattr_setprotocol(pthread_mutexattr_t* _Nonnull __attr, int __protocol) __INTRODUCED_IN(28);
 
-int pthread_mutex_clocklock(pthread_mutex_t* _Nonnull __mutex, clockid_t __clock,
-                            const struct timespec* _Nullable __abstime) __INTRODUCED_IN(30);
+/**
+ * Equivalent to pthread_mutex_timedlock() but using the given clock instead of CLOCK_REALTIME.
+ *
+ * Available since API level 30.
+ */
+int pthread_mutex_clocklock(pthread_mutex_t* _Nonnull __mutex, clockid_t __clock, const struct timespec* _Nullable __abstime) __INTRODUCED_IN(30);
+
 int pthread_mutex_destroy(pthread_mutex_t* _Nonnull __mutex);
 int pthread_mutex_init(pthread_mutex_t* _Nonnull __mutex, const pthread_mutexattr_t* _Nullable __attr);
 int pthread_mutex_lock(pthread_mutex_t* _Nonnull __mutex);
-int pthread_mutex_timedlock(pthread_mutex_t* _Nonnull __mutex, const struct timespec* _Nullable __timeout);
 
-/*
- * POSIX historically only supported using pthread_mutex_timedlock() with CLOCK_REALTIME, however
- * that is typically inappropriate, since that clock can change dramatically, causing the timeout to
- * either expire earlier or much later than intended.
- * This function is added to use a timespec based on CLOCK_MONOTONIC that does not suffer
- * from this issue.
- * Note that pthread_mutex_clocklock() allows specifying an arbitrary clock and has superseded this
- * function.
+/**
+ * [pthread_mutex_timedlock(3)](https://man7.org/linux/man-pages/man3/pthread_mutex_timedlock.3p.html)
+ * tries to locks a mutex with a given timeout.
+ *
+ * Mutexes use CLOCK_REALTIME for their timeouts,
+ * but that is typically a bad choice: that clock can change dramatically,
+ * causing the timeout to either expire earlier or much later than intended.
+ *
+ * See pthread_mutex_timedlock_monotonic_np() to use CLOCK_MONOTONIC.
+ *
+ * See pthread_mutex_clocklock() to use an arbitrary clock.
+ *
+ * Returns 0 on success and returns an error number on failure
+ * (specifically ETIMEDOUT in the case where the timeout expires).
  */
-int pthread_mutex_timedlock_monotonic_np(pthread_mutex_t* _Nonnull __mutex, const struct timespec* _Nullable __timeout)
-    __INTRODUCED_IN(28);
+int pthread_mutex_timedlock(pthread_mutex_t* _Nonnull __mutex, const struct timespec* _Nullable __timeout) __wur;
+
+/**
+ * Equivalent to pthread_mutex_timedlock() but using CLOCK_MONOTONIC instead of CLOCK_REALTIME.
+ *
+ * Available since API level 28.
+ */
+int pthread_mutex_timedlock_monotonic_np(pthread_mutex_t* _Nonnull __mutex, const struct timespec* _Nullable __timeout) __INTRODUCED_IN(28) __wur;
+
 int pthread_mutex_trylock(pthread_mutex_t* _Nonnull __mutex);
 int pthread_mutex_unlock(pthread_mutex_t* _Nonnull __mutex);
 
@@ -226,21 +266,72 @@ int pthread_rwlockattr_getkind_np(const pthread_rwlockattr_t* _Nonnull __attr, i
   __INTRODUCED_IN(23);
 int pthread_rwlockattr_setkind_np(pthread_rwlockattr_t* _Nonnull __attr, int __kind) __INTRODUCED_IN(23);
 
-int pthread_rwlock_clockrdlock(pthread_rwlock_t* _Nonnull __rwlock, clockid_t __clock,
-                               const struct timespec* _Nullable __timeout) __INTRODUCED_IN(30);
-int pthread_rwlock_clockwrlock(pthread_rwlock_t* _Nonnull __rwlock, clockid_t __clock,
-                               const struct timespec* _Nullable __timeout) __INTRODUCED_IN(30);
+/**
+ * Equivalent to pthread_rwlock_timedrdlock() but using the given clock.
+ *
+ * Available since API level 30.
+ */
+int pthread_rwlock_clockrdlock(pthread_rwlock_t* _Nonnull __rwlock, clockid_t __clock, const struct timespec* _Nullable __timeout) __INTRODUCED_IN(30) __wur;
+
+/**
+ * Equivalent to pthread_rwlock_timedwrlock() but using the given clock.
+ *
+ * Available since API level 30.
+ */
+int pthread_rwlock_clockwrlock(pthread_rwlock_t* _Nonnull __rwlock, clockid_t __clock, const struct timespec* _Nullable __timeout) __INTRODUCED_IN(30) __wur;
+
 int pthread_rwlock_destroy(pthread_rwlock_t* _Nonnull __rwlock);
 int pthread_rwlock_init(pthread_rwlock_t* _Nonnull __rwlock, const pthread_rwlockattr_t* _Nullable __attr);
 int pthread_rwlock_rdlock(pthread_rwlock_t* _Nonnull __rwlock);
+
+/**
+ * [pthread_rwlock_timedrdlock(3)](https://man7.org/linux/man-pages/man3/pthread_rwlock_timedrdlock.3p.html)
+ * tries to read-lock a read/write lock with a given timeout.
+ *
+ * Read/write locks use CLOCK_REALTIME for their timeouts,
+ * but that is typically a bad choice: that clock can change dramatically,
+ * causing the timeout to either expire earlier or much later than intended.
+ *
+ * See pthread_rwlock_timedrdlock_monotonic_np() to use CLOCK_MONOTONIC.
+ *
+ * See pthread_rwlock_clockrdlock() to use an arbitrary clock.
+ *
+ * Returns 0 on success and returns an error number on failure
+ * (specifically ETIMEDOUT in the case where the timeout expires).
+ */
 int pthread_rwlock_timedrdlock(pthread_rwlock_t* _Nonnull __rwlock, const struct timespec* _Nullable __timeout);
-/* See the comment on pthread_mutex_timedlock_monotonic_np for usage of this function. */
-int pthread_rwlock_timedrdlock_monotonic_np(pthread_rwlock_t* _Nonnull __rwlock,
-                                            const struct timespec* _Nullable __timeout) __INTRODUCED_IN(28);
-int pthread_rwlock_timedwrlock(pthread_rwlock_t* _Nonnull __rwlock, const struct timespec* _Nullable __timeout);
-/* See the comment on pthread_mutex_timedlock_monotonic_np for usage of this function. */
-int pthread_rwlock_timedwrlock_monotonic_np(pthread_rwlock_t* _Nonnull __rwlock,
-                                            const struct timespec* _Nullable __timeout) __INTRODUCED_IN(28);
+
+/**
+ * Equivalent to pthread_rwlock_timedrdlock() but using CLOCK_MONOTONIC.
+ *
+ * Available since API level 30.
+ */
+int pthread_rwlock_timedrdlock_monotonic_np(pthread_rwlock_t* _Nonnull __rwlock, const struct timespec* _Nullable __timeout) __INTRODUCED_IN(28) __wur;
+
+/**
+ * [pthread_rwlock_timedwrlock(3)](https://man7.org/linux/man-pages/man3/pthread_rwlock_timedwrlock.3p.html)
+ * tries to write-lock a read/write lock with a given timeout.
+ *
+ * Read/write locks use CLOCK_REALTIME for their timeouts,
+ * but that is typically a bad choice: that clock can change dramatically,
+ * causing the timeout to either expire earlier or much later than intended.
+ *
+ * See pthread_rwlock_timedwrlock_monotonic_np() to use CLOCK_MONOTONIC.
+ *
+ * See pthread_rwlock_clockwrlock() to use an arbitrary clock.
+ *
+ * Returns 0 on success and returns an error number on failure
+ * (specifically ETIMEDOUT in the case where the timeout expires).
+ */
+int pthread_rwlock_timedwrlock(pthread_rwlock_t* _Nonnull __rwlock, const struct timespec* _Nullable __timeout) __wur;
+
+/**
+ * Equivalent to pthread_rwlock_timedwrlock() but using CLOCK_MONOTONIC.
+ *
+ * Available since API level 30.
+ */
+int pthread_rwlock_timedwrlock_monotonic_np(pthread_rwlock_t* _Nonnull __rwlock, const struct timespec* _Nullable __timeout) __INTRODUCED_IN(28) __wur;
+
 int pthread_rwlock_tryrdlock(pthread_rwlock_t* _Nonnull __rwlock);
 int pthread_rwlock_trywrlock(pthread_rwlock_t* _Nonnull __rwlock);
 int pthread_rwlock_unlock(pthread_rwlock_t* _Nonnull __rwlock);
