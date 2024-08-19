@@ -34,6 +34,24 @@
       "parentUuid": "428efd6b_c11d8a74",
       "revId": "6d87e2a3f45f0a5bd49067043c326216279f81c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19e0f529_e062b7fc",
+        "filename": "cpu_target_features/generate_printer.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1873222
+      },
+      "writtenOn": "2024-08-19T21:07:13Z",
+      "side": 1,
+      "message": "Turns out there is hardware support in Armv8.1-M, which is 32bit! So yes, there is!",
+      "parentUuid": "57dca2ff_813fa52b",
+      "revId": "6d87e2a3f45f0a5bd49067043c326216279f81c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
