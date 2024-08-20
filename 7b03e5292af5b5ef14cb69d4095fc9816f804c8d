@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b13c6adc_99ff5b05",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-20T15:12:22Z",
+      "side": 1,
+      "message": "(ps3 is rebased on top of my recent rewrite of the libc-internal ifuncs [which removes the duplication for static binaries].)",
+      "revId": "7b03e5292af5b5ef14cb69d4095fc9816f804c8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
