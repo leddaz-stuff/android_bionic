@@ -16,6 +16,23 @@
       "message": "For your reviewing convenience, I uploaded the delta between the previously landed, reverted (LHS) and this patch (RHS) to the Googler-internal difftool: https://diff.googleplex.com/#key\u003dyhfw2f8cr0aS\n\nI\u0027ve redacted the offsets as they obviously don\u0027t match up between now and then. As with some of the callsites to relocate_relr. But other than that, you can see the delta is very small. Mostly just the code for apply_memtag_if_mte_globals() and application in the relocations. Also the fix for the preinit_arrays.",
       "revId": "79831cc574e4989f9c0a4fb35080825aaaa8d69c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43a8d427_2676b2b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1005967
+      },
+      "writtenOn": "2024-08-21T21:15:28Z",
+      "side": 1,
+      "message": "the bulk of this was reviewed at aosp/1845896, new changes LGTM",
+      "revId": "79831cc574e4989f9c0a4fb35080825aaaa8d69c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
