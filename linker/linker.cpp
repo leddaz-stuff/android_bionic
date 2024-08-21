@@ -66,6 +66,7 @@
 #include "linker_namespaces.h"
 #include "linker_sleb128.h"
 #include "linker_phdr.h"
+#include "linker_phdr_compat.h"
 #include "linker_relocate.h"
 #include "linker_tls.h"
 #include "linker_translate_path.h"
@@ -640,6 +641,8 @@ class LoadTask {
     si_->set_gap_start(elf_reader.gap_start());
     si_->set_gap_size(elf_reader.gap_size());
     si_->set_should_pad_segments(elf_reader.should_pad_segments());
+    si_->set_compat_relro_start(elf_reader.compat_relro_start());
+    si_->set_compat_relro_size(elf_reader.compat_relro_size());
 
     return true;
   }
@@ -3414,6 +3417,15 @@ bool soinfo::link_image(const SymbolLookupList& lookup_list, soinfo* local_group
 }
 
 bool soinfo::protect_relro() {
+  if (loader_4kb_compat_enabled() && min_palign(phdr, phnum) < page_size()) {
+    if (phdr_table_protect_gnu_relro_compat(compat_relro_start_, compat_relro_size_) < 0) {
+      DL_ERR_AND_LOG("can't enable COMPAT GNU RELRO protection for \"%s\": %s",
+             get_realpath(), strerror(errno));
+      return false;
+    }
+    return true;
+  }
+
   if (phdr_table_protect_gnu_relro(phdr, phnum, load_bias, should_pad_segments_) < 0) {
     DL_ERR("can't enable GNU RELRO protection for \"%s\": %m", get_realpath());
     return false;

@@ -33,8 +33,11 @@
 
 #include <string>
 #include <unordered_map>
+#include <stdio.h>
 
 #include <async_safe/log.h>
+
+#include <android-base/file.h>
 
 #define DL_ERR(fmt, x...) \
     do { \
