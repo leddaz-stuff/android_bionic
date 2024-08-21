@@ -66,7 +66,7 @@
                                          // soinfo is executed and this flag is
                                          // unset.
 #define FLAG_PRELINKED        0x00000400 // prelink_image has successfully processed this soinfo
-#define FLAG_GLOBALS_TAGGED   0x00000800 // globals have been tagged by MTE.
+#define FLAG_GLOBALS_TAGGED 0x00000800   // globals have been tagged by MTE.
 #define FLAG_NEW_SOINFO       0x40000000 // new soinfo format
 
 #define SOINFO_VERSION 7
@@ -253,12 +253,12 @@ struct soinfo {
   void call_constructors();
   void call_destructors();
   void call_pre_init_constructors();
-  bool prelink_image();
+  bool prelink_image(bool dlext_relro = false);
   bool link_image(const SymbolLookupList& lookup_list, soinfo* local_group_root,
                   const android_dlextinfo* extinfo, size_t* relro_fd_offset);
   bool protect_relro();
 
-  void tag_globals();
+  void tag_globals(bool dlext_relro);
   ElfW(Addr) apply_memtag_if_mte_globals(ElfW(Addr) sym_addr) const;
 
   void add_child(soinfo* child);
