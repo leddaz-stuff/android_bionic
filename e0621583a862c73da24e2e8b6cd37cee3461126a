@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dea7d0c_b62b7726",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1005967
+      },
+      "writtenOn": "2024-08-21T20:25:17Z",
+      "side": 1,
+      "message": "Is it viable to limit this deterministic scheme to the globals that are referenced in the RELRO section and tag the rest randomly?",
+      "revId": "e0621583a862c73da24e2e8b6cd37cee3461126a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dec4d15_6f05e7b2",
+        "filename": "linker/linker_soinfo.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1005967
+      },
+      "writtenOn": "2024-08-21T20:25:17Z",
+      "side": 1,
+      "message": "bad indent",
+      "fixSuggestions": [
+        {
+          "fixId": "50e4b50a_702bfb50",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "linker/linker_soinfo.h",
+              "range": {
+                "startLine": 69,
+                "startChar": 0,
+                "endLine": 70,
+                "endChar": 0
+              },
+              "replacement": "#define FLAG_GLOBALS_TAGGED   0x00000800 // globals have been tagged by MTE.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e0621583a862c73da24e2e8b6cd37cee3461126a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
