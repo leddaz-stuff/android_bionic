@@ -145,6 +145,7 @@ int         fchown:fchown32(int, uid_t, gid_t)  lp32
 int         fchown:fchown(int, uid_t, gid_t)    lp64
 void        sync(void)  all
 int         syncfs(int)  all
+int vhangup(void) all
 int         __fsetxattr:fsetxattr(int, const char*, const void*, size_t, int) all
 ssize_t     __fgetxattr:fgetxattr(int, const char*, void*, size_t) all
 ssize_t     __flistxattr:flistxattr(int, char*, size_t) all

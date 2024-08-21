@@ -1139,6 +1139,7 @@ LIBC {
     vfscanf;
     vfwprintf;
     vfwscanf;
+    vhangup; # introduced=36
     vmsplice;
     vprintf;
     vscanf;

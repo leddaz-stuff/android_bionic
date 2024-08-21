@@ -416,6 +416,16 @@ void swab(const void* _Nonnull __src, void* _Nonnull __dst, ssize_t __byte_count
  */
 int close_range(unsigned int __min_fd, unsigned int __max_fd, int __flags) __INTRODUCED_IN(34);
 
+/**
+ * [vhangup(2)](https://man7.org/linux/man-pages/man2/vhangup.2.html)
+ * virtually hangs up the current terminal.
+ *
+ * Available since API level 36.
+ *
+ * Returns 0 on success, and returns -1 and sets `errno` on failure.
+ */
+int vhangup(void) __INTRODUCED_IN(36);
+
 #if defined(__BIONIC_INCLUDE_FORTIFY_HEADERS)
 #define _UNISTD_H_
 #include <bits/fortify/unistd.h>
