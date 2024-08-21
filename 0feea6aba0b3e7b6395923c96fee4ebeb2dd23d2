@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5d39b90_7b161772",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-21T22:22:45Z",
+      "side": 1,
+      "message": "i think you\u0027ll need http://b/352784252 fixed first?",
+      "revId": "0feea6aba0b3e7b6395923c96fee4ebeb2dd23d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
