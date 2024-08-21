@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89e9c290_f4fa4a86",
+        "filename": "tests/dlext_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 2007,
+      "author": {
+        "id": 1453063
+      },
+      "writtenOn": "2024-08-21T17:41:00Z",
+      "side": 1,
+      "message": "done. this was shamelessly stolen from bionic/linker/linker_phdr.cpp :)",
+      "parentUuid": "ca7a61b6_d99af754",
+      "range": {
+        "startLine": 2003,
+        "startChar": 0,
+        "endLine": 2007,
+        "endChar": 41
+      },
+      "revId": "3be57c1e62e48dc79962ec2f1968e02d0547d6a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "11c4c97f_d4505c20",
@@ -81,6 +105,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae3d5b32_29bcdae8",
+        "filename": "tests/dlext_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 2041,
+      "author": {
+        "id": 1453063
+      },
+      "writtenOn": "2024-08-21T17:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11c4c97f_d4505c20",
+      "range": {
+        "startLine": 2041,
+        "startChar": 0,
+        "endLine": 2041,
+        "endChar": 52
+      },
+      "revId": "3be57c1e62e48dc79962ec2f1968e02d0547d6a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aab39785_fdcc61fa",
@@ -94,6 +142,30 @@
       "writtenOn": "2024-02-07T22:42:16Z",
       "side": 1,
       "message": "Might be worth adding a comment saying something about this only applies for devices with MTE enabled.",
+      "range": {
+        "startLine": 2074,
+        "startChar": 21,
+        "endLine": 2074,
+        "endChar": 61
+      },
+      "revId": "3be57c1e62e48dc79962ec2f1968e02d0547d6a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9709afb_d02eec2a",
+        "filename": "tests/dlext_test.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 2074,
+      "author": {
+        "id": 1453063
+      },
+      "writtenOn": "2024-08-21T17:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aab39785_fdcc61fa",
       "range": {
         "startLine": 2074,
         "startChar": 21,
