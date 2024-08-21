@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e6e7441_27a512be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-21T13:43:38Z",
+      "side": 1,
+      "message": "make -k shows:\n```\nsystem/media/audio_utils/echo_reference.c:358:9: error: ignoring return value of function declared with \u0027warn_unused_result\u0027 attribute [-Werror,-Wunused-result]\n  358 |         pthread_cond_timedwait(\u0026er-\u003econd, \u0026er-\u003elock, \u0026ts);\n      |         ^~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~\n1 error generated.\n\nbionic/libc/dns/resolv/res_cache.c:1361:13: error: ignoring return value of function declared with \u0027warn_unused_result\u0027 attribute [-Werror,-Wunused-result]\n 1361 |             pthread_cond_timedwait(\u0026ri-\u003econd, \u0026_res_cache_list_lock, \u0026ts);\n      |             ^~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n1 error generated.\n\nsystem/nfc/src/gki/ulinux/gki_ulinux.cc:603:7: error: ignoring return value of function declared with \u0027warn_unused_result\u0027 attribute [-Werror,-Wunused-result]\n  603 |       pthread_cond_timedwait(\u0026gki_cb.os.thread_evt_cond[rtask],\n      |       ^~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n  604 |                              \u0026gki_cb.os.thread_evt_mutex[rtask], \u0026abstime);\n      |                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n1 error generated.\n```",
+      "revId": "a3417897015b63459ece66b5e60e8e53cd09fa38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
