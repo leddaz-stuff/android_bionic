@@ -108,6 +108,16 @@ cc_defaults {
 
     // We need to access Bionic private headers in the linker.
     include_dirs: ["bionic/libc"],
+
+    sanitize: {
+        // For now, disable MTE globals in the linker. MTE globals change the
+        // relocation semantics, and GVs that are touched before the linker has
+        // the chance to relocate itself have to be annotated. There are a
+        // reasonable number of these annotations that would need to be added,
+        // which can be done at a later date.
+
+        memtag_globals: false,
+    },
 }
 
 // ========================================================
