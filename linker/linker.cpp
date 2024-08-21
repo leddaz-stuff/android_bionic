@@ -1695,11 +1695,14 @@ bool find_libraries(android_namespace_t* ns,
     }
   }
 
+  bool dlext_relro =
+      extinfo && extinfo->flags & (ANDROID_DLEXT_WRITE_RELRO | ANDROID_DLEXT_USE_RELRO);
+
   // Step 3: pre-link all DT_NEEDED libraries in breadth first order.
   bool any_memtag_stack = false;
   for (auto&& task : load_tasks) {
     soinfo* si = task->get_soinfo();
-    if (!si->is_linked() && !si->prelink_image()) {
+    if (!si->is_linked() && !si->prelink_image(dlext_relro)) {
       return false;
     }
     // si->memtag_stack() needs to be called after si->prelink_image() which populates
@@ -2844,7 +2847,7 @@ bool relocate_relr(const ElfW(Relr) * begin, const ElfW(Relr) * end, ElfW(Addr) 
 // An empty list of soinfos
 static soinfo_list_t g_empty_list;
 
-bool soinfo::prelink_image() {
+bool soinfo::prelink_image(bool dlext_relro) {
   if (flags_ & FLAG_PRELINKED) return true;
   /* Extract dynamic section */
   ElfW(Word) dynamic_flags = 0;
@@ -3341,7 +3344,7 @@ bool soinfo::prelink_image() {
   // pages is unnecessary on non-MTE devices (where we might still run MTE-globals enabled code).
   if (mte_supported() && memtag_globals() && memtag_globalssz() &&
       remap_memtag_globals_segments(phdr, phnum, base) == 0) {
-    tag_globals();
+    tag_globals(dlext_relro);
     protect_memtag_globals_ro_segments(phdr, phnum, base);
   }
 
@@ -3452,13 +3455,41 @@ bool soinfo::protect_relro() {
   return true;
 }
 
+constexpr size_t kTagGranuleSize = 16;
+static void apply_memtags_to_global(void* tagged_addr, uint64_t granules_to_tag) {
+  auto* granule = static_cast<uint8_t*>(tagged_addr);
+  for (size_t i = 0; i < granules_to_tag; ++i) {
+    set_memory_tag(static_cast<void*>(granule));
+    granule += kTagGranuleSize;
+  }
+}
+
+// There can be multiple RELRO segments, and they can be laid out by the linker
+// in non-ascending order (by virtual address). This returns the next relro
+// segment by virtual address, given that the last RELRO segment started at
+// `last_relro_vaddr` (or zero if we haven't found a RELRO segment yet). This is
+// technically O(nk) where `n` is the number of segments and `k` is the number
+// of RELRO segments, and could be optimised by pre-calculating the RELRO
+// segments into a sorted list. But this requires O(k) storage, dynamic storage
+// in the linker is expensive, multiple RELRO segments is a very niche case, and
+// `n` is genrally low double-digits. So, let's do the more time-complex search
+// as it's definitely simpler and probably still faster than the alternative.
+static const ElfW(Phdr) *
+    get_next_relro(ElfW(Addr) last_relro_p_vaddr, const ElfW(Phdr) * phdrs, size_t phnum) {
+  for (const ElfW(Phdr)* header = phdrs; header < phdrs + phnum; header++) {
+    if (header->p_type != PT_GNU_RELRO) continue;
+    if (header->p_vaddr <= last_relro_p_vaddr) continue;
+    return header;
+  }
+  return nullptr;
+}
+
 // https://github.com/ARM-software/abi-aa/blob/main/memtagabielf64/memtagabielf64.rst#global-variable-tagging
-void soinfo::tag_globals() {
+void soinfo::tag_globals(bool dlext_relro) {
   if (is_linked()) return;
   if (flags_ & FLAG_GLOBALS_TAGGED) return;
   flags_ |= FLAG_GLOBALS_TAGGED;
 
-  constexpr size_t kTagGranuleSize = 16;
   const uint8_t* descriptor_stream = reinterpret_cast<const uint8_t*>(memtag_globals());
 
   if (memtag_globalssz() == 0) {
@@ -3470,7 +3501,14 @@ void soinfo::tag_globals() {
   // Don't ever generate tag zero, to easily distinguish between tagged and
   // untagged globals in register/tag dumps.
   uint64_t last_tag_mask = 1;
+  uint64_t last_tag = 1;
   constexpr uint64_t kMemtagStepVarintReservedBits = 3;
+
+  const ElfW(Phdr)* next_relro = nullptr;
+  if (dlext_relro) next_relro = get_next_relro(0u, phdr, phnum);
+  uintptr_t relro_start = next_relro ? page_start(next_relro->p_vaddr) + load_bias : UINTPTR_MAX;
+  uintptr_t relro_end =
+      next_relro ? page_end(next_relro->p_vaddr + next_relro->p_memsz) + load_bias : UINTPTR_MAX;
 
   while (decoder.has_bytes()) {
     uint64_t value = decoder.pop_front();
@@ -3479,18 +3517,37 @@ void soinfo::tag_globals() {
     if (granules_to_tag == 0) {
       granules_to_tag = decoder.pop_front() + 1;
     }
-
     addr += step * kTagGranuleSize;
-    void* tagged_addr;
-    tagged_addr = insert_random_tag(reinterpret_cast<void*>(addr + load_bias), last_tag_mask);
-    uint64_t tag = (reinterpret_cast<uint64_t>(tagged_addr) >> 56) & 0x0f;
-    last_tag_mask = 1 | (1 << tag);
 
-    for (size_t k = 0; k < granules_to_tag; k++) {
-      auto* granule = static_cast<uint8_t*>(tagged_addr) + k * kTagGranuleSize;
-      set_memory_tag(static_cast<void*>(granule));
+    // Regular tagging - should be random per-global, except the tag shouldn't
+    // be the same as the previous global (enforced by the tag mask).
+    if (addr + load_bias < relro_start) {
+      void* tagged_addr =
+          insert_random_tag(reinterpret_cast<void*>(addr + load_bias), last_tag_mask);
+      uint64_t tag = (reinterpret_cast<uint64_t>(tagged_addr) >> 56) & 0x0f;
+      last_tag_mask = 1 | (1 << tag);
+      apply_memtags_to_global(tagged_addr, granules_to_tag);
+      addr += granules_to_tag * kTagGranuleSize;
+      continue;
     }
+
+    // Tagging for global variables in RELRO sections when the object being
+    // loaded is via. dlext with ANDROID_DLEXT_{READ,WRITE}_RELRO. These globals
+    // should be deterministically tagged so that RELRO sharing can take place,
+    // but only in the RELRO segment. All non-RELRO globals should use the
+    // normal, random tagging above.
+    void* tagged_addr = reinterpret_cast<void*>((addr + load_bias) | (last_tag++ << 56));
+    if (last_tag > kTagGranuleSize - 1) last_tag = 1;
+    apply_memtags_to_global(tagged_addr, granules_to_tag);
     addr += granules_to_tag * kTagGranuleSize;
+    if (addr >= relro_end) {
+      // We've processed the last global in this RELRO segment.
+      last_tag = 1;
+      next_relro = get_next_relro(next_relro->p_vaddr, phdr, phnum);
+      relro_start = next_relro ? page_start(next_relro->p_vaddr) + load_bias : UINTPTR_MAX;
+      relro_end = next_relro ? page_start(next_relro->p_vaddr + next_relro->p_memsz) + load_bias
+                             : UINTPTR_MAX;
+    }
   }
 }
 
