@@ -34,6 +34,24 @@
       "parentUuid": "b5d39b90_7b161772",
       "revId": "0feea6aba0b3e7b6395923c96fee4ebeb2dd23d2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e10a2973_f9654091",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-21T22:27:11Z",
+      "side": 1,
+      "message": "yeah, that sgtm rather than keep blocking on this forever. if you don\u0027t want to have to wait for your presubmit to finish, the first one i hit was reallocarray() in giflib :-)",
+      "parentUuid": "84983ada_32a3e5fa",
+      "revId": "0feea6aba0b3e7b6395923c96fee4ebeb2dd23d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
