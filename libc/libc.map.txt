@@ -675,6 +675,7 @@ LIBC {
     munlock;
     munlockall;
     munmap;
+    name_to_handle_at; # introduced=36
     nanosleep;
     newlocale;
     nftw;
@@ -708,6 +709,7 @@ LIBC {
     ntohs;
     open;
     open64;
+    open_by_handle_at; # introduced=36
     open_memstream; # introduced=23
     open_wmemstream; # introduced=23
     openat;

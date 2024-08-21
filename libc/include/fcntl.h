@@ -227,11 +227,52 @@ ssize_t readahead(int __fd, off64_t __offset, size_t __length);
  * Valid flags are `SYNC_FILE_RANGE_WAIT_BEFORE`, `SYNC_FILE_RANGE_WRITE`, and
  * `SYNC_FILE_RANGE_WAIT_AFTER`.
  *
+ * Available since API level 26.
+ *
  * Returns 0 on success and returns -1 and sets `errno` on failure.
  */
 int sync_file_range(int __fd, off64_t __offset, off64_t __length, unsigned int __flags) __INTRODUCED_IN(26);
 
 #endif
+
+/**
+ * File handle structure used by name_to_handle_at() and open_by_handle_at().
+ */
+struct file_handle {
+  /** Size of f_handle (set by caller, updated by kernel). */
+	unsigned handle_bytes;
+  /** Opaque handle type (set by kernel). */
+	int handle_type;
+  /** Opaque handle data (allocated by caller). */
+	unsigned char f_handle[];
+};
+
+/**
+ * Current maximum size needed for struct file_handle.
+ * Alteratively, pass a struct file_handle with handle_bytes == 0
+ * and let the kernel tell you how many bytes you need.
+ */
+#define MAX_HANDLE_SZ 128
+
+/**
+ * [name_to_handle_at(2)](https://man7.org/linux/man-pages/man2/name_to_handle_at.2.html)
+ * returns a file handle for the given path.
+ *
+ * Available since API level 36.
+ *
+ * Returns 0 on success and returns -1 and sets `errno` on failure.
+ */
+int name_to_handle_at(int __dir_fd, const char* _Nonnull __path, struct file_handle* _Nonnull __handle, int* _Nonnull __mount_id, int __flags) __INTRODUCED_IN(36);
+
+/**
+ * [open_by_handle_at(2)](https://man7.org/linux/man-pages/man2/open_by_handle_at.2.html)
+ * opens a file using a file handle and mount fd.
+ *
+ * Available since API level 36.
+ *
+ * Returns 0 on success and returns -1 and sets `errno` on failure.
+ */
+int open_by_handle_at(int __mount_fd, struct file_handle* _Nonnull __handle, int __flags) __INTRODUCED_IN(36);
 
 #if defined(__BIONIC_INCLUDE_FORTIFY_HEADERS)
 #include <bits/fortify/fcntl.h>

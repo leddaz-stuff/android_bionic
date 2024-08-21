@@ -354,6 +354,9 @@ int sethostname(const char*, size_t)  all
 int sync_file_range(int, off64_t, off64_t, unsigned int) x86,lp64
 int __sync_file_range2:sync_file_range2(int, unsigned int, off64_t, off64_t) arm
 
+int name_to_handle_at(int, const char*, struct file_handle*, int*, int) all
+int open_by_handle_at(int, struct file_handle*, int) all
+
 pid_t wait4(pid_t, int*, int, struct rusage*)  all
 int __waitid:waitid(int, pid_t, siginfo_t*, int, void*)  all
 

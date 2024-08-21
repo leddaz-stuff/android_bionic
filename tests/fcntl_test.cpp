@@ -363,3 +363,22 @@ TEST(fcntl, open_O_TMPFILE_mode) {
 TEST_F(fcntl_DeathTest, fcntl_F_SETFD) {
   EXPECT_DEATH(fcntl(0, F_SETFD, O_NONBLOCK), "only supports FD_CLOEXEC");
 }
+
+TEST(fcntl, name_to_handle_at_and_open_by_handle_at) {
+  file_handle* fh = static_cast<file_handle*>(malloc(MAX_HANDLE_SZ));
+  fh->handle_bytes = MAX_HANDLE_SZ;
+  int mount_id = -1;
+  ASSERT_EQ(0, name_to_handle_at(AT_FDCWD, "/proc/version", fh, &mount_id, 0));
+
+  int mount_fd = open("/proc", O_RDONLY);
+  int fd = open_by_handle_at(mount_fd, fh, O_RDONLY);
+  ASSERT_NE(fd, -1) << strerror(errno);
+
+  std::string content;
+  ASSERT_TRUE(android::base::ReadFdToString(fd, &content));
+  ASSERT_TRUE(content.starts_with("Linux")) << content;
+
+  close(fd);
+  close(mount_fd);
+  free(fh);
+}
