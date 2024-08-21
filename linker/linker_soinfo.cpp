@@ -44,6 +44,7 @@
 #include "linker_logger.h"
 #include "linker_relocate.h"
 #include "linker_utils.h"
+#include "platform/bionic/mte.h"
 
 // Enable the slow lookup path if symbol lookups should be logged.
 static bool is_lookup_tracing_enabled() {
@@ -309,6 +310,12 @@ const ElfW(Sym)* soinfo::find_symbol_by_name(SymbolName& symbol_name,
   return is_gnu_hash() ? gnu_lookup(symbol_name, vi) : elf_lookup(symbol_name, vi);
 }
 
+ElfW(Addr) soinfo::apply_memtag_if_mte_globals(ElfW(Addr) sym_addr) const {
+  if (!memtag_globals()) return sym_addr;
+  if (sym_addr == 0) return sym_addr;  // Handle undefined weak symbols.
+  return reinterpret_cast<ElfW(Addr)>(get_tagged_address(reinterpret_cast<void*>(sym_addr)));
+}
+
 const ElfW(Sym)* soinfo::gnu_lookup(SymbolName& symbol_name, const version_info* vi) const {
   const uint32_t hash = symbol_name.gnu_hash();
 
@@ -460,8 +467,17 @@ static inline void call_array(const char* array_name __unused, F* functions, siz
   int step = reverse ? -1 : 1;
 
   for (int i = begin; i != end; i += step) {
-    TRACE("[ %s[%d] == %p ]", array_name, i, functions[i]);
-    call_function("function", functions[i], realpath);
+    // Under MTE globals, the preinit array may consist of tagged memory. To get the actual function
+    // addresses, we need to thus materialize the address tag, otherwise SIGSEGV/MTE[AS]ERR occurs.
+    // https://github.com/llvm/llvm-project/pull/78443 disabled MTE globals for function pointers in
+    // named sections (including the preinit array), but it's possible that apps could build
+    // MTE-globals protected shared objects with a compiler that doesn't have this patch.
+    F* function_addr = reinterpret_cast<F*>(get_tagged_address(&functions[i]));
+    F function = *function_addr;
+    if (function == nullptr) continue;
+
+    TRACE("[ %s[%d] == %p ]", array_name, i, function);
+    call_function("function", function, realpath);
   }
 
   TRACE("[ Done calling %s for '%s' ]", array_name, realpath);
