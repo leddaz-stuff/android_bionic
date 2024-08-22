@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ef03b55_79ff525e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-22T13:31:55Z",
+      "side": 1,
+      "message": "libc-alpha thread is here: https://sourceware.org/pipermail/libc-alpha/2024-August/159338.html\n\nno-one disagreed with the idea yet, but there\u0027s plenty to bikeshed (and it\u0027s not obvious that anyone wants to actually make the change).",
+      "revId": "df79cf1d3eeaedf96121cd6c347b6ac79ba343a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
