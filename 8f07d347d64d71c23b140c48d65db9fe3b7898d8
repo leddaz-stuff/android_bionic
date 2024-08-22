@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "120acebb_0cd04362",
+        "filename": "libc/bionic/wctype.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-08-22T21:57:08Z",
+      "side": 1,
+      "message": "You\u0027re trying to avoid the compiler ever generating an out-of-line definition and force inlining, right? Does `[[clang::always_inline]]` not do that?",
+      "revId": "8f07d347d64d71c23b140c48d65db9fe3b7898d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
