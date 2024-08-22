@@ -16,6 +16,24 @@
       "message": "edliaw: are these syscalls disabled in our kernel config?\n\n\u003e external/ltp/include/lapi/name_to_handle_at.h:48: TFAIL: name_to_handle_at() should fail with EOVERFLOW: ENOSYS (38)\n\naiui they were in Linux 2.6, so i doubt we\u0027re getting ENOSYS because we\u0027re running on a kernel that\u0027s too old :-)\n\n(i\u0027m adding them because ChromeOS has _references_ to them, but without knowing whether they\u0027re actually _used_ at runtime. gbiv: is \"syscalls enabled in ChromeOS that are disabled in Android\" something someone\u0027s already looking at? that sounds like something else we\u0027d be better off knowing sooner rather than later :-) )",
       "revId": "71c416124cf16e66659f41574671dbf8891ef20f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef3adf46_917a8ab9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2024-08-22T13:35:02Z",
+      "side": 1,
+      "message": "\u003e gbiv: is \"syscalls enabled in ChromeOS that are disabled in Android\" something someone\u0027s already looking at? that sounds like something else we\u0027d be better off knowing sooner rather than later :-)\n\ni don\u0027t know that anyone\u0027s looking at it, but could be interesting. in CrOS, we have seccomp filters for ... probably most of our executables. \n\ni\u0027ll ping the kernel chat and see if this is an area of exploration",
+      "parentUuid": "d8bf2620_b67c0088",
+      "revId": "71c416124cf16e66659f41574671dbf8891ef20f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
