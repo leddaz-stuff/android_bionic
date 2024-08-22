@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c566f8a_0bef44ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-22T18:44:43Z",
+      "side": 1,
+      "message": "(i\u0027ll wait to see whether glibc does actually expose this first, and make sure we\u0027re source compatible with what they do: https://sourceware.org/pipermail/libc-alpha/2024-August/159338.html)",
+      "revId": "7a843763eab3584cdbc22a3e917bd3de99626bb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
