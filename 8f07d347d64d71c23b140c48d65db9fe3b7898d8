@@ -34,6 +34,24 @@
       "parentUuid": "120acebb_0cd04362",
       "revId": "8f07d347d64d71c23b140c48d65db9fe3b7898d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e5e653d_bd74e373",
+        "filename": "libc/bionic/wctype.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-08-22T22:01:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fde2f02c_6954ad62",
+      "revId": "8f07d347d64d71c23b140c48d65db9fe3b7898d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
