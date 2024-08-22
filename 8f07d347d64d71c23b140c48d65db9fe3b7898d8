@@ -16,6 +16,24 @@
       "message": "You\u0027re trying to avoid the compiler ever generating an out-of-line definition and force inlining, right? Does `[[clang::always_inline]]` not do that?",
       "revId": "8f07d347d64d71c23b140c48d65db9fe3b7898d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fde2f02c_6954ad62",
+        "filename": "libc/bionic/wctype.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-22T22:00:47Z",
+      "side": 1,
+      "message": "not really, no. the \"Add the missing ASCII fast paths, ensure that they and the \"no icu\" fallback both use inline code rather than another function call to the non-wide variant of the function\" was really just \"you can\u0027t pass a function pointer to a function in a different file and expect the compiler to make that evaporate, silly!\" (since that\u0027s what started this investigation --- \"why does libc have an out-of-line copy of each of the non-wide is* functions?\").\n\ncan i do that with a template? yes, but that genuinely seemed less clear to me (in particular in the \"does this actually do what it looks like it does?\" department).",
+      "parentUuid": "120acebb_0cd04362",
+      "revId": "8f07d347d64d71c23b140c48d65db9fe3b7898d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
