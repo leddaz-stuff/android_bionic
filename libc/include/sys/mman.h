@@ -234,4 +234,50 @@ int posix_madvise(void* _Nonnull __addr, size_t __size, int __advice) __INTRODUC
  */
 int mseal(void* _Nonnull __addr, size_t __size, unsigned long __flags) __INTRODUCED_IN(36);
 
+/**
+ * [pkey_alloc(2)](https://man7.org/linux/man-pages/man2/pkey_alloc.2.html)
+ * allocates a new protection key.
+ *
+ * Available since API level 36.
+ */
+int pkey_alloc(unsigned __flags, unsigned __access_rights) __INTRODUCED_IN(36);
+
+/**
+ * [pkey_free(2)](https://man7.org/linux/man-pages/man2/pkey_free.2.html)
+ * frees a protection key.
+ *
+ * Available since API level 36.
+ *
+ * Returns 0 on success, and returns -1 and sets `errno` on failure.
+ */
+int pkey_free(int __pkey) __INTRODUCED_IN(36);
+
+/**
+ * pkey_get(2) returns the access rights for a protection key.
+ *
+ * Available since API level 36.
+ *
+ * Returns the access rights on success, and returns -1 and sets `errno` on failure.
+ */
+int pkey_get(int __pkey) __INTRODUCED_IN(36);
+
+/**
+ * [pkey_mprotect(2)](https://man7.org/linux/man-pages/man2/pkey_mprotect.2.html)
+ * sets the protection on a memory region based on a protection key.
+ *
+ * Available since API level 36.
+ *
+ * Returns 0 on success, and returns -1 and sets `errno` on failure.
+ */
+int pkey_mprotect(void* __addr, size_t __size, int __prot, int __pkey) __INTRODUCED_IN(36);
+
+/**
+ * pkey_set(2) changes the access rights for a protection key.
+ *
+ * Available since API level 36.
+ *
+ * Returns 0 on success, and returns -1 and sets `errno` on failure.
+ */
+int pkey_set(int __pkey, unsigned __access_rights) __INTRODUCED_IN(36);
+
 __END_DECLS
