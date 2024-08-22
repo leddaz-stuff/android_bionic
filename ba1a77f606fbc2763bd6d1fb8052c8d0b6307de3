@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4688ab4e_06dc5dd3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-08-22T06:59:04Z",
+      "side": 1,
+      "message": "Since my comment is mostly a nit, +2\u0027ing so you don\u0027t need me to re-review if you make the change or don\u0027t.",
+      "revId": "ba1a77f606fbc2763bd6d1fb8052c8d0b6307de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de0ca740_6b81723d",
+        "filename": "tests/dlext_test.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 2043,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2024-08-22T06:59:04Z",
+      "side": 1,
+      "message": "Should this return a non-zero value to stop running the iterate? I think only a single shared libary should match.",
+      "range": {
+        "startLine": 2043,
+        "startChar": 16,
+        "endLine": 2043,
+        "endChar": 17
+      },
+      "revId": "ba1a77f606fbc2763bd6d1fb8052c8d0b6307de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
