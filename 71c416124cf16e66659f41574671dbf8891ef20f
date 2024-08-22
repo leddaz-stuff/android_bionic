@@ -52,6 +52,24 @@
       "parentUuid": "ef3adf46_917a8ab9",
       "revId": "71c416124cf16e66659f41574671dbf8891ef20f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe38ef8b_8f78d693",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1942356
+      },
+      "writtenOn": "2024-08-22T20:43:16Z",
+      "side": 1,
+      "message": "Yeah looks like it\u0027s disabled https://source.corp.google.com/h/android/kernel/superproject/+/common-android-mainline:common/arch/arm64/configs/gki_defconfig;l\u003d46;bpv\u003d0;bpt\u003d0\n```\n# CONFIG_FHANDLE is not set\n```\nLooks like it was unset in the initial gki configuration, so I don\u0027t know the reason behind it.",
+      "parentUuid": "014958e5_d2e0336e",
+      "revId": "71c416124cf16e66659f41574671dbf8891ef20f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
