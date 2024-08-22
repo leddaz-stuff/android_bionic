@@ -37,6 +37,10 @@
 
 #include <linux/prctl.h>
 
+#if defined(__x86_64__)
+#include <asm/prctl.h>
+#endif
+
 __BEGIN_DECLS
 
 /**
@@ -46,5 +50,15 @@ __BEGIN_DECLS
  * Returns -1 and sets `errno` on failure; success values vary by option.
  */
 int prctl(int __op, ...);
+
+#if defined(__x86_64__)
+/**
+ * [arch_prctl(2)](https://man7.org/linux/man-pages/man2/arch_prctl.2.html)
+ * gets/sets x86-64 thread-specific state.
+ *
+ * Returns 0 on success and returns -1 and sets `errno` on failure.
+ */
+int arch_prctl(int __op, unsigned long __arg);
+#endif
 
 __END_DECLS

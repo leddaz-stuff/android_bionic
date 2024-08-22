@@ -232,6 +232,7 @@ LIBC {
     arc4random;
     arc4random_buf;
     arc4random_uniform;
+    arch_prctl; # x86_64 introduced=36
     asctime;
     asctime64; # arm x86
     asctime64_r; # arm x86
