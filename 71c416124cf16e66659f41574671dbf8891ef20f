@@ -70,6 +70,24 @@
       "parentUuid": "014958e5_d2e0336e",
       "revId": "71c416124cf16e66659f41574671dbf8891ef20f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "901cd677_c27763f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1942356
+      },
+      "writtenOn": "2024-08-22T20:57:43Z",
+      "side": 1,
+      "message": "b/30903194 looks to be when it was disabled.",
+      "parentUuid": "fe38ef8b_8f78d693",
+      "revId": "71c416124cf16e66659f41574671dbf8891ef20f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
