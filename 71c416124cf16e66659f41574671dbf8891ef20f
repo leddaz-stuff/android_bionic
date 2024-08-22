@@ -34,6 +34,24 @@
       "parentUuid": "d8bf2620_b67c0088",
       "revId": "71c416124cf16e66659f41574671dbf8891ef20f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "014958e5_d2e0336e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-22T13:39:44Z",
+      "side": 1,
+      "message": "the weird thing here is that seccomp would get you a SIGSYS [and part of adding a syscall to SYSCALLS.TXT is that we automatically add the syscall to the seccomp filter] --- ENOSYS really does probably imply that someone\u0027s built the kernel without the syscall. (but, yeah, seccomp differences are probably interesting too. i\u0027m assuming that the blunter hammer of kernel configuration differences is the easier place to start though :-) )",
+      "parentUuid": "ef3adf46_917a8ab9",
+      "revId": "71c416124cf16e66659f41574671dbf8891ef20f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
