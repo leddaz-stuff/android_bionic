@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9cc8249_34f62bfd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1453063
+      },
+      "writtenOn": "2024-08-22T13:53:51Z",
+      "side": 1,
+      "message": "yes - done.\n\nit\u0027s probably overengineered because i\u0027ve assumed there can be multiple, out-of-order (segments are not ascending in vaddr) RELRO segments because other relevant code in bionic specifically calls out multiple RELRO segments (https://cs.android.com/android/platform/superproject/main/+/main:bionic/linker/linker_phdr.cpp;drc\u003dd990f7d7f495430875b023538881c9b7a7e81c23;l\u003d13510).\n\nbut it\u0027s really hard to synthetize a test for this. i tried, and LLD does not like outputting a binary with multiple disjoint GNU_RELRO segments (silently drops more than one in my testing), and errors out completely with out-of-order ones. so, i guess code inspection (as well as the existing RELRO tests, which only have one RELRO section) is going to be the only reasonable thing here.",
+      "parentUuid": "3dea7d0c_b62b7726",
+      "revId": "e0621583a862c73da24e2e8b6cd37cee3461126a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9dec4d15_6f05e7b2",
@@ -49,6 +67,24 @@
           ]
         }
       ],
+      "revId": "e0621583a862c73da24e2e8b6cd37cee3461126a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0aa76ff0_7f225872",
+        "filename": "linker/linker_soinfo.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1453063
+      },
+      "writtenOn": "2024-08-22T13:53:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9dec4d15_6f05e7b2",
       "revId": "e0621583a862c73da24e2e8b6cd37cee3461126a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
