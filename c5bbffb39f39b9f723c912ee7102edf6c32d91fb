@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c98e665_a0cfb2d4",
+        "filename": "linker/linker.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 3468,
+      "author": {
+        "id": 1005967
+      },
+      "writtenOn": "2024-08-22T17:28:31Z",
+      "side": 1,
+      "message": "I\u0027m confused - the implementation does not seem to handle non-ascending relro sections at all.",
+      "range": {
+        "startLine": 3468,
+        "startChar": 6,
+        "endLine": 3468,
+        "endChar": 46
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9ba13edb_2afac865",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "linker/linker.cpp",
+              "range": {
+                "startLine": 3470,
+                "startChar": 0,
+                "endLine": 3477,
+                "endChar": 0
+              },
+              "replacement": "// `last_relro_vaddr` (or zero if we haven\u0027t found a RELRO segment yet).\n// This is technically O(nk) where `n` is the number of segments and `k` is\n// the number of RELRO segments, and could be optimised by pre-calculating the\n// RELRO segments into a sorted list. But this requires O(k) storage, dynamic\n// storage is expensive in the linker, multiple RELRO segments is a very niche case,\n// and `n` is genally low double-digits. So let\u0027s do the more time-complex\n// search as it\u0027s definitely simpler and probably still faster than the alternative.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c5bbffb39f39b9f723c912ee7102edf6c32d91fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
