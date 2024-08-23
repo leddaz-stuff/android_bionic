@@ -16,6 +16,24 @@
       "message": "@enh@google.com I am tasked to take this over..\n\nIs this actually true? As this is not part of Android yet, so it\u0027s not part of any NDK, we basically can expect apps to be built for a future NDK, so we know which compiler they can use?",
       "revId": "3115bdc1f91cd7bedb83345432010e7f0f21dc8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ba2c2a2_e892ca4c",
+        "filename": "linker/linker_soinfo.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-08-23T21:56:46Z",
+      "side": 1,
+      "message": "(Also, confirmed that this PR is part of llvm-r530567).",
+      "parentUuid": "30f0cfa7_f4dca707",
+      "revId": "3115bdc1f91cd7bedb83345432010e7f0f21dc8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
