@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0e2231d_6591624a",
+        "filename": "linker/linker.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 3487,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-08-23T22:46:09Z",
+      "side": 1,
+      "message": "Acknowledged. I misread.",
+      "parentUuid": "a02345bd_d847f16d",
+      "revId": "3115bdc1f91cd7bedb83345432010e7f0f21dc8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30f0cfa7_f4dca707",
