@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a02345bd_d847f16d",
+        "filename": "linker/linker.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 3487,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-08-23T22:44:55Z",
+      "side": 1,
+      "message": "I think this will saturate and then use `0` for more than 15 globals:\n\nFrom https://developer.arm.com/documentation/ddi0596/2020-12/Shared-Pseudocode/AArch64-Functions?lang\u003den#AArch64.ChooseNonExcludedTag.3\n\n```\n// AArch64.ChooseNonExcludedTag()\n// \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n// Return a tag derived from the start and the offset values, excluding\n// any tags in the given mask.\n\nbits(4) AArch64.ChooseNonExcludedTag(bits(4) tag, bits(4) offset, bits(16) exclude)\n    if IsOnes(exclude) then\n        return \u00270000\u0027;\n\n    if offset \u003d\u003d \u00270000\u0027 then\n        while exclude\u003cUInt(tag)\u003e \u003d\u003d \u00271\u0027 do\n            tag \u003d tag + \u00270001\u0027;\n\n    while offset !\u003d \u00270000\u0027 do\n        offset \u003d offset - \u00270001\u0027;\n        tag \u003d tag + \u00270001\u0027;\n        while exclude\u003cUInt(tag)\u003e \u003d\u003d \u00271\u0027 do\n            tag \u003d tag + \u00270001\u0027;\n\n    return tag;\n```",
+      "revId": "3115bdc1f91cd7bedb83345432010e7f0f21dc8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "30f0cfa7_f4dca707",
         "filename": "linker/linker_soinfo.cpp",
         "patchSetId": 4

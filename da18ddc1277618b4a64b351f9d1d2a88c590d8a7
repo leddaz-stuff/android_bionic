@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cd4b490_748c6f1f",
+        "filename": "linker/linker.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 3487,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-08-23T22:44:55Z",
+      "side": 1,
+      "message": "I think this will saturate after 15 globals.",
+      "revId": "da18ddc1277618b4a64b351f9d1d2a88c590d8a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
