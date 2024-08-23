@@ -40,6 +40,30 @@
       ],
       "revId": "c5bbffb39f39b9f723c912ee7102edf6c32d91fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2da0b6d_1f8d0e72",
+        "filename": "linker/linker.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 3468,
+      "author": {
+        "id": 1453063
+      },
+      "writtenOn": "2024-08-23T14:31:48Z",
+      "side": 1,
+      "message": "oops, done. also all the patches are now over to you.",
+      "parentUuid": "6c98e665_a0cfb2d4",
+      "range": {
+        "startLine": 3468,
+        "startChar": 6,
+        "endLine": 3468,
+        "endChar": 46
+      },
+      "revId": "c5bbffb39f39b9f723c912ee7102edf6c32d91fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
