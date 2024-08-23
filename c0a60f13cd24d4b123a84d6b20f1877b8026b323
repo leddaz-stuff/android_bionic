@@ -70,6 +70,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ac5b2a5_271bb01a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2005646
+      },
+      "writtenOn": "2024-08-23T16:09:33Z",
+      "side": 1,
+      "message": "Looks like the consensus here was that we don\u0027t want the workaround, and properly supporting `AT_EACCESS` requires switching to the new syscall which is a big compatibility headache.\n\nAbandoning since at this time this doesn\u0027t appear to be an issue in practice (see previous comments about libbpf usage), but happy to revisit in the future.",
+      "revId": "c0a60f13cd24d4b123a84d6b20f1877b8026b323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6186034_7ee1b441",
