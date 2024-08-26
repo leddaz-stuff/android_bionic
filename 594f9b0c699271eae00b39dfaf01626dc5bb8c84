@@ -77,6 +77,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a85dd06_8fbd5a45",
+        "filename": "libc/bionic/pthread_mutex.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1494236
+      },
+      "writtenOn": "2024-08-26T21:09:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b9b992e_5266d2ae",
+      "range": {
+        "startLine": 186,
+        "startChar": 28,
+        "endLine": 186,
+        "endChar": 30
+      },
+      "revId": "594f9b0c699271eae00b39dfaf01626dc5bb8c84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd6971b5_db93093b",
@@ -90,6 +114,54 @@
       "writtenOn": "2024-04-22T22:40:17Z",
       "side": 1,
       "message": "sizeof",
+      "range": {
+        "startLine": 189,
+        "startChar": 34,
+        "endLine": 189,
+        "endChar": 36
+      },
+      "revId": "594f9b0c699271eae00b39dfaf01626dc5bb8c84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdcf73f3_a8b80a16",
+        "filename": "libc/bionic/pthread_mutex.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1494236
+      },
+      "writtenOn": "2024-08-26T21:09:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd6971b5_db93093b",
+      "range": {
+        "startLine": 189,
+        "startChar": 34,
+        "endLine": 189,
+        "endChar": 36
+      },
+      "revId": "594f9b0c699271eae00b39dfaf01626dc5bb8c84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "334fff26_8b0b692a",
+        "filename": "libc/bionic/pthread_mutex.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1494236
+      },
+      "writtenOn": "2024-08-26T21:09:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd6971b5_db93093b",
       "range": {
         "startLine": 189,
         "startChar": 34,
