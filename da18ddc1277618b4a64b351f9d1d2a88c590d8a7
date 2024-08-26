@@ -75,6 +75,30 @@
       ],
       "revId": "da18ddc1277618b4a64b351f9d1d2a88c590d8a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8879959_6d7a0315",
+        "filename": "linker/linker_main.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-08-26T23:51:51Z",
+      "side": 1,
+      "message": "Done. Split into MTE init and stack MTE init.",
+      "parentUuid": "60cae5fe_abd57e8a",
+      "range": {
+        "startLine": 393,
+        "startChar": 2,
+        "endLine": 393,
+        "endChar": 17
+      },
+      "revId": "da18ddc1277618b4a64b351f9d1d2a88c590d8a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
