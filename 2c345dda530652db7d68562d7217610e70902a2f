@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb4ad334_2448bfd4",
+        "filename": "linker/linker_phdr_compat.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1988540
+      },
+      "writtenOn": "2024-08-26T19:12:22Z",
+      "side": 1,
+      "message": "I guess this isnt needed if we just use `phdr_table_get_minimum_alignment` like in https://r.android.com/3204818? @kaleshsingh@google.com",
+      "range": {
+        "startLine": 59,
+        "startChar": 11,
+        "endLine": 59,
+        "endChar": 21
+      },
+      "revId": "2c345dda530652db7d68562d7217610e70902a2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
