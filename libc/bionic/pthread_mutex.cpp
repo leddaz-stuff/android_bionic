@@ -182,7 +182,12 @@ static int  __attribute__((noinline)) PIMutexTimedLock(PIMutex& mutex,
         return 0;
     }
     if (ret == EBUSY) {
-        ScopedTrace trace("Contending for pthread mutex");
+        char trace_msg[42] = "Contending for pthread mutex: ";
+        int off = strlen(trace_msg)
+        const pid_t owner = atomic_load_explicit(&mutex.owner_tid, memory_order_relaxed)
+                & FUTEX_TID_MASK;
+        snprintf(&trace_msg[off], sizeof(trace_msg) - off, "%u", owner);
+        ScopedTrace trace(trace_msg);
         ret = -__futex_pi_lock_ex(&mutex.owner_tid, mutex.shared, use_realtime_clock, abs_timeout);
     }
     return ret;
