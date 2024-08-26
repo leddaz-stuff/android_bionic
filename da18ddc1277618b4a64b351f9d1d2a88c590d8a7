@@ -34,6 +34,47 @@
       "parentUuid": "3cd4b490_748c6f1f",
       "revId": "da18ddc1277618b4a64b351f9d1d2a88c590d8a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60cae5fe_abd57e8a",
+        "filename": "linker/linker_main.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-08-26T21:20:18Z",
+      "side": 1,
+      "message": "note to self: now we are calling __libc_init_mte twice, that\u0027s not good.",
+      "range": {
+        "startLine": 393,
+        "startChar": 2,
+        "endLine": 393,
+        "endChar": 17
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0d9e0d29_bfe21013",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "linker/linker_main.cpp",
+              "range": {
+                "startLine": 393,
+                "startChar": 0,
+                "endLine": 395,
+                "endChar": 0
+              },
+              "replacement": "  __libc_init_mte(somain-\u003ememtag_dynamic_entries(), somain-\u003ephdr, somain-\u003ephnum,\n                  somain-\u003eload_bias, args.argv);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "da18ddc1277618b4a64b351f9d1d2a88c590d8a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
