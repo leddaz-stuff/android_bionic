@@ -87,6 +87,24 @@
       "parentUuid": "9ba2c2a2_e892ca4c",
       "revId": "3115bdc1f91cd7bedb83345432010e7f0f21dc8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf3a2d29_5f863902",
+        "filename": "linker/linker_soinfo.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1268571
+      },
+      "writtenOn": "2024-08-27T21:27:37Z",
+      "side": 1,
+      "message": "I take it back. This was on for `-fsanitize\u003dmemtag`, which means people might have enabled the codegen for memtag-globals by accident. Added that to the comment.",
+      "parentUuid": "726e9658_78a77a71",
+      "revId": "3115bdc1f91cd7bedb83345432010e7f0f21dc8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
