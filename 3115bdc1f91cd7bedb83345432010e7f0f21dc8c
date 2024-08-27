@@ -69,6 +69,24 @@
       "parentUuid": "30f0cfa7_f4dca707",
       "revId": "3115bdc1f91cd7bedb83345432010e7f0f21dc8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "726e9658_78a77a71",
+        "filename": "linker/linker_soinfo.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-27T12:15:22Z",
+      "side": 1,
+      "message": "i guess in theory, if they were building their own toolchain like google3 say.\n\ngiven that it\u0027ll affect roughly no-one, and there\u0027s a patch they can take, and there\u0027s no significant amount of MTE code in the Play Store ... i suspect what this really meant was something like \"current prebuilts are broken\"? so if they\u0027ve aged out, should be fine?",
+      "parentUuid": "9ba2c2a2_e892ca4c",
+      "revId": "3115bdc1f91cd7bedb83345432010e7f0f21dc8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
