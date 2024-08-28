@@ -37,9 +37,6 @@
 
 __BEGIN_DECLS
 
-#define IN_CLOEXEC O_CLOEXEC
-#define IN_NONBLOCK O_NONBLOCK
-
 int inotify_init(void);
 int inotify_init1(int __flags);
 int inotify_add_watch(int __fd, const char* _Nonnull __path, uint32_t __mask);
