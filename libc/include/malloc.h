@@ -76,9 +76,6 @@ void* _Nullable calloc(size_t __item_count, size_t __item_size) __mallocfunc __B
  */
 void* _Nullable realloc(void* _Nullable __ptr, size_t __byte_count) __BIONIC_ALLOC_SIZE(2) __wur;
 
-// Remove the explicit guard once //external/giflib has been fixed so that it no
-// longer provides a conflicting definition: http://b/352784252
-#if __ANDROID_API__ >= 29
 /**
  * [reallocarray(3)](https://man7.org/linux/man-pages/man3/realloc.3.html) resizes
  * allocated memory on the heap.
@@ -90,7 +87,17 @@ void* _Nullable realloc(void* _Nullable __ptr, size_t __byte_count) __BIONIC_ALL
  * memory on success and returns a null pointer and sets `errno` on failure
  * (but see the notes for malloc()).
  */
+#if __ANDROID_API__ >= 29
 void* _Nullable reallocarray(void* _Nullable __ptr, size_t __item_count, size_t __item_size) __BIONIC_ALLOC_SIZE(2, 3) __wur __INTRODUCED_IN(29);
+#else
+static __inline void* _Nullable reallocarray(void* _Nullable __ptr, size_t __item_count, size_t __item_size) __BIONIC_ALLOC_SIZE(2, 3) __wur {
+  size_t __new_size;
+  if (__builtin_mul_overflow(__item_count, __item_size, &__new_size)) {
+    errno = ENOMEM;
+    return NULL;
+  }
+  return realloc(__ptr, __new_size);
+}
 #endif
 
 /**
