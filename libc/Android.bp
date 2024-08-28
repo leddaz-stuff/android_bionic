@@ -1687,8 +1687,9 @@ cc_library {
     llndk: {
         symbol_file: "libc.map.txt",
         export_headers_as_system: true,
-        export_preprocessed_headers: ["include"],
-        export_llndk_headers: ["libc_llndk_headers"],
+        export_llndk_headers: [
+            "libc_llndk_headers",
+        ],
     },
 }
 
@@ -1833,6 +1834,7 @@ cc_library_headers {
     sdk_version: "1",
 
     export_system_include_dirs: [
+        "include",
         "kernel/uapi",
         "kernel/android/scsi",
         "kernel/android/uapi",
