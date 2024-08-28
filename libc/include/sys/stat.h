@@ -38,6 +38,10 @@
 #include <sys/cdefs.h>
 #include <sys/types.h>
 
+#if !defined(__BIONIC_SYS_STAT_INLINE)
+#define __BIONIC_SYS_STAT_INLINE static __inline
+#endif
+
 __BEGIN_DECLS
 
 #if defined(__aarch64__) || defined(__riscv)
@@ -172,11 +176,14 @@ int fchmodat(int __dir_fd, const char* _Nonnull __path, mode_t __mode, int __fla
  *
  * Equivalent to `fchmodat(AT_FDCWD, path, mode, AT_SYMLINK_NOFOLLOW)`.
  *
- * Available since API 36.
- *
  * Returns 0 on success and returns -1 and sets `errno` on failure.
  */
+#if __ANDROID_API__ >= 36
 int lchmod(const char* _Nonnull __path, mode_t __mode) __INTRODUCED_IN(36);
+#else
+#define __BIONIC_LCHMOD_INLINE static __inline
+#include <bits/lchmod_polyfill.h>
+#endif
 
 /**
  * [mkdir(2)](https://man7.org/linux/man-pages/man2/mkdir.2.html)

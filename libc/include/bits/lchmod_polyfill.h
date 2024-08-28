@@ -26,6 +26,21 @@
  * SUCH DAMAGE.
  */
 
-#define __BIONIC_LCHMOD_INLINE /* Out of line. */
+#pragma once
 
-#include <bits/lchmod_polyfill.h>
+#include <sys/cdefs.h>
+
+#include <fcntl.h>
+#include <sys/stat.h>
+
+#if !defined(__BIONIC_LCHMOD_INLINE)
+#define __BIONIC_LCHMOD_INLINE static __inline
+#endif
+
+__BEGIN_DECLS
+
+__BIONIC_LCHMOD_INLINE int lchmod(const char* _Nonnull __path, mode_t __mode) {
+  return fchmodat(AT_FDCWD, __path, __mode, AT_SYMLINK_NOFOLLOW);
+}
+
+__END_DECLS
