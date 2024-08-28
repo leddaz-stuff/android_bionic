@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "591a3b29_88b55b19",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1043845
+      },
+      "writtenOn": "2024-08-28T20:53:35Z",
+      "side": 1,
+      "message": "Failed because the soong side has to merge first. I didn\u0027t topic them together because I don\u0027t want to block the soong change on bionic",
+      "revId": "18c0bb69855269a7ad6c4cedafdc324526e1a3f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
