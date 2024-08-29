@@ -162,6 +162,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "15cd3ba8_8675fa62",
+        "filename": "cpu_target_features/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1873222
+      },
+      "writtenOn": "2024-08-29T23:08:07Z",
+      "side": 1,
+      "message": "Did a bit of a rewrite then to shorten the line count. I attempted again to combine them all into one function with include guards, but the generative code and the special case handling got messy enough that I think this is probably the cleanest it will be.\n\nThere is no more \"header\" file generation, but it still needs the \"generated_headers\" entry, it seems. Generating the main itself proved more trouble than it was worth.\n\nRe-requesting review now.",
+      "parentUuid": "f6fdf89d_f62e014a",
+      "revId": "6c0b838ecf6e2109a71d71254b5637fefa87c48d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2538c90a_3306f0d0",
