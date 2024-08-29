@@ -126,6 +126,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fba8e3e_6a9ed672",
+        "filename": "cpu_target_features/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1873222
+      },
+      "writtenOn": "2024-08-29T17:50:28Z",
+      "side": 1,
+      "message": "\u003e you can literally delete most of this change if you don\u0027t have separate names though, right?\n\nUh, it just increases the (committed) line count. But if you insist... It\u0027s not like it\u0027s hard to do.\n\nIf we care that much about what we\u0027re committing, I\u0027ll drop the header file and just include it as an `.cpp.in` file then. It\u0027s just \"the main and its embedded include\" then. That will be the shortest committed text.",
+      "parentUuid": "01c33e9a_c80721c3",
+      "revId": "6c0b838ecf6e2109a71d71254b5637fefa87c48d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2538c90a_3306f0d0",
