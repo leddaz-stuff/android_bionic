@@ -108,6 +108,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "01c33e9a_c80721c3",
+        "filename": "cpu_target_features/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-29T13:57:46Z",
+      "side": 1,
+      "message": "you can literally delete most of this change if you don\u0027t have separate names though, right? (and it\u0027s not like libc folks don\u0027t already have to deal with \"which memset() exactly?\" :-) and here the whole point is that no-one should ever have to look at anything but the `_FEATURES` in the .py file...)\n\notherwise lgtm. (and thanks for adding a riscv64 example!)",
+      "parentUuid": "f9566531_8cee9092",
+      "revId": "6c0b838ecf6e2109a71d71254b5637fefa87c48d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2538c90a_3306f0d0",
