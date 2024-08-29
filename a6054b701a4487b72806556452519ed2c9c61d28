@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3324de90_09a0e8a9",
+        "filename": "libc/include/android/versioning.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-29T12:43:00Z",
+      "side": 1,
+      "message": "remove this? because currently it makes me ask \"of what?\" ... it\u0027s a bit weird to say \"more detailed explanation\" as the first thing we say :-) or...",
+      "range": {
+        "startLine": 19,
+        "startChar": 65,
+        "endLine": 20,
+        "endChar": 23
+      },
+      "revId": "a6054b701a4487b72806556452519ed2c9c61d28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62104eca_9ac36233",
+        "filename": "libc/include/android/versioning.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-29T12:43:00Z",
+      "side": 1,
+      "message": "systems",
+      "range": {
+        "startLine": 24,
+        "startChar": 16,
+        "endLine": 24,
+        "endChar": 24
+      },
+      "revId": "a6054b701a4487b72806556452519ed2c9c61d28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d794fc24_1f060e1c",
+        "filename": "libc/include/android/versioning.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-29T12:43:00Z",
+      "side": 1,
+      "message": "...alternatively, move the first comment to here? i think it would flow pretty well here?",
+      "revId": "a6054b701a4487b72806556452519ed2c9c61d28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
