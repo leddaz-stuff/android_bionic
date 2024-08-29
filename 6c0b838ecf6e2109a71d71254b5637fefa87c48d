@@ -144,6 +144,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6fdf89d_f62e014a",
+        "filename": "cpu_target_features/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-29T20:52:46Z",
+      "side": 1,
+      "message": "well, obviously \"minimum line count\" can be a dangerous metric that leads to https://www.ioccc.org/, and \"least stuff to have to understand\" is what i\u0027m actually going for, but unless i\u0027m missing something, i think the minimized lines version probably scores best for my real metric?",
+      "parentUuid": "9fba8e3e_6a9ed672",
+      "revId": "6c0b838ecf6e2109a71d71254b5637fefa87c48d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2538c90a_3306f0d0",
