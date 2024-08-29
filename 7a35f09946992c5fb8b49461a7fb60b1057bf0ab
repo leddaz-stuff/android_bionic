@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52ee7a93_e8c010e8",
+        "filename": "libc/bionic/pthread_mutex.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-29T20:40:52Z",
+      "side": 1,
+      "message": "again with the making me think ... bump this up to a nice round 64 so i don\u0027t have to paste that string into wc and add 10 for the longest 32-bit decimal integer and then add one for the \u0027\\0\u0027 but subtract one for the \u0027\\n\u0027 that will have crept into the wc part of the calculation :-)\n\n(actually, since pid_t is signed, i think it was off by one, if you could get a negative value in there? did i mention i hate having to think? :-) )",
+      "range": {
+        "startLine": 185,
+        "startChar": 23,
+        "endLine": 185,
+        "endChar": 25
+      },
+      "revId": "7a35f09946992c5fb8b49461a7fb60b1057bf0ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
