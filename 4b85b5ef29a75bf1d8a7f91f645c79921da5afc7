@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e562933_0f10ac57",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1878380
+      },
+      "writtenOn": "2024-08-30T17:58:11Z",
+      "side": 1,
+      "message": "This [CL thread](https://android-review.git.corp.google.com/c/platform/external/zlib/+/3249672/comment/28cc8eac_bee149c6/) contains additional context on what prompted this CL",
+      "revId": "4b85b5ef29a75bf1d8a7f91f645c79921da5afc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
