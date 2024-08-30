@@ -200,6 +200,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "d436d608_6d5ce986",
+        "filename": "cpu_target_features/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1873222
+      },
+      "writtenOn": "2024-08-30T21:58:31Z",
+      "side": 1,
+      "message": "Alright, did one final clean up. Just need a review on the system/core CL. Will ping again there :)",
+      "parentUuid": "c717e3fe_f18cd32a",
+      "revId": "6c0b838ecf6e2109a71d71254b5637fefa87c48d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "2538c90a_3306f0d0",
         "filename": "cpu_target_features/Android.bp",
         "patchSetId": 3
