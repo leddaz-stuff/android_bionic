@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5acd7b8e_9fbc34f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-08-30T15:13:49Z",
+      "side": 1,
+      "message": "still lgtm.\n\nfor the record, i\u0027m assuming we don\u0027t care about 32/64 systems, and we\u0027re happy with just having the \"primary architecture\" binary? seems reasonable to me, since we\u0027re moving people off 32/64 and making them \"pick a side\". but if that wasn\u0027t intentional and you do want both, \"ask me how\" :-) (or look at something like linker/linker64 to work it out yourself if that\u0027s more fun!)",
+      "revId": "fcb62973b0d0c30dcc8305a754d8514f8f379b32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
