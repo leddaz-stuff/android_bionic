@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3df571a0_c77fcd59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2024-09-03T21:38:10Z",
+      "side": 1,
+      "message": "(i also found that the [duplicate!] \"ignoring very long library path\" errors are just copy \u0026 paste from before the code was using std::string /facepalm ... but that too seems like something to be fixed after we\u0027ve done the basics, and i think this is roughly the \"MVP\" for better $LD_DEBUG...)",
+      "revId": "f08d0eb764fbf700d789c442dbb22b1ef0738739",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
